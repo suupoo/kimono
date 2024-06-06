@@ -2,14 +2,22 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\ColumnEnum\User as Column;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    protected $table = 'users';
+
+    public static function columns(): array
+    {
+        return Column::columns();
+    }
+
+    public static function tableName(): string
+    {
+        return Column::TABLE_NAME->value;
+    }
 
     /**
      * The attributes that are mass assignable.
