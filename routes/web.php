@@ -9,4 +9,4 @@ Route::get('/', function () {
 });
 
 Route::resource('users', UserController::class);
-Route::resource('customers', CustomerController::class);
+Route::resource('customers', CustomerController::class)->only(['create', 'store']);
