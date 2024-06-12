@@ -36,10 +36,8 @@ class Address2 extends ValueObject
 
     /**
      * 入力項目を返す
-     *
-     * @return View
      */
-    public function input(array $attributes = [])
+    public function input(array $attributes = []): View
     {
         $class = implode(' ', $attributes);
 
