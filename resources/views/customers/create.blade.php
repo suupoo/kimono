@@ -3,11 +3,13 @@
 @section('content')
 <form action="{{ route($model->getTable().'.store') }}" method="post" class="flex flex-col gap-2 px-12 py-2">
     @csrf
+    @if ($errors->any())
     <div class="error">
         @foreach($errors->all() as $error)
             <div class="text-red-500">{{ $error }}</div>
         @endforeach
     </div>
+    @endif
     <h1 class="text-xl font-bold">
         {{ $model::NAME }}
     </h1>
