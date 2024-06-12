@@ -36,12 +36,14 @@ class CreateAction
 
         // ①バリデーション
         $validator = Validator::make($request->all(), $rules);
-        $validator->validate();
 
         // バリデーションエラー
         if ($validator->fails()) {
-            // バリデーションエラー、入力値を返して戻る
-            return redirect()->back()->withErrors($validator)->withInput();
+            $redirectRouteName = $model->getTable() . '.create';
+            // バリデーションエラー時は入力画面へ入力値を返して戻る
+            return redirect()->route($redirectRouteName)
+                ->withErrors($validator)
+                ->withInput();
         }
 
         try {
@@ -63,7 +65,7 @@ class CreateAction
             DB::commit();
 
             // 一覧画面に戻す処理
-            redirect()->route($model->getTable() . '.index');
+            return redirect()->route($model->getTable() . '.create');
 
         } catch (\Exception $e) {
             DB::rollBack();

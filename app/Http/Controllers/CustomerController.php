@@ -33,7 +33,7 @@ class CustomerController
     public function store(Request $request, CreateAction $action): RedirectResponse
     {
         $model = new $this->model;
-        $redirect = $model->getTable() . '.index'; // customers/index
+        $redirect = $model->getTable() . '.create'; // customers/index
 
         try {
             $action($request, ResourceModel::class);
