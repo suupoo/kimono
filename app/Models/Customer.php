@@ -17,6 +17,10 @@ class Customer extends BaseModel
 
     const NAME = '顧客';
 
+    protected $casts = [
+        Prefecture::NAME => \App\Enums\Prefecture::class,
+    ];
+
     /**
      * カラムを定義する関数
      */

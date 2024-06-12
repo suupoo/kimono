@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer as ResourceModel; // モデル紐付け
 use App\UseCases\CreateAction;
+use App\UseCases\ListAction;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
 
 class CustomerController
@@ -16,6 +18,21 @@ class CustomerController
     {
         // $this->middleware('auth');
         $this->model = new ResourceModel;
+    }
+
+    public function index(Request $request, ListAction $action): View | RedirectResponse
+    {
+        $model = $this->model;
+        $items = new LengthAwarePaginator([], 0, 1, 1);
+        $view = $this->model->getTable().'.index'; // customers/index.blade.php
+
+        try {
+            $items = $action($request, ResourceModel::class, []);
+        } catch (\Exception $e) {
+            // ログを出す;
+        }
+
+        return view($view, compact('model', 'items'));
     }
 
     public function create(): View
