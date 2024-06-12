@@ -30,8 +30,9 @@ class CustomerController
         $listConditions = [
             // ソート可能なカラム
             'sortable' => [
-                PostCode::NAME,
-                Prefecture::NAME,
+                '*'
+                // PostCode::NAME,
+                // Prefecture::NAME,
             ]
         ];
 

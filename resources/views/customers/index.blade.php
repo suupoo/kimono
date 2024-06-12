@@ -18,7 +18,7 @@
                 @foreach($model::getColumns() as $column)
                 <th class="border border-slate-300 p-2">
                     <div class="flex w-full items-center justify-center space-x-1">
-                        @if(in_array($column->column(), $sortable))
+                        @if(in_array('*', $sortable) || in_array($column->column(), $sortable))
                         <a
                             class="bg-gray-100 p-0.5
                                 @if($sort === $column->column() && $order == 'asc' ) text-gray-800 @else text-gray-400 @endif
@@ -30,7 +30,7 @@
                         @endif
 
                         <span>{{ $column->label() }}</span>
-                        @if(in_array($column->column(), $sortable))
+                        @if(in_array('*', $sortable) || in_array($column->column(), $sortable))
                         <a
                             class="bg-gray-100 p-0.5
                                 @if($sort === $column->column() && $order == 'desc' ) text-gray-800 @else text-gray-400 @endif
