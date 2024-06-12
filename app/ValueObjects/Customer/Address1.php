@@ -7,15 +7,23 @@ use Illuminate\Contracts\View\View;
 
 class Address1 extends ValueObject
 {
-    public const NAME  = 'address_1';
+    public const NAME = 'address_1';
+
     public const LABEL = '住所１';
-    protected string $name          = self::NAME;
-    protected string $columnName    = self::NAME;
-    protected string $label         = self::LABEL;
-    protected string $type          = 'string';
-    protected ?int $maxLength       = 255;
-    protected ?int $minLength       = null;
-    protected bool $required        = false; // DB Nullable
+
+    protected string $name = self::NAME;
+
+    protected string $columnName = self::NAME;
+
+    protected string $label = self::LABEL;
+
+    protected string $type = 'string';
+
+    protected ?int $maxLength = 255;
+
+    protected ?int $minLength = null;
+
+    protected bool $required = false; // DB Nullable
 
     public function rules(): array
     {
@@ -28,15 +36,16 @@ class Address1 extends ValueObject
 
     /**
      * 入力項目を返す
-     * @param array $attributes
+     *
      * @return View
      */
     public function input(array $attributes = [])
     {
         $class = implode(' ', $attributes);
+
         return view('components.form.input', [
             'column' => $this,
-            'attributes'  => $attributes,
+            'attributes' => $attributes,
         ]);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\ResourceControllers\UserController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ResourceControllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {

@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer as ResourceModel; // モデル紐付け
 use App\UseCases\CreateAction;
-use Illuminate\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class CustomerController
 {
@@ -21,19 +21,15 @@ class CustomerController
     public function create(): View
     {
         $model = new $this->model;
-        $view  = $model->getTable() . '.create'; // customers/create.blade.php
+        $view = $model->getTable().'.create'; // customers/create.blade.php
+
         return view($view, compact('model'));
     }
 
-    /**
-     * @param Request $request
-     * @param CreateAction $action
-     * @return RedirectResponse
-     */
     public function store(Request $request, CreateAction $action): RedirectResponse
     {
         $model = new $this->model;
-        $redirect = $model->getTable() . '.create'; // customers/index
+        $redirect = $model->getTable().'.create'; // customers/index
 
         try {
             $action($request, ResourceModel::class);

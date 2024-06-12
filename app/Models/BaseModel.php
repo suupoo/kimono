@@ -17,7 +17,7 @@ abstract class BaseModel extends Model implements BaseModelInterface
     private function getFillables(): array
     {
         $fillables = [];
-        foreach ( $this->getColumns() as $column) {
+        foreach ($this->getColumns() as $column) {
             $fillables[] = $column->column();
         }
 

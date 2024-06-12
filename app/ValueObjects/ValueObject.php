@@ -5,12 +5,19 @@ namespace App\ValueObjects;
 abstract class ValueObject
 {
     protected ?string $value;
+
     protected string $name;
+
     protected string $columnName;
+
     protected string $label;
+
     protected string $type;
+
     protected ?int $maxLength = null;
+
     protected ?int $minLength = null;
+
     protected bool $required = false;
 
     public function id(): ?string
@@ -20,7 +27,6 @@ abstract class ValueObject
 
     /**
      * カラム名を返す
-     * @return string|null
      */
     public function column(): ?string
     {
@@ -29,7 +35,6 @@ abstract class ValueObject
 
     /**
      * 表示名を返す
-     * @return string
      */
     public function label(): string
     {
@@ -53,16 +58,15 @@ abstract class ValueObject
 
     /**
      * 入力タイプを返す
-     * @return string|null
      */
     public function inputType(): ?string
     {
         return match ($this->type) {
-            'string'    => 'text',
-            'integer'   => 'number',
-            'date'      => 'date',
-            'list'      => 'select',
-            default     => null,
+            'string' => 'text',
+            'integer' => 'number',
+            'date' => 'date',
+            'list' => 'select',
+            default => null,
         };
     }
 }

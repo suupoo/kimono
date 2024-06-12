@@ -11,15 +11,15 @@ class CreateAction
 {
     /**
      * Handle the incoming request.
-     * @param Request $request
-     * @param string $model
+     *
      * @return RedirectResponse|void
+     *
      * @throws \Exception
      */
     public function __invoke(Request $request, string $model)
     {
         // セッショントークンの再生成（二重送信対策）
-        if(env('APP_ENV') !== 'local'){
+        if (env('APP_ENV') !== 'local') {
             // ローカルで検証する際は二重送信可能
             $request->session()->regenerateToken();
         }
@@ -39,7 +39,8 @@ class CreateAction
 
         // バリデーションエラー
         if ($validator->fails()) {
-            $redirectRouteName = $model->getTable() . '.create';
+            $redirectRouteName = $model->getTable().'.create';
+
             // バリデーションエラー時は入力画面へ入力値を返して戻る
             return redirect()->route($redirectRouteName)
                 ->withErrors($validator)
@@ -53,7 +54,7 @@ class CreateAction
             // 値をfillするために column_name => input_name の形式でデータ整形
             $attributes = [];
             foreach ($columns as $column) {
-                if(array_key_exists($column->id(), $validator->validated())){
+                if (array_key_exists($column->id(), $validator->validated())) {
                     $attributes[$column->column()] = $validator->validated()[$column->id()];
                 }
             }
@@ -65,7 +66,7 @@ class CreateAction
             DB::commit();
 
             // 一覧画面に戻す処理
-            return redirect()->route($model->getTable() . '.create');
+            return redirect()->route($model->getTable().'.create');
 
         } catch (\Exception $e) {
             DB::rollBack();
