@@ -21,6 +21,7 @@
     @foreach($column->options() as $case)
     <option
         value="{{ $case->value }}"
+        @if(old($column->id()) == $case->value) selected @endif
     >
         {{ $case->label() }}
     </option>
