@@ -20,6 +20,8 @@ abstract class ValueObject
 
     protected bool $required = false;
 
+    protected bool $primaryKey = true;
+
     public function id(): ?string
     {
         return $this->name;
