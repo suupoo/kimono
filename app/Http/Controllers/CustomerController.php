@@ -20,7 +20,7 @@ class CustomerController
         $this->model = new ResourceModel;
     }
 
-    public function index(Request $request, ListAction $action): View | RedirectResponse
+    public function index(Request $request, ListAction $action): View|RedirectResponse
     {
         $model = $this->model;
         $items = new LengthAwarePaginator([], 0, 1, 1);
