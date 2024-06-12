@@ -9,13 +9,15 @@ use App\Enums\Prefecture as PrefectureEnum;
 
 class Prefecture extends ValueObject
 {
-    protected string $name = 'prefecture';
-    protected string $columnName = 'prefecture';
-    protected string $label = '都道府県';
-    protected string $type =  'list';
-    protected ?int $maxLength = null;
-    protected ?int $minLength = null;
-    protected bool $required = false;
+    public const NAME  = 'prefecture';
+    public const LABEL = '都道府県';
+    protected string $name          = self::NAME;
+    protected string $columnName    = self::NAME;
+    protected string $label         = self::LABEL;
+    protected string $type          =  'list';
+    protected ?int $maxLength       = null;
+    protected ?int $minLength       = null;
+    protected bool $required        = false;
 
     public function rules(): array
     {

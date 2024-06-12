@@ -7,13 +7,15 @@ use Illuminate\Contracts\View\View;
 
 class Address2 extends ValueObject
 {
-    protected string $name = 'address_2';
-    protected string $columnName = 'address_2';
-    protected string $label = '住所２';
-    protected string $type =  'string';
-    protected ?int $maxLength = 255;
-    protected ?int $minLength = null;
-    protected bool $required = false;// DB Nullable
+    public const NAME  = 'address_2';
+    public const LABEL = '住所２';
+    protected string $name          = self::NAME;
+    protected string $columnName    = self::NAME;
+    protected string $label         = self::LABEL;
+    protected string $type          = 'string';
+    protected ?int $maxLength       = 255;
+    protected ?int $minLength       = null;
+    protected bool $required        = false;// DB Nullable
 
     public function rules(): array
     {
