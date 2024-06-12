@@ -3,6 +3,7 @@
 namespace App\ValueObjects\Customer;
 
 use App\ValueObjects\ValueObject;
+use Illuminate\Contracts\View\View;
 use Illuminate\Validation\Rule;
 use App\Enums\Prefecture as PrefectureEnum;
 
@@ -28,5 +29,19 @@ class Prefecture extends ValueObject
     public function options(): array
     {
         return PrefectureEnum::cases();
+    }
+
+    /**
+     * 入力項目を返す
+     * @param array $attributes
+     * @return View
+     */
+    public function input(array $attributes = [])
+    {
+        $class = implode(' ', $attributes);
+        return view('components.form.select', [
+            'column' => $this,
+            'attributes'  => $attributes,
+        ]);
     }
 }

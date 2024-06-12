@@ -3,6 +3,7 @@
 namespace App\ValueObjects\Customer;
 
 use App\ValueObjects\ValueObject;
+use Illuminate\Contracts\View\View;
 
 class PostCode extends ValueObject
 {
@@ -23,5 +24,19 @@ class PostCode extends ValueObject
             "min:$this->minLength",
             "regex:/^[0-9]{3}-[0-9]{4}$/"
         ];
+    }
+
+    /**
+     * 入力項目を返す
+     * @param array $attributes
+     * @return View
+     */
+    public function input(array $attributes = [])
+    {
+        $class = implode(' ', $attributes);
+        return view('components.form.input', [
+            'column' => $this,
+            'attributes'  => $attributes,
+        ]);
     }
 }

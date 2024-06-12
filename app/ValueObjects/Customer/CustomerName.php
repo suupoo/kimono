@@ -3,6 +3,7 @@
 namespace App\ValueObjects\Customer;
 
 use App\ValueObjects\ValueObject;
+use Illuminate\Contracts\View\View;
 
 class CustomerName extends ValueObject
 {
@@ -22,5 +23,19 @@ class CustomerName extends ValueObject
             "max:$this->maxLength",
             "min:$this->minLength",
         ];
+    }
+
+    /**
+     * 入力項目を返す
+     * @param array $attributes
+     * @return View
+     */
+    public function input(array $attributes = [])
+    {
+        $class = implode(' ', $attributes);
+        return view('components.form.input', [
+            'column' => $this,
+            'attributes'  => $attributes,
+        ]);
     }
 }

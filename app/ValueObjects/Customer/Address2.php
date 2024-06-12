@@ -3,6 +3,7 @@
 namespace App\ValueObjects\Customer;
 
 use App\ValueObjects\ValueObject;
+use Illuminate\Contracts\View\View;
 
 class Address2 extends ValueObject
 {
@@ -21,5 +22,19 @@ class Address2 extends ValueObject
             'string',
             "max:$this->maxLength",
         ];
+    }
+
+    /**
+     * 入力項目を返す
+     * @param array $attributes
+     * @return View
+     */
+    public function input(array $attributes = [])
+    {
+        $class = implode(' ', $attributes);
+        return view('components.form.input', [
+            'column' => $this,
+            'attributes'  => $attributes,
+        ]);
     }
 }
