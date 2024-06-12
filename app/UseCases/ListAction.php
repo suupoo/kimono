@@ -19,8 +19,14 @@ class ListAction
         // リソースに紐づいたモデル
         $model = new $model;
 
+        $sort = $request->input('sort', 'id');
+        $order = $request->input('order', 'asc');
+
+        // ソート条件
+        $model = $model->orderBy($sort, $order);
+
         // paginateで取得する
-        $collections = $model::paginate(2);
+        $collections = $model->paginate(2);
 
         return $collections;
     }
