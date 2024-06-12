@@ -5,6 +5,7 @@
     $currentRouteName = request()->route()->getName();
     $sort = request()->get('sort');
     $direction = request()->get('direction');
+    $sortable = $listConditions['sortable'] ?? [];
 @endphp
 <div class="flex flex-col gap-2 px-12 py-2">
     <h1 class="text-xl font-bold">
@@ -17,6 +18,7 @@
                 @foreach($model::getColumns() as $column)
                 <th class="border border-slate-300 p-2">
                     <div class="flex w-full items-center justify-center space-x-1">
+                        @if(in_array($column->column(), $sortable))
                         <a
                             class="
                                 bg-gray-100
@@ -27,7 +29,10 @@
                         >
                             @include('components.list.sort-up')
                         </a>
+                        @endif
+
                         <span>{{ $column->label() }}</span>
+                        @if(in_array($column->column(), $sortable))
                         <a
                             class="
                                 bg-gray-100
@@ -38,6 +43,7 @@
                         >
                             @include('components.list.sort-down')
                         </a>
+                        @endif
                     </div>
                 </th>
                 @endforeach

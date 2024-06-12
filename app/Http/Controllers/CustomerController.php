@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Customer as ResourceModel; // モデル紐付け
 use App\UseCases\CreateAction;
 use App\UseCases\ListAction;
+use App\ValueObjects\Customer\PostCode;
+use \App\ValueObjects\Customer\Prefecture;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -25,14 +27,21 @@ class CustomerController
         $model = $this->model;
         $items = new LengthAwarePaginator([], 0, 1, 1);
         $view = $this->model->getTable().'.index'; // customers/index.blade.php
+        $listConditions = [
+            // ソート可能なカラム
+            'sortable' => [
+                PostCode::NAME,
+                Prefecture::NAME,
+            ]
+        ];
 
         try {
-            $items = $action($request, ResourceModel::class, []);
+            $items = $action($request, ResourceModel::class, $listConditions);
         } catch (\Exception $e) {
             // ログを出す;
         }
 
-        return view($view, compact('model', 'items'));
+        return view($view, compact('model', 'items', 'listConditions'));
     }
 
     public function create(): View
