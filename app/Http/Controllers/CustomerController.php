@@ -33,7 +33,13 @@ class CustomerController
                 '*'
                 // PostCode::NAME,
                 // Prefecture::NAME,
-            ]
+            ],
+            // 検索可能なカラム
+            'searchable' => [
+                '*'
+                // PostCode::NAME,
+                // Prefecture::NAME,
+            ],
         ];
 
         try {

@@ -6,11 +6,40 @@
     $sort = request()->get('sort');
     $order = request()->get('order');
     $sortable = $listConditions['sortable'] ?? [];
+    $searchable = $listConditions['searchable'] ?? [];
 @endphp
 <div class="flex flex-col gap-2 px-12 py-2">
     <h1 class="text-xl font-bold">
         {{ $model::NAME }}
     </h1>
+
+    @if(!empty($searchable))
+    <x-list.search-box>
+        @foreach($model::getColumns() as $column)
+            @if(in_array('*', $searchable) || in_array($column->column(), $searchable))
+                @if($column instanceof \App\ValueObjects\Customer\CustomerName)
+                    {!! $column->input(['class' => ''])?->render() !!}
+                @endif
+
+                @if($column instanceof \App\ValueObjects\Customer\Prefecture)
+                    {!! $column->input(['class' => ''])?->render() !!}
+                @endif
+
+                @if($column instanceof \App\ValueObjects\Customer\Address1)
+                    {!! $column->input(['class' => ''])?->render() !!}
+                @endif
+
+                @if($column instanceof \App\ValueObjects\Customer\Address2)
+                    {!! $column->input(['class' => ''])?->render() !!}
+                @endif
+
+                @if($column instanceof \App\ValueObjects\Customer\PostCode)
+                    {!! $column->input(['class' => ''])?->render() !!}
+                @endif
+            @endif
+        @endforeach
+    </x-list.search-box>
+    @endif
 
     <table class="table-auto border-collapse border border-slate-400">
         <thead>

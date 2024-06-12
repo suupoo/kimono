@@ -16,7 +16,7 @@
     id="{{ $column->id() }}"
     name="{{ $column->id() }}"
     type="{{ $column->inputType() }}"
-    value="{{ old($column->id()) }}"
+    value="{{ old($column->id(), request()->get($column->id())) }}"
     @if($column->maxLength()) maxlength="{{ $column->maxLength() }}" @endif
     @if($column->minLength()) minlength="{{ $column->minLength() }}" @endif
     @if($required)  required="required" @endif
