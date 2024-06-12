@@ -1,0 +1,26 @@
+<?php
+
+namespace App\ValueObjects\Customer;
+
+use App\ValueObjects\ValueObject;
+
+class CustomerName extends ValueObject
+{
+    protected string $name = 'customer_name';
+    protected string $columnName = 'customer_name';
+    protected string $label = '顧客名';
+    protected string $type =  'string';
+    protected ?int $maxLength = 3;
+    protected ?int $minLength = 1;
+    protected bool $required = true; // DB Not Nullable
+
+    public function rules(): array
+    {
+        return [
+            'required',
+            'string',
+            "max:$this->maxLength",
+            "min:$this->minLength",
+        ];
+    }
+}
