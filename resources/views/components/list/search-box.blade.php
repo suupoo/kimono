@@ -24,19 +24,20 @@
         $('.list-search-box>#btn-search').on('click', function() {
             // ページネーションのクエリパラメータを引き継ぐ
             const url = new URL(window.location.href);
+            const redirectUrl = new URL(url.origin + url.pathname);
             const searchParams = url.searchParams;
 
             const page = searchParams.get('page');
             if (page) {
-                url.searchParams.set('page', page);
+                redirectUrl.searchParams.set('page', page);
             }
             const sort = searchParams.get('sort');
             if (sort) {
-                url.searchParams.set('sort', sort);
+                redirectUrl.searchParams.set('sort', sort);
             }
             const order = searchParams.get('order');
             if (order) {
-                url.searchParams.set('order', order);
+                redirectUrl.searchParams.set('order', order);
             }
 
             // URLパラメータを設定してリダイレクトさせる
@@ -45,12 +46,21 @@
                 const name = $(this).attr('name');
                 const value = $(this).val();
                 if (value) {
-                    url.searchParams.set(name, value);
+                    if($(this).is('select')){
+                        // selectの場合
+                        // 未選択00の場合は、パラメータをセットしない
+                        if(value !== '00'){
+                            redirectUrl.searchParams.set(name, value);
+                        }
+                    }else{
+                        // 常に値をセットする
+                        redirectUrl.searchParams.set(name, value);
+                    }
                 }
             });
 
             // リダイレクト
-            location.href = url;
+            location.href = redirectUrl;
         });
     });
 </script>
