@@ -8,6 +8,8 @@ use Illuminate\Support\Collection;
 
 class ListAction
 {
+    protected $defaultPaginate = 10;
+
     /**
      * Handle the incoming request.
      *
@@ -51,7 +53,8 @@ class ListAction
         $query->orderBy($sort, $order);
 
         // paginateで取得する
-        $collections = $query->paginate(2);
+        $paginate = $attributes['paginate'] ?? $this->defaultPaginate;
+        $collections = $query->paginate($paginate);
 
         return $collections;
     }

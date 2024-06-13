@@ -44,6 +44,8 @@ class CustomerController
                 new Prefecture,
                 new Address1,
             ]),
+            // 1ページあたりの表示件数
+            'paginate' => 10,
         ];
 
         try {
