@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Customer as ResourceModel; // モデル紐付け
 use App\UseCases\CreateAction;
 use App\UseCases\ListAction;
+use App\ValueObjects\Customer\Address1;
+use App\ValueObjects\Customer\Id;
 use App\ValueObjects\Customer\PostCode;
 use \App\ValueObjects\Customer\Prefecture;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
 class CustomerController
@@ -35,17 +38,19 @@ class CustomerController
                 // Prefecture::NAME,
             ],
             // 検索可能なカラム
-            'searchable' => [
-                '*'
-                // PostCode::NAME,
-                // Prefecture::NAME,
-            ],
+            'searchable' => new Collection([
+                new Id,
+                new PostCode,
+                new Prefecture,
+                new Address1,
+            ]),
         ];
 
         try {
             $items = $action($request, ResourceModel::class, $listConditions);
         } catch (\Exception $e) {
             // ログを出す;
+            dd($e);
         }
 
         return view($view, compact('model', 'items', 'listConditions'));

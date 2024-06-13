@@ -35,6 +35,11 @@ abstract class ValueObject
         return $this->columnName;
     }
 
+    public function type(): ?string
+    {
+        return $this->type;
+    }
+
     /**
      * 表示名を返す
      */

@@ -16,7 +16,20 @@
     @if(!empty($searchable))
     <x-list.search-box>
         @foreach($model::getColumns() as $column)
-            @if(in_array('*', $searchable) || in_array($column->column(), $searchable))
+            @php
+                // todo:改良したさの極み
+                $searchableArray = $searchable->toArray();
+                $searchableColumn = [];
+                foreach($searchableArray as $key => $value) {
+                    $searchableColumn[] = $value->column();
+                }
+            @endphp
+            @if(in_array($column->column(), $searchableColumn))
+
+                @if($column instanceof \App\ValueObjects\Customer\Id)
+                    {!! $column->input(['class' => ''])?->render() !!}
+                @endif
+
                 @if($column instanceof \App\ValueObjects\Customer\CustomerName)
                     {!! $column->input(['class' => ''])?->render() !!}
                 @endif
