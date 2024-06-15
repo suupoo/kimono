@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class EditAction
+class UpdateAction
 {
     /**
      * Handle the incoming request.
@@ -39,10 +39,12 @@ class EditAction
 
         // バリデーションエラー
         if ($validator->fails()) {
-            $redirectRouteName = $model->getTable().'.create';
+            $redirectRouteName = $model->getTable().'.edit';
+
+            dd($validator->errors());
 
             // バリデーションエラー時は入力画面へ入力値を返して戻る
-            return redirect()->route($redirectRouteName)
+            return redirect()->route($redirectRouteName, ['id' => $request->id])
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -51,22 +53,23 @@ class EditAction
             // トランザクションで処理する
             DB::beginTransaction();
 
-            //            // 値をfillするために column_name => input_name の形式でデータ整形
-            //            $attributes = [];
-            //            foreach ($columns as $column) {
-            //                if (array_key_exists($column->id(), $validator->validated())) {
-            //                    $attributes[$column->column()] = $validator->validated()[$column->id()];
-            //                }
-            //            }
-            //
-            //            // 新規作成
-            //            $model::create($attributes);
-            //
-            //            // コミット
-            //            DB::commit();
+            $updateEntity = $model->findOrFail($validator->validated()['id']);
+
+            $attributes = [];
+            foreach ($columns as $column) {
+                if (array_key_exists($column->id(), $validator->validated())) {
+                    $attributes[$column->column()] = $validator->validated()[$column->id()];
+                }
+            }
+
+            // 更新
+            $updateEntity->fill($attributes)->save();
+
+            // コミット
+            DB::commit();
 
             // 一覧画面に戻す処理
-            return redirect()->route($model->getTable().'.create');
+            return redirect()->route($model->getTable().'.edit', ['id' => $updateEntity->id]);
 
         } catch (\Exception $e) {
             DB::rollBack();

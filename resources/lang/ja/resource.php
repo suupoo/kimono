@@ -6,6 +6,7 @@ return [
     'list' => '一覧',
     'create' => '新規作成',
     'edit' => '編集',
+    'update' => '更新',
     'delete' => '削除',
     'show' => '詳細',
     'search' => '検索',

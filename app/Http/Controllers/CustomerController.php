@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer as ResourceModel; // モデル紐付け
 use App\UseCases\CreateAction;
 use App\UseCases\ListAction;
+use App\UseCases\UpdateAction;
 use App\ValueObjects\Customer\Address1;
 use App\ValueObjects\Customer\Id;
 use App\ValueObjects\Customer\PostCode;
@@ -105,6 +106,20 @@ class CustomerController
         $view = $model->getTable().'.edit'; // customers/edit.blade.php
 
         return view($view, compact('model'));
+    }
+
+    public function update(Request $request, int $id, UpdateAction $action) : RedirectResponse
+    {
+        $model = $this->model;
+        $redirect = $model->getTable().'.edit'; // customers/{id}/show
+
+        try {
+            $action($request, ResourceModel::class, ['id' => $id]);
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->withErrors(['error' => $e->getMessage()]);
+        }
+
+        return redirect()->route($redirect, ['id' => $id]);
     }
 
     public function show(string $id): View

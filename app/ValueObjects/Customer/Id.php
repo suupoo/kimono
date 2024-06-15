@@ -5,6 +5,7 @@ namespace App\ValueObjects\Customer;
 use App\ValueObjects\ValueObject;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\Rule;
 
 class Id extends ValueObject
 {
@@ -31,16 +32,23 @@ class Id extends ValueObject
     public function rules(): array
     {
         $routeName = Route::currentRouteName();
+        $id = Route::current()->parameter('id');
 
         return match ($routeName) {
+            // ルート名 => ルール
             'customers.store' => [
                 // 新規登録時はIDは自動採番のため除外
             ],
-            default => [
-                'required',
-                'unique:customers,id',
+            'customers.update' => [
+                // 新規登録時はIDは自動採番のため除外
                 'integer',
-            ]
+                'required',
+                Rule::unique('customers')->ignore($id),
+            ],
+            default => array_merge([
+                // 通常時のバリデーション
+                'integer',
+            ]),
         };
     }
 

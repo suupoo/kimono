@@ -1,12 +1,17 @@
 @extends('layouts')
 
 @section('content')
-<form action="{{ route($model->getTable().'.store') }}" method="post" class="flex flex-col gap-2 px-12 py-2">
+@php
+    $id = $model->id;
+@endphp
+<form action="{{ route($model->getTable().'.update', ['id' => $id]) }}" method="post" class="flex flex-col px-12 py-2">
     @csrf
+    <input type="hidden" id="id" name="id" value="{{ $id }}" />
+    @method('PUT')
     @if ($errors->any())
     <div class="error">
         @foreach($errors->all() as $error)
-            <div class="text-red-500">{{ $error }}</div>
+        <div class="text-red-500">{{ $error }}</div>
         @endforeach
     </div>
     @endif
@@ -62,8 +67,8 @@
     </div>
     <input
         type="submit"
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        value="作成"
+        class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        value="{{ __('resource.update') }}"
     />
 </form>
 @endsection
