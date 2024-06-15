@@ -110,9 +110,15 @@
 
                 @foreach($items as $item)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <td class="px-6 py-4 text-sm">
-                        <a href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}" class="text-blue-500">
+                    <td class="px-2 py-4 text-xs flex flex-col justify-center space-y-1">
+                        <a href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}" class="text-blue-500 p-0.5 text-center border border-blue-500">
                             {{ __('resource.edit') }}
+                        </a>
+                        <a href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}" class="text-gray-500 p-0.5 text-center border border-gray-500">
+                            {{ __('resource.show') }}
+                        </a>
+                        <a href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}" class="text-red-500 p-0.5 text-center border border-blue-500">
+                            {{ __('resource.delete') }}
                         </a>
                     </td>
                     @foreach($model::getColumns() as $column)
