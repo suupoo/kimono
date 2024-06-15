@@ -8,12 +8,14 @@
     $sortable = $listConditions['sortable'] ?? [];
     $searchable = $listConditions['searchable'] ?? [];
 @endphp
-<div class="flex flex-col gap-2 px-12 py-2">
-    <h1 class="text-xl font-bold">
-        {{ $model::NAME }}
-    </h1>
+{{--　コンテンツタイトル --}}
+<x-content.title>
+    {{ $model::NAME }}
+</x-content.title>
 
-    @if(!empty($searchable))
+{{--　検索エリア --}}
+@if(!empty($searchable))
+<x-content.full>
     <x-list.search-box>
         @foreach($model::getColumns() as $column)
             @php
@@ -52,60 +54,71 @@
             @endif
         @endforeach
     </x-list.search-box>
-    @endif
+</x-content.full>
+@endif
 
-    <table class="table-auto border-collapse border border-slate-400">
-        <thead>
-            <tr>
-                @foreach($model::getColumns() as $column)
-                <th class="border border-slate-300 p-2">
-                    <div class="flex w-full items-center justify-center space-x-1">
-                        @if(in_array('*', $sortable) || in_array($column->column(), $sortable))
-                        <a
-                            class="bg-gray-100 p-0.5
-                                @if($sort === $column->column() && $order == 'asc' ) text-gray-800 @else text-gray-400 @endif
-                            "
-                            href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'asc'])}}"
-                        >
-                            @include('components.list.sort-up')
-                        </a>
-                        @endif
+{{--　リスト --}}
+<x-content.full>
+    <h3 class="text-xl font-bold my-2">
+        {{ $model::NAME }}一覧
+    </h3>
 
-                        <span>{{ $column->label() }}</span>
-                        @if(in_array('*', $sortable) || in_array($column->column(), $sortable))
-                        <a
-                            class="bg-gray-100 p-0.5
-                                @if($sort === $column->column() && $order == 'desc' ) text-gray-800 @else text-gray-400 @endif
+    <div class="relative overflow-x-auto">
+        <table class="w-full border rounded-xl text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-white uppercase bg-gray-500 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    @foreach($model::getColumns() as $column)
+                    <th scope="col" class="px-6 py-3">
+                        <div class="flex w-full items-center justify-center space-x-1">
+                            @if(in_array('*', $sortable) || in_array($column->column(), $sortable))
+                                <a
+                                    class="bg-gray-100 p-0.5
+                                @if($sort === $column->column() && $order == 'asc' ) text-red-500 @else text-gray-400 @endif
                             "
-                            href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'desc'])}}"
-                        >
-                            @include('components.list.sort-down')
-                        </a>
-                        @endif
-                    </div>
-                </th>
+                                    href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'asc'])}}"
+                                >
+                                    @include('components.list.sort-up')
+                                </a>
+                            @endif
+
+                            <span>{{ $column->label() }}</span>
+                            @if(in_array('*', $sortable) || in_array($column->column(), $sortable))
+                                <a
+                                    class="bg-white p-0.5
+                                @if($sort === $column->column() && $order == 'desc' ) text-blue-500 @else text-gray-400 @endif
+                            "
+                                    href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'desc'])}}"
+                                >
+                                    @include('components.list.sort-down')
+                                </a>
+                            @endif
+                        </div>
+                    </th>
+                    @endforeach
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach($items as $item)
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    @foreach($model::getColumns() as $column)
+                        <td class="px-6 py-4">
+                            @php
+                                $columnName = $column->column();
+                                $value = $item?->$columnName
+                            @endphp
+                            @if($value instanceof UnitEnum )
+                                {{ $value->label() }}
+                            @else
+                                {{ $item?->$columnName }}
+                            @endif
+                        </td>
+                    @endforeach
+                </tr>
                 @endforeach
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($items as $item)
-            <tr class="border border-slate-300 ">
-                @foreach($model::getColumns() as $column)
-                <td class="px-1 py-2 border border-slate-300">
-                    @php
-                        $columnName = $column->column();
-                        $value = $item?->$columnName
-                    @endphp
-                    @if($value instanceof UnitEnum )
-                        {{ $value->label() }}
-                    @else
-                        {{ $item?->$columnName }}
-                    @endif
-                </td>
-                @endforeach
-            </tr>
-            @endforeach
-    </table>
-    {{ $items->links() }}
-</div>
+            </tbody>
+        </table>
+        {{ $items->links() }}
+    </div>
+</x-content.full>
 @endsection
