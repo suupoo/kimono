@@ -51,9 +51,6 @@ class CustomerController extends Controller
 
     /**
      * 一覧表示
-     * @param Request $request
-     * @param ListAction $action
-     * @return View|RedirectResponse
      */
     public function index(Request $request, ListAction $action): View|RedirectResponse
     {
@@ -86,7 +83,6 @@ class CustomerController extends Controller
 
     /**
      * 新規登録画面表示
-     * @return View
      */
     public function create(): View
     {
@@ -98,20 +94,14 @@ class CustomerController extends Controller
 
     /**
      * 新規登録処理
-     * @param Request $request
-     * @param CreateAction $action
-     * @return RedirectResponse
      */
     public function store(Request $request, CreateAction $action): RedirectResponse
     {
-        return
-            $action($request, ResourceModel::class);
+        return $action($request, ResourceModel::class);
     }
 
     /**
      * 編集画面表示
-     * @param string $id
-     * @return View
      */
     public function edit(string $id): View
     {
@@ -123,10 +113,6 @@ class CustomerController extends Controller
 
     /**
      * 更新処理
-     * @param Request $request
-     * @param int $id
-     * @param UpdateAction $action
-     * @return RedirectResponse
      */
     public function update(Request $request, int $id, UpdateAction $action): RedirectResponse
     {
@@ -144,8 +130,6 @@ class CustomerController extends Controller
 
     /**
      * 詳細画面表示
-     * @param string $id
-     * @return View
      */
     public function show(string $id): View
     {
@@ -158,9 +142,6 @@ class CustomerController extends Controller
 
     /**
      * 削除処理
-     * @param Request $request
-     * @param string $id
-     * @return RedirectResponse
      */
     public function destroy(Request $request, string $id): RedirectResponse
     {

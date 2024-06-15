@@ -16,11 +16,10 @@ class CreateAction extends ResourceAction
     /**
      * Handle the incoming request.
      *
-     * @return RedirectResponse
      *
      * @throws \Exception
      */
-    public function __invoke(Request $request, string $model, array $attributes = []) :RedirectResponse
+    public function __invoke(Request $request, string $model, array $attributes = []): RedirectResponse
     {
         // セッショントークンの再生成（二重送信対策）
         $this->updateCsrfToken();
@@ -40,7 +39,7 @@ class CreateAction extends ResourceAction
 
         // バリデーション実行前の処理
         $this->beforeOfValidate($request, $model, [
-            'rules'   => &$rules,
+            'rules' => &$rules,
             'columns' => &$columns,
         ]);
 
@@ -50,7 +49,7 @@ class CreateAction extends ResourceAction
         // バリデーション実行前の処理
         $this->afterOfValidate($request, $model, [
             'validator' => &$validator,
-            'columns'   => &$columns,
+            'columns' => &$columns,
         ]);
 
         // バリデーションエラー
@@ -86,7 +85,7 @@ class CreateAction extends ResourceAction
             // 新規作成後の処理
             $this->afterOfCreate($request, $model, [
                 'attributes' => &$attributes,
-                'entity'     => &$createdEntity,
+                'entity' => &$createdEntity,
             ]);
 
             // コミット
@@ -95,7 +94,7 @@ class CreateAction extends ResourceAction
             // コミット後の処理
             $this->afterOfCommit($request, $model, [
                 'attributes' => &$attributes,
-                'entity'     => &$createdEntity,
+                'entity' => &$createdEntity,
             ]);
 
             // 正常終了時は一覧画面へリダイレクト
@@ -103,7 +102,7 @@ class CreateAction extends ResourceAction
 
         } catch (\Exception $e) {
             DB::rollBack();
-            Log::error(('error:'.__METHOD__),['message' => $e->getMessage(),'file' => $e->getFile(), 'line' => $e->getLine()]);
+            Log::error(('error:'.__METHOD__), ['message' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()]);
 
             // エラー時は入力画面へ入力値を返して戻る
             return redirect()->route($model->getTable().'.create')->withInput()
