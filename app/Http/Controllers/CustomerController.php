@@ -27,6 +27,18 @@ class CustomerController
 
     public function index(Request $request, ListAction $action): View|RedirectResponse
     {
+        // ソート順番がない場合はリダイレクト
+        $redirectParam = [];
+        if (!$request->get('sort')) {
+            $redirectParam['sort'] = 'id';
+        }
+        if (!$request->get('order')) {
+            $redirectParam['order'] = 'asc';
+        }
+        if (!empty($redirectParam)){
+            return redirect()->route($this->model->getTable().'.index',$redirectParam);
+        }
+
         $model = $this->model;
         $items = new LengthAwarePaginator([], 0, 1, 1);
         $view = $this->model->getTable().'.index'; // customers/index.blade.php
