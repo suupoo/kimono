@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer as ResourceModel; // モデル紐付け
-use App\UseCases\CreateAction;
 use App\UseCases\ListAction;
+use App\UseCases\ResourceAction\CreateAction;
 use App\UseCases\UpdateAction;
 use App\ValueObjects\Customer\Address1;
 use App\ValueObjects\Customer\Id;
@@ -17,14 +17,14 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\View\View;
 
-class CustomerController
+class CustomerController extends Controller
 {
     protected ResourceModel $model;
 
     /**
      * 一覧表示<index>画面での一覧表示条件設定
      */
-    private function initListConditions(): array
+    protected function initListConditions(): array
     {
         return [
             'sortable' => new Collection([
@@ -49,6 +49,12 @@ class CustomerController
         $this->model = new ResourceModel;
     }
 
+    /**
+     * 一覧表示
+     * @param Request $request
+     * @param ListAction $action
+     * @return View|RedirectResponse
+     */
     public function index(Request $request, ListAction $action): View|RedirectResponse
     {
         // ソート順番がない場合はリダイレクト
@@ -78,6 +84,10 @@ class CustomerController
         return view($view, compact('model', 'items', 'listConditions'));
     }
 
+    /**
+     * 新規登録画面表示
+     * @return View
+     */
     public function create(): View
     {
         $model = new $this->model;
@@ -86,20 +96,23 @@ class CustomerController
         return view($view, compact('model'));
     }
 
+    /**
+     * 新規登録処理
+     * @param Request $request
+     * @param CreateAction $action
+     * @return RedirectResponse
+     */
     public function store(Request $request, CreateAction $action): RedirectResponse
     {
-        $model = new $this->model;
-        $redirect = $model->getTable().'.create'; // customers/index
-
-        try {
+        return
             $action($request, ResourceModel::class);
-        } catch (\Exception $e) {
-            return redirect()->back()->withInput()->withErrors(['error' => $e->getMessage()]);
-        }
-
-        return redirect()->route($redirect);
     }
 
+    /**
+     * 編集画面表示
+     * @param string $id
+     * @return View
+     */
     public function edit(string $id): View
     {
         $model = $this->model->findOrFail($id);
@@ -108,6 +121,13 @@ class CustomerController
         return view($view, compact('model'));
     }
 
+    /**
+     * 更新処理
+     * @param Request $request
+     * @param int $id
+     * @param UpdateAction $action
+     * @return RedirectResponse
+     */
     public function update(Request $request, int $id, UpdateAction $action): RedirectResponse
     {
         $model = $this->model;
@@ -122,6 +142,11 @@ class CustomerController
         return redirect()->route($redirect, ['id' => $id]);
     }
 
+    /**
+     * 詳細画面表示
+     * @param string $id
+     * @return View
+     */
     public function show(string $id): View
     {
         $model = new $this->model;
@@ -131,6 +156,12 @@ class CustomerController
         return view($view, compact('model'));
     }
 
+    /**
+     * 削除処理
+     * @param Request $request
+     * @param string $id
+     * @return RedirectResponse
+     */
     public function destroy(Request $request, string $id): RedirectResponse
     {
         $model = $this->model->findOrFail($id);
