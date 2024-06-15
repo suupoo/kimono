@@ -108,7 +108,7 @@ class CustomerController
         return view($view, compact('model'));
     }
 
-    public function update(Request $request, int $id, UpdateAction $action) : RedirectResponse
+    public function update(Request $request, int $id, UpdateAction $action): RedirectResponse
     {
         $model = $this->model;
         $redirect = $model->getTable().'.edit'; // customers/{id}/show
