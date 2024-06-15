@@ -1,11 +1,12 @@
 <div id="search-box"
      class="w-full"
      data-accordion="collapse"
-     data-active-classes="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-white"
+     data-active-classes="bg-gray-700 text-gray-600"
+     data-inacvite-classes="bg-gray-700 text-gray-600"
 >
     <h2 id="accordion-search-box" class="w-full">
         <button type="button"
-                class="flex items-center justify-between w-full p-2 font-medium rtl:text-right text-gray-500 border border-gray-200 rounded-t-md bg-gray-600 hover:bg-gray-500 gap-3"
+                class="flex items-center justify-between w-full p-2 font-medium rtl:text-right text-gray-500 border border-gray-200 rounded-t-md bg-gray-700 hover:bg-gray-400 gap-3"
                 data-accordion-target="#accordion-search-box-body"
                 aria-expanded="false"
                 aria-controls="accordion-search-box-body"
@@ -22,8 +23,8 @@
         </button>
     </h2>
     <div id="accordion-search-box-body" class="hidden" aria-labelledby="accordion-search-box">
-        <div class="w-full bg-white border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-            <div class="list-search-box p-3 w-full h-full border bg-gray-white">
+        <div class="w-full bg-white border border-b-0 border-gray-200 ">
+            <div class="list-search-box p-3 w-full h-full border bg-white">
                 <h2 class="text-xl font-bold mb-2">{{ __('resource.search_condition') }}</h2>
                 <div class="grid grid-cols-2 gap-2">
                     {{ $slot }}

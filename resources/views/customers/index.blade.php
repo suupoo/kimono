@@ -71,8 +71,8 @@
     </h3>
 
     <div class="relative overflow-x-auto">
-        <table class="w-full border rounded-xl text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-white uppercase bg-gray-500 dark:bg-gray-700 dark:text-gray-400">
+        <table class="w-full border rounded-xl text-sm text-left rtl:text-right text-gray-500">
+            <thead class="text-xs text-white uppercase bg-gray-700">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         {{ __('resource.operation') }}
@@ -109,7 +109,7 @@
             <tbody>
 
                 @foreach($items as $item)
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <tr class="bg-white border-b">
                     <td class="px-2 py-4 text-xs flex flex-col justify-center space-y-1">
                         <a href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}" class="text-blue-500 p-0.5 text-center border border-blue-500">
                             {{ __('resource.edit') }}
