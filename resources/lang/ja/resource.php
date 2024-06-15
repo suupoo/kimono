@@ -10,4 +10,5 @@ return [
     'show'      => '詳細',
     'search'    => '検索',
     'search_condition' => '検索条件',
+    'operation' => '操作',
 ];

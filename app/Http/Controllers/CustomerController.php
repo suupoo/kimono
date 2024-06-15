@@ -98,4 +98,12 @@ class CustomerController
 
         return redirect()->route($redirect);
     }
+
+    public function edit(string $id): View
+    {
+        $model = $this->model->findOrFail($id);
+        $view = $model->getTable().'.edit'; // customers/edit.blade.php
+
+        return view($view, compact('model'));
+    }
 }

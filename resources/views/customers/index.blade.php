@@ -74,6 +74,9 @@
         <table class="w-full border rounded-xl text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-white uppercase bg-gray-500 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
+                    <th scope="col" class="px-6 py-3">
+                        {{ __('resource.operation') }}
+                    </th>
                     @foreach($model::getColumns() as $column)
                     <th scope="col" class="px-6 py-3">
                         <div class="flex w-full items-center justify-center space-x-1">
@@ -107,6 +110,11 @@
 
                 @foreach($items as $item)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <td class="px-6 py-4 text-sm">
+                        <a href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}" class="text-blue-500">
+                            {{ __('resource.edit') }}
+                        </a>
+                    </td>
                     @foreach($model::getColumns() as $column)
                         <td class="px-6 py-4">
                             @php
