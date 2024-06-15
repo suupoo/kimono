@@ -4,6 +4,7 @@ namespace App\ValueObjects\Customer;
 
 use App\ValueObjects\ValueObject;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Route;
 
 class Id extends ValueObject
 {
@@ -26,6 +27,21 @@ class Id extends ValueObject
     protected bool $required = true; // DB Nullable
 
     protected bool $primaryKey = true;
+
+    public function rules(): array
+    {
+        $routeName = Route::currentRouteName();
+        return match ($routeName){
+            'customers.store' => [
+                // 新規登録時はIDは自動採番のため除外
+            ],
+            default => [
+                'required',
+                'unique:customers,id',
+                'integer',
+            ]
+        };
+    }
 
     /**
      * 入力項目を返す
