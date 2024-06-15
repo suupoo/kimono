@@ -2,6 +2,7 @@
     $attributes = $attributes ?? [];
     $class = $attributes['class'] ?? '';
     $required = $attributes['required'] ?? false;
+    $value = $attributes['value'] ?? '';
 @endphp
 <label
     for="{{ $column->id() }}"
@@ -21,7 +22,7 @@
     @foreach($column->options() as $case)
     <option
         value="{{ $case->value }}"
-        @if(old($column->id(), request()->get($column->id())) == $case->value) selected @endif
+        @if(old($column->id(), request()->get($column->id(), $value)) == $case->value) selected @endif
     >
         {{ $case->label() }}
     </option>

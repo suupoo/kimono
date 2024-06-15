@@ -2,6 +2,7 @@
     $attributes = $attributes ?? [];
     $class = $attributes['class'] ?? '';
     $required = $attributes['required'] ?? false;
+    $value = $attributes['value'] ?? '';
 @endphp
 <label
     for="{{ $column->id() }}"
@@ -16,7 +17,7 @@
     id="{{ $column->id() }}"
     name="{{ $column->id() }}"
     type="{{ $column->inputType() }}"
-    value="{{ old($column->id(), request()->get($column->id())) }}"
+    value="{{ old($column->id(), request()->get($column->id(), $value)) }}"
     @if($column->maxLength()) maxlength="{{ $column->maxLength() }}" @endif
     @if($column->minLength()) minlength="{{ $column->minLength() }}" @endif
     @if($required)  required="required" @endif

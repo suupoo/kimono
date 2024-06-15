@@ -18,23 +18,43 @@
         <div class="w-full my-1">
 
             @if($column instanceof \App\ValueObjects\Customer\CustomerName)
-            {!! $column->input(['required' => true, 'class' => ''])?->render() !!}
+                @php
+                  $customerNameColumn = $column->column();
+                  $customerNameValue  = $model->$customerNameColumn;
+                @endphp
+                {!! $column->input(['required' => true, 'class' => '', 'value' => $customerNameValue])?->render() !!}
             @endif
 
             @if($column instanceof \App\ValueObjects\Customer\Prefecture)
-            {!! $column->input(['required' => false, 'class' => ''])?->render() !!}
+                @php
+                    $prefectureColumn = $column->column();
+                    $prefectureValue  = $model->$prefectureColumn;
+                @endphp
+                {!! $column->input(['required' => false, 'class' => '', 'value' => $prefectureValue?->value])?->render() !!}
             @endif
 
             @if($column instanceof \App\ValueObjects\Customer\Address1)
-            {!! $column->input(['required' => false, 'class' => ''])?->render() !!}
+                @php
+                    $address1Column = $column->column();
+                    $address1Value  = $model->$address1Column;
+                @endphp
+                {!! $column->input(['required' => false, 'class' => '', 'value' => $address1Value])?->render() !!}
             @endif
 
             @if($column instanceof \App\ValueObjects\Customer\Address2)
-            {!! $column->input(['required' => false, 'class' => ''])?->render() !!}
+                @php
+                    $address2Column = $column->column();
+                    $address2Value  = $model->$address2Column;
+                @endphp
+                {!! $column->input(['required' => false, 'class' => '', 'value' => $address2Value])?->render() !!}
             @endif
 
             @if($column instanceof \App\ValueObjects\Customer\PostCode)
-            {!! $column->input(['required' => false, 'class' => ''])?->render() !!}
+                @php
+                    $postCodeColumn = $column->column();
+                    $postCodeValue  = $model->$postCodeColumn;
+                @endphp
+                {!! $column->input(['required' => false, 'class' => '', 'value' => $postCodeValue])?->render() !!}
             @endif
 
         </div>
