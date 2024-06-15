@@ -69,7 +69,11 @@
     <h3 class="text-xl font-bold my-2">
         {{ $model::NAME . __('resource.list') }}
     </h3>
-
+    <div class="w-full flex my-2 justify-end">
+        <a href="{{ route($model->getTable() . '.create') }}" class="bg-green-500 text-white rounded-lg p-2">
+            {{ __('resource.create') }}
+        </a>
+    </div>
     <div class="relative overflow-x-auto">
         <table class="w-full border rounded-xl text-sm text-left rtl:text-right text-gray-500">
             <thead class="text-xs text-white uppercase bg-gray-700">
