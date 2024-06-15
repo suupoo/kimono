@@ -79,7 +79,7 @@
                         <div class="flex w-full items-center justify-center space-x-1">
                             @if(in_array($column->column(), $arraySortable))
                                 <a
-                                    class="p-0.5 @if($sort === $column->column() && $order == 'asc' ) bg-red-500 text-white @else bg-gray-100 text-gray-400 @endif
+                                    class="p-0.5 @if($sort === $column->column() && $order == 'asc' ) bg-red-400 text-white @else bg-gray-100 text-gray-400 @endif
 s                            "
                                     href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'asc'])}}"
                                 >
