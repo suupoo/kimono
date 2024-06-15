@@ -19,6 +19,29 @@ class CustomerController
 {
     protected ResourceModel $model;
 
+    /**
+     * 一覧表示<index>画面での一覧表示条件設定
+     * @return array
+     */
+    private function initListConditions(): array
+    {
+        return [
+            'sortable' => new Collection([
+                new Id,
+                new PostCode,
+                new Prefecture,
+                new Address1,
+            ]),
+            'searchable' => new Collection([
+                new Id,
+                new PostCode,
+                new Prefecture,
+                new Address1,
+            ]),
+            'paginate' => 10,
+        ];
+    }
+
     public function __construct()
     {
         // $this->middleware('auth');
@@ -42,23 +65,7 @@ class CustomerController
         $model = $this->model;
         $items = new LengthAwarePaginator([], 0, 1, 1);
         $view = $this->model->getTable().'.index'; // customers/index.blade.php
-        $listConditions = [
-            // ソート可能なカラム
-            'sortable' => [
-                '*'
-                // PostCode::NAME,
-                // Prefecture::NAME,
-            ],
-            // 検索可能なカラム
-            'searchable' => new Collection([
-                new Id,
-                new PostCode,
-                new Prefecture,
-                new Address1,
-            ]),
-            // 1ページあたりの表示件数
-            'paginate' => 10,
-        ];
+        $listConditions = $this->initListConditions();
 
         try {
             $items = $action($request, ResourceModel::class, $listConditions);
