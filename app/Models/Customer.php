@@ -43,7 +43,7 @@ class Customer extends BaseModel
             new Address1,
             new Address2,
             new CreatedAt,
-            new UpdatedAt
+            new UpdatedAt,
         ];
     }
 }

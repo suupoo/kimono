@@ -8,7 +8,7 @@ use App\UseCases\ListAction;
 use App\ValueObjects\Customer\Address1;
 use App\ValueObjects\Customer\Id;
 use App\ValueObjects\Customer\PostCode;
-use \App\ValueObjects\Customer\Prefecture;
+use App\ValueObjects\Customer\Prefecture;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -22,7 +22,6 @@ class CustomerController
 
     /**
      * 一覧表示<index>画面での一覧表示条件設定
-     * @return array
      */
     private function initListConditions(): array
     {
@@ -53,14 +52,14 @@ class CustomerController
     {
         // ソート順番がない場合はリダイレクト
         $redirectParam = [];
-        if (!$request->get('sort')) {
+        if (! $request->get('sort')) {
             $redirectParam['sort'] = 'id';
         }
-        if (!$request->get('order')) {
+        if (! $request->get('order')) {
             $redirectParam['order'] = 'asc';
         }
-        if (!empty($redirectParam)){
-            return redirect()->route($this->model->getTable().'.index',$redirectParam);
+        if (! empty($redirectParam)) {
+            return redirect()->route($this->model->getTable().'.index', $redirectParam);
         }
 
         $model = $this->model;

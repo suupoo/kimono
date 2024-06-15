@@ -51,19 +51,19 @@ class EditAction
             // トランザクションで処理する
             DB::beginTransaction();
 
-//            // 値をfillするために column_name => input_name の形式でデータ整形
-//            $attributes = [];
-//            foreach ($columns as $column) {
-//                if (array_key_exists($column->id(), $validator->validated())) {
-//                    $attributes[$column->column()] = $validator->validated()[$column->id()];
-//                }
-//            }
-//
-//            // 新規作成
-//            $model::create($attributes);
-//
-//            // コミット
-//            DB::commit();
+            //            // 値をfillするために column_name => input_name の形式でデータ整形
+            //            $attributes = [];
+            //            foreach ($columns as $column) {
+            //                if (array_key_exists($column->id(), $validator->validated())) {
+            //                    $attributes[$column->column()] = $validator->validated()[$column->id()];
+            //                }
+            //            }
+            //
+            //            // 新規作成
+            //            $model::create($attributes);
+            //
+            //            // コミット
+            //            DB::commit();
 
             // 一覧画面に戻す処理
             return redirect()->route($model->getTable().'.create');

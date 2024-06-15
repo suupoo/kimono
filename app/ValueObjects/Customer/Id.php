@@ -31,7 +31,8 @@ class Id extends ValueObject
     public function rules(): array
     {
         $routeName = Route::currentRouteName();
-        return match ($routeName){
+
+        return match ($routeName) {
             'customers.store' => [
                 // 新規登録時はIDは自動採番のため除外
             ],
