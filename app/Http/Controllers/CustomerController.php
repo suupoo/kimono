@@ -107,6 +107,15 @@ class CustomerController
         return view($view, compact('model'));
     }
 
+    public function show(string $id): View
+    {
+        $model = new $this->model;
+        $model = $this->model->findOrFail($id);
+        $view = $model->getTable().'.show'; // customers/show.blade.php
+
+        return view($view, compact('model'));
+    }
+
     public function destroy(Request $request, string $id): RedirectResponse
     {
         $model = $this->model->findOrFail($id);

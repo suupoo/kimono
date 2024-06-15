@@ -118,7 +118,7 @@
                         <a href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}" class="text-blue-500 p-0.5 text-center border border-blue-500">
                             {{ __('resource.edit') }}
                         </a>
-                        <a href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}" class="text-gray-500 p-0.5 text-center border border-gray-500">
+                        <a href="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}" class="text-gray-500 p-0.5 text-center border border-gray-500">
                             {{ __('resource.show') }}
                         </a>
                         <button  data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="text-red-500 p-0.5 text-center border border-red-500">
