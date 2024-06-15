@@ -30,7 +30,7 @@ class Prefecture extends ValueObject
     public function rules(): array
     {
         return [
-            'nullable',
+            'required',
             'string',
             Rule::enum(PrefectureEnum::class),
         ];
