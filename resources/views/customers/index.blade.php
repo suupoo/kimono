@@ -80,22 +80,22 @@
                             @if(in_array($column->column(), $arraySortable))
                                 <a
                                     class="p-0.5 @if($sort === $column->column() && $order == 'asc' ) bg-red-400 text-white @else bg-gray-100 text-gray-400 @endif
-s                            "
+                            "
                                     href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'asc'])}}"
                                 >
-                                    @include('components.list.sort-up')
+                                    @include('components.list.icons.sort-up')
                                 </a>
                             @endif
 
                             <span>{{ $column->label() }}</span>
                             @if(in_array($column->column(), $arraySortable))
                                 <a
-                                    class="bg-white p-0.5
+                                    class="p-0.5
                                 @if($sort === $column->column() && $order == 'desc' ) bg-blue-400 text-white @else bg-gray-100 text-gray-400 @endif
                             "
                                     href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'desc'])}}"
                                 >
-                                    @include('components.list.sort-down')
+                                    @include('components.list.icons.sort-down')
                                 </a>
                             @endif
                         </div>
