@@ -5,8 +5,16 @@
     $currentRouteName = request()->route()->getName();
     $sort = request()->get('sort');
     $order = request()->get('order');
-    $sortable = $listConditions['sortable'] ?? [];
+    // 検索可能カラムコレクションをカラム名配列に変換
     $searchable = $listConditions['searchable'] ?? [];
+    foreach($searchable as $searchableItem) {
+        $arraySearchable[] = $searchableItem->column();
+    }
+    // ソート可能カラムコレクションをカラム名配列に変換
+    $sortable = $listConditions['sortable'] ?? [];
+    foreach ($sortable as $sortableItem) {
+        $arraySortable[] = $sortableItem->column();
+    };
 @endphp
 {{--　コンテンツタイトル --}}
 <x-content.title>
@@ -66,21 +74,13 @@
         <table class="w-full border rounded-xl text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-white uppercase bg-gray-500 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    @php
-                        // ソート可能カラムコレクションをカラム名配列に変換
-                        $arraySortable = [];
-                        foreach ($sortable as $sort) {
-                            $arraySortable[] = $sort->column();
-                        };
-                    @endphp
                     @foreach($model::getColumns() as $column)
                     <th scope="col" class="px-6 py-3">
                         <div class="flex w-full items-center justify-center space-x-1">
-                            @if(in_array('*', $arraySortable) || in_array($column->column(), $arraySortable))
+                            @if(in_array($column->column(), $arraySortable))
                                 <a
-                                    class="bg-gray-100 p-0.5
-                                @if($sort === $column->column() && $order == 'asc' ) text-red-500 @else text-gray-400 @endif
-                            "
+                                    class="p-0.5 @if($sort === $column->column() && $order == 'asc' ) bg-red-500 text-white @else bg-gray-100 text-gray-400 @endif
+s                            "
                                     href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'asc'])}}"
                                 >
                                     @include('components.list.sort-up')
@@ -88,10 +88,10 @@
                             @endif
 
                             <span>{{ $column->label() }}</span>
-                            @if(in_array('*', $arraySortable) || in_array($column->column(), $arraySortable))
+                            @if(in_array($column->column(), $arraySortable))
                                 <a
                                     class="bg-white p-0.5
-                                @if($sort === $column->column() && $order == 'desc' ) text-blue-500 @else text-gray-400 @endif
+                                @if($sort === $column->column() && $order == 'desc' ) bg-blue-400 text-white @else bg-gray-100 text-gray-400 @endif
                             "
                                     href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'desc'])}}"
                                 >
