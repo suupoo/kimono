@@ -67,7 +67,7 @@
 {{--　リスト --}}
 <x-content.full>
     <h3 class="text-xl font-bold my-2">
-        {{ $model::NAME }}一覧
+        {{ $model::NAME . __('resource.list') }}
     </h3>
 
     <div class="relative overflow-x-auto">

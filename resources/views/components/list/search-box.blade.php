@@ -24,7 +24,7 @@
     <div id="accordion-search-box-body" class="hidden" aria-labelledby="accordion-search-box">
         <div class="w-full bg-white border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
             <div class="list-search-box p-3 w-full h-full border bg-gray-white">
-                <h2 class="text-xl font-bold mb-2">検索条件</h2>
+                <h2 class="text-xl font-bold mb-2">{{ __('resource.search_condition') }}</h2>
                 <div class="grid grid-cols-2 gap-2">
                     {{ $slot }}
                 </div>
@@ -33,7 +33,7 @@
                     id="btn-search"
                     class="bg-blue-500 w-full text-white rounded-md mt-4 py-2"
                 >
-                    検索
+                    {{ __('resource.search') }}
                 </button>
             </div>
         </div>
