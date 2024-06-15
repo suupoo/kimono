@@ -11,4 +11,6 @@ return [
     'search'    => '検索',
     'search_condition' => '検索条件',
     'operation' => '操作',
+    'cancel'      => 'キャンセル',
+    'is_delete_selected_data' => '選択したデータを削除しますか？',
 ];

@@ -2,6 +2,7 @@
     "(and :count more error)": "(その他、:countエラーあり)",
     "(and :count more errors)": "(その他、:countエラーあり)|(その他、:countエラーあり)|(その他、:countエラーあり)",
     "All rights reserved.": "All rights reserved.",
+    "Are you sure you want to delete the selected data?" : "選択したデータを削除してもよろしいですか？",
     "errors": "エラー",
     "Forbidden": "禁止されていまåす",
     "Go to page :page": ":Pageページへ",

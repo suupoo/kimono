@@ -13,6 +13,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\View\View;
 
 class CustomerController
@@ -105,5 +106,20 @@ class CustomerController
         $view = $model->getTable().'.edit'; // customers/edit.blade.php
 
         return view($view, compact('model'));
+    }
+
+    public function destroy(Request $request, string $id): RedirectResponse
+    {
+        $model = $this->model->findOrFail($id);
+        $redirect = $model->getTable().'.index'; // customers/edit.blade.php
+        $search = Crypt::decrypt($request->get('search'));
+
+        try {
+            $model->delete();
+        } catch (\Exception $e) {
+            return redirect()->route($redirect, $search)->withErrors(['error' => $e->getMessage()]);
+        }
+
+        return redirect()->route($redirect, $search);
     }
 }
