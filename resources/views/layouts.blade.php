@@ -21,7 +21,7 @@
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
         <div class="min-h-screen bg-white dark:bg-zinc-900">
             @include('components.menu.top-menu')
-            @include('components.menu.side-menu')
+            <x-menu.sideMenu/>
             <div class="p-4 sm:ml-64 bg-gray-50 min-h-screen">
                 <div class="p-4 mt-14">
                     <div class="flex flex-col h-full mb-4 rounded">
