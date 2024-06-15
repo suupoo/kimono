@@ -24,6 +24,12 @@ class Customer extends BaseModel
         Prefecture::NAME => \App\Enums\Prefecture::class,
     ];
 
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at',
+    ];
+
     /**
      * カラムを定義する関数
      */
