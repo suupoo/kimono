@@ -125,7 +125,6 @@ class CustomerController extends Controller
      */
     public function show(string $id): View
     {
-        $model = new $this->model;
         $model = $this->model->findOrFail($id);
         $view = $model->getTable().'.show'; // customers/show.blade.php
 
