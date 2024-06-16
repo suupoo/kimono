@@ -14,4 +14,5 @@ return [
     'operation' => '操作',
     'cancel' => 'キャンセル',
     'is_delete_selected_data' => '選択したデータを削除しますか？',
+    'close_modal' => 'モーダルを閉じる',
 ];
