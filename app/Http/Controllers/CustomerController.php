@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer as ResourceModel; // モデル紐付け
 use App\UseCases\CustomerAction\CreateAction;
 use App\UseCases\CustomerAction\ListAction;
-use App\UseCases\UpdateAction;
+use App\UseCases\CustomerAction\UpdateAction;
 use App\ValueObjects\Customer\Address1;
 use App\ValueObjects\Customer\Id;
 use App\ValueObjects\Customer\PostCode;
@@ -116,16 +116,7 @@ class CustomerController extends Controller
      */
     public function update(Request $request, int $id, UpdateAction $action): RedirectResponse
     {
-        $model = $this->model;
-        $redirect = $model->getTable().'.edit'; // customers/{id}/show
-
-        try {
-            $action($request, ResourceModel::class, ['id' => $id]);
-        } catch (\Exception $e) {
-            return redirect()->back()->withInput()->withErrors(['error' => $e->getMessage()]);
-        }
-
-        return redirect()->route($redirect, ['id' => $id]);
+        return $action($request, ResourceModel::class);
     }
 
     /**

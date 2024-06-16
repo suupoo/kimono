@@ -1,13 +1,14 @@
 <?php
 
-namespace App\UseCases;
+namespace App\UseCases\ResourceAction;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
-class UpdateAction
+class UpdateAction extends ResourceAction
 {
     /**
      * Handle the incoming request.
@@ -19,10 +20,10 @@ class UpdateAction
     public function __invoke(Request $request, string $model)
     {
         // セッショントークンの再生成（二重送信対策）
-        if (env('APP_ENV') !== 'local') {
-            // ローカルで検証する際は二重送信可能
-            $request->session()->regenerateToken();
-        }
+        $this->updateCsrfToken();
+
+        // アクション開始時の処理
+        $this->startOfAction($request, $model);
 
         // リソースに紐づいたモデル
         $model = new $model;
@@ -34,14 +35,24 @@ class UpdateAction
             $rules[$column->id()] = $column->rules();
         }
 
-        // ①バリデーション
+        // バリデーション実行前の処理
+        $this->beforeOfValidate($request, $model, [
+            'rules' => &$rules,
+            'columns' => &$columns,
+        ]);
+
+        // バリデーション
         $validator = Validator::make($request->all(), $rules);
+
+        // バリデーション実行前の処理
+        $this->afterOfValidate($request, $model, [
+            'validator' => &$validator,
+            'columns' => &$columns,
+        ]);
 
         // バリデーションエラー
         if ($validator->fails()) {
             $redirectRouteName = $model->getTable().'.edit';
-
-            dd($validator->errors());
 
             // バリデーションエラー時は入力画面へ入力値を返して戻る
             return redirect()->route($redirectRouteName, ['id' => $request->id])
@@ -62,18 +73,42 @@ class UpdateAction
                 }
             }
 
+            // 更新前の処理
+            $this->beforeOfUpdate($request, $model, [
+                'attributes' => &$attributes,
+                'entity' => &$updateEntity,
+            ]);
+
             // 更新
             $updateEntity->fill($attributes)->save();
+
+            // 更新後の処理
+            $this->afterOfUpdate($request, $model, [
+                'attributes' => &$attributes,
+                'entity' => &$updateEntity,
+            ]);
 
             // コミット
             DB::commit();
 
-            // 一覧画面に戻す処理
-            return redirect()->route($model->getTable().'.edit', ['id' => $updateEntity->id]);
+            // コミット後の処理
+            $this->afterOfCommit($request, $model, [
+                'attributes' => &$attributes,
+                'entity' => &$updateEntity,
+            ]);
+
+            // 閲覧画面に戻す処理
+            return redirect()->route($model->getTable().'.show', ['id' => $request->id]);
 
         } catch (\Exception $e) {
             DB::rollBack();
-            throw $e;
+            Log::error(('error:'.__METHOD__), ['message' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()]);
+
+            // エラー時は入力画面へ入力値を返して戻る
+            return redirect()->route($model->getTable().'.edit',[
+                'id' => $request->id
+            ])->withInput()
+                ->withErrors(['error' => __('Error of General')]);
         }
     }
 }

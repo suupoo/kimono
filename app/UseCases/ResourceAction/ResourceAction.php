@@ -91,6 +91,22 @@ class ResourceAction
     }
 
     /**
+     * 更新処理実行前の処理
+     */
+    protected function beforeOfUpdate(Request $request, string $model, array $attributes = []): void
+    {
+
+    }
+
+    /**
+     * 更新処理実行後の処理
+     */
+    protected function afterOfUpdate(Request $request, string $model, array $attributes = []): void
+    {
+
+    }
+
+    /**
      * コミット後の処理
      */
     protected function afterOfCommit(Request $request, string $model, array $attributes = []): void
