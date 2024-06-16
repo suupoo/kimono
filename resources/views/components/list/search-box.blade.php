@@ -1,12 +1,12 @@
 <div id="search-box"
-     class="w-full"
+     class="w-full bg-gray-700"
      data-accordion="collapse"
-     data-active-classes="bg-gray-700 text-gray-600"
+     data-active-classes="bg-gray-400 text-gray-600"
      data-inacvite-classes="bg-gray-700 text-gray-600"
 >
     <h2 id="accordion-search-box" class="w-full">
         <button type="button"
-                class="flex items-center justify-between w-full p-2 font-medium rtl:text-right text-gray-500 border border-gray-200 rounded-t-md bg-gray-700 hover:bg-gray-400 gap-3"
+                class="flex items-center justify-between w-full p-2 font-medium rtl:text-right text-gray-500 hover:bg-gray-400 gap-3"
                 data-accordion-target="#accordion-search-box-body"
                 aria-expanded="false"
                 aria-controls="accordion-search-box-body"
