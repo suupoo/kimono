@@ -51,6 +51,30 @@ class ResourceAction
     }
 
     /**
+     * 検索実行前の処理
+     */
+    protected function beforeOfSearch(Request $request, string $model, array $attributes = []): void
+    {
+
+    }
+
+    /**
+     * 検索実行後の処理
+     */
+    protected function afterOfSearch(Request $request, string $model, array $attributes = []): void
+    {
+
+    }
+
+    /**
+     * 検索条件整理実行前の処理
+     */
+    protected function prepareSearchCondition(Request $request, string $model, array $attributes = []): void
+    {
+
+    }
+
+    /**
      * 新規作成処理実行前の処理
      */
     protected function beforeOfCreate(Request $request, string $model, array $attributes = []): void

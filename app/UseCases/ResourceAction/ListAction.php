@@ -6,7 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
-class ListAction
+class ListAction extends ResourceAction
 {
     /**
      * デフォルトのページネーション数を取得する
@@ -26,6 +26,9 @@ class ListAction
      */
     public function __invoke(Request $request, string $model, array $attributes = [])
     {
+        // アクション開始時の処理
+        $this->startOfAction($request, $model);
+
         // リソースに紐づいたモデル
         $model = new $model;
 
@@ -34,7 +37,14 @@ class ListAction
         $order = $request->input('order', 'asc');
 
         // 検索条件を取得する
-        $searchConditions = $request->except(['sort', 'order']);
+        $searchConditions = $request->except(['sort', 'order', 'page']);
+
+        // 検索条件実行前の処理
+        $this->prepareSearchCondition($request, $model, [
+            'sort' => &$sort,
+            'order' => &$order,
+            'searchCollection' => &$searchCollection,
+        ]);
 
         // 検索可能なカラムを取得する
         $searchable = $attributes['searchable'] ?? new Collection();
@@ -59,11 +69,30 @@ class ListAction
         // ソート条件を設定
         $query->orderBy($sort, $order);
 
-        // paginateで取得する
+        // ペシネーション数を取得する
         $paginate = $attributes['paginate'] ?? $this->defaultPaginate();
 
+        // 検索実行前の処理
+        $this->beforeOfSearch($request, $model, [
+            'searchConditions' => &$searchConditions,
+            'searchable' => &$searchable,
+            'query' => &$query,
+            'paginate' => &$paginate,
+        ]);
+
+        // 検索実行
+        $searchCollection = $query->paginate($paginate)
+            ->appends($request->except('page'));
+
+        // 検索実行後の処理
+        $this->beforeOfSearch($request, $model, [
+            'searchCollection' => &$searchCollection,
+        ]);
+
+        // アクション終了時の処理
+        $this->endOfAction($request, $model);
+
         return
-            $query->paginate($paginate)
-                  ->appends($request->except('page'));
+            $searchCollection;
     }
 }
