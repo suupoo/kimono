@@ -8,6 +8,7 @@ use App\UseCases\CustomerAction\DeleteAction;
 use App\UseCases\CustomerAction\ListAction;
 use App\UseCases\CustomerAction\UpdateAction;
 use App\ValueObjects\Customer\Address1;
+use App\ValueObjects\Customer\Address2;
 use App\ValueObjects\Customer\Id;
 use App\ValueObjects\Customer\PostCode;
 use App\ValueObjects\Customer\Prefecture;
@@ -32,12 +33,14 @@ class CustomerController extends Controller
                 new PostCode,
                 new Prefecture,
                 new Address1,
+                new Address2,
             ]),
             'searchable' => new Collection([
                 new Id,
                 new PostCode,
                 new Prefecture,
                 new Address1,
+                new Address2,
             ]),
             'paginate' => 10,
         ];
