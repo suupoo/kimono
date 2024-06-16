@@ -1,7 +1,7 @@
 @extends('layouts')
 
 @section('content')
-<div class="flex flex-col gap-2 px-12 py-2">
+<div class="flex flex-col px-12 py-2">
     @csrf
     @if ($errors->any())
     <div class="error">
