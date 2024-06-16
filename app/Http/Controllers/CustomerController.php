@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer as ResourceModel; // モデル紐付け
 use App\UseCases\CustomerAction\CreateAction;
+use App\UseCases\CustomerAction\DeleteAction;
 use App\UseCases\CustomerAction\ListAction;
 use App\UseCases\CustomerAction\UpdateAction;
 use App\ValueObjects\Customer\Address1;
@@ -134,18 +135,8 @@ class CustomerController extends Controller
     /**
      * 削除処理
      */
-    public function destroy(Request $request, string $id): RedirectResponse
+    public function destroy(Request $request, string $id, DeleteAction $action): RedirectResponse
     {
-        $model = $this->model->findOrFail($id);
-        $redirect = $model->getTable().'.index'; // customers/edit.blade.php
-        $search = Crypt::decrypt($request->get('search'));
-
-        try {
-            $model->delete();
-        } catch (\Exception $e) {
-            return redirect()->route($redirect, $search)->withErrors(['error' => $e->getMessage()]);
-        }
-
-        return redirect()->route($redirect, $search);
+        return $action($request, ResourceModel::class);
     }
 }

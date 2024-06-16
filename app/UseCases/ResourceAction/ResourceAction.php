@@ -107,6 +107,22 @@ class ResourceAction
     }
 
     /**
+     * 削除処理実行前の処理
+     */
+    protected function beforeOfDelete(Request $request, string $model, array $attributes = []): void
+    {
+
+    }
+
+    /**
+     * 削除処理実行後の処理
+     */
+    protected function afterOfDelete(Request $request, string $model, array $attributes = []): void
+    {
+
+    }
+
+    /**
      * コミット後の処理
      */
     protected function afterOfCommit(Request $request, string $model, array $attributes = []): void
