@@ -4,6 +4,7 @@ namespace App\UseCases\ResourceAction;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 class ListAction extends ResourceAction

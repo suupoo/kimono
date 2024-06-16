@@ -51,9 +51,9 @@ class CustomerController extends Controller
     }
 
     /**
-     * 一覧表示
+     * 一覧表示前処理
      */
-    public function index(Request $request, ListAction $action): View|RedirectResponse
+    private function preCheckForIndex(Request $request): void
     {
         // ソート順番がない場合はリダイレクト
         $redirectParam = [];
@@ -64,19 +64,28 @@ class CustomerController extends Controller
             $redirectParam['order'] = 'asc';
         }
         if (! empty($redirectParam)) {
-            return redirect()->route($this->model->getTable().'.index', $redirectParam);
+            redirect()->route($this->model->getTable().'.index', $redirectParam);
         }
+    }
 
-        $model = $this->model;
-        $items = new LengthAwarePaginator([], 0, 1, 1);
+    /**
+     * 一覧表示
+     */
+    public function index(Request $request, ListAction $action): View|RedirectResponse
+    {
+        // ソート順番がない場合はリダイレクト
+        $this->preCheckForIndex($request);
+
+        // 一覧表示
+        $model = new $this->model;
         $view = $this->model->getTable().'.index'; // customers/index.blade.php
         $listConditions = $this->initListConditions();
 
         try {
             $items = $action($request, ResourceModel::class, $listConditions);
         } catch (\Exception $e) {
-            // ログを出す;
-            dd($e);
+            // 検索条件を初期化
+            $items = new LengthAwarePaginator([], 0, 1, 1);
         }
 
         return view($view, compact('model', 'items', 'listConditions'));
