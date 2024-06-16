@@ -60,5 +60,8 @@
         </div>
         @endforeach
     </div>
+    <div class="w-full flex justify-end">
+        <x-button.edit-link link="{{ route($model->getTable() . '.edit', ['id' => request()->id]) }}" />
+    </div>
 </div>
 @endsection
