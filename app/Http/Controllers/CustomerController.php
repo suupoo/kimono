@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer as ResourceModel; // モデル紐付け
-use App\UseCases\ListAction;
 use App\UseCases\ResourceAction\CreateAction;
+use App\UseCases\CustomerAction\ListAction;
 use App\UseCases\UpdateAction;
 use App\ValueObjects\Customer\Address1;
 use App\ValueObjects\Customer\Id;

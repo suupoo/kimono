@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UseCases;
+namespace App\UseCases\ResourceAction;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -8,7 +8,14 @@ use Illuminate\Support\Collection;
 
 class ListAction
 {
-    protected $defaultPaginate = 10;
+    /**
+     * デフォルトのページネーション数を取得する
+     * @return int
+     */
+    public function defaultPaginate(): int
+    {
+        return config('app.pagination.default');
+    }
 
     /**
      * Handle the incoming request.
@@ -53,9 +60,10 @@ class ListAction
         $query->orderBy($sort, $order);
 
         // paginateで取得する
-        $paginate = $attributes['paginate'] ?? $this->defaultPaginate;
-        $collections = $query->paginate($paginate);
+        $paginate = $attributes['paginate'] ?? $this->defaultPaginate();
 
-        return $collections;
+        return
+            $query->paginate($paginate)
+                  ->appends($request->except('page'));
     }
 }
