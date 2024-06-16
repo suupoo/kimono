@@ -39,7 +39,6 @@ class DeleteAction extends ResourceAction
                 'entity' => &$deleteEntity,
             ]);
 
-
             // 新規作成
             $deleted = $deleteEntity->delete();
 

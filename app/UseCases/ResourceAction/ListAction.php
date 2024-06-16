@@ -4,14 +4,12 @@ namespace App\UseCases\ResourceAction;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 class ListAction extends ResourceAction
 {
     /**
      * デフォルトのページネーション数を取得する
-     * @return int
      */
     public function defaultPaginate(): int
     {
@@ -93,7 +91,6 @@ class ListAction extends ResourceAction
         // アクション終了時の処理
         $this->endOfAction($request, $model);
 
-        return
-            $searchCollection;
+        return $searchCollection;
     }
 }

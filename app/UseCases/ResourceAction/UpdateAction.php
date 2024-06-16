@@ -105,8 +105,8 @@ class UpdateAction extends ResourceAction
             Log::error(('error:'.__METHOD__), ['message' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()]);
 
             // エラー時は入力画面へ入力値を返して戻る
-            return redirect()->route($model->getTable().'.edit',[
-                'id' => $request->id
+            return redirect()->route($model->getTable().'.edit', [
+                'id' => $request->id,
             ])->withInput()
                 ->withErrors(['error' => __('Error of General')]);
         }
