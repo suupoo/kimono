@@ -14,11 +14,10 @@ use App\ValueObjects\Customer\PostCode;
 use App\ValueObjects\Customer\Prefecture;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
-class CustomerController extends Controller
+class CustomerController extends ResourceController
 {
     protected ResourceModel $model;
 
@@ -53,42 +52,19 @@ class CustomerController extends Controller
     }
 
     /**
-     * 一覧表示前処理
-     */
-    private function checkSortParameter(Request $request): void
-    {
-        // ソート順番がない場合はリダイレクト
-        $redirectParam = [];
-        if (! $request->get('sort')) {
-            $redirectParam['sort'] = 'id';
-        }
-        if (! $request->get('order')) {
-            $redirectParam['order'] = 'asc';
-        }
-        if (! empty($redirectParam)) {
-            redirect()->route($this->model->getTable().'.index', $redirectParam);
-        }
-    }
-
-    /**
      * 一覧表示
      */
     public function index(Request $request, ListAction $action): View|RedirectResponse
     {
         // ソート順番がない場合はリダイレクト
-        $this->checkSortParameter($request);
+        parent::checkSortParameter($request);
 
-        // 一覧表示
         $model = new $this->model;
         $view = $this->model->getTable().'.index'; // customers/index.blade.php
-        $listConditions = $this->initListConditions();
 
-        try {
-            $items = $action($request, ResourceModel::class, $listConditions);
-        } catch (\Exception $e) {
-            // 検索条件を初期化
-            $items = new LengthAwarePaginator([], 0, 1, 1);
-        }
+        // 検索結果の取得
+        $listConditions = $this->initListConditions();
+        $items = $action($request, ResourceModel::class, $listConditions);
 
         return view($view, compact('model', 'items', 'listConditions'));
     }

@@ -2,26 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use stdClass;
+use Illuminate\Http\Request;
 
 abstract class ResourceController extends Controller
 {
-    protected string $model;
-
-    protected array $views = [
-        'create' => 'resources.default.create',
-    ];
-
     /**
-     * Create form of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * 一覧表示前処理
      */
-    public function create()
+    protected function checkSortParameter(Request $request): void
     {
-        $data = new stdClass();
-        $data->model = new $this->model();
-
-        return view($this->views['create'], compact('data'));
+        // ソート順番がない場合はリダイレクト
+        $redirectParam = [];
+        if (! $request->get('sort')) {
+            $redirectParam['sort'] = 'id';
+        }
+        if (! $request->get('order')) {
+            $redirectParam['order'] = 'asc';
+        }
+        if (! empty($redirectParam)) {
+            redirect()->route($this->model->getTable().'.index', $redirectParam);
+        }
     }
 }
