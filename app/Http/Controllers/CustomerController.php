@@ -55,7 +55,7 @@ class CustomerController extends Controller
     /**
      * 一覧表示前処理
      */
-    private function preCheckForIndex(Request $request): void
+    private function checkSortParameter(Request $request): void
     {
         // ソート順番がない場合はリダイレクト
         $redirectParam = [];
@@ -76,7 +76,7 @@ class CustomerController extends Controller
     public function index(Request $request, ListAction $action): View|RedirectResponse
     {
         // ソート順番がない場合はリダイレクト
-        $this->preCheckForIndex($request);
+        $this->checkSortParameter($request);
 
         // 一覧表示
         $model = new $this->model;
