@@ -31,7 +31,7 @@ class ListAction extends ResourceAction
         $this->startOfAction($request, $model);
 
         $searchCollection = new LengthAwarePaginator([], 0, 1, 1);
-        try{
+        try {
             // リソースに紐づいたモデル
             $model = new $model;
 
