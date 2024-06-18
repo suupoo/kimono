@@ -150,12 +150,4 @@ return [
     'uppercase' => ':Attributeは、大文字で入力してください。',
     'url' => ':Attributeは、有効なURL形式で指定してください。',
     'uuid' => ':Attributeは、有効なUUIDである必要があります。',
-
-    'attributes' => [
-        \App\ValueObjects\Customer\CustomerName::NAME => \App\ValueObjects\Customer\CustomerName::LABEL,
-        \App\ValueObjects\Customer\Address1::NAME => \App\ValueObjects\Customer\Address1::LABEL,
-        \App\ValueObjects\Customer\Address2::NAME => \App\ValueObjects\Customer\Address2::LABEL,
-        \App\ValueObjects\Customer\PostCode::NAME => \App\ValueObjects\Customer\PostCode::LABEL,
-        \App\ValueObjects\Customer\Prefecture::NAME => \App\ValueObjects\Customer\Prefecture::LABEL,
-    ],
 ];

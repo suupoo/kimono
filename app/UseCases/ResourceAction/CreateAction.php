@@ -33,8 +33,10 @@ class CreateAction extends ResourceAction
         // バリデーションルールの生成
         $rules = [];
         $columns = $model->getColumns();
+        $attributeNames = [];
         foreach ($columns as $column) {
             $rules[$column->id()] = $column->rules();
+            $attributeNames[$column->id()] = $column->label();
         }
 
         // バリデーション実行前の処理
@@ -44,8 +46,9 @@ class CreateAction extends ResourceAction
         ]);
 
         // バリデーション
-        $validator = Validator::make($request->all(), $rules);
-
+        $validator = Validator::make($request->all(), $rules)
+            // バリデーション実行時の項目名はVOのlabelを参照
+            ->setAttributeNames($attributeNames);
         // バリデーション実行前の処理
         $this->afterOfValidate($request, $model, [
             'validator' => &$validator,
