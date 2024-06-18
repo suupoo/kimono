@@ -3,6 +3,7 @@
 namespace App\View\Components\Menu;
 
 use App\Models\Customer;
+use App\Models\User;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -37,11 +38,13 @@ class SideMenu extends Component
     {
         try {
             $resourceCustomers = new Customer;
+            $resourceUsers = new User;
 
             // ここにメニューを記載する
             return [
                 // 顧客
                 [self::LINK => route($resourceCustomers->getTable().'.index'), self::TEXT => $resourceCustomers::NAME, self::ICON => 'list'],
+                [self::LINK => route($resourceUsers->getTable().'.index'), self::TEXT => $resourceUsers::NAME, self::ICON => 'list'],
                 // todo:メニューグループ対応
             ];
         } catch (\Exception $e) {
