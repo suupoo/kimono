@@ -9,7 +9,6 @@ use Illuminate\Validation\Rule;
 
 class Id extends ValueObject
 {
-    public const MODEL = 'customer';
     public const NAME = 'id';
 
     public const LABEL = 'ID';
