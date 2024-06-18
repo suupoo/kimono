@@ -34,7 +34,7 @@ class UpdateAction extends ResourceAction
         $attributeNames = [];
         foreach ($columns as $column) {
             $rules[$column->id()] = $column->rules();
-            $attributeNames[$column->column()] = $column->label();
+            $attributeNames[$column->id()] = $column->label();
         }
 
         // バリデーション実行前の処理
