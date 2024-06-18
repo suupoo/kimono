@@ -9,7 +9,7 @@
 >
     {{ $column->label() }}
     @if($required)
-        <span class="text-sm text-red-500">※必須</span>
+        <span class="text-sm text-red-500">※{{ __('required') }}</span>
     @endif
 </label>
 <input
