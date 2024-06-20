@@ -23,25 +23,25 @@ foreach ($resourceModels as $model) {
     $name = $model::NAME;
     $resource = $model->getTable();
 
-    // ホーム > リソース > 一覧
+    // ホーム > リソースモデル > 一覧
     Breadcrumbs::for("$resource.index", function (BreadcrumbTrail $trail) use ($resource, $name) {
         $trail->parent('home');
         $trail->push($name, route("$resource.index"));
     });
 
-    // ホーム > 顧客 > 新規登録
+    // ホーム > リソースモデル > 新規登録
     Breadcrumbs::for("$resource.create", function (BreadcrumbTrail $trail) use ($resource) {
         $trail->parent("$resource.index");
         $trail->push(__('resource.create'), route("$resource.create"));
     });
 
-    // ホーム > 顧客 > 詳細
+    // ホーム > リソースモデル > 詳細
     Breadcrumbs::for("$resource.show", function (BreadcrumbTrail $trail) use ($resource) {
         $trail->parent("$resource.index");
         $trail->push(__('resource.show'), route("$resource.show", 'id'));
     });
 
-    // ホーム > 顧客 > 編集
+    // ホーム > リソースモデル > 編集
     Breadcrumbs::for("$resource.edit", function (BreadcrumbTrail $trail) use ($resource) {
         $trail->parent("$resource.index");
         $trail->push(__('resource.edit'), route("$resource.edit", 'id'));
