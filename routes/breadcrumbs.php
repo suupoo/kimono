@@ -17,6 +17,7 @@ Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
 $resourceModels = [
     // リソースのモデルを追加
     new \App\Models\Customer,
+    new \App\Models\User,
 ];
 
 foreach ($resourceModels as $model) {
