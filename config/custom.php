@@ -7,6 +7,7 @@ declare(strict_types=1);
  */
 return [
     'breadcrumbs' => [
-        'use' => env('CUSTOM_BREADCRUMBS_USE', true)
+        'use' => env('CUSTOM_BREADCRUMBS_USE', true),
+        'separator' => (' '.env('CUSTOM_BREADCRUMBS_SEPARATOR', '/').' '),
     ],
 ];
