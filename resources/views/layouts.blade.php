@@ -25,9 +25,14 @@
             <div class="p-4 sm:ml-64 bg-gray-50 min-h-screen">
                 <div class="p-4 mt-14">
                     <div class="flex flex-col h-full mb-4 rounded">
+                        @breadcrumbs
+                        {{-- ぱんくずリストを使用する/しない(デフォルト:True） --}}
+                        {{-- .env CUSTOM_BREADCRUMBS_USEで設定可能とする --}}
                         <div class="my-2">
                            {{ Breadcrumbs::render(\Illuminate\Support\Facades\Route::currentRouteName()) }}
                         </div>
+                        @endbreadcrumbs
+
                         @yield('content')
                     </div>
                 </div>
