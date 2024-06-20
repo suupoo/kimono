@@ -16,17 +16,13 @@ class UpdateAction extends BaseAction
 {
     /**
      * コミット後の処理
-     * @param Request $request
-     * @param string $model
-     * @param array $attributes
-     * @return void
      */
     public function afterOfCommit(Request $request, string $model, array $attributes = []): void
     {
         try {
             $entity = $attributes['entity'];
             // メールアドレスが変更されている場合は認証メールを送信する
-            if( $entity->wasChanged('email') ){
+            if ($entity->wasChanged('email')) {
                 $email = $entity->email;
                 Mail::to($email)->send(new VerifyEmailFromSystem());
             }

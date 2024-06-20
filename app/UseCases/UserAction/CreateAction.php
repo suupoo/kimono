@@ -16,10 +16,6 @@ class CreateAction extends BaseAction
 {
     /**
      * コミット後の処理
-     * @param Request $request
-     * @param string $model
-     * @param array $attributes
-     * @return void
      */
     public function afterOfCommit(Request $request, string $model, array $attributes = []): void
     {
