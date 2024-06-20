@@ -5,6 +5,7 @@ declare(strict_types=1);
 return [
     'list' => '一覧',
     'create' => '新規作成',
+    'store' => '登録',
     'edit' => '編集',
     'update' => '更新',
     'delete' => '削除',
