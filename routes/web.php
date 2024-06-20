@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::resource('users', UserController::class)->parameters(['users' => 'id']);
 Route::resource('customers', CustomerController::class)->only(['create', 'store', 'index', 'edit', 'update', 'show', 'destroy'])
