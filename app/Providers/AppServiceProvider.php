@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // カスタムディレクティブを登録
         Blade::if('breadcrumbs', function () {
-            return config('custom.breadcrumbs.use') ;
+            return config('custom.breadcrumbs.use');
         });
     }
 
