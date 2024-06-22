@@ -13,6 +13,10 @@ use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
     $trail->push('ホーム', route('home'));
 });
+// ログイン
+Breadcrumbs::for('login', function (BreadcrumbTrail $trail) {
+    $trail->push(__('Login'), route('login'));
+});
 
 $resourceModels = [
     // リソースのモデルを追加

@@ -2,13 +2,16 @@
     $attributes = $attributes ?? [];
     $class = $attributes['class'] ?? '';
     $required = $attributes['required'] ?? false;
+    if(array_key_exists('required_hidden', $attributes) && $attributes['required_hidden']){
+      $requiredHidden = true;
+    }
     $value = $attributes['value'] ?? '';
 @endphp
 <label
     for="{{ $column->id() }}"
 >
     {{ $column->label() }}
-    @if($required)
+    @if($required && !isset($requiredHidden))
         <span class="text-sm text-red-500">※{{ __('required') }}</span>
     @endif
 </label>
