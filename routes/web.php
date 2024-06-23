@@ -13,7 +13,7 @@ Route::group([], function () {
 Route::group(['middleware' => 'auth'], function () {
     // ログイン時
     Route::get('/', function () {
-        return view('welcome');
+        return view('home.index');
     })->name('home');
     // customers/edit/{customer}/edit などの{{  }}のパラメータをidで取得するように変更する
     Route::resource('users', UserController::class)->parameters(['users' => 'id']);
