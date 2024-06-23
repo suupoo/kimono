@@ -4,6 +4,7 @@ namespace App\ValueObjects\User;
 
 use App\ValueObjects\ValueObject;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Route;
 
 class Name extends ValueObject
 {
@@ -27,12 +28,19 @@ class Name extends ValueObject
 
     public function rules(): array
     {
-        return [
-            'required',
-            'string',
-            "max:$this->maxLength",
-            "min:$this->minLength",
-        ];
+        $routeName = Route::currentRouteName();
+        return match ($routeName) {
+            'login.auth' => [
+                'nullable',
+            ],
+            default => [
+                // 通常時のバリデーション
+                'required',
+                'string',
+                "max:$this->maxLength",
+                "min:$this->minLength",
+            ],
+        };
     }
 
     /**

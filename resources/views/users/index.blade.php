@@ -121,7 +121,12 @@
                             @if($value instanceof UnitEnum )
                                 {{ $value->label() }}
                             @else
+                                @if($column instanceof \App\ValueObjects\User\Password)
+                                {{-- $columnsがパスワードカラムの場合は********を表示 --}}
+                                ********
+                                @else
                                 {{ $item?->$columnName }}
+                                @endif
                             @endif
                         </td>
                     @endforeach

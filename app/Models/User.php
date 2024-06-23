@@ -65,13 +65,4 @@ class User extends Authenticatable
         ];
     }
 
-    /**
-     * パスワード参照／設定時を操作
-     */
-    protected function password(): Attribute
-    {
-        return Attribute::make(
-            get: fn (string $value) => '********', // 参照時にパスワードを表示しない
-        );
-    }
 }

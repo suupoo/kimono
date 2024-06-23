@@ -1,7 +1,7 @@
 @extends('layouts-no-auth')
 
 @section('content')
-    <form action="{{ route('login') }}" method="post"
+    <form action="{{ route('login.auth') }}" method="post"
           class="flex flex-col justify-center items-center space-y-2 h-screen w-full px-4 py-2"
     >
         <div class="w-full max-w-xl">
