@@ -57,7 +57,10 @@ class CustomerController extends ResourceController
     public function index(Request $request, ListAction $action): View|RedirectResponse
     {
         // ソート順番がない場合はリダイレクト
-        parent::checkSortParameter($request);
+        $checkSortParameter = parent::checkSortParameter($request);
+        if (! empty($checkSortParameter)) {
+            return redirect()->route($this->model->getTable().'.index', $checkSortParameter);
+        }
 
         $model = new $this->model;
         $view = $this->model->getTable().'.index'; // customers/index.blade.php

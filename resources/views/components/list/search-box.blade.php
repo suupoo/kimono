@@ -45,12 +45,6 @@
     $(function() {
         const url = new URL(window.location.href);
         const searchParams = url.searchParams;
-        // 検索条件が未指定の場合は、idソートにリダイレクトさせる
-        if (!searchParams.get('sort') && !searchParams.get('order')) {
-            url.searchParams.set('sort', 'id');
-            url.searchParams.set('order', 'asc');
-            location.href = url;
-        }
 
         $('.list-search-box>#btn-search').on('click', function() {
             // ページネーションのクエリパラメータを引き継ぐ
