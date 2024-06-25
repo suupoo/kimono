@@ -19,8 +19,8 @@
             crossorigin="anonymous"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-        <div class="min-h-screen bg-gray-50">
+    <body class="font-sans antialiased bg-gray-50 text-gray-50">
+        <div class="min-h-screen">
             <div class="w-full min-h-screen">
                 @yield('content')
             </div>

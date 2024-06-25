@@ -113,7 +113,7 @@
                         <x-button.delete-button-with-confirm link="{{ route($model->getTable() . '.destroy', ['id' => $item->id]) }}" />
                     </td>
                     @foreach($model::getColumns() as $column)
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 whitespace-nowrap">
                             @php
                                 $columnName = $column->column();
                                 $value = $item?->$columnName
