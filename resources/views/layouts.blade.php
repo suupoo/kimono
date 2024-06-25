@@ -19,11 +19,11 @@
             crossorigin="anonymous"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased bg-white">
+    <body class="font-sans antialiased bg-gray-50 text-black">
         <div class="min-h-screen">
             <x-menu.topMenu/>
             <x-menu.sideMenu/>
-            <div class="p-4 sm:ml-64 bg-gray-50 min-h-screen">
+            <div class="p-4 sm:ml-64 min-h-screen">
                 <div class="p-1 md:px-4 mt-14">
                     <div class="flex flex-col h-full mb-4 rounded">
                         @breadcrumbs
