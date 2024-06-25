@@ -1,7 +1,7 @@
 <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
         class="text-red-500 text-center border border-red-500 font-bold py-2 px-4 rounded">
     <span class="hidden md:inline">{{ __('resource.edit') }}</span>
-    <span class="inline md:hidden">@include('components.button.icons.edit')</span>
+    <span class="inline md:hidden">@include('components.button.icons.trash-bin')</span>
 </button>
 
 <div id="popup-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
