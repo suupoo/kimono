@@ -4,7 +4,7 @@
 @php
     $id = $model->id;
 @endphp
-<form action="{{ route($model->getTable().'.update', ['id' => $id]) }}" method="post" class="flex flex-col px-12 py-2">
+<form action="{{ route($model->getTable().'.update', ['id' => $id]) }}" method="post" class="flex flex-col py-2">
     @csrf
     <input type="hidden" id="id" name="id" value="{{ $id }}" />
     @method('PUT')

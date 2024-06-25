@@ -1,7 +1,7 @@
 @extends('layouts')
 
 @section('content')
-<form action="{{ route($model->getTable().'.store') }}" method="post" class="flex flex-col  px-12 py-2">
+<form action="{{ route($model->getTable().'.store') }}" method="post" class="flex flex-col py-2">
     @csrf
     @if ($errors->any())
     <div class="error">
