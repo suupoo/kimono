@@ -68,14 +68,14 @@
         </div>
     </div>
     <div class="relative overflow-x-auto">
-        <table class="w-full border rounded-xl text-sm text-left rtl:text-right text-gray-500">
+        <table class="w-full mt-2 border rounded-xl text-sm text-left rtl:text-right text-gray-500">
             <thead class="text-xs text-white uppercase bg-gray-700">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         {{ __('resource.operation') }}
                     </th>
                     @foreach($model::getColumns() as $column)
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 whitespace-nowrap">
                         <div class="flex w-full items-center justify-center space-x-1">
                             @if(in_array($column->column(), $arraySortable))
                                 <a
@@ -113,7 +113,7 @@
                         <x-button.delete-button-with-confirm link="{{ route($model->getTable() . '.destroy', ['id' => $item->id]) }}" />
                     </td>
                     @foreach($model::getColumns() as $column)
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-4">
                             @php
                                 $columnName = $column->column();
                                 $value = $item?->$columnName
