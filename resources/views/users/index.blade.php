@@ -75,7 +75,7 @@
                         {{ __('resource.operation') }}
                     </th>
                     @foreach($model::getColumns() as $column)
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 whitespace-nowrap">
                         <div class="flex w-full items-center justify-center space-x-1">
                             @if(in_array($column->column(), $arraySortable))
                                 <a
@@ -113,7 +113,7 @@
                         <x-button.delete-button-with-confirm link="{{ route($model->getTable() . '.destroy', ['id' => $item->id]) }}" />
                     </td>
                     @foreach($model::getColumns() as $column)
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-4">
                             @php
                                 $columnName = $column->column();
                                 $value = $item?->$columnName
