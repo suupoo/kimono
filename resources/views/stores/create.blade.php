@@ -17,23 +17,27 @@
             @foreach($model::getColumns() as $column)
                 <div class="w-full my-1">
 
-                    @if($column instanceof \App\ValueObjects\Customer\Name)
+                    @if($column instanceof \App\ValueObjects\Store\Name)
                         {!! $column->input(['required' => true, 'class' => ''])?->render() !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Customer\Prefecture)
+                    @if($column instanceof \App\ValueObjects\Store\Code)
+                        {!! $column->input(['required' => true, 'class' => ''])?->render() !!}
+                    @endif
+
+                    @if($column instanceof \App\ValueObjects\Store\Prefecture)
                         {!! $column->input(['required' => false, 'class' => ''])?->render() !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Customer\Address1)
+                    @if($column instanceof \App\ValueObjects\Store\Address1)
                         {!! $column->input(['required' => false, 'class' => ''])?->render() !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Customer\Address2)
+                    @if($column instanceof \App\ValueObjects\Store\Address2)
                         {!! $column->input(['required' => false, 'class' => ''])?->render() !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Customer\PostCode)
+                    @if($column instanceof \App\ValueObjects\Store\PostCode)
                         {!! $column->input(['required' => false, 'class' => ''])?->render() !!}
                     @endif
 

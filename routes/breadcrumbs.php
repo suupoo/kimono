@@ -22,6 +22,7 @@ $resourceModels = [
     // リソースのモデルを追加
     new \App\Models\Customer,
     new \App\Models\User,
+    new \App\Models\Store,
 ];
 
 foreach ($resourceModels as $model) {
