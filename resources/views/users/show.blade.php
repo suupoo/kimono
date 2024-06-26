@@ -33,14 +33,6 @@
                 {!! $column->input(['required' => false, 'class' => '', 'value' => $emailValue])?->render() !!}
             @endif
 
-            @if($column instanceof \App\ValueObjects\User\Password)
-                @php
-                    $passwordColumn = $column->column();
-                    $passwordValue  = $model->$passwordColumn;
-                @endphp
-                {!! $column->input(['required' => false, 'class' => '', 'value' => $passwordValue])?->render() !!}
-            @endif
-
             @if($column instanceof \App\ValueObjects\User\EmailVerifiedAt)
                 @php
                     $emailVerifiedAtColumn = $column->column();
