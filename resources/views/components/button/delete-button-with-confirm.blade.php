@@ -1,6 +1,6 @@
 <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
         class="bg-red-500 text-white hover:text-red-500 hover:bg-white text-center border border-red-500 font-bold py-2 px-4 rounded">
-    <span class="hidden md:inline">{{ __('resource.edit') }}</span>
+    <span class="hidden md:inline">{{ __('resource.delete') }}</span>
     <span class="inline md:hidden">@include('components.button.icons.trash-bin')</span>
 </button>
 
