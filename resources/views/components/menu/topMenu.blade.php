@@ -27,14 +27,7 @@
                                 @guest
                                     {{ __('GuestUser') }}
                                 @else
-                                    {{ __('Logged in') }}
-                                @endguest
-                            </p>
-                            <p class="text-sm font-medium truncate" role="none">
-                                @guest
-                                    {{ __('GuestUser is no-email-authorization.') }}
-                                @else
-                                    {{ __('Logged in') }}
+                                    {{ Auth::user()->name }}
                                 @endguest
                             </p>
                         </div>
