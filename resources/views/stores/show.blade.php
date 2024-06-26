@@ -1,13 +1,8 @@
 @extends('layouts')
 
 @section('content')
-    @php
-        $id = $model->id;
-    @endphp
-    <form action="{{ route($model->getTable().'.update', ['id' => $id]) }}" method="post" class="flex flex-col py-2">
+    <div class="flex flex-col py-2">
         @csrf
-        <input type="hidden" id="id" name="id" value="{{ $id }}"/>
-        @method('PUT')
         @if ($errors->any())
             <div class="error">
                 @foreach($errors->all() as $error)
@@ -22,15 +17,23 @@
             @foreach($model::getColumns() as $column)
                 <div class="w-full my-1">
 
-                    @if($column instanceof \App\ValueObjects\Customer\Name)
+                    @if($column instanceof \App\ValueObjects\Store\Name)
                         @php
-                            $customerNameColumn = $column->column();
-                            $customerNameValue  = $model->$customerNameColumn;
+                            $storeNameColumn = $column->column();
+                            $storeNameValue  = $model->$storeNameColumn;
                         @endphp
-                        {!! $column->input(['required' => true, 'class' => '', 'value' => $customerNameValue])?->render() !!}
+                        {!! $column->input(['required' => true, 'class' => '', 'value' => $storeNameValue])?->render() !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Customer\Prefecture)
+                    @if($column instanceof \App\ValueObjects\Store\Code)
+                        @php
+                            $codeColumn = $column->column();
+                            $codeValue  = $model->$codeColumn;
+                        @endphp
+                        {!! $column->input(['required' => true, 'class' => '', 'value' => $codeValue])?->render() !!}
+                    @endif
+
+                    @if($column instanceof \App\ValueObjects\Store\Prefecture)
                         @php
                             $prefectureColumn = $column->column();
                             $prefectureValue  = $model->$prefectureColumn;
@@ -38,7 +41,7 @@
                         {!! $column->input(['required' => false, 'class' => '', 'value' => $prefectureValue?->value])?->render() !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Customer\Address1)
+                    @if($column instanceof \App\ValueObjects\Store\Address1)
                         @php
                             $address1Column = $column->column();
                             $address1Value  = $model->$address1Column;
@@ -46,7 +49,7 @@
                         {!! $column->input(['required' => false, 'class' => '', 'value' => $address1Value])?->render() !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Customer\Address2)
+                    @if($column instanceof \App\ValueObjects\Store\Address2)
                         @php
                             $address2Column = $column->column();
                             $address2Value  = $model->$address2Column;
@@ -54,7 +57,7 @@
                         {!! $column->input(['required' => false, 'class' => '', 'value' => $address2Value])?->render() !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Customer\PostCode)
+                    @if($column instanceof \App\ValueObjects\Store\PostCode)
                         @php
                             $postCodeColumn = $column->column();
                             $postCodeValue  = $model->$postCodeColumn;
@@ -65,6 +68,8 @@
                 </div>
             @endforeach
         </div>
-        <x-button.edit-submit/>
-    </form>
+        <div class="w-full flex justify-end">
+            <x-button.edit-button link="{{ route($model->getTable() . '.edit', ['id' => request()->id]) }}"/>
+        </div>
+    </div>
 @endsection

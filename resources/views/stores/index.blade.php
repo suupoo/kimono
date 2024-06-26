@@ -35,27 +35,31 @@
                     @endphp
                     @if(in_array($column->column(), $arraySearchable))
 
-                        @if($column instanceof \App\ValueObjects\Customer\Id)
+                        @if($column instanceof \App\ValueObjects\Store\Id)
                             {!! $column->input(['class' => ''])?->render() !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Customer\Name)
+                        @if($column instanceof \App\ValueObjects\Store\Name)
                             {!! $column->input(['class' => ''])?->render() !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Customer\Prefecture)
+                        @if($column instanceof \App\ValueObjects\Store\Code)
                             {!! $column->input(['class' => ''])?->render() !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Customer\Address1)
+                        @if($column instanceof \App\ValueObjects\Store\Prefecture)
                             {!! $column->input(['class' => ''])?->render() !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Customer\Address2)
+                        @if($column instanceof \App\ValueObjects\Store\Address1)
                             {!! $column->input(['class' => ''])?->render() !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Customer\PostCode)
+                        @if($column instanceof \App\ValueObjects\Store\Address2)
+                            {!! $column->input(['class' => ''])?->render() !!}
+                        @endif
+
+                        @if($column instanceof \App\ValueObjects\Store\PostCode)
                             {!! $column->input(['class' => ''])?->render() !!}
                         @endif
                     @endif
@@ -86,9 +90,9 @@
                             <div class="flex w-full items-center justify-center space-x-1">
                                 @if(in_array($column->column(), $arraySortable))
                                     <a
-                                        class="p-0.5 @if($sort === $column->column() && $order == 'asc' ) bg-red-400 text-white @else bg-gray-100 text-gray-400 @endif
+                                            class="p-0.5 @if($sort === $column->column() && $order == 'asc' ) bg-red-400 text-white @else bg-gray-100 text-gray-400 @endif
                             "
-                                        href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'asc'])}}"
+                                            href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'asc'])}}"
                                     >
                                         @include('components.list.icons.sort-up')
                                     </a>
@@ -97,10 +101,10 @@
                                 <span>{{ $column->label() }}</span>
                                 @if(in_array($column->column(), $arraySortable))
                                     <a
-                                        class="p-0.5
+                                            class="p-0.5
                                 @if($sort === $column->column() && $order == 'desc' ) bg-blue-400 text-white @else bg-gray-100 text-gray-400 @endif
                             "
-                                        href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'desc'])}}"
+                                            href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'desc'])}}"
                                     >
                                         @include('components.list.icons.sort-down')
                                     </a>
@@ -118,7 +122,7 @@
                             <x-button.edit-link link="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
                             <x-button.show-link link="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}"/>
                             <x-button.delete-button-with-confirm
-                                link="{{ route($model->getTable() . '.destroy', ['id' => $item->id]) }}"/>
+                                    link="{{ route($model->getTable() . '.destroy', ['id' => $item->id]) }}"/>
                         </td>
                         @foreach($model::getColumns() as $column)
                             <td class="px-6 py-4">
