@@ -37,8 +37,11 @@ class LoginAction
         $columns = $model->getColumns();
         $attributeNames = [];
         foreach ($columns as $column) {
-            $rules[$column->id()] = $column->rules();
-            $attributeNames[$column->id()] = $column->label();
+            // メールアドレスとパスワードのみバリデーションを行う
+            if($column->id() === 'password' || $column->id() === 'email'){
+                $rules[$column->id()] = $column->rules();
+                $attributeNames[$column->id()] = $column->label();
+            }
         }
 
         // バリデーション
