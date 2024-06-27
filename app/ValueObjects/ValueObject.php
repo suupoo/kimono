@@ -20,7 +20,7 @@ abstract class ValueObject
 
     protected bool $required = false;
 
-    protected bool $primaryKey = true;
+    protected bool $primaryKey = false;
 
     public function id(): ?string
     {
