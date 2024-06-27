@@ -24,7 +24,7 @@ class UserControllerTest extends TestCase
 
         // Act（実行）
         $response = $this->actingAs($user)
-            ->get('users');
+            ->get('/users?sort=id&order=asc');
 
         // Assert（検証）
         $response
