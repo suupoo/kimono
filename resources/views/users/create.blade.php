@@ -29,6 +29,10 @@
                         {!! $column->input(['required' => true, 'class' => ''])?->render() !!}
                         {!! $column->inputConfirm(['required' => true, 'class' => ''])?->render() !!}
                     @endif
+
+                    @if($column instanceof \App\ValueObjects\User\Role)
+                        {!! $column->input(['required' => true, 'class' => ''])?->render() !!}
+                    @endif
                 </div>
             @endforeach
         </div>

@@ -10,6 +10,7 @@ use App\UseCases\UserAction\UpdateAction as UpdateAction;
 use App\ValueObjects\User\Email;
 use App\ValueObjects\User\Id;
 use App\ValueObjects\User\Name;
+use App\ValueObjects\User\Role;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -29,11 +30,13 @@ class UserController extends ResourceController
                 new Id,
                 new Name,
                 new Email,
+                new Role,
             ]),
             'searchable' => new Collection([
                 new Id,
                 new Name,
                 new Email,
+                new Role,
             ]),
             'paginate' => 10,
         ];
