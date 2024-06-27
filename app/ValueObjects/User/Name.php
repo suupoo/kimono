@@ -29,6 +29,7 @@ class Name extends ValueObject
     public function rules(): array
     {
         $routeName = Route::currentRouteName();
+
         return match ($routeName) {
             'login.auth' => [
                 'nullable',

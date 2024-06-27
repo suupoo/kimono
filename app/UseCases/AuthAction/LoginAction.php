@@ -2,7 +2,6 @@
 
 namespace App\UseCases\AuthAction;
 
-use App\UseCases\BaseAction;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,7 +37,7 @@ class LoginAction
         $attributeNames = [];
         foreach ($columns as $column) {
             // メールアドレスとパスワードのみバリデーションを行う
-            if($column->id() === 'password' || $column->id() === 'email'){
+            if ($column->id() === 'password' || $column->id() === 'email') {
                 $rules[$column->id()] = $column->rules();
                 $attributeNames[$column->id()] = $column->label();
             }
@@ -59,10 +58,10 @@ class LoginAction
 
         try {
 
-            if(Auth::attempt([
-                'email' =>  $validator->validated()['email'],
+            if (Auth::attempt([
+                'email' => $validator->validated()['email'],
                 'password' => $validator->validated()['password'],
-            ])){
+            ])) {
                 // 認証成功時は①ログインを行った画面②ホーム画面の順で該当画面へリダイレクト
                 return redirect()->intended(route('home'));
             }

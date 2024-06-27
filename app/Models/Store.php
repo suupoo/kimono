@@ -2,18 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use App\ValueObjects\Store\Name;
 use App\ValueObjects\Store\Address1;
 use App\ValueObjects\Store\Address2;
+use App\ValueObjects\Store\Code;
 use App\ValueObjects\Store\CreatedAt;
 use App\ValueObjects\Store\Id;
+use App\ValueObjects\Store\Name;
 use App\ValueObjects\Store\PostCode;
 use App\ValueObjects\Store\Prefecture;
 use App\ValueObjects\Store\UpdatedAt;
-use App\ValueObjects\Store\Code;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Store extends Model
 {

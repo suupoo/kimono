@@ -2,7 +2,6 @@
 
 namespace App\UseCases\AuthAction;
 
-use App\UseCases\BaseAction;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

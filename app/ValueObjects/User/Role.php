@@ -2,7 +2,6 @@
 
 namespace App\ValueObjects\User;
 
-use App\Enums\Prefecture as PrefectureEnum;
 use App\Enums\UserRole;
 use App\ValueObjects\ValueObject;
 use Illuminate\Contracts\View\View;
