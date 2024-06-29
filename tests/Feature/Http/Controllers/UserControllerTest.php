@@ -13,18 +13,16 @@ class UserControllerTest extends TestCase
     {
         $response = $this->get('/');
 
-        $response->assertStatus(302)
-            ->assertRedirect('/login');
+        $response->assertRedirectToRoute('login');
     }
 
     public function test_ログイン時はユーザ一覧画面が表示できる(): void
     {
         // Arrange（準備）
-        $user = User::factory()->create(['name' => 'テスト太郎']);
+        $this->login();
 
         // Act（実行）
-        $response = $this->actingAs($user)
-            ->get('/users?sort=id&order=asc');
+        $response = $this->get('/users?sort=id&order=asc');
 
         // Assert（検証）
         $response
