@@ -27,6 +27,6 @@ class UserControllerTest extends TestCase
         // Assert（検証）
         $response
             ->assertOk()
-            ->assertSee('テスト太郎');
+            ->assertSee(parent::LOGIN_USER_NAME);
     }
 }

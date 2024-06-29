@@ -10,9 +10,11 @@ abstract class TestCase extends BaseTestCase
 {
     use RefreshDatabase;
 
+    protected const LOGIN_USER_NAME = 'テスト太郎';
+
     protected function login($user = null)
     {
-        $user = $user ?? User::factory()->create();
+        $user = $user ?? User::factory(['name' => self::LOGIN_USER_NAME])->create();
 
         $this->actingAs($user);
 
