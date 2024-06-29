@@ -51,7 +51,7 @@ class UserControllerTest extends TestCase
 
         // 登録後のリダイレクト先が正しいか
         $storeRecord = ResourceModel::first();
-        $response->assertRedirect(route("$this->resourcePrefix.edit", [
+        $response->assertRedirect(route("$this->resourcePrefix.index", [
             'id' => $storeRecord->id,
             'sort' => 'id',
             'order' => 'asc',
