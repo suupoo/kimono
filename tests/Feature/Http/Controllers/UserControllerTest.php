@@ -4,6 +4,7 @@ namespace Tests\Feature\Http\Controllers;
 
 use App\Models\User as ResourceModel; // モデル紐付け
 use App\Enums\UserRole;
+use Illuminate\Support\Facades\Log;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase
@@ -43,7 +44,7 @@ class UserControllerTest extends TestCase
             'name' => 'テスト太郎',
             'email' => 'test@example.com',
             'password' => 'password',
-            'role' => UserRole::NORMAL,
+            'role' => UserRole::NORMAL->value
         ];
 
         // 登録処理
