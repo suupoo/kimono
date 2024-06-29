@@ -23,7 +23,7 @@ class UserControllerTest extends TestCase
         $this->login();
 
         // Act（実行）
-        $response = $this->get("/$this->resourcePrefix}?sort=id&order=asc'");
+        $response = $this->get("/$this->resourcePrefix?sort=id&order=asc'");
 
         // Assert（検証）
         $response
@@ -44,10 +44,10 @@ class UserControllerTest extends TestCase
         ];
 
         // 登録処理
-        $response = $this->post(route("{$this->resourcePrefix}.store"), $storeData);
+        $response = $this->post(route("$this->resourcePrefix.store"), $storeData);
 
         // 登録後のリダイレクト先が正しいか
-        $response->assertRedirect(route("{$this->resourcePrefix}.edit", ResourceModel::first()));
+        $response->assertRedirect(route("$this->resourcePrefix.edit", ResourceModel::first()));
 
         // 登録データがDBに保存されているか
         $this->assertDatabaseHas('users', $storeData);
