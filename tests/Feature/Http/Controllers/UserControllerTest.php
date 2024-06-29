@@ -44,6 +44,7 @@ class UserControllerTest extends TestCase
             'name' => 'テスト太郎',
             'email' => 'test@example.com',
             'password' => 'password',
+            'password_confirmation' => 'password',
             'role' => UserRole::NORMAL->value
         ];
 
@@ -51,10 +52,20 @@ class UserControllerTest extends TestCase
         $response = $this->post(route("$this->resourcePrefix.store"), $storeData);
 
         // 登録後のリダイレクト先が正しいか
-        $storeRecord = ResourceModel::first();
         $response->assertRedirect(route("$this->resourcePrefix.index"));
 
+        // $storeDataから$columnsに存在するカラムのみ抽出
+        $search = [];
+        $model = new ResourceModel();
+        foreach ($model->getColumns() as $column) {
+            $columnName = $column->columnName();
+            if (array_key_exists($columnName, $storeData)) {
+                $search[$columnName] = $storeData[$columnName];
+            }
+        }
+
+
         // 登録データがDBに保存されているか
-        $this->assertDatabaseHas($storeRecord->getTable(), $storeData);
+        $this->assertDatabaseHas($model->getTable(), $search);
     }
 }
