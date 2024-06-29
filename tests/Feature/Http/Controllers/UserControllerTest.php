@@ -51,10 +51,7 @@ class UserControllerTest extends TestCase
 
         // 登録後のリダイレクト先が正しいか
         $storeRecord = ResourceModel::first();
-        $response->assertRedirect(route("$this->resourcePrefix.index", [
-            'sort' => 'id',
-            'order' => 'asc',
-        ]));
+        $response->assertRedirect(route("$this->resourcePrefix.index"));
 
         // 登録データがDBに保存されているか
         $this->assertDatabaseHas($storeRecord->getTable(), $storeData);
