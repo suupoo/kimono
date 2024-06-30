@@ -17,7 +17,7 @@
             @foreach($model::getColumns() as $column)
                 <div class="w-full my-1">
 
-                    @if($column instanceof \App\ValueObjects\Customer\Name)
+                    @if($column instanceof \App\ValueObjects\Customer\CustomerName)
                         {!! $column->input(['required' => true, 'class' => ''])?->render() !!}
                     @endif
 
