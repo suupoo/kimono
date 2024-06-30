@@ -72,13 +72,18 @@ class UserControllerTest extends TestCase
     public function test_ログイン時にユーザの更新ができる(): void
     {
         // ログイン
-        $user = $this->login();
+        $this->login();
+
+        $user = ResourceModel::factory([
+            'name' => 'テスト更新太郎',
+            'email' => 'update@example.cm',
+            'role' => UserRole::NORMAL->value
+        ])->create();
+
 
         $updateData = [
-            'name' => 'テスト太郎更新',
+            'name' => 'テスト太郎更新終わり',
             'email' => 'updated@example.com',
-            'password' => 'password2',
-            'password_confirmation' => 'password2',
             'role' => UserRole::ADMIN->value
         ];
 
