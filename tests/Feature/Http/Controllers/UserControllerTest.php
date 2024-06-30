@@ -83,7 +83,9 @@ class UserControllerTest extends TestCase
         ];
 
         // 登録処理
-        $response = $this->put(route("$this->resourcePrefix.update"), $updateData);
+        $response = $this->put(route("$this->resourcePrefix.update",[
+            'id' => $user->id,
+        ]), $updateData);
 
         // 登録後のリダイレクト先が正しいか
         $response->assertRedirect(route("$this->resourcePrefix.show",[
