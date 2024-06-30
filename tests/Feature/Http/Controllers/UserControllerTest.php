@@ -66,7 +66,7 @@ class UserControllerTest extends TestCase
 
 
         // 登録データがDBに保存されているか
-        $this->assertDatabaseHas($model->getTable(), $search);
+        $this->assertDatabaseHas(ResourceModel::class, $search);
     }
 
     public function test_ログイン時にユーザの更新ができる(): void
@@ -102,9 +102,9 @@ class UserControllerTest extends TestCase
 
 
         // 登録データがDBに保存されているか
-        $this->assertDatabaseHas($model->getTable(), $search);
+        $this->assertDatabaseHas(ResourceModel::class, $search);
 
         // 登録データ数が1件であるか
-        $this->assertDatabaseCount($model->getTable(), 1);
+        $this->assertDatabaseCount(ResourceModel::class, 1);
     }
 }
