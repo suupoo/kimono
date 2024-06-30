@@ -68,4 +68,43 @@ class UserControllerTest extends TestCase
         // 登録データがDBに保存されているか
         $this->assertDatabaseHas($model->getTable(), $search);
     }
+
+    public function test_ログイン時にユーザの更新ができる(): void
+    {
+        // ログイン
+        $user = $this->login();
+
+        $updateData = [
+            'name' => 'テスト太郎更新',
+            'email' => 'updated@example.com',
+            'password' => 'password2',
+            'password_confirmation' => 'password2',
+            'role' => UserRole::ADMIN->value
+        ];
+
+        // 登録処理
+        $response = $this->put(route("$this->resourcePrefix.update"), $updateData);
+
+        // 登録後のリダイレクト先が正しいか
+        $response->assertRedirect(route("$this->resourcePrefix.show",[
+            'id' => $user->id,
+        ]));
+
+        // $storeDataから$columnsに存在するカラムのみ抽出
+        $search = [];
+        $model = new ResourceModel();
+        foreach ($model->getColumns() as $column) {
+            $columnName = $column->columnName();
+            if (array_key_exists($columnName, $updateData)) {
+                $search[$columnName] = $updateData[$columnName];
+            }
+        }
+
+
+        // 登録データがDBに保存されているか
+        $this->assertDatabaseHas($model->getTable(), $search);
+
+        // 登録データ数が1件であるか
+        $this->assertDatabaseCount($model->getTable(), 1);
+    }
 }
