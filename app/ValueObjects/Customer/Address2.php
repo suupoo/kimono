@@ -25,7 +25,7 @@ class Address2 extends ValueObject
 
     protected bool $required = false; // DB Nullable
 
-    protected string $placeholder = '高槻市役所';
+    protected string $placeholder = 'サンプルマンション１０１号室';
 
     public function rules(): array
     {

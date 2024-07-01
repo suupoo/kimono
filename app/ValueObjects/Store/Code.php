@@ -29,6 +29,8 @@ class Code extends ValueObject
 
     protected bool $primaryKey = true;
 
+    protected string $placeholder = '店舗コード';
+
     public function rules(): array
     {
         $routeName = Route::currentRouteName();
@@ -56,7 +58,7 @@ class Code extends ValueObject
      */
     public function input(array $attributes = []): View
     {
-        $class = implode(' ', $attributes);
+        $attributes['placeholder'] = $this->placeholder;
 
         return view('components.form.input', [
             'column' => $this,

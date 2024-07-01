@@ -77,8 +77,6 @@ class Password extends ValueObject
      */
     public function inputConfirm(array $attributes = []): View
     {
-        $class = implode(' ', $attributes);
-
         return view('components.form.confirm', [
             'column' => $this,
             'attributes' => $attributes,

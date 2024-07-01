@@ -27,6 +27,8 @@ class Email extends ValueObject
 
     protected bool $required = true; // DB Not Nullable
 
+    protected string $placeholder = 'mail@example.com';
+
     public function rules(): array
     {
         $routeName = Route::currentRouteName();
@@ -62,7 +64,7 @@ class Email extends ValueObject
      */
     public function input(array $attributes = []): View
     {
-        $class = implode(' ', $attributes);
+        $attributes['placeholder'] = $this->placeholder;
 
         return view('components.form.input', [
             'column' => $this,

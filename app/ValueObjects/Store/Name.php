@@ -25,6 +25,8 @@ class Name extends ValueObject
 
     protected bool $required = true; // DB Not Nullable
 
+    protected string $placeholder = '店舗名';
+
     public function rules(): array
     {
         return [
@@ -40,7 +42,7 @@ class Name extends ValueObject
      */
     public function input(array $attributes = []): View
     {
-        $class = implode(' ', $attributes);
+        $attributes['placeholder'] = $this->placeholder;
 
         return view('components.form.input', [
             'column' => $this,

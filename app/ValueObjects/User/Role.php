@@ -46,8 +46,6 @@ class Role extends ValueObject
      */
     public function input(array $attributes = []): View
     {
-        $class = implode(' ', $attributes);
-
         return view('components.form.select', [
             'column' => $this,
             'attributes' => $attributes,
