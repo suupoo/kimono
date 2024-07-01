@@ -21,6 +21,10 @@
                         {!! $column->input(['required' => true, 'class' => ''])?->render() !!}
                     @endif
 
+                    @if($column instanceof \App\ValueObjects\Customer\PostCode)
+                        {!! $column->input(['required' => false, 'class' => ''])?->render() !!}
+                    @endif
+
                     @if($column instanceof \App\ValueObjects\Customer\Prefecture)
                         {!! $column->input(['required' => false, 'class' => ''])?->render() !!}
                     @endif
@@ -30,10 +34,6 @@
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Customer\Address2)
-                        {!! $column->input(['required' => false, 'class' => ''])?->render() !!}
-                    @endif
-
-                    @if($column instanceof \App\ValueObjects\Customer\PostCode)
                         {!! $column->input(['required' => false, 'class' => ''])?->render() !!}
                     @endif
 

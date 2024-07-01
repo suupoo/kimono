@@ -30,6 +30,14 @@
                         {!! $column->input(['required' => true, 'class' => '', 'value' => $customerNameValue])?->render() !!}
                     @endif
 
+                    @if($column instanceof \App\ValueObjects\Customer\PostCode)
+                        @php
+                            $postCodeColumn = $column->column();
+                            $postCodeValue  = $model->$postCodeColumn;
+                        @endphp
+                        {!! $column->input(['required' => false, 'class' => '', 'value' => $postCodeValue])?->render() !!}
+                    @endif
+
                     @if($column instanceof \App\ValueObjects\Customer\Prefecture)
                         @php
                             $prefectureColumn = $column->column();
@@ -52,14 +60,6 @@
                             $address2Value  = $model->$address2Column;
                         @endphp
                         {!! $column->input(['required' => false, 'class' => '', 'value' => $address2Value])?->render() !!}
-                    @endif
-
-                    @if($column instanceof \App\ValueObjects\Customer\PostCode)
-                        @php
-                            $postCodeColumn = $column->column();
-                            $postCodeValue  = $model->$postCodeColumn;
-                        @endphp
-                        {!! $column->input(['required' => false, 'class' => '', 'value' => $postCodeValue])?->render() !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Customer\Note)

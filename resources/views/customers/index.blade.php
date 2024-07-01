@@ -43,6 +43,10 @@
                             {!! $column->input(['class' => ''])?->render() !!}
                         @endif
 
+                        @if($column instanceof \App\ValueObjects\Customer\PostCode)
+                            {!! $column->input(['class' => ''])?->render() !!}
+                        @endif
+
                         @if($column instanceof \App\ValueObjects\Customer\Prefecture)
                             {!! $column->input(['class' => ''])?->render() !!}
                         @endif
@@ -55,9 +59,6 @@
                             {!! $column->input(['class' => ''])?->render() !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Customer\PostCode)
-                            {!! $column->input(['class' => ''])?->render() !!}
-                        @endif
                     @endif
                 @endforeach
             </x-list.search-box>
