@@ -2,7 +2,8 @@
     <div class="h-full px-3 pb-4 overflow-y-auto bg-gray-800">
         <ul class="space-y-2 font-medium">
             @foreach($menuList as $menuItem)
-            <li class="hover:bg-gray-400">
+            @php $resource = $menuItem[\App\View\Components\Menu\SideMenu::RESOURCE] @endphp
+            <li class="hover:bg-gray-400 @if(\Illuminate\Support\Facades\Route::Is($resource->getTable().'.*')) bg-gray-500 @endif">
                 {{--  通常メニュー --}}
                 <a href="{{ $menuItem[ \App\View\Components\Menu\SideMenu::LINK ] }}"
                    class="flex items-center p-2 text-white rounded-lg  group"

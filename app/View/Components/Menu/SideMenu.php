@@ -17,6 +17,8 @@ class SideMenu extends Component
 
     const ICON = 2;
 
+    const RESOURCE = 3;
+
     /**
      * Create a new component instance.
      */
@@ -45,9 +47,9 @@ class SideMenu extends Component
             // ここにメニューを記載する
             return [
                 // 顧客
-                [self::LINK => route($resourceCustomers->getTable().'.index'), self::TEXT => $resourceCustomers::NAME, self::ICON => 'list'],
-                [self::LINK => route($resourceUsers->getTable().'.index'), self::TEXT => $resourceUsers::NAME, self::ICON => 'list'],
-                [self::LINK => route($resourceStores->getTable().'.index'), self::TEXT => $resourceStores::NAME, self::ICON => 'list'],
+                [self::RESOURCE => $resourceCustomers, self::LINK => route($resourceCustomers->getTable().'.index') , self::TEXT => $resourceCustomers::NAME, self::ICON => 'list'],
+                [self::RESOURCE => $resourceUsers, self::LINK => route($resourceUsers->getTable().'.index'), self::TEXT => $resourceUsers::NAME, self::ICON => 'list'],
+                [self::RESOURCE => $resourceStores, self::LINK => route($resourceStores->getTable().'.index'), self::TEXT => $resourceStores::NAME, self::ICON => 'list'],
                 // todo:メニューグループ対応
             ];
         } catch (\Exception $e) {
