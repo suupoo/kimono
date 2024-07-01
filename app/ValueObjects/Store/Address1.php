@@ -25,6 +25,8 @@ class Address1 extends ValueObject
 
     protected bool $required = false; // DB Nullable
 
+    protected string $placeholder = '大阪府高槻市桃園町２番１号';
+
     public function rules(): array
     {
         return [
@@ -39,7 +41,8 @@ class Address1 extends ValueObject
      */
     public function input(array $attributes = []): View
     {
-        $class = implode(' ', $attributes);
+        // プレースホルダを設定
+        $attributes['placeholder'] = $this->placeholder;
 
         return view('components.form.input', [
             'column' => $this,

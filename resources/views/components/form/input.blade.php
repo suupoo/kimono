@@ -6,6 +6,7 @@
       $requiredHidden = true;
     }
     $value = $attributes['value'] ?? '';
+    $placeholder = $attributes['placeholder'] ?? '';
 @endphp
 <label
     for="{{ $column->id() }}"
@@ -24,5 +25,6 @@
     @if($column->maxLength()) maxlength="{{ $column->maxLength() }}" @endif
     @if($column->minLength()) minlength="{{ $column->minLength() }}" @endif
     @if($required)  required="required" @endif
+    @if($placeholder) placeholder="{{ $placeholder }}" @endif
 />
 

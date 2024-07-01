@@ -25,6 +25,8 @@ class PostCode extends ValueObject
 
     protected bool $required = false; // DB Nullable
 
+    protected string $placeholder = '000-0000';
+
     public function rules(): array
     {
         return [
@@ -41,7 +43,8 @@ class PostCode extends ValueObject
      */
     public function input(array $attributes = []): View
     {
-        $class = implode(' ', $attributes);
+        // プレースホルダを設定
+        $attributes['placeholder'] = $this->placeholder;
 
         return view('components.form.input', [
             'column' => $this,
