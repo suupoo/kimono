@@ -37,6 +37,10 @@
                         {!! $column->input(['required' => false, 'class' => ''])?->render() !!}
                     @endif
 
+                    @if($column instanceof \App\ValueObjects\Customer\Note)
+                        {!! $column->input(['required' => false, 'class' => ''])?->render() !!}
+                    @endif
+
                 </div>
             @endforeach
         </div>

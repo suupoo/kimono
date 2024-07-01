@@ -62,6 +62,14 @@
                         {!! $column->input(['required' => false, 'class' => '', 'value' => $postCodeValue])?->render() !!}
                     @endif
 
+                    @if($column instanceof \App\ValueObjects\Customer\Note)
+                        @php
+                            $noteColumn = $column->column();
+                            $noteValue  = $model->$noteColumn;
+                        @endphp
+                        {!! $column->input(['required' => false, 'class' => '', 'value' => $noteValue])?->render() !!}
+                    @endif
+
                 </div>
             @endforeach
         </div>
