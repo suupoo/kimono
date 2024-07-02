@@ -4,9 +4,12 @@ namespace App\Models;
 
 use App\Models\Interfaces\BaseModelInterface;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\ModelAuthorObservable;
 
 abstract class BaseModel extends Model implements BaseModelInterface
 {
+    use ModelAuthorObservable;
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
