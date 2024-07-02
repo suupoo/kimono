@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::table('customers', function (Blueprint $table) {
             $table->bigInteger('created_user')->nullable()->after('created_at');
             $table->bigInteger('updated_user')->nullable()->after('updated_at');
-            $table->bigInteger('owned_user')->nullable()->after('note');
         });
     }
 
@@ -26,7 +25,6 @@ return new class extends Migration
         Schema::table('customers', function (Blueprint $table) {
             $table->dropColumn('created_user');
             $table->dropColumn('updated_user');
-            $table->dropColumn('owned_user');
         });
     }
 };
