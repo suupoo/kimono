@@ -27,16 +27,16 @@
                                 @guest
                                     {{ __('GuestUser') }}
                                 @else
-                                    {{ Auth::user()->name }}
+                                    <a href="{{ route('mypage.index') }}" class="hover:text-gray-400">{{ Auth::user()->name }}</a>
                                 @endguest
                             </p>
                         </div>
                         <ul class="py-1" role="none">
                             <li>
                                 @auth
-                                <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm hover:bg-gray-100 " role="menuitem">{{ __('Logout') }}</a>
+                                <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm hover:text-gray-400 " role="menuitem">{{ __('Logout') }}</a>
                                 @elseauth
-                                <a href="{{ route('login') }}" class="block px-4 py-2 text-sm hover:bg-gray-100 " role="menuitem">{{ __('Login') }}</a>
+                                <a href="{{ route('login') }}" class="block px-4 py-2 text-sm hover:text-gray-400 " role="menuitem">{{ __('Login') }}</a>
                                 @endauth
                             </li>
                         </ul>

@@ -17,6 +17,10 @@ Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('login', function (BreadcrumbTrail $trail) {
     $trail->push(__('Login'), route('login'));
 });
+// マイページ
+Breadcrumbs::for('mypage.index', function (BreadcrumbTrail $trail) {
+    $trail->push(__('MyPage'), route('mypage.index'));
+});
 
 $resourceModels = [
     // リソースのモデルを追加

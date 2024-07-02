@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -20,4 +21,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', UserController::class)->parameters(['users' => 'id']);
     Route::resource('customers', CustomerController::class)->parameters(['customers' => 'id']);
     Route::resource('stores', StoreController::class)->parameters(['stores' => 'id']);
+    // マイページ
+    Route::get('mypage', [MyPageController::class, 'index'])->name('mypage.index');
 });
