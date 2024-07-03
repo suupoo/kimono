@@ -24,3 +24,18 @@ Route::group(['middleware' => 'auth'], function () {
     // マイページ
     Route::get('mypage', [MyPageController::class, 'index'])->name('mypage.index');
 });
+
+Route::get('/build/{any}', function ($any) {
+    $extensions = substr($any, strrpos($any, '.') + 1);
+    $mine_type=[
+        "css"=>"text/css",
+        "js"=>"application/javascript"
+    ];
+    if(!array_key_exists($extensions,$mine_type)){
+        return \App::abort(404);
+    }
+    if(!file_exists(public_path() . '/build/'.$any)){
+        return \App::abort(404);
+    }
+    return response(\File::get(public_path() . '/build/'.$any))->header('Content-Type',$mine_type[$extensions]);
+})->where('any', '.*');

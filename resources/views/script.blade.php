@@ -1,4 +1,4 @@
-<script>
+<script type="module">
     $(function(){
         $('input[name=post_code]').on('focusout', function(){
             let postCode = $(this).val();

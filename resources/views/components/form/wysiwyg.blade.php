@@ -28,7 +28,7 @@
     {!! old($column->id(), request()->get($column->id(), $value)) !!}
 </div>
 
-<script>
+<script type="module">
     $(function(){
         new Quill('#editor-{{ $column->id() }}', {
             theme: 'snow',
