@@ -41,7 +41,7 @@
     </div>
 </div>
 
-<script>
+<script type="module">
     $(function() {
         const url = new URL(window.location.href);
         const searchParams = url.searchParams;
