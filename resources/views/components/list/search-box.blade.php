@@ -12,14 +12,10 @@
                 aria-controls="accordion-search-box-body"
         >
             <div class="flex justify-center items-center gap-1 text-white">
-                <svg class="w-[16px] h-[16px] text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
-                </svg>
+                @includeIf('icons.search', ['class' => 'w-[16px] h-[16px]'])
                 検索
             </div>
-            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
-            </svg>
+            @includeIf('icons.accordion-arrow', ['class' => 'w-3 h-3 rotate-180 shrink-0 text-white'])
         </button>
     </h2>
     <div id="accordion-search-box-body" class="hidden" aria-labelledby="accordion-search-box">
