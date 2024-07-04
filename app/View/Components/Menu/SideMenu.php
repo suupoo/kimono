@@ -9,8 +9,8 @@ use App\Models\User;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Route;
 use Illuminate\View\Component;
-use \Illuminate\Support\Facades\Route;
 
 class SideMenu extends Component
 {
@@ -38,6 +38,7 @@ class SideMenu extends Component
 
     /**
      * デフォルトのメニュー
+     *
      * @return array
      */
     public function default()
@@ -49,13 +50,14 @@ class SideMenu extends Component
                 'text' => __('menu.home'),
                 'link' => route('home'),
                 'icon' => 'home',
-                'active' => Route::Is('home')
+                'active' => Route::Is('home'),
             ],
         ];
     }
 
     /**
      * 管理者のメニュー
+     *
      * @return array|array[]
      */
     private function admin(): array
@@ -72,32 +74,33 @@ class SideMenu extends Component
                     'text' => __('menu.home'),
                     'link' => route('home'),
                     'icon' => 'home',
-                    'active' => Route::Is('home')
+                    'active' => Route::Is('home'),
                 ],
                 [
                     // 顧客
                     'text' => __('menu.'.$resourceCustomers->getTable()),
                     'link' => route($resourceCustomers->getTable().'.index'),
                     'icon' => 'list',
-                    'active' => Route::Is($resourceCustomers->getTable().'.*')
+                    'active' => Route::Is($resourceCustomers->getTable().'.*'),
                 ],
                 [
                     // ユーザー
                     'text' => __('menu.'.$resourceUsers->getTable()),
                     'link' => route($resourceUsers->getTable().'.index'),
                     'icon' => 'list',
-                    'active' => Route::Is($resourceUsers->getTable().'.*')
+                    'active' => Route::Is($resourceUsers->getTable().'.*'),
                 ],
                 [
                     // 店舗
                     'text' => __('menu.'.$resourceStores->getTable()),
                     'link' => route($resourceStores->getTable().'.index'),
                     'icon' => 'list',
-                    'active' => Route::Is($resourceStores->getTable().'.*')
+                    'active' => Route::Is($resourceStores->getTable().'.*'),
                 ],
             ];
         } catch (\Exception $e) {
             Log::error('メニューの取得に失敗しました。', ['message' => $e->getMessage(), 'line' => $e->getLine()]);
+
             return [];
         }
     }

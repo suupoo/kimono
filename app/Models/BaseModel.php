@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Models\Interfaces\BaseModelInterface;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\ModelAuthorObservable;
+use Illuminate\Database\Eloquent\Model;
 
 abstract class BaseModel extends Model implements BaseModelInterface
 {

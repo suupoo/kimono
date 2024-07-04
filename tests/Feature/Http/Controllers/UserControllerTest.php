@@ -2,9 +2,8 @@
 
 namespace Tests\Feature\Http\Controllers;
 
-use App\Models\User as ResourceModel; // モデル紐付け
-use App\Enums\UserRole;
-use Illuminate\Support\Facades\Log;
+use App\Enums\UserRole; // モデル紐付け
+use App\Models\User as ResourceModel;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase
@@ -24,7 +23,7 @@ class UserControllerTest extends TestCase
         $this->login();
 
         // Act（実行）
-        $response = $this->get(route($this->resourcePrefix.'.index',[
+        $response = $this->get(route($this->resourcePrefix.'.index', [
             'sort' => 'id',
             'order' => 'asc',
         ]));
@@ -45,7 +44,7 @@ class UserControllerTest extends TestCase
             'email' => 'test@example.com',
             'password' => 'password',
             'password_confirmation' => 'password',
-            'role' => UserRole::NORMAL->value
+            'role' => UserRole::NORMAL->value,
         ];
 
         // 登録処理
@@ -64,7 +63,6 @@ class UserControllerTest extends TestCase
             }
         }
 
-
         // 登録データがDBに保存されているか
         $this->assertDatabaseHas(ResourceModel::class, $search);
     }
@@ -77,23 +75,22 @@ class UserControllerTest extends TestCase
         $user = ResourceModel::factory([
             'name' => 'テスト更新太郎',
             'email' => 'update@example.cm',
-            'role' => UserRole::NORMAL->value
+            'role' => UserRole::NORMAL->value,
         ])->create();
-
 
         $updateData = [
             'name' => 'テスト太郎更新終わり',
             'email' => 'updated@example.com',
-            'role' => UserRole::ADMIN->value
+            'role' => UserRole::ADMIN->value,
         ];
 
         // 登録処理
-        $response = $this->put(route("$this->resourcePrefix.update",[
+        $response = $this->put(route("$this->resourcePrefix.update", [
             'id' => $user->id,
         ]), $updateData);
 
         // 登録後のリダイレクト先が正しいか
-        $response->assertRedirect(route("$this->resourcePrefix.show",[
+        $response->assertRedirect(route("$this->resourcePrefix.show", [
             'id' => $user->id,
         ]));
 
@@ -106,7 +103,6 @@ class UserControllerTest extends TestCase
                 $search[$columnName] = $updateData[$columnName];
             }
         }
-
 
         // 登録データがDBに保存されているか
         $this->assertDatabaseHas(ResourceModel::class, $search);

@@ -2,18 +2,22 @@
 
 namespace App\Observers;
 
-use App\Models\BaseModel;
 use Illuminate\Support\Facades\Auth;
 
 class ModelAuthorObserver
 {
-    public function creating($model){
+    public function creating($model)
+    {
         $model->created_user = Auth::user()->id;
     }
-    public function updating($model){
+
+    public function updating($model)
+    {
         $model->updated_user = Auth::user()->id;
     }
-    public function saving($model){
+
+    public function saving($model)
+    {
         $model->updated_user = Auth::user()->id;
     }
 }
