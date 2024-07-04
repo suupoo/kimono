@@ -23,7 +23,7 @@
 
 {{--　検索エリア --}}
 @if(!empty($searchable))
-<x-content.full>
+<div class="custom-full-container">
     <x-list.search-box>
         @foreach($model::getColumns() as $column)
             @php
@@ -58,11 +58,11 @@
             @endif
         @endforeach
     </x-list.search-box>
-</x-content.full>
+</div>
 @endif
 
 {{--　リスト --}}
-<x-content.full>
+<div class="custom-full-container">
     <h3 class="text-xl font-bold my-2">
         {{ $model::NAME . __('resource.list') }}
     </h3>
@@ -143,5 +143,5 @@
         </table>
         {{ $items->links() }}
     </div>
-</x-content.full>
+</div>
 @endsection

@@ -8,4 +8,7 @@
     .custom-btn, .custom-link {
         @apply w-full font-bold py-2 px-4 rounded text-center border rounded-lg;
     }
+    .custom-full-container{
+        @apply flex flex-col w-full h-full mb-4;
+    }
 }

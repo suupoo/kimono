@@ -23,54 +23,54 @@
 
     {{--　検索エリア --}}
     @if(!empty($searchable))
-        <x-content.full>
-            <x-list.search-box>
-                @foreach($model::getColumns() as $column)
-                    @php
-                        // 検索可能カラムコレクションをカラム名配列に変換
-                        $arraySearchable = [];
-                        foreach($searchable as $value) {
-                            $arraySearchable[] = $value->column();
-                        }
-                    @endphp
-                    @if(in_array($column->column(), $arraySearchable))
+    <div class="custom-full-container">
+        <x-list.search-box>
+            @foreach($model::getColumns() as $column)
+                @php
+                    // 検索可能カラムコレクションをカラム名配列に変換
+                    $arraySearchable = [];
+                    foreach($searchable as $value) {
+                        $arraySearchable[] = $value->column();
+                    }
+                @endphp
+                @if(in_array($column->column(), $arraySearchable))
 
-                        @if($column instanceof \App\ValueObjects\Store\Id)
-                            {!! $column->input(['class' => ''])?->render() !!}
-                        @endif
-
-                        @if($column instanceof \App\ValueObjects\Store\Name)
-                            {!! $column->input(['class' => ''])?->render() !!}
-                        @endif
-
-                        @if($column instanceof \App\ValueObjects\Store\Code)
-                            {!! $column->input(['class' => ''])?->render() !!}
-                        @endif
-
-                        @if($column instanceof \App\ValueObjects\Store\PostCode)
-                            {!! $column->input(['class' => ''])?->render() !!}
-                        @endif
-
-                        @if($column instanceof \App\ValueObjects\Store\Prefecture)
-                            {!! $column->input(['class' => ''])?->render() !!}
-                        @endif
-
-                        @if($column instanceof \App\ValueObjects\Store\Address1)
-                            {!! $column->input(['class' => ''])?->render() !!}
-                        @endif
-
-                        @if($column instanceof \App\ValueObjects\Store\Address2)
-                            {!! $column->input(['class' => ''])?->render() !!}
-                        @endif
-
+                    @if($column instanceof \App\ValueObjects\Store\Id)
+                        {!! $column->input(['class' => ''])?->render() !!}
                     @endif
-                @endforeach
-            </x-list.search-box>
-        </x-content.full>
+
+                    @if($column instanceof \App\ValueObjects\Store\Name)
+                        {!! $column->input(['class' => ''])?->render() !!}
+                    @endif
+
+                    @if($column instanceof \App\ValueObjects\Store\Code)
+                        {!! $column->input(['class' => ''])?->render() !!}
+                    @endif
+
+                    @if($column instanceof \App\ValueObjects\Store\PostCode)
+                        {!! $column->input(['class' => ''])?->render() !!}
+                    @endif
+
+                    @if($column instanceof \App\ValueObjects\Store\Prefecture)
+                        {!! $column->input(['class' => ''])?->render() !!}
+                    @endif
+
+                    @if($column instanceof \App\ValueObjects\Store\Address1)
+                        {!! $column->input(['class' => ''])?->render() !!}
+                    @endif
+
+                    @if($column instanceof \App\ValueObjects\Store\Address2)
+                        {!! $column->input(['class' => ''])?->render() !!}
+                    @endif
+
+                @endif
+            @endforeach
+        </x-list.search-box>
+    </div>
     @endif
 
     {{--　リスト --}}
-    <x-content.full>
+    <div class="custom-full-container">
         <h3 class="text-xl font-bold my-2">
             {{ $model::NAME . __('resource.list') }}
         </h3>
@@ -146,5 +146,5 @@
             </table>
             {{ $items->links() }}
         </div>
-    </x-content.full>
+    </div>
 @endsection
