@@ -13,7 +13,7 @@
     @endif
 </label>
 <input
-    class="w-full border border-gray-300 rounded-md pl-2 h-8 {{$class}}"
+    class="w-full h-full text-sm border border-gray-300 rounded-md pl-2 {{$class}}"
     id="{{ $column->id() }}_confirmation"
     name="{{ $column->id() }}_confirmation"
     type="{{ $column->inputType() }}"

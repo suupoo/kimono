@@ -16,7 +16,7 @@
 <select
     id="{{ $column->id() }}"
     name="{{ $column->id() }}"
-    class="w-full border border-gray-300 rounded-md pl-2 h-8"
+    class="w-full h-full text-sm border border-gray-300 rounded-md pl-2"
     @if($required)  required="required" @endif
 >
     @foreach($column->options() as $case)

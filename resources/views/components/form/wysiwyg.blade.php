@@ -24,7 +24,7 @@
 >
     {{ old($column->id(), request()->get($column->id(), $value)) }}
 </textarea>
-<div id="editor-{{ $column->id() }}" class="h-[100px]">
+<div id="editor-{{ $column->id() }}" style="height: 200px">
     {!! old($column->id(), request()->get($column->id(), $value)) !!}
 </div>
 
