@@ -2,23 +2,18 @@
 
 namespace App\View\Components\Menu;
 
+use App\Enums\UserRole;
 use App\Models\Customer;
 use App\Models\Store;
 use App\Models\User;
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\Component;
+use \Illuminate\Support\Facades\Route;
 
 class SideMenu extends Component
 {
-    const LINK = 0;
-
-    const TEXT = 1;
-
-    const ICON = 2;
-
-    const RESOURCE = 3;
-
     /**
      * Create a new component instance.
      */
@@ -32,12 +27,38 @@ class SideMenu extends Component
      */
     public function render(): View|Closure|string
     {
-        $menuList = $this->menuList();
+        // 権限でメニューが変わる場合はここで判定する
+        $menuList = match (auth()->user()->role) {
+            UserRole::ADMIN => $this->admin(),
+            default => $this->default()
+        };
 
         return view('components.menu.sideMenu', ['menuList' => $menuList]);
     }
 
-    private function menuList(): array
+    /**
+     * デフォルトのメニュー
+     * @return array
+     */
+    public function default()
+    {
+        // ここにメニューを記載する
+        return [
+            [
+                // ホーム
+                'text' => __('menu.home'),
+                'link' => route('home'),
+                'icon' => 'home',
+                'active' => Route::Is('home')
+            ],
+        ];
+    }
+
+    /**
+     * 管理者のメニュー
+     * @return array|array[]
+     */
+    private function admin(): array
     {
         try {
             $resourceCustomers = new Customer;
@@ -46,13 +67,37 @@ class SideMenu extends Component
 
             // ここにメニューを記載する
             return [
-                [self::LINK => route('home') , self::TEXT => __('ホーム'), self::ICON => 'home'],
-                [self::RESOURCE => $resourceCustomers, self::LINK => route($resourceCustomers->getTable().'.index') , self::TEXT => $resourceCustomers::NAME, self::ICON => 'list'],
-                [self::RESOURCE => $resourceUsers, self::LINK => route($resourceUsers->getTable().'.index'), self::TEXT => $resourceUsers::NAME, self::ICON => 'list'],
-                [self::RESOURCE => $resourceStores, self::LINK => route($resourceStores->getTable().'.index'), self::TEXT => $resourceStores::NAME, self::ICON => 'list'],
-                // todo:メニューグループ対応
+                [
+                    // ホーム
+                    'text' => __('menu.home'),
+                    'link' => route('home'),
+                    'icon' => 'home',
+                    'active' => Route::Is('home')
+                ],
+                [
+                    // 顧客
+                    'text' => __('menu.'.$resourceCustomers->getTable()),
+                    'link' => route($resourceCustomers->getTable().'.index'),
+                    'icon' => 'list',
+                    'active' => Route::Is($resourceCustomers->getTable().'.*')
+                ],
+                [
+                    // ユーザー
+                    'text' => __('menu.'.$resourceUsers->getTable()),
+                    'link' => route($resourceUsers->getTable().'.index'),
+                    'icon' => 'list',
+                    'active' => Route::Is($resourceUsers->getTable().'.*')
+                ],
+                [
+                    // 店舗
+                    'text' => __('menu.'.$resourceStores->getTable()),
+                    'link' => route($resourceStores->getTable().'.index'),
+                    'icon' => 'list',
+                    'active' => Route::Is($resourceStores->getTable().'.*')
+                ],
             ];
         } catch (\Exception $e) {
+            Log::error('メニューの取得に失敗しました。', ['message' => $e->getMessage(), 'line' => $e->getLine()]);
             return [];
         }
     }
