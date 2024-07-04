@@ -36,6 +36,6 @@
                 </div>
             @endforeach
         </div>
-        <x-button.create-button />
+        <x-button.store />
     </form>
 @endsection

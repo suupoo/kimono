@@ -68,7 +68,7 @@
     </h3>
     <div class="w-full flex my-2 justify-end">
         <div class="w-fit">
-            <x-button.create-link link="{{ route($model->getTable() . '.create') }}" />
+            <x-button.create href="{{ route($model->getTable() . '.create') }}"/>
         </div>
     </div>
     <div class="relative overflow-x-auto">
