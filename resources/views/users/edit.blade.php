@@ -49,6 +49,6 @@
         </div>
         @endforeach
     </div>
-    <x-button.edit-submit />
+    <x-button.update/>
 </form>
 @endsection

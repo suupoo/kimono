@@ -15,12 +15,16 @@ export default {
             custom:{
                 'green' : "#00A86B",
                 'red' : "#FF0000",
+                'blue' : '#1E90FF',
+                'gray' : '#6B7280',
             }
         },
         textColor: {
             custom:{
                 'green' : "#00A86B",
                 'red' : "#FF0000",
+                'blue' : '#1E90FF',
+                'gray' : '#6B7280',
             }
         },
     },
