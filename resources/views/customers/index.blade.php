@@ -91,7 +91,7 @@
                             "
                                         href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'asc'])}}"
                                     >
-                                        @include('components.list.icons.sort-up')
+                                        @include('icons.sort-up')
                                     </a>
                                 @endif
 
@@ -103,7 +103,7 @@
                             "
                                         href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'desc'])}}"
                                     >
-                                        @include('components.list.icons.sort-down')
+                                        @include('icons.sort-down')
                                     </a>
                                 @endif
                             </div>
