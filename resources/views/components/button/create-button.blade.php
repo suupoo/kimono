@@ -1,5 +1,5 @@
 <input
     type="submit"
-    class="w-full hover:text-white  bg-green-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded"
+    class="w-full font-bold py-2 px-4 rounded bg-custom-green text-white hover:text-white  hover:bg-custom-green"
     value="{{ __('resource.store') }}"
 />
