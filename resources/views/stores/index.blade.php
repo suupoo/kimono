@@ -122,8 +122,10 @@
                         <td class="text-xs flex flex-col justify-center space-y-1 m-1">
                             <x-button.edit-link link="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
                             <x-button.show-link link="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}"/>
-                            <x-button.delete-button-with-confirm
-                                    link="{{ route($model->getTable() . '.destroy', ['id' => $item->id]) }}"/>
+                            <x-button.delete
+                                href="{{ route($model->getTable() . '.destroy', ['id' => $item->id]) }}"
+                                data-id="{{ $item->id }}"
+                            />
                         </td>
                         @foreach($model::getColumns() as $column)
                             <td class="px-6 py-4">

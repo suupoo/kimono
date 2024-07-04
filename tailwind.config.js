@@ -14,11 +14,13 @@ export default {
         backgroundColor: {
             custom:{
                 'green' : "#00A86B",
+                'red' : "#FF0000",
             }
         },
         textColor: {
             custom:{
                 'green' : "#00A86B",
+                'red' : "#FF0000",
             }
         },
     },
