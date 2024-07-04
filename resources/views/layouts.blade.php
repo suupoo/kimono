@@ -10,7 +10,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased bg-gray-50 text-black">
+    <body class="font-noto-jp antialiased bg-gray-50 text-black">
         <div class="min-h-screen">
             <x-menu.topMenu/>
             <x-menu.sideMenu/>

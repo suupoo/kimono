@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+        fontFamily : {
+          "noto-jp":"Noto Sans JP"
+        },
         backgroundColor: {
             custom:{
                 'green' : "#00A86B",
