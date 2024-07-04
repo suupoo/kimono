@@ -7,7 +7,7 @@
                        class="flex items-center p-2 text-white rounded-lg  group"
                     >
                         @if(array_key_exists('icon', $menuItem))
-                            @includeIf("components.menu.icons.{$menuItem['icon']}")
+                            @includeIf("icons.{$menuItem['icon']}", ['class' => 'w-6 h-6'])
                         @endif
                         <span class="flex-1 ms-3 whitespace-nowrap">
                             {{ $menuItem['text'] }}
