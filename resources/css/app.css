@@ -3,6 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    input.no-spinner::-webkit-inner-spin-button, input.no-spinner::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: textfield !important;
+    }
+}
 /* カスタム共通クラス群 */
 @layer components {
     .custom-btn, .custom-link {

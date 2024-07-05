@@ -19,7 +19,7 @@ class Id extends ValueObject
 
     protected string $label = self::LABEL;
 
-    protected string $type = 'number';
+    protected string $type = 'integer';
 
     protected ?int $maxLength = null;
 
