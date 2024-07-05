@@ -13,9 +13,8 @@ use App\ValueObjects\User\RememberToken;
 use App\ValueObjects\User\Role;
 use App\ValueObjects\User\UpdatedAt;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends BaseModel
 {
     use HasFactory;
 

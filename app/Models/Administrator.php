@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\AdministratorRole;
 use App\ValueObjects\Administrator\CreatedAt;
 use App\ValueObjects\Administrator\Email;
 use App\ValueObjects\Administrator\EmailVerifiedAt;
@@ -10,6 +11,7 @@ use App\ValueObjects\Administrator\Name;
 use App\ValueObjects\Administrator\Password;
 use App\ValueObjects\Administrator\RememberToken;
 use App\ValueObjects\Administrator\UpdatedAt;
+use App\ValueObjects\Administrator\Role;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -36,7 +38,10 @@ class Administrator extends Authenticatable
         'password',
         'remember_token',
     ];
-    protected $casts = [];
+
+    protected $casts = [
+        Role::NAME => AdministratorRole::class,
+    ];
 
     /**
      * Get the attributes that should be cast.
@@ -62,6 +67,7 @@ class Administrator extends Authenticatable
             new Email,
             new EmailVerifiedAt,
             new Password,
+            new Role,
             new RememberToken,
             new CreatedAt,
             new UpdatedAt,

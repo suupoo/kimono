@@ -2,7 +2,7 @@
 
 namespace App\View\Components\Menu;
 
-use App\Enums\UserRole;
+use App\Enums\AdministratorRole;
 use App\Models\Administrator;
 use App\Models\Customer;
 use App\Models\Store;
@@ -30,7 +30,7 @@ class SideMenu extends Component
     {
         // 権限でメニューが変わる場合はここで判定する
         $menuList = match (auth()->user()->role) {
-            UserRole::ADMIN => $this->admin(),
+            AdministratorRole::ADMIN => $this->admin(),
             default => $this->default()
         };
 

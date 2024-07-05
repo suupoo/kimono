@@ -20,11 +20,11 @@
                 @foreach($model::getColumns() as $column)
                     <div class="w-full my-1">
 
-                        @if($column instanceof \App\ValueObjects\User\Email)
+                        @if($column instanceof \App\ValueObjects\Administrator\Email)
                             {!! $column->input(['required' => true, 'required_hidden' => true, 'class' => ''])?->render() !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\User\Password)
+                        @if($column instanceof \App\ValueObjects\Administrator\Password)
                             {!! $column->input(['required' => true, 'required_hidden' => true, 'class' => ''])?->render() !!}
                         @endif
 
