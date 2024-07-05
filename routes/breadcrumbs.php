@@ -27,6 +27,7 @@ $resourceModels = [
     new \App\Models\Customer,
     new \App\Models\User,
     new \App\Models\Store,
+    new \App\Models\Administrator,
 ];
 
 foreach ($resourceModels as $model) {

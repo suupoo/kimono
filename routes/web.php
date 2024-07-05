@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\StoreController;
@@ -19,6 +20,7 @@ Route::group(['middleware' => 'auth'], function () {
     })->name('home');
     // customers/edit/{customer}/edit などの{{  }}のパラメータをidで取得するように変更する
     Route::resource('users', UserController::class)->parameters(['users' => 'id']);
+    Route::resource('administrators', AdministratorController::class)->parameters(['administrators' => 'id']);
     Route::resource('customers', CustomerController::class)->parameters(['customers' => 'id']);
     Route::resource('stores', StoreController::class)->parameters(['stores' => 'id']);
     // マイページ
