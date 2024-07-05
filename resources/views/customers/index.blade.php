@@ -16,10 +16,6 @@
             $arraySortable[] = $sortableItem->column();
         };
     @endphp
-    {{--　コンテンツタイトル --}}
-    <x-content.title>
-        {{ $model::NAME }}
-    </x-content.title>
 
     {{--　検索エリア --}}
     @if(!empty($searchable))
@@ -36,7 +32,7 @@
                     @if(in_array($column->column(), $arraySearchable))
 
                         @if($column instanceof \App\ValueObjects\Customer\Id)
-                            {!! $column->input(['class' => ''])?->render() !!}
+                            {!! $column->input(['class' => 'no-spinner'])?->render() !!}
                         @endif
 
                         @if($column instanceof \App\ValueObjects\Customer\Name)
