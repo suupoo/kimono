@@ -11,6 +11,7 @@ return [
     'delete' => '削除',
     'show' => '詳細',
     'search' => '検索',
+    'copy' => '複製',
     'search_condition' => '検索条件',
     'operation' => '操作',
     'cancel' => 'キャンセル',

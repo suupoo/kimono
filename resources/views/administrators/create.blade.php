@@ -18,11 +18,19 @@
                 <div class="w-full my-1">
 
                     @if($column instanceof \App\ValueObjects\Administrator\Name)
-                        {!! $column->input(['required' => true, 'class' => ''])?->render() !!}
+                        @php
+                            $nameColumn = $column->column();
+                            $nameValue  = $model->$nameColumn;
+                        @endphp
+                        {!! $column->input(['required' => true, 'class' => '', 'value' => $nameValue])?->render() !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Administrator\Email)
-                        {!! $column->input(['required' => true, 'class' => ''])?->render() !!}
+                        @php
+                            $emailColumn = $column->column();
+                            $emailValue  = $model->$emailColumn;
+                        @endphp
+                        {!! $column->input(['required' => false, 'class' => '', 'value' => $emailValue])?->render() !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Administrator\Password)
@@ -31,7 +39,11 @@
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Administrator\Role)
-                        {!! $column->input(['required' => true, 'class' => ''])?->render() !!}
+                        @php
+                            $roleColumn = $column->column();
+                            $roleValue  = $model->$roleColumn;
+                        @endphp
+                        {!! $column->input(['required' => true, 'class' => '', 'value' => $roleValue?->value])?->render() !!}
                     @endif
                 </div>
             @endforeach

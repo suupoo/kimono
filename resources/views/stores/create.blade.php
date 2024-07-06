@@ -18,27 +18,51 @@
                 <div class="w-full my-1">
 
                     @if($column instanceof \App\ValueObjects\Store\Name)
-                        {!! $column->input(['required' => true, 'class' => ''])?->render() !!}
+                        @php
+                            $storeNameColumn = $column->column();
+                            $storeNameValue  = $model->$storeNameColumn;
+                        @endphp
+                        {!! $column->input(['required' => true, 'class' => '', 'value' => $storeNameValue])?->render() !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Store\Code)
-                        {!! $column->input(['required' => true, 'class' => ''])?->render() !!}
+                        @php
+                            $codeColumn = $column->column();
+                            $codeValue  = $model->$codeColumn;
+                        @endphp
+                        {!! $column->input(['required' => true, 'class' => '', 'value' => $codeValue])?->render() !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Store\PostCode)
-                        {!! $column->input(['required' => false, 'class' => ''])?->render() !!}
+                        @php
+                            $postCodeColumn = $column->column();
+                            $postCodeValue  = $model->$postCodeColumn;
+                        @endphp
+                        {!! $column->input(['required' => false, 'class' => '', 'value' => $postCodeValue])?->render() !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Store\Prefecture)
-                        {!! $column->input(['required' => false, 'class' => ''])?->render() !!}
+                        @php
+                            $prefectureColumn = $column->column();
+                            $prefectureValue  = $model->$prefectureColumn;
+                        @endphp
+                        {!! $column->input(['required' => false, 'class' => '', 'value' => $prefectureValue?->value])?->render() !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Store\Address1)
-                        {!! $column->input(['required' => false, 'class' => ''])?->render() !!}
+                        @php
+                            $address1Column = $column->column();
+                            $address1Value  = $model->$address1Column;
+                        @endphp
+                        {!! $column->input(['required' => false, 'class' => '', 'value' => $address1Value])?->render() !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Store\Address2)
-                        {!! $column->input(['required' => false, 'class' => ''])?->render() !!}
+                        @php
+                            $address2Column = $column->column();
+                            $address2Value  = $model->$address2Column;
+                        @endphp
+                        {!! $column->input(['required' => false, 'class' => '', 'value' => $address2Value])?->render() !!}
                     @endif
 
                 </div>

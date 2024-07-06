@@ -110,6 +110,7 @@
                     <td class="text-xs flex flex-col justify-center space-y-1 m-1">
                         <x-button.edit href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}" />
                         <x-button.show href="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}" />
+                        <x-button.copy href="{{ route($model->getTable() . '.create', ['copy' => $item->id]) }}"/>
                         @if(\Illuminate\Support\Facades\Auth::user()->id !== $item->id)
                         <x-button.delete
                             href="{{ route($model->getTable() . '.destroy', ['id' => $item->id]) }}"
