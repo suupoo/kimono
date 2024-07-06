@@ -19,7 +19,11 @@ return new class extends Migration
             $table->string('password');
             $table->string('role')->default('normal');
             $table->rememberToken();
-            $table->timestamps();
+            $table->datetimes();
+        });
+        Schema::table('administrators', function (Blueprint $table) {
+            $table->bigInteger('created_user')->nullable()->after('created_at');
+            $table->bigInteger('updated_user')->nullable()->after('updated_at');
         });
     }
 
