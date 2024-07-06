@@ -66,8 +66,8 @@
         <h3 class="text-xl font-bold my-2">
             {{ $model::NAME . __('resource.list') }}
         </h3>
-        <div class="w-full flex my-2 justify-end">
-            <div class="w-fit">
+        <div class="flex w-full justify-end">
+            <div class="w-fit flex flex-col">
                 <x-button.create href="{{ route($model->getTable() . '.create') }}"/>
             </div>
         </div>
