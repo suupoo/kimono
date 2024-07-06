@@ -35,12 +35,6 @@ class Email extends ValueObject
         $id = Route::current()->parameter('id');
 
         return match ($routeName) {
-            'login.auth' => [
-                'required',
-                'email',
-                "max:$this->maxLength",
-                "min:$this->minLength",
-            ],
             'users.update' => [
                 'required',
                 'email',

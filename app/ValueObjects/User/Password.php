@@ -32,15 +32,6 @@ class Password extends ValueObject
 
         return match ($routeName) {
             // ルート名 => ルール
-            'login.auth' => [
-                'required',
-                'string',
-                "max:$this->maxLength",
-                "min:$this->minLength",
-            ],
-            'customers.store' => [
-                // 新規登録時はIDは自動採番のため除外
-            ],
             'users.update' => [
                 // 更新時はIDは自動採番のため除外
                 'nullable',
