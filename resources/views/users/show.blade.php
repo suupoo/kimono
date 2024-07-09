@@ -22,7 +22,7 @@
                   $nameColumn = $column->column();
                   $nameValue  = $model->$nameColumn;
                 @endphp
-                {!! $column->input(['required' => true, 'class' => '', 'value' => $nameValue])?->render() !!}
+                {!! $column->input(['required' => true, 'disable' => true, 'class' => '', 'value' => $nameValue])?->render() !!}
             @endif
 
             @if($column instanceof \App\ValueObjects\User\Email)
@@ -30,7 +30,7 @@
                     $emailColumn = $column->column();
                     $emailValue  = $model->$emailColumn;
                 @endphp
-                {!! $column->input(['required' => false, 'class' => '', 'value' => $emailValue])?->render() !!}
+                {!! $column->input(['required' => false, 'disable' => true, 'class' => '', 'value' => $emailValue])?->render() !!}
             @endif
 
             @if($column instanceof \App\ValueObjects\User\EmailVerifiedAt)
@@ -38,7 +38,7 @@
                     $emailVerifiedAtColumn = $column->column();
                     $emailVerifiedAtValue  = $model->$emailVerifiedAtColumn;
                 @endphp
-                {!! $column->input(['required' => false, 'class' => '', 'value' => $emailVerifiedAtValue])?->render() !!}
+                {!! $column->input(['required' => false, 'disable' => true, 'class' => '', 'value' => $emailVerifiedAtValue])?->render() !!}
             @endif
 
             @if($column instanceof \App\ValueObjects\User\Role)
@@ -46,7 +46,7 @@
                     $roleColumn = $column->column();
                     $roleValue  = $model->$roleColumn;
                 @endphp
-                {!! $column->input(['required' => true, 'class' => '', 'value' => $roleValue?->value])?->render() !!}
+                {!! $column->input(['required' => true, 'disable' => true, 'class' => '', 'value' => $roleValue?->value])?->render() !!}
             @endif
 
         </div>

@@ -7,6 +7,7 @@
     }
     $value = $attributes['value'] ?? '';
     $placeholder = $attributes['placeholder'] ?? '';
+    $disable = $attributes['disable'] ?? false;
 @endphp
 <label
     for="{{ $column->id() }}"
@@ -26,5 +27,6 @@
     @if($column->minLength()) minlength="{{ $column->minLength() }}" @endif
     @if($required)  required="required" @endif
     @if($placeholder) placeholder="{{ $placeholder }}" @endif
+    @if($disable) disabled="disabled" @endif
 />
 

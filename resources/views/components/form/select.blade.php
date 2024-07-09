@@ -3,6 +3,7 @@
     $class = $attributes['class'] ?? '';
     $required = $attributes['required'] ?? false;
     $value = $attributes['value'] ?? '';
+    $disable = $attributes['disable'] ?? false;
 @endphp
 <label
     for="{{ $column->id() }}"
@@ -18,6 +19,7 @@
     name="{{ $column->id() }}"
     class="w-full h-full text-sm border border-gray-300 rounded-md pl-2"
     @if($required)  required="required" @endif
+    @if($disable) disabled="disabled" @endif
 >
     @foreach($column->options() as $case)
     <option

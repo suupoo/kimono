@@ -6,6 +6,7 @@
       $requiredHidden = true;
     }
     $value = $attributes['value'] ?? '';
+    $disable = $attributes['disable'] ?? false;
 @endphp
 <label
     for="{{ $column->id() }}"
@@ -32,7 +33,9 @@
     $(function(){
         new Quill('#editor-{{ $column->id() }}', {
             theme: 'snow',
-        }).on('text-change', function() {
+        })
+        .enable({{ $disable ? 'false' : 'true' }})
+        .on('text-change', function() {
             $('#{{ $column->id() }}').html(
                 $('#editor-{{ $column->id() }}').find('.ql-editor').html()
             );

@@ -22,7 +22,7 @@
                             $staffNameColumn = $column->column();
                             $staffNameValue  = $model->$staffNameColumn;
                         @endphp
-                        {!! $column->input(['required' => true, 'class' => '', 'value' => $staffNameValue])?->render() !!}
+                        {!! $column->input(['required' => true, 'disable' => true, 'class' => '', 'value' => $staffNameValue])?->render() !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Staff\Code)
@@ -30,7 +30,7 @@
                             $codeColumn = $column->column();
                             $codeValue  = $model->$codeColumn;
                         @endphp
-                        {!! $column->input(['required' => false, 'class' => '', 'value' => $codeValue])?->render() !!}
+                        {!! $column->input(['required' => false, 'disable' => true, 'class' => '', 'value' => $codeValue])?->render() !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Staff\Tel)
@@ -38,7 +38,7 @@
                             $telColumn = $column->column();
                             $telValue  = $model->$telColumn;
                         @endphp
-                        {!! $column->input(['required' => false, 'class' => '', 'value' => $telValue])?->render() !!}
+                        {!! $column->input(['required' => false, 'disable' => true, 'class' => '', 'value' => $telValue])?->render() !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Staff\StaffPosition)
@@ -46,7 +46,7 @@
                             $positionColumn = $column->column();
                             $positionValue  = $model->$positionColumn;
                         @endphp
-                        {!! $column->input(['required' => false, 'class' => '', 'value' => $positionValue?->value])?->render() !!}
+                        {!! $column->input(['required' => false, 'disable' => true, 'class' => '', 'value' => $positionValue?->value])?->render() !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Staff\JoinDate)
@@ -54,7 +54,7 @@
                             $joinDateColumn = $column->column();
                             $joinDateValue  = $model->$joinDateColumn;
                         @endphp
-                        {!! $column->input(['required' => false, 'class' => '', 'value' => $joinDateValue])?->render() !!}
+                        {!! $column->input(['required' => false, 'disable' => true, 'class' => '', 'value' => $joinDateValue])?->render() !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Staff\QuitDate)
@@ -62,7 +62,7 @@
                             $quitDateColumn = $column->column();
                             $quitDateValue  = $model->$quitDateColumn;
                         @endphp
-                        {!! $column->input(['required' => false, 'class' => '', 'value' => $quitDateValue])?->render() !!}
+                        {!! $column->input(['required' => false, 'disable' => true, 'class' => '', 'value' => $quitDateValue])?->render() !!}
                     @endif
 
                 </div>
