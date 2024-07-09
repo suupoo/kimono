@@ -5,6 +5,7 @@ namespace App\View\Components\Menu;
 use App\Enums\AdministratorRole;
 use App\Models\Administrator;
 use App\Models\Customer;
+use App\Models\Staff;
 use App\Models\Store;
 use App\Models\User;
 use Closure;
@@ -67,6 +68,7 @@ class SideMenu extends Component
             $resourceCustomers = new Customer;
             $resourceUsers = new User;
             $resourceStores = new Store;
+            $resourceStaffs = new Staff;
             $resourceAdministrators = new Administrator;
 
             // ここにメニューを記載する
@@ -98,6 +100,13 @@ class SideMenu extends Component
                     'link' => route($resourceStores->getTable().'.index'),
                     'icon' => 'list',
                     'active' => Route::Is($resourceStores->getTable().'.*'),
+                ],
+                [
+                    // 店舗
+                    'text' => __('menu.'.$resourceStaffs->getTable()),
+                    'link' => route($resourceStaffs->getTable().'.index'),
+                    'icon' => 'list',
+                    'active' => Route::Is($resourceStaffs->getTable().'.*'),
                 ],
                 [
                     // 管理者

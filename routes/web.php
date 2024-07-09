@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MyPageController;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('administrators', AdministratorController::class)->parameters(['administrators' => 'id']);
     Route::resource('customers', CustomerController::class)->parameters(['customers' => 'id']);
     Route::resource('stores', StoreController::class)->parameters(['stores' => 'id']);
+    Route::resource('staffs', StaffController::class)->parameters(['staffs' => 'id']);
     // マイページ
     Route::get('mypage', [MyPageController::class, 'index'])->name('mypage.index');
 });

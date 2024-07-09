@@ -11,5 +11,6 @@ return [
     'customers' => '顧客',
     'users' => 'ユーザー',
     'stores' => '店舗',
+    'staffs' => 'スタッフ',
     'administrators' => '管理者',
 ];
