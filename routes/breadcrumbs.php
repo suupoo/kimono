@@ -22,6 +22,11 @@ Breadcrumbs::for('mypage.index', function (BreadcrumbTrail $trail) {
     $trail->push(__('MyPage'), route('mypage.index'));
 });
 
+// システム
+Breadcrumbs::for('system.functions', function (BreadcrumbTrail $trail) {
+    $trail->push(__('menu.system.functions'), route('system.functions'));
+});
+
 $resourceModels = [
     // リソースのモデルを追加
     new \App\Models\Customer,

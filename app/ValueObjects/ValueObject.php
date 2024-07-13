@@ -71,6 +71,7 @@ abstract class ValueObject
         return match ($this->type) {
             'string' => 'text',
             'integer' => 'number',
+            'bool' => 'checkbox',
             'password' => 'password',
             'datetime' => 'datetime-local',
             'email' => 'email',

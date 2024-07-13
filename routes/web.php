@@ -6,6 +6,7 @@ use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SystemController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([], function () {
@@ -27,6 +28,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('staffs', StaffController::class)->parameters(['staffs' => 'id']);
     // マイページ
     Route::get('mypage', [MyPageController::class, 'index'])->name('mypage.index');
+
+    // システム管理用機能 todo:管理者以外は不可にする
+    Route::group(['controller' => SystemController::class, 'prefix' => 'system' ], function () {
+        Route::get('/functions', 'listFunction')->name('system.listFunction');
+        Route::post('/functions', 'saveFunction')->name('system.saveFunction');
+    });
 });
 
 Route::get('/build/{any}', function ($any) {

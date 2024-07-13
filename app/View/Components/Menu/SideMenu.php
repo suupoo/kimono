@@ -115,6 +115,13 @@ class SideMenu extends Component
                     'icon' => 'peoples',
                     'active' => Route::Is($resourceAdministrators->getTable().'.*'),
                 ],
+                [
+                    // 機能
+                    'text' => __('menu.system.functions'),
+                    'link' => route('system.listFunction'),
+                    'icon' => 'config',
+                    'active' => 'system.functions.*',
+                ]
             ];
         } catch (\Exception $e) {
             Log::error('メニューの取得に失敗しました。', ['message' => $e->getMessage(), 'line' => $e->getLine()]);

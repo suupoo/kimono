@@ -13,4 +13,7 @@ return [
     'stores' => '店舗',
     'staffs' => 'スタッフ',
     'administrators' => '管理者',
+    'system' => [
+        'functions' => 'システム機能'
+    ]
 ];
