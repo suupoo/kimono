@@ -32,27 +32,27 @@
                     @if(in_array($column->column(), $arraySearchable))
 
                         @if($column instanceof \App\ValueObjects\Customer\Id)
-                            {!! $column->input(['class' => 'no-spinner'])?->render() !!}
+                            {!! $column->input(['class' => 'no-spinner']) !!}
                         @endif
 
                         @if($column instanceof \App\ValueObjects\Customer\Name)
-                            {!! $column->input(['class' => ''])?->render() !!}
+                            {!! $column->input(['class' => '']) !!}
                         @endif
 
                         @if($column instanceof \App\ValueObjects\Customer\PostCode)
-                            {!! $column->input(['class' => ''])?->render() !!}
+                            {!! $column->input(['class' => '']) !!}
                         @endif
 
                         @if($column instanceof \App\ValueObjects\Customer\Prefecture)
-                            {!! $column->input(['class' => ''])?->render() !!}
+                            {!! $column->input(['class' => '']) !!}
                         @endif
 
                         @if($column instanceof \App\ValueObjects\Customer\Address1)
-                            {!! $column->input(['class' => ''])?->render() !!}
+                            {!! $column->input(['class' => '']) !!}
                         @endif
 
                         @if($column instanceof \App\ValueObjects\Customer\Address2)
-                            {!! $column->input(['class' => ''])?->render() !!}
+                            {!! $column->input(['class' => '']) !!}
                         @endif
 
                     @endif

@@ -22,6 +22,11 @@ abstract class ValueObject
 
     protected bool $primaryKey = false;
 
+    public function __construct($value = null)
+    {
+        $this->value = $value;
+    }
+
     public function id(): ?string
     {
         return $this->name;
@@ -63,6 +68,13 @@ abstract class ValueObject
         return $this->required;
     }
 
+    public function placeholder(): ?string
+    {
+        return (property_exists($this, 'placeholder'))
+            ? $this->placeholder
+            : null;
+    }
+
     /**
      * 入力タイプを返す
      */
@@ -79,5 +91,15 @@ abstract class ValueObject
             'list' => 'select',
             default => null,
         };
+    }
+
+    /**
+     * 入力フォーム要素を返す
+     * @param array $attributes
+     * @return string
+     */
+    public function input(array $attributes = [])
+    {
+        return null;
     }
 }

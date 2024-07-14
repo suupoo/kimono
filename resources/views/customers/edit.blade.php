@@ -27,7 +27,7 @@
                             $customerNameColumn = $column->column();
                             $customerNameValue  = $model->$customerNameColumn;
                         @endphp
-                        {!! $column->input(['required' => true, 'class' => '', 'value' => $customerNameValue])?->render() !!}
+                        {!! $column->input(['required' => true, 'value' => $customerNameValue]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Customer\PostCode)
@@ -35,7 +35,7 @@
                             $postCodeColumn = $column->column();
                             $postCodeValue  = $model->$postCodeColumn;
                         @endphp
-                        {!! $column->input(['required' => false, 'class' => '', 'value' => $postCodeValue])?->render() !!}
+                        {!! $column->input(['required' => false, 'value' => $postCodeValue]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Customer\Prefecture)
@@ -43,7 +43,7 @@
                             $prefectureColumn = $column->column();
                             $prefectureValue  = $model->$prefectureColumn;
                         @endphp
-                        {!! $column->input(['required' => false, 'class' => '', 'value' => $prefectureValue?->value])?->render() !!}
+                        {!! $column->input(['required' => false, 'value' => $prefectureValue?->value]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Customer\Address1)
@@ -51,7 +51,7 @@
                             $address1Column = $column->column();
                             $address1Value  = $model->$address1Column;
                         @endphp
-                        {!! $column->input(['required' => false, 'class' => '', 'value' => $address1Value])?->render() !!}
+                        {!! $column->input(['required' => false, 'value' => $address1Value]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Customer\Address2)
@@ -59,7 +59,7 @@
                             $address2Column = $column->column();
                             $address2Value  = $model->$address2Column;
                         @endphp
-                        {!! $column->input(['required' => false, 'class' => '', 'value' => $address2Value])?->render() !!}
+                        {!! $column->input(['required' => false, 'value' => $address2Value]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Customer\Note)
@@ -67,7 +67,7 @@
                             $noteColumn = $column->column();
                             $noteValue  = $model->$noteColumn;
                         @endphp
-                        {!! $column->input(['required' => false, 'class' => '', 'value' => $noteValue])?->render() !!}
+                        {!! $column->input(['required' => false, 'value' => $noteValue]) !!}
                     @endif
 
                 </div>

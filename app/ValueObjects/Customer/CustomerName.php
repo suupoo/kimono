@@ -3,7 +3,7 @@
 namespace App\ValueObjects\Customer;
 
 use App\ValueObjects\ValueObject;
-use Illuminate\Contracts\View\View;
+use App\Facades\Utility\CustomForm;
 
 class CustomerName extends ValueObject
 {
@@ -19,13 +19,13 @@ class CustomerName extends ValueObject
 
     protected string $type = 'string';
 
-    protected ?int $maxLength = 255;
+    protected ?int $maxLength = 2;
 
     protected ?int $minLength = 1;
 
     protected bool $required = true; // DB Not Nullable
 
-    protected string $placeholder = '株式会社〇〇';
+    protected ?string $placeholder = '株式会社〇〇';
 
     public function rules(): array
     {
@@ -40,13 +40,11 @@ class CustomerName extends ValueObject
     /**
      * 入力項目を返す
      */
-    public function input(array $attributes = []): View
+    public function input(array $attributes = []): string
     {
-        $attributes['placeholder'] = $this->placeholder;
-
-        return view('components.form.input', [
-            'column' => $this,
-            'attributes' => $attributes,
-        ]);
+        return CustomForm::make($this)
+            ->label($attributes)
+            ->input($attributes)
+            ->render();
     }
 }

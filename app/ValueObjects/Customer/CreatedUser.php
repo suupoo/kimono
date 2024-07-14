@@ -3,7 +3,6 @@
 namespace App\ValueObjects\Customer;
 
 use App\ValueObjects\ValueObject;
-use Illuminate\Contracts\View\View;
 
 class CreatedUser extends ValueObject
 {
@@ -31,14 +30,5 @@ class CreatedUser extends ValueObject
             'integer',
             'exists:users,id',
         ];
-    }
-
-    /**
-     * 入力項目を返す
-     */
-    public function input(array $attributes = []): View
-    {
-        // 作成者は自動採番のため入力には対応しない
-        return view('components.form.empty');
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App\ValueObjects\Customer;
 
+use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
-use Illuminate\Contracts\View\View;
 
 class PostCode extends ValueObject
 {
@@ -41,14 +41,11 @@ class PostCode extends ValueObject
     /**
      * 入力項目を返す
      */
-    public function input(array $attributes = []): View
+    public function input(array $attributes = []): string
     {
-        // プレースホルダを設定
-        $attributes['placeholder'] = $this->placeholder;
-
-        return view('components.form.input', [
-            'column' => $this,
-            'attributes' => $attributes,
-        ]);
+        return CustomForm::make($this)
+            ->label($attributes)
+            ->input($attributes)
+            ->render();
     }
 }
