@@ -2,8 +2,8 @@
 
 namespace App\ValueObjects\M_Function;
 
+use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
-use Illuminate\Contracts\View\View;
 
 class Enable extends ValueObject
 {
@@ -24,5 +24,18 @@ class Enable extends ValueObject
     protected ?int $minLength = null;
 
     protected bool $required = true; // DB Nullable
+
+    /**
+     * 入力フォーム要素を返す
+     * @param array $attributes
+     * @return string
+     */
+    public function input(array $attributes = [])
+    {
+        return CustomForm::make($this)
+            ->input($attributes)
+            ->label($attributes)
+            ->render();
+    }
 
 }
