@@ -67,7 +67,7 @@ class SideMenu extends Component
      */
     private function admin(): array
     {
-        $menu = [];
+        $menu = $this->default();
 
         /**
          * リソース系のメニュー項目
