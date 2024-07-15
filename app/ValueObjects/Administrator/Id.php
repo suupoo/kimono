@@ -32,7 +32,6 @@ class Id extends ValueObject
     public function rules(): array
     {
         $routeName = Route::currentRouteName();
-        $id = Route::current()->parameter('id');
 
         return match ($routeName) {
             // ルート名 => ルール
@@ -43,7 +42,7 @@ class Id extends ValueObject
                 // 更新時はIDは必須
                 'integer',
                 'required',
-                Rule::unique('users')->ignore($id),
+                Rule::unique('users')->ignore(Route::current()->parameter('id')),
             ],
             default => array_merge([
                 // 通常時のバリデーション

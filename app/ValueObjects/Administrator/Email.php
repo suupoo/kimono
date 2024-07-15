@@ -32,7 +32,6 @@ class Email extends ValueObject
     public function rules(): array
     {
         $routeName = Route::currentRouteName();
-        $id = Route::current()->parameter('id');
 
         return match ($routeName) {
             'login.auth' => [
@@ -46,7 +45,7 @@ class Email extends ValueObject
                 'email',
                 "max:$this->maxLength",
                 "min:$this->minLength",
-                Rule::unique('administrators')->ignore($id),
+                Rule::unique('administrators')->ignore(Route::current()->parameter('id')),
             ],
             default => array_merge([
                 // 通常時のバリデーション
