@@ -10,18 +10,20 @@ use App\Models\Store;
 use App\Models\User;
 use Closure;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Illuminate\View\Component;
+use Laravel\Pennant\Feature;
 
 class SideMenu extends Component
 {
+    protected array $features = [];
+
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
-        //
+        $this->features = Feature::all();
     }
 
     /**
@@ -64,69 +66,103 @@ class SideMenu extends Component
      */
     private function admin(): array
     {
-        try {
-            $resourceCustomers = new Customer;
-            $resourceUsers = new User;
-            $resourceStores = new Store;
-            $resourceStaffs = new Staff;
-            $resourceAdministrators = new Administrator;
+        $menu = [];
 
-            // ここにメニューを記載する
-            return [
-                [
-                    // ホーム
-                    'text' => __('menu.home'),
-                    'link' => route('home'),
-                    'icon' => 'home',
-                    'active' => Route::Is('home'),
-                ],
-                [
-                    // 顧客
-                    'text' => __('menu.'.$resourceCustomers->getTable()),
-                    'link' => route($resourceCustomers->getTable().'.index'),
-                    'icon' => 'list',
-                    'active' => Route::Is($resourceCustomers->getTable().'.*'),
-                ],
-                [
-                    // ユーザー
-                    'text' => __('menu.'.$resourceUsers->getTable()),
-                    'link' => route($resourceUsers->getTable().'.index'),
-                    'icon' => 'list',
-                    'active' => Route::Is($resourceUsers->getTable().'.*'),
-                ],
-                [
-                    // 店舗
-                    'text' => __('menu.'.$resourceStores->getTable()),
-                    'link' => route($resourceStores->getTable().'.index'),
-                    'icon' => 'list',
-                    'active' => Route::Is($resourceStores->getTable().'.*'),
-                ],
-                [
-                    // 店舗
-                    'text' => __('menu.'.$resourceStaffs->getTable()),
-                    'link' => route($resourceStaffs->getTable().'.index'),
-                    'icon' => 'list',
-                    'active' => Route::Is($resourceStaffs->getTable().'.*'),
-                ],
-                [
-                    // 管理者
-                    'text' => __('menu.'.$resourceAdministrators->getTable()),
-                    'link' => route($resourceAdministrators->getTable().'.index'),
-                    'icon' => 'peoples',
-                    'active' => Route::Is($resourceAdministrators->getTable().'.*'),
-                ],
-                [
-                    // 機能
-                    'text' => __('menu.system.features'),
-                    'link' => route('system.listFeature'),
-                    'icon' => 'config',
-                    'active' => 'system.features.*',
-                ]
+        /**
+         * リソース系のメニュー項目
+         * 並び順番はm_system_featuresに合わせてキー名でアルファベット順
+         */
+        // 管理者
+        if($this->menuAdministrators())$menu[] = $this->menuAdministrators()[0]; // todo:グループ表示に対応時に変更
+        // 顧客
+        if($this->menuCustomers()) $menu[] = $this->menuCustomers()[0]; // todo:グループ表示に対応時に変更
+        // スタッフ
+        if($this->menuStaffs()) $menu[] = $this->menuStaffs()[0]; // todo:グループ表示に対応時に変更
+        // 店舗
+        if($this->menuStores()) $menu[] = $this->menuStores()[0]; // todo:グループ表示に対応時に変更
+        // ユーザー
+        if($this->menuUsers()) $menu[] = $this->menuUsers()[0]; // todo:グループ表示に対応時に変更
+
+        // システムのメニュー項目
+        $menu[] = [
+            // 機能
+            'text' => __('menu.system.features'),
+            'link' => route('system.listFeature'),
+            'icon' => 'config',
+            'active' => 'system.features.*',
+        ];
+
+        return $menu;
+    }
+
+    /**
+     * リソース系のメニュー
+     * @param string $modelClass
+     * @return array|null
+     */
+
+    private function menuResources(string $modelClass) :?array
+    {
+        $menu = null;
+        $resource = new $modelClass;
+        $resourceTable = $resource->getTable();
+
+        if(array_key_exists($resourceTable, $this->features)){
+            $menu = [];
+            // 機能が有効の場合はメニューに表示
+            $menu[] = [
+                'text' => __('menu.'.$resourceTable),
+                'link' => route($resourceTable.'.index'),
+                'icon' => 'list',
+                'active' => Route::Is($resourceTable.'.*'),
             ];
-        } catch (\Exception $e) {
-            Log::error('メニューの取得に失敗しました。', ['message' => $e->getMessage(), 'line' => $e->getLine()]);
-
-            return [];
         }
+
+        return $menu;
+    }
+
+    /**
+     * ユーザーのメニュー
+     * @return array|null
+     */
+    private function menuUsers() :?array
+    {
+        return $this->menuResources(User::class);
+    }
+
+    /**
+     * 顧客のメニュー
+     * @return array|null
+     */
+    private function menuCustomers() :?array
+    {
+        return $this->menuResources(Customer::class);
+    }
+
+    /**
+     * 店舗のメニュー
+     * @return array|null
+     */
+    private function menuStores() :?array
+    {
+        return $this->menuResources(Store::class);
+    }
+
+    /**
+     * スタッフのメニュー
+     * @return array|null
+     */
+    private function menuStaffs() :?array
+    {
+        return $this->menuResources(Staff::class);
+    }
+
+    /**
+     * 管理者のメニュー
+     * @return array|null
+     */
+    private function menuAdministrators() :?array
+    {
+        return $this->menuResources(Administrator::class);
     }
 }

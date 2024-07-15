@@ -8,6 +8,7 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SystemController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Pennant\Middleware\EnsureFeaturesAreActive;
 
 Route::group([], function () {
     Route::get('login', [\App\Http\Controllers\Auth\AuthController::class, 'login'])->name('login');
@@ -21,11 +22,11 @@ Route::group(['middleware' => 'auth'], function () {
         return view('home.index');
     })->name('home');
     // customers/edit/{customer}/edit などの{{  }}のパラメータをidで取得するように変更する
-    Route::resource('users', UserController::class)->parameters(['users' => 'id']);
-    Route::resource('administrators', AdministratorController::class)->parameters(['administrators' => 'id']);
-    Route::resource('customers', CustomerController::class)->parameters(['customers' => 'id']);
-    Route::resource('stores', StoreController::class)->parameters(['stores' => 'id']);
-    Route::resource('staffs', StaffController::class)->parameters(['staffs' => 'id']);
+    Route::resource('users', UserController::class)->parameters(['users' => 'id'])->middleware(EnsureFeaturesAreActive::using('users'));
+    Route::resource('administrators', AdministratorController::class)->parameters(['administrators' => 'id'])->middleware(EnsureFeaturesAreActive::using('administrators'));
+    Route::resource('customers', CustomerController::class)->parameters(['customers' => 'id'])->middleware(EnsureFeaturesAreActive::using('customers'));
+    Route::resource('stores', StoreController::class)->parameters(['stores' => 'id'])->middleware(EnsureFeaturesAreActive::using('stores'));
+    Route::resource('staffs', StaffController::class)->parameters(['staffs' => 'id'])->middleware(EnsureFeaturesAreActive::using('staffs'));
     // マイページ
     Route::get('mypage', [MyPageController::class, 'index'])->name('mypage.index');
 
