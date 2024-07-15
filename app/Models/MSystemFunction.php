@@ -14,6 +14,14 @@ class MSystemFunction extends Model
 
     protected $table = 'm_functions';
 
+    public $timestamps = false;
+
+    public $incrementing = false;
+
+    protected $primaryKey = 'key';
+
+    protected $keyType = 'string';
+
     const NAME = 'システム機能マスタ';
 
     protected $casts = [];

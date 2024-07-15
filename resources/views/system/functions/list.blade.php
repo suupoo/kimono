@@ -23,7 +23,8 @@
                 <div class="w-full my-1">
                     {!! $enable->input([
                           'id' => "function-$item->key",
-                          'name' => "function[$item->key]",
+                          'name' => "functions[$item->key]",
+                          'value' => 1,
                           'label' => $item->name,
                           'checked' => $item->enable
                     ]) !!}
