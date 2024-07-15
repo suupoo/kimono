@@ -100,10 +100,19 @@ class SideMenu extends Component
         // システムのメニュー項目を追加
         $menu[] = [
             // 機能
-            'text' => __('menu.system.features'),
-            'link' => route('system.listFeature'),
+            'group' => 'system',
+            'text' => __('menu.system.*'),
+            'link' =>  null,
             'icon' => 'config',
             'active' => Route::Is('system.*'),
+            'items' => [
+                [
+                    'text' => __('menu.system.features'),
+                    'link' => route('system.listFeature'),
+                    'icon' => null,
+                    'active' => Route::Is('system.listFeature'),
+                ],
+            ]
         ];
 
         return $menu;
@@ -125,6 +134,7 @@ class SideMenu extends Component
             $menu = [];
             // 機能が有効の場合はメニューに表示
             $menu[] = [
+                'group' => $resourceTable,
                 'text' => __('menu.'.$resourceTable),
                 'link' => route($resourceTable.'.index'),
                 'icon' => 'list',
