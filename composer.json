@@ -9,6 +9,7 @@
         "diglactic/laravel-breadcrumbs": "^9.0",
         "laravel-lang/lang": "^15.5",
         "laravel/framework": "^11.9",
+        "laravel/pennant": "^1.9",
         "laravel/tinker": "^2.9"
     },
     "require-dev": {
