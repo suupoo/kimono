@@ -89,7 +89,7 @@ class SideMenu extends Component
             'text' => __('menu.system.features'),
             'link' => route('system.listFeature'),
             'icon' => 'config',
-            'active' => 'system.features.*',
+            'active' => Route::Is('system.*'),
         ];
 
         return $menu;
