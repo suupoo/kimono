@@ -22,7 +22,7 @@ class MSystemFeature extends Model
 
     protected $keyType = 'string';
 
-    const NAME = 'システム機能マスタ';
+    const NAME = 'システム機能設定';
 
     protected $casts = [];
 
