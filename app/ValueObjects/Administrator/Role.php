@@ -38,7 +38,7 @@ class Role extends ValueObject
 
     public function options(): array
     {
-        return AdministratorRole::cases();
+        return AdministratorRole::casesExpectSystem();
     }
 
     /**

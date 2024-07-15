@@ -102,4 +102,17 @@
     |----------|----------|---|------------|
     | Save     | 登録処理     |POST| 機能に準ずる     |
 
+##  Installation for Custom CMS
+1. Gitからプロジェクトをクローンする
+2. `composer install`パッケージをインストールする
+3. `php artisan storage:link`シンボリックリンクを貼る
+4. `npm install`パッケージをインストールする
+5. `npm run dev`でビルドツールを立ち上げる
+6. `php artisan migrate`でマイグレーション
+7. `php artisan custom:init`でカスタムCMSの初期設定
+   - 管理者名：`システム` メールアドレス `system@example.com` パスワード `password`でシステム管理者を作成
 
+##  Commands for Custom CMS
+- `php artisan custom:init` カスタムCMSの初期設定
+- `php artisan custom-admin:add ユーザ名 email@example.com` 管理者を作成
+- `php artisan custom-feature:add 機能キー名 機能名` 機能定義を追加
