@@ -94,8 +94,10 @@ class SideMenu extends Component
      */
     private function system(): array
     {
-        $menu = [];
-        // システムのメニュー項目
+        // 管理者のメニューを取得
+        $menu = $this->admin();
+
+        // システムのメニュー項目を追加
         $menu[] = [
             // 機能
             'text' => __('menu.system.features'),
