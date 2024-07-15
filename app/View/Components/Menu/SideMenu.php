@@ -34,6 +34,7 @@ class SideMenu extends Component
         // 権限でメニューが変わる場合はここで判定する
         $menuList = match (auth()->user()->role) {
             AdministratorRole::ADMIN => $this->admin(),
+            AdministratorRole::SYSTEM => $this->system(),
             default => $this->default()
         };
 
@@ -83,6 +84,17 @@ class SideMenu extends Component
         // ユーザー
         if($this->menuUsers()) $menu[] = $this->menuUsers()[0]; // todo:グループ表示に対応時に変更
 
+        return $menu;
+    }
+
+    /**
+     * システムのメニュー
+     *
+     * @return array|array[]
+     */
+    private function system(): array
+    {
+        $menu = [];
         // システムのメニュー項目
         $menu[] = [
             // 機能
