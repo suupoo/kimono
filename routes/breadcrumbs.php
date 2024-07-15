@@ -23,8 +23,13 @@ Breadcrumbs::for('mypage.index', function (BreadcrumbTrail $trail) {
 });
 
 // システム
-Breadcrumbs::for('system.functions', function (BreadcrumbTrail $trail) {
-    $trail->push(__('menu.system.functions'), route('system.functions'));
+Breadcrumbs::for('system', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push(__('menu.system.*'));
+});
+Breadcrumbs::for('system.listFeature', function (BreadcrumbTrail $trail) {
+    $trail->parent('system');
+    $trail->push(__('menu.system.features'), route('system.listFeature'));
 });
 
 $resourceModels = [
