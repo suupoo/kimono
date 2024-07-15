@@ -2,17 +2,17 @@
 
 namespace App\Models;
 
-use App\ValueObjects\M_Function\Enable;
-use App\ValueObjects\M_Function\Key;
+use App\ValueObjects\Master\Feature\Enable;
+use App\ValueObjects\Master\Feature\Key;
 use App\ValueObjects\Store\Name;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MSystemFunction extends Model
+class MSystemFeature extends Model
 {
     use HasFactory;
 
-    protected $table = 'm_functions';
+    protected $table = 'm_system_features';
 
     public $timestamps = false;
 

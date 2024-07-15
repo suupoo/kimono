@@ -117,10 +117,10 @@ class SideMenu extends Component
                 ],
                 [
                     // 機能
-                    'text' => __('menu.system.functions'),
-                    'link' => route('system.listFunction'),
+                    'text' => __('menu.system.features'),
+                    'link' => route('system.listFeature'),
                     'icon' => 'config',
-                    'active' => 'system.functions.*',
+                    'active' => 'system.features.*',
                 ]
             ];
         } catch (\Exception $e) {

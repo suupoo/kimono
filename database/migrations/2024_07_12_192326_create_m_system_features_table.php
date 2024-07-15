@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('m_functions', function (Blueprint $table) {
+        Schema::create('m_system_features', function (Blueprint $table) {
             $table->string('key')->primary();
             $table->string('name');
             $table->boolean('enable');
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('m_functions');
+        Schema::dropIfExists('m_system_features');
     }
 };

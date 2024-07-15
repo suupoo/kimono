@@ -31,8 +31,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     // システム管理用機能 todo:管理者以外は不可にする
     Route::group(['controller' => SystemController::class, 'prefix' => 'system' ], function () {
-        Route::get('/functions', 'listFunction')->name('system.listFunction');
-        Route::post('/functions', 'saveFunction')->name('system.saveFunction');
+        Route::get('/features', 'listFeature')->name('system.listFeature');
+        Route::post('/features', 'saveFeature')->name('system.saveFeature');
     });
 });
 

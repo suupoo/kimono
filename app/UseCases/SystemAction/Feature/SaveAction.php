@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UseCases\SystemAction\Function;
+namespace App\UseCases\SystemAction\Feature;
 
 use App\Enums\Flag;
 use App\UseCases\ResourceAction\ListAction as BaseAction;
@@ -21,23 +21,23 @@ class SaveAction extends BaseAction
             $model = new $model;
 
             // リクエストから取得
-            $newFunctions = $request->get('functions');
+            $newFeatures = $request->get('features');
 
             // 現在のリソースに紐づいた機能を取得
-            foreach ($model->all() as $mFunction) {
-                if(!array_key_exists($mFunction->key, $newFunctions) && $mFunction->enable == Flag::ON->value) {
+            foreach ($model->all() as $mFeature) {
+                if(!array_key_exists($mFeature->key, $newFeatures) && $mFeature->enable == Flag::ON->value) {
                     // 無効化
-                    $mFunction->enable = false;
-                }else if(array_key_exists($mFunction->key, $newFunctions) && $mFunction->enable == Flag::OFF->value){
+                    $mFeature->enable = false;
+                }else if(array_key_exists($mFeature->key, $newFeatures) && $mFeature->enable == Flag::OFF->value){
                     // 有効化
-                    $mFunction->enable = true;
+                    $mFeature->enable = true;
                 }
 
                 // 更新
-                if($mFunction->isDirty()) $mFunction->save();
+                if($mFeature->isDirty()) $mFeature->save();
             }
 
-            return redirect()->route('system.listFunction')
+            return redirect()->route('system.listFeature')
                 ->with('message', '保存しました。');
 
         } catch (\Exception $e) {

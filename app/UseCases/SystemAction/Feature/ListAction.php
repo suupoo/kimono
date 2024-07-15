@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UseCases\SystemAction\Function;
+namespace App\UseCases\SystemAction\Feature;
 
 use App\UseCases\ResourceAction\ListAction as BaseAction;
 use Illuminate\Http\Request;
@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Log;
 
 /**
  * Class CreateAction
- * 顧客新規登録アクション
+ * 新規登録アクション
  */
 class ListAction extends BaseAction
 {

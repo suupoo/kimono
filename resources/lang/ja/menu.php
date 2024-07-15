@@ -14,6 +14,6 @@ return [
     'staffs' => 'スタッフ',
     'administrators' => '管理者',
     'system' => [
-        'functions' => 'システム機能'
+        'features' => 'システム機能'
     ]
 ];

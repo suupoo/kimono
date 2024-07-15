@@ -1,9 +1,8 @@
 <?php
 
-namespace App\ValueObjects\M_Function;
+namespace App\ValueObjects\Master\Feature;
 
 use App\ValueObjects\ValueObject;
-use Illuminate\Contracts\View\View;
 
 class Name extends ValueObject
 {

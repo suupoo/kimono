@@ -1,7 +1,7 @@
 @extends('layouts')
 
 @section('content')
-    <form action="{{ route('system.saveFunction') }}" method="post" class="flex flex-col py-2">
+    <form action="{{ route('system.saveFeature') }}" method="post" class="flex flex-col py-2">
         @csrf
         @if ($errors->any())
             <div class="error">
@@ -15,15 +15,15 @@
         </h1>
         <div class="flex flex-col w-full">
             @php
-                $key = new \App\ValueObjects\M_Function\Key;
-                $name = new \App\ValueObjects\M_Function\Name;
-                $enable = new \App\ValueObjects\M_Function\Enable;
+                $key = new \App\ValueObjects\Master\Feature\Key;
+                $name = new \App\ValueObjects\Master\Feature\Name;
+                $enable = new \App\ValueObjects\Master\Feature\Enable;
             @endphp
             @foreach($items as $item)
                 <div class="w-full my-1">
                     {!! $enable->input([
-                          'id' => "function-$item->key",
-                          'name' => "functions[$item->key]",
+                          'id' => "features-$item->key",
+                          'name' => "features[$item->key]",
                           'value' => 1,
                           'label' => $item->name,
                           'checked' => $item->enable
@@ -31,6 +31,6 @@
                 </div>
             @endforeach
         </div>
-        <x-button.store />
+        <x-button.store/>
     </form>
 @endsection
