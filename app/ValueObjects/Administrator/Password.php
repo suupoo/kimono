@@ -49,14 +49,6 @@ class Password extends ValueObject
             'customers.store' => [
                 // 新規登録時はIDは自動採番のため除外
             ],
-            'users.update' => [
-                // 更新時はIDは自動採番のため除外
-                'nullable',
-                'string',
-                "max:$this->maxLength",
-                "min:$this->minLength",
-                'confirmed',
-            ],
             default => array_merge([
                 // 通常時のバリデーション
                 'string',
