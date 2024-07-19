@@ -4,6 +4,7 @@ namespace App\ValueObjects\Administrator;
 
 use App\ValueObjects\ValueObject;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
 
@@ -46,6 +47,13 @@ class Email extends ValueObject
                 "max:$this->maxLength",
                 "min:$this->minLength",
                 Rule::unique('administrators')->ignore(Route::current()->parameter('id')),
+            ],
+            'me.save' => [
+                'required',
+                'email',
+                "max:$this->maxLength",
+                "min:$this->minLength",
+                Rule::unique('administrators')->ignore(Auth::id()),
             ],
             default => array_merge([
                 // 通常時のバリデーション

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\MeController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StoreController;
@@ -29,6 +30,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('staffs', StaffController::class)->parameters(['staffs' => 'id'])->middleware(EnsureFeaturesAreActive::using('staffs'));
     // マイページ
     Route::get('mypage', [MyPageController::class, 'index'])->name('mypage.index');
+    // 個人設定
+    Route::get('me', [MeController::class, 'list'])->name('me.list');
+    Route::post('me', [MeController::class, 'save'])->name('me.save');
 
     // システム管理用機能 todo:管理者以外は不可にする
     Route::group(['controller' => SystemController::class, 'prefix' => 'system' ], function () {

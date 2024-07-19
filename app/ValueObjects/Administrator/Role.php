@@ -5,6 +5,7 @@ namespace App\ValueObjects\Administrator;
 use App\Enums\AdministratorRole;
 use App\ValueObjects\ValueObject;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
 
 class Role extends ValueObject
@@ -29,11 +30,18 @@ class Role extends ValueObject
 
     public function rules(): array
     {
-        return [
-            'required',
-            'string',
-            Rule::enum(AdministratorRole::class),
-        ];
+        $routeName = Route::currentRouteName();
+
+        return match ($routeName) {
+            'me.save' => [
+                'nullable',
+            ],
+            default => [
+                'required',
+                'string',
+                Rule::enum(AdministratorRole::class),
+            ]
+        };
     }
 
     public function options(): array

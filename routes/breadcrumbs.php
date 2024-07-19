@@ -21,6 +21,14 @@ Breadcrumbs::for('login', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('mypage.index', function (BreadcrumbTrail $trail) {
     $trail->push(__('MyPage'), route('mypage.index'));
 });
+// 個人設定
+Breadcrumbs::for('me.list', function (BreadcrumbTrail $trail) {
+    $trail->push(__('menu.me.*'), route('me.list'));
+});
+// 個人設定編集
+Breadcrumbs::for('me.save', function (BreadcrumbTrail $trail) {
+    $trail->push(__('menu.me.*'), route('me.save'));
+});
 
 // システム
 Breadcrumbs::for('system', function (BreadcrumbTrail $trail) {

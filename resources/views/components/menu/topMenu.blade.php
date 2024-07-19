@@ -31,6 +31,13 @@
                                 @endguest
                             </p>
                         </div>
+                        <div class="px-4 py-3" role="none">
+                            <p class="text-sm" role="none">
+                                <a href="{{ route('me.list') }}" class="hover:text-gray-400">
+                                    {{ __('menu.me.*') }}
+                                </a>
+                            </p>
+                        </div>
                         <ul class="py-1" role="none">
                             <li>
                                 @auth

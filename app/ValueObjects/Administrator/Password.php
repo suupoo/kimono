@@ -38,6 +38,14 @@ class Password extends ValueObject
                 "max:$this->maxLength",
                 "min:$this->minLength",
             ],
+            'me.save' => [
+                // 更新時はIDは自動採番のため除外
+                'nullable',
+                'string',
+                "max:$this->maxLength",
+                "min:$this->minLength",
+                'confirmed',
+            ],
             'customers.store' => [
                 // 新規登録時はIDは自動採番のため除外
             ],
