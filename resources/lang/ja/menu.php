@@ -13,6 +13,7 @@ return [
     'stores' => '店舗',
     'staffs' => 'スタッフ',
     'administrators' => '管理者',
+    'notifications' => '通知',
     'system' => [
         '*' => 'システム',
         'features' => '機能設定'
