@@ -8,6 +8,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SystemController;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Pennant\Middleware\EnsureFeaturesAreActive;
 
@@ -31,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('stores/{id}/staffs', [StoreController::class, 'staffs'])->name('stores.staffs.list');
     });
     Route::resource('staffs', StaffController::class)->parameters(['staffs' => 'id'])->middleware(EnsureFeaturesAreActive::using('staffs'));
+    Route::resource('notifications', NotificationController::class)->parameters(['notifications' => 'id'])->middleware(EnsureFeaturesAreActive::using('notifications'));
     // マイページ
     Route::get('mypage', [MyPageController::class, 'index'])->name('mypage.index');
     // 個人設定

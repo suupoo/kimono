@@ -14,6 +14,7 @@ return [
     'stores.staffs.list' => '所属スタッフ',
     'staffs' => 'スタッフ',
     'administrators' => '管理者',
+    'notifications' => '通知',
     'system' => [
         '*' => 'システム',
         'features' => '機能設定'

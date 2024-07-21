@@ -5,6 +5,7 @@ namespace App\View\Components\Menu;
 use App\Enums\AdministratorRole;
 use App\Models\Administrator;
 use App\Models\Customer;
+use App\Models\Notification;
 use App\Models\Staff;
 use App\Models\Store;
 use App\Models\User;
@@ -83,6 +84,8 @@ class SideMenu extends Component
         if($this->menuStores()) $menu[] = $this->menuStores()[0]; // todo:グループ表示に対応時に変更
         // ユーザー
         if($this->menuUsers()) $menu[] = $this->menuUsers()[0]; // todo:グループ表示に対応時に変更
+        // 通知
+        if($this->menuNotifications()) $menu[] = $this->menuNotifications()[0]; // todo:グループ表示に対応時に変更
 
         return $menu;
     }
@@ -188,5 +191,14 @@ class SideMenu extends Component
     private function menuAdministrators() :?array
     {
         return $this->menuResources(Administrator::class);
+    }
+
+    /**
+     * 通知のメニュー
+     * @return array|null
+     */
+    private function menuNotifications() :?array
+    {
+        return $this->menuResources(Notification::class);
     }
 }
