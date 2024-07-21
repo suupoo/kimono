@@ -16,6 +16,7 @@
             <h1 class="text-xl text-center font-bold">
                 {{ __('Login') }}
             </h1>
+            <img src="{{ Vite::asset('resources/images/logo.svg') }}" class="h-24 border border-red-300">
             <div class="flex flex-col w-full mb-2">
                 @foreach($model::getColumns() as $column)
                     <div class="w-full my-1">
