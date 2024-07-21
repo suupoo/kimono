@@ -16,19 +16,17 @@
             <div class="flex items-center">
                 <div class="flex items-center ms-3 text-white">
                     <div>
-                        <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300" aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                        <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-2 focus:ring-gray-300" aria-expanded="false" data-dropdown-toggle="dropdown-user">
                             <span class="sr-only">Open user menu</span>
-                            <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
+                            <div  class="w-8 h-8 rounded-full flex justify-center items-center text-white bg-blue-300 border border-white">
+                                {{ mb_substr(\Illuminate\Support\Facades\Auth::user()->name, 0, 1 ) }}
+                            </div>
                         </button>
                     </div>
                     <div class="z-50 hidden my-4 text-base list-none bg-gray-800 divide-y divide-gray-100 rounded shadow" id="dropdown-user">
                         <div class="px-4 py-3" role="none">
                             <p class="text-sm" role="none">
-                                @guest
-                                    {{ __('GuestUser') }}
-                                @else
-                                    <a href="{{ route('mypage.index') }}" class="hover:text-gray-400">{{ Auth::user()->name }}</a>
-                                @endguest
+                               <a href="{{ route('mypage.index') }}" class="hover:text-gray-400">{{ Auth::user()->name }}</a>
                             </p>
                         </div>
                         <div class="px-4 py-3" role="none">
