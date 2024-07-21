@@ -4,7 +4,7 @@
     <form action="{{ route('login.auth') }}" method="post"
           class="flex flex-col justify-center items-center space-y-2 h-screen w-full px-4 py-2"
     >
-        <div class="w-full max-w-xl">
+        <div class="w-full max-w-xl flex flex-col justify-center items-center">
             @csrf
             @if ($errors->any())
                 <div class="error">
@@ -13,11 +13,13 @@
                     @endforeach
                 </div>
             @endif
-            <h1 class="text-xl text-center font-bold">
+
+            <img src="{{ Vite::asset('resources/images/logo.svg') }}" class="h-24 bg-red-200 my-2">
+
+            <h1 class="text-xl text-center font-bold mt-3">
                 {{ __('Login') }}
             </h1>
-            <img src="{{ Vite::asset('resources/images/logo.svg') }}" class="h-24 border border-red-300">
-            <div class="flex flex-col w-full mb-2">
+            <div class="flex flex-col w-full">
                 @foreach($model::getColumns() as $column)
                     <div class="w-full my-1">
 
