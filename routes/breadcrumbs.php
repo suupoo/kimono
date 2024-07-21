@@ -66,9 +66,11 @@ foreach ($resourceModels as $model) {
     });
 
     // ホーム > リソースモデル > 詳細
-    Breadcrumbs::for("$resource.show", function (BreadcrumbTrail $trail) use ($resource) {
+    Breadcrumbs::for("$resource.show", function (BreadcrumbTrail $trail) use ($resource, $model) {
+        $id = request()->route('id');
         $trail->parent("$resource.index");
-        $trail->push(__('resource.show'), route("$resource.show", 'id'));
+        $model = $model::find($id);
+        $trail->push( $model?->name ?? __('resource.show'), route("$resource.show", $id));
     });
 
     // ホーム > リソースモデル > 編集
@@ -77,6 +79,13 @@ foreach ($resourceModels as $model) {
         $trail->push(__('resource.edit'), route("$resource.edit", 'id'));
     });
 }
+
+// 所属スタッフ
+Breadcrumbs::for('stores.staffs.list', function (BreadcrumbTrail $trail) {
+    $id = request()->route('id');
+    $trail->parent('stores.show', $id);
+    $trail->push(__('menu.stores.staffs.list'), route('stores.staffs.list', $id));
+});
 
 //// Home > Blog
 //Breadcrumbs::for('blog', function (BreadcrumbTrail $trail) {

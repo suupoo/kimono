@@ -49,4 +49,15 @@ class Store extends Model
             new UpdatedAt,
         ];
     }
+
+    public function staffs()
+    {
+        return $this->belongsToMany(
+            Staff::class,
+            'stores_staffs',
+            'store_id',
+            'staff_id',
+
+        );
+    }
 }

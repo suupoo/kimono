@@ -26,7 +26,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', UserController::class)->parameters(['users' => 'id'])->middleware(EnsureFeaturesAreActive::using('users'));
     Route::resource('administrators', AdministratorController::class)->parameters(['administrators' => 'id'])->middleware(EnsureFeaturesAreActive::using('administrators'));
     Route::resource('customers', CustomerController::class)->parameters(['customers' => 'id'])->middleware(EnsureFeaturesAreActive::using('customers'));
-    Route::resource('stores', StoreController::class)->parameters(['stores' => 'id'])->middleware(EnsureFeaturesAreActive::using('stores'));
+    Route::middleware(EnsureFeaturesAreActive::using('stores'))->group(function () {
+        Route::resource('stores', StoreController::class)->parameters(['stores' => 'id']);
+        Route::get('stores/{id}/staffs', [StoreController::class, 'staffs'])->name('stores.staffs.list');
+    });
     Route::resource('staffs', StaffController::class)->parameters(['staffs' => 'id'])->middleware(EnsureFeaturesAreActive::using('staffs'));
     // マイページ
     Route::get('mypage', [MyPageController::class, 'index'])->name('mypage.index');

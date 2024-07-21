@@ -19,50 +19,50 @@
 
     {{--　検索エリア --}}
     @if(!empty($searchable))
-    <div class="custom-full-container">
-        <x-list.search-box>
-            @foreach($model::getColumns() as $column)
-                @php
-                    // 検索可能カラムコレクションをカラム名配列に変換
-                    $arraySearchable = [];
-                    foreach($searchable as $value) {
-                        $arraySearchable[] = $value->column();
-                    }
-                @endphp
-                @if(in_array($column->column(), $arraySearchable))
+        <div class="custom-full-container">
+            <x-list.search-box>
+                @foreach($model::getColumns() as $column)
+                    @php
+                        // 検索可能カラムコレクションをカラム名配列に変換
+                        $arraySearchable = [];
+                        foreach($searchable as $value) {
+                            $arraySearchable[] = $value->column();
+                        }
+                    @endphp
+                    @if(in_array($column->column(), $arraySearchable))
 
-                    @if($column instanceof \App\ValueObjects\Store\Id)
-                        {!! $column->input(['class' => 'no-spinner'])?->render() !!}
+                        @if($column instanceof \App\ValueObjects\Store\Id)
+                            {!! $column->input(['class' => 'no-spinner'])?->render() !!}
+                        @endif
+
+                        @if($column instanceof \App\ValueObjects\Store\Name)
+                            {!! $column->input(['class' => ''])?->render() !!}
+                        @endif
+
+                        @if($column instanceof \App\ValueObjects\Store\Code)
+                            {!! $column->input(['class' => ''])?->render() !!}
+                        @endif
+
+                        @if($column instanceof \App\ValueObjects\Store\PostCode)
+                            {!! $column->input(['class' => ''])?->render() !!}
+                        @endif
+
+                        @if($column instanceof \App\ValueObjects\Store\Prefecture)
+                            {!! $column->input(['class' => ''])?->render() !!}
+                        @endif
+
+                        @if($column instanceof \App\ValueObjects\Store\Address1)
+                            {!! $column->input(['class' => ''])?->render() !!}
+                        @endif
+
+                        @if($column instanceof \App\ValueObjects\Store\Address2)
+                            {!! $column->input(['class' => ''])?->render() !!}
+                        @endif
+
                     @endif
-
-                    @if($column instanceof \App\ValueObjects\Store\Name)
-                        {!! $column->input(['class' => ''])?->render() !!}
-                    @endif
-
-                    @if($column instanceof \App\ValueObjects\Store\Code)
-                        {!! $column->input(['class' => ''])?->render() !!}
-                    @endif
-
-                    @if($column instanceof \App\ValueObjects\Store\PostCode)
-                        {!! $column->input(['class' => ''])?->render() !!}
-                    @endif
-
-                    @if($column instanceof \App\ValueObjects\Store\Prefecture)
-                        {!! $column->input(['class' => ''])?->render() !!}
-                    @endif
-
-                    @if($column instanceof \App\ValueObjects\Store\Address1)
-                        {!! $column->input(['class' => ''])?->render() !!}
-                    @endif
-
-                    @if($column instanceof \App\ValueObjects\Store\Address2)
-                        {!! $column->input(['class' => ''])?->render() !!}
-                    @endif
-
-                @endif
-            @endforeach
-        </x-list.search-box>
-    </div>
+                @endforeach
+            </x-list.search-box>
+        </div>
     @endif
 
     {{--　リスト --}}
@@ -82,14 +82,18 @@
                     <th scope="col" class="px-6 py-3">
                         {{ __('resource.operation') }}
                     </th>
+
+                    <th scope="col" class="px-1 py-3">
+                        {{ __('resource.operation') }}
+                    </th>
+
                     @foreach($model::getColumns() as $column)
                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
                             <div class="flex w-full items-center justify-center space-x-1">
                                 @if(in_array($column->column(), $arraySortable))
                                     <a
-                                            class="p-0.5 @if($sort === $column->column() && $order == 'asc' ) bg-red-400 text-white @else bg-gray-100 text-gray-400 @endif
-                            "
-                                            href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'asc'])}}"
+                                        class="p-0.5 @if($sort === $column->column() && $order == 'asc' ) bg-red-400 text-white @else bg-gray-100 text-gray-400 @endif"
+                                        href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'asc'])}}"
                                     >
                                         @include('icons.sort-up')
                                     </a>
@@ -98,10 +102,10 @@
                                 <span>{{ $column->label() }}</span>
                                 @if(in_array($column->column(), $arraySortable))
                                     <a
-                                            class="p-0.5
+                                        class="p-0.5
                                 @if($sort === $column->column() && $order == 'desc' ) bg-blue-400 text-white @else bg-gray-100 text-gray-400 @endif
                             "
-                                            href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'desc'])}}"
+                                        href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'desc'])}}"
                                     >
                                         @include('icons.sort-down')
                                     </a>
@@ -124,6 +128,15 @@
                                 data-id="{{ $item->id }}"
                             />
                         </td>
+
+                        <td class="text-xs m-1 w-full">
+                            <x-button.link href="{{ route($model->getTable() . '.staffs.list', ['id' => $item->id]) }}"
+                                class="break-keep w-full text-left"
+                            >
+                                {{ __('menu.stores.staffs.list') }}
+                            </x-button.link>
+                        </td>
+
                         @foreach($model::getColumns() as $column)
                             <td class="px-6 py-4">
                                 @php

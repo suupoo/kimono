@@ -1,6 +1,7 @@
 {
     "(and :count more error)": "(その他、:countエラーあり)",
     "(and :count more errors)": "(その他、:countエラーあり)|(その他、:countエラーあり)|(その他、:countエラーあり)",
+    "add" : "追加",
     "All rights reserved.": "All rights reserved.",
     "Are you sure you want to delete the selected data?" : "選択したデータを削除してもよろしいですか？",
     "errors": "エラー",
@@ -47,5 +48,8 @@
     "Unauthorized": "認証が必要です",
     "Verify Email Address": "メールアドレスの確認",
     "Whoops!": "おっと！",
-    "You are receiving this email because we received a password reset request for your account.": "パスワード再設定のリクエストを受け付けました。"
+    "You are receiving this email because we received a password reset request for your account.": "パスワード再設定のリクエストを受け付けました。",
+
+    "Please select the staff to add to the store." : "店舗に追加するスタッフを選んで下さい",
+    "the staff to add to the store" : "スタッフ一覧"
 }
