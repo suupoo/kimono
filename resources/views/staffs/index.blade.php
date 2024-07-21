@@ -115,7 +115,7 @@
 
                 @foreach($items as $item)
                     <tr class="bg-white border-b">
-                        <td class="text-xs flex flex-col justify-center space-y-1 m-1">
+                        <td class="w-full text-xs flex flex-col justify-center space-y-1 m-1">
                             <x-button.edit href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
                             <x-button.show href="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}"/>
                             <x-button.copy href="{{ route($model->getTable() . '.create', ['copy' => $item->id]) }}"/>
