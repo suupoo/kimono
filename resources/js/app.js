@@ -7,3 +7,7 @@ import "quill/dist/quill.snow.css";
 
 window.$ = jQuery;
 window.Quill = Quill;
+
+import.meta.glob([
+    '../images/**',
+]);
