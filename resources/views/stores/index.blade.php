@@ -83,7 +83,7 @@
                         {{ __('resource.operation') }}
                     </th>
 
-                    <th scope="col" class="px-1 py-3">
+                    <th scope="col" class="px-3 py-3">
                         {{ __('resource.operation') }}
                     </th>
 
@@ -129,7 +129,7 @@
                             />
                         </td>
 
-                        <td class="text-xs m-1 w-full">
+                        <td class="px-3 py-4 text-xs m-1 w-full">
                             <x-button.link href="{{ route($model->getTable() . '.staffs.list', ['id' => $item->id]) }}"
                                 class="break-keep w-full text-left"
                             >
