@@ -14,6 +14,7 @@ return [
     'copy' => '複製',
     'search_condition' => '検索条件',
     'operation' => '操作',
+    'operation-2' => '操作2',
     'cancel' => 'キャンセル',
     'is_delete_selected_data' => '選択したデータを削除しますか？',
     'close_modal' => 'モーダルを閉じる',

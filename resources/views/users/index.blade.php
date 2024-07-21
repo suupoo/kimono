@@ -68,7 +68,7 @@
         </div>
     </div>
     <div class="relative overflow-x-auto">
-        <table class="w-full mt-2 border rounded-xl text-sm text-left rtl:text-right text-gray-500">
+        <table class="w-full mt-2 border rounded-xl text-sm text-left rtl:text-right text-gray-500 break-keep">
             <thead class="text-xs text-white uppercase bg-gray-700">
                 <tr>
                     <th scope="col" class="px-6 py-3">
