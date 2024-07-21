@@ -24,7 +24,7 @@ class SaveAction extends BaseAction
             $newFeatures = $request->get('features');
 
             // 現在のリソースに紐づいた機能を取得
-            foreach ($model->all() as $mFeature) {
+            foreach ($model->switchable()->get() as $mFeature) {
                 if( empty($newFeatures) || (!array_key_exists($mFeature->key, $newFeatures) && $mFeature->enable == Flag::ON->value) ) {
                     // 無効化
                     $mFeature->enable = false;

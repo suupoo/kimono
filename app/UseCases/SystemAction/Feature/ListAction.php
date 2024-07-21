@@ -20,7 +20,7 @@ class ListAction extends BaseAction
             $model = new $model;
 
             return
-                $model::all();
+                $model::switchable()->get();
 
         } catch (\Exception $e) {
             // 例外処理

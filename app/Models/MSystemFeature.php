@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use App\ValueObjects\Master\Feature\Enable;
+use App\ValueObjects\Master\Feature\FlagSwitch;
 use App\ValueObjects\Master\Feature\Key;
 use App\ValueObjects\Store\Name;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class MSystemFeature extends Model
 {
@@ -26,7 +28,9 @@ class MSystemFeature extends Model
 
     protected $casts = [];
 
-    protected $guarded = [];
+    protected $guarded = [
+        FlagSwitch::NAME,
+    ];
 
     /**
      * カラムを定義する関数
@@ -36,7 +40,18 @@ class MSystemFeature extends Model
         return [
             new Key,
             new Name,
-            new Enable
+            new Enable,
+            new FlagSwitch,
         ];
+    }
+
+    /**
+     * 機能有効の切り替え可否フラグ
+     * @param Builder $query
+     * @return void
+     */
+    public function scopeSwitchable(Builder $query): void
+    {
+        $query->where(FlagSwitch::NAME, true);
     }
 }
