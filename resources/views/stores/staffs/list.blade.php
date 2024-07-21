@@ -55,6 +55,6 @@
                 @endforeach
             </x-list.simple>
         </div>
-        <x-button.store/>
+{{--        <x-button.store/>--}}
     </form>
 @endsection
