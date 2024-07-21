@@ -32,7 +32,7 @@ class Code extends ValueObject
     public function rules(): array
     {
         $routeName = Route::currentRouteName();
-        $code = Route::current()->parameter('code');
+        $id = Route::current()->parameter('id');
 
         return match ($routeName) {
             // ルート名 => ルール
@@ -40,7 +40,7 @@ class Code extends ValueObject
                 // 更新時はIDは自動採番のため除外
                 'nullable',
                 'string',
-                Rule::unique('staffs')->ignore($code),
+                Rule::unique('staffs')->ignore($id),
             ],
             default => array_merge([
                 // 通常時のバリデーション
