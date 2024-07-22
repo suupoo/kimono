@@ -48,6 +48,7 @@ $resourceModels = [
     new \App\Models\Staff,
     new \App\Models\Administrator,
     new \App\Models\Notification,
+    new \App\Models\Company,
 ];
 
 foreach ($resourceModels as $model) {

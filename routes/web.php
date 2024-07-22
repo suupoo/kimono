@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdministratorController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MeController;
 use App\Http\Controllers\MyPageController;
@@ -27,6 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', UserController::class)->parameters(['users' => 'id'])->middleware(EnsureFeaturesAreActive::using('users'));
     Route::resource('administrators', AdministratorController::class)->parameters(['administrators' => 'id'])->middleware(EnsureFeaturesAreActive::using('administrators'));
     Route::resource('customers', CustomerController::class)->parameters(['customers' => 'id'])->middleware(EnsureFeaturesAreActive::using('customers'));
+    Route::resource('companies', CompanyController::class)->parameters(['companies' => 'id'])->middleware(EnsureFeaturesAreActive::using('companies'));
     Route::middleware(EnsureFeaturesAreActive::using('stores'))->group(function () {
         Route::resource('stores', StoreController::class)->parameters(['stores' => 'id']);
         Route::get('stores/{id}/staffs', [StoreController::class, 'staffs'])->name('stores.staffs.list');

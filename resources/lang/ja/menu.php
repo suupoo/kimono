@@ -15,6 +15,7 @@ return [
     'staffs' => 'スタッフ',
     'administrators' => '管理者',
     'notifications' => '通知',
+    'companies' => '企業',
     'system' => [
         '*' => 'システム',
         'features' => '機能設定'
