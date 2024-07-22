@@ -1,7 +1,7 @@
 @extends('layouts')
 
 @section('content')
-    <form action="" method="post" class="flex flex-col py-2">
+    <form action="{{ route('stores.staffs.save', ['id' => $model->id, ]) }}" method="post" class="flex flex-col py-2">
         @csrf
         @if ($errors->any())
             <div class="error">
@@ -55,6 +55,6 @@
                 @endforeach
             </x-list.simple>
         </div>
-{{--        <x-button.store/>--}}
+        <x-button.store/>
     </form>
 @endsection

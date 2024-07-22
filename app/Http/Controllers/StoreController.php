@@ -7,6 +7,7 @@ use App\UseCases\StoreAction\CreateAction;
 use App\UseCases\StoreAction\DeleteAction;
 use App\UseCases\StoreAction\ListAction;
 use App\UseCases\StoreAction\StaffListAction;
+use App\UseCases\StoreAction\StaffSaveAction;
 use App\UseCases\StoreAction\UpdateAction;
 use App\ValueObjects\Store\Address1;
 use App\ValueObjects\Store\Address2;
@@ -154,5 +155,17 @@ class StoreController extends ResourceController
         $view = $model->getTable().'.staffs.list'; // stores/staffs/list.blade.php
 
         return view($view, compact('model', 'storeStaffList', 'staffList'));
+    }
+
+    /**
+     * @param Request $request
+     * @param string $id
+     * @param StaffSaveAction $action
+     * @return RedirectResponse
+     * @throws \Exception
+     */
+    public function saveStaffs(Request $request, string $id, StaffSaveAction $action): RedirectResponse
+    {
+        return $action($request, ResourceModel::class);
     }
 }

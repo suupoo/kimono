@@ -15,6 +15,8 @@ class StoreStaffs extends BaseModel
 
     const NAME = '店舗スタッフ';
 
+    public $timestamps = false;
+
     protected $casts = [];
 
     protected $guarded = [];

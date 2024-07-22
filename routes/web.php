@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::middleware(EnsureFeaturesAreActive::using('stores'))->group(function () {
         Route::resource('stores', StoreController::class)->parameters(['stores' => 'id']);
         Route::get('stores/{id}/staffs', [StoreController::class, 'staffs'])->name('stores.staffs.list');
+        Route::post('stores/{id}/staffs', [StoreController::class, 'saveStaffs'])->name('stores.staffs.save');
     });
     Route::resource('staffs', StaffController::class)->parameters(['staffs' => 'id'])->middleware(EnsureFeaturesAreActive::using('staffs'));
     Route::resource('notifications', NotificationController::class)->parameters(['notifications' => 'id'])->middleware(EnsureFeaturesAreActive::using('notifications'));
