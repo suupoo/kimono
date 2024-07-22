@@ -43,9 +43,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('me', [MeController::class, 'save'])->name('me.save');
 
     // システム管理用機能 todo:管理者以外は不可にする
-    Route::group(['controller' => SystemController::class, 'prefix' => 'system' ], function () {
-        Route::get('/features', 'listFeature')->name('system.listFeature');
-        Route::post('/features', 'saveFeature')->name('system.saveFeature');
+    Route::group(['prefix' => 'system', 'as' => 'system.' ], function () {
+        Route::group(['controller' => SystemController::class], function () {
+            Route::get('/features', 'listFeature')->name('listFeature');
+            Route::post('/features', 'saveFeature')->name('saveFeature');
+        });
     });
 });
 
