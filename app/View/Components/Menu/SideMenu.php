@@ -114,7 +114,7 @@ class SideMenu extends Component
                 [
                     'text' => __('menu.system.features'),
                     'link' => route('system.listFeature'),
-                    'icon' => null,
+                    'icon' => 'check',
                     'active' => Route::Is('system.listFeature'),
                 ],
                 [
