@@ -40,6 +40,29 @@ Breadcrumbs::for('system.listFeature', function (BreadcrumbTrail $trail) {
     $trail->push(__('menu.system.features'), route('system.listFeature'));
 });
 
+// ホーム > リソースモデル > 一覧
+Breadcrumbs::for("system.companies.index", function (BreadcrumbTrail $trail) {
+    $trail->parent('system');
+    $trail->push(__('menu.system.companies'), route("system.companies.index"));
+});
+// ホーム > リソースモデル > 新規登録
+Breadcrumbs::for("system.companies.create", function (BreadcrumbTrail $trail) {
+    $trail->parent("system.companies.index");
+    $trail->push(__('resource.create'), route("system.companies.create"));
+});
+// ホーム > リソースモデル > 詳細
+Breadcrumbs::for("system.companies.show", function (BreadcrumbTrail $trail) {
+    $id = request()->route('id');
+    $trail->parent("system.companies.index");
+    $model = \App\Models\MSystemCompany::find($id);
+    $trail->push( $model?->name ?? __('resource.show'), route("system.companies.show", $id));
+});
+// ホーム > リソースモデル > 編集
+Breadcrumbs::for("system.companies.edit", function (BreadcrumbTrail $trail) {
+    $trail->parent("system.companies.index");
+    $trail->push(__('resource.edit'), route("system.companies.edit", 'id'));
+});
+
 $resourceModels = [
     // リソースのモデルを追加
     new \App\Models\Customer,

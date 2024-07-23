@@ -117,6 +117,12 @@ class SideMenu extends Component
                     'icon' => null,
                     'active' => Route::Is('system.listFeature'),
                 ],
+                [
+                    'text' => __('menu.system.companies'),
+                    'link' => route('system.companies.index'),
+                    'icon' => 'list',
+                    'active' => Route::Is('system.companies.*'),
+                ],
             ]
         ];
 

@@ -12,6 +12,7 @@ use App\Http\Controllers\SystemController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Pennant\Middleware\EnsureFeaturesAreActive;
+use App\Http\Controllers\SystemCompanyController;
 
 Route::group([], function () {
     Route::get('login', [\App\Http\Controllers\Auth\AuthController::class, 'login'])->name('login');
@@ -48,6 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/features', 'listFeature')->name('listFeature');
             Route::post('/features', 'saveFeature')->name('saveFeature');
         });
+        Route::resource('companies', SystemCompanyController::class)->parameters(['companies' => 'id']);
     });
 });
 
