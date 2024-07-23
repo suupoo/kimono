@@ -64,6 +64,8 @@ class UpdateAction extends ResourceAction
                 ->withInput();
         }
 
+        // ルーティング名のプレフィックスを取得
+        $routePrefix = $this->prefix ?? $model->getTable();
         try {
             // トランザクションで処理する
             DB::beginTransaction();
@@ -102,14 +104,14 @@ class UpdateAction extends ResourceAction
             ]);
 
             // 閲覧画面に戻す処理
-            return redirect()->route($model->getTable().'.show', ['id' => $request->id]);
+            return redirect()->route($routePrefix.'.index', ['id' => $request->id]);
 
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error(('error:'.__METHOD__), ['message' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()]);
 
             // エラー時は入力画面へ入力値を返して戻る
-            return redirect()->route($model->getTable().'.edit', [
+            return redirect()->route($routePrefix.'.edit', [
                 'id' => $request->id,
             ])->withInput()
                 ->withErrors(['error' => __('Error of General')]);

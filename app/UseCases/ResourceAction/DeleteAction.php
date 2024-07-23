@@ -27,6 +27,8 @@ class DeleteAction extends ResourceAction
         // リソースに紐づいたモデルインスタンスを生成
         $model = new $model;
 
+        // ルーティング名のプレフィックスを取得
+        $routePrefix = $this->prefix ?? $model->getTable();
         try {
             // トランザクションで処理する
             DB::beginTransaction();
@@ -59,14 +61,14 @@ class DeleteAction extends ResourceAction
             ]);
 
             // 正常終了時は一覧画面へリダイレクト
-            return redirect()->route($model->getTable().'.index', $search);
+            return redirect()->route($routePrefix.'.index', $search);
 
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error(('error:'.__METHOD__), ['message' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()]);
 
             // エラー時は入力画面へ入力値を返して戻る
-            return redirect()->route($model->getTable().'.index', $search)->withInput()
+            return redirect()->route($routePrefix.'.index', $search)->withInput()
                 ->withErrors(['error' => __('Error of General')]);
         }
     }

@@ -7,6 +7,18 @@ use App\UseCases\Action;
 
 class ResourceAction extends Action
 {
+    protected ?string $prefix = null;
+
+    /**
+     * Routing名のプレフィックスを上書きしてセットする
+     * @param string $prefix
+     * @return $this
+     */
+    public function setPrefix(string $prefix): self
+    {
+        $this->prefix = $prefix;
+        return $this;
+    }
 
     /**
      * アクション開始時の処理
