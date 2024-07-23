@@ -5,7 +5,7 @@
         $id = $model->id;
         $routePrefix = $prefix ?? $model->getTable();
     @endphp
-    <form action="{{ route("$routePrefix.update", ['id' => $id]) }}" method="post" class="flex flex-col py-2">
+    <form action="{{ route($routePrefix.'.update', ['id' => $id]) }}" method="post" class="flex flex-col py-2">
         @csrf
         <input type="hidden" id="id" name="id" value="{{ $id }}"/>
         @method('PUT')

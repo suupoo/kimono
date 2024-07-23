@@ -78,7 +78,7 @@ class SystemCompanyController extends ResourceController
             :(new $this->model);                               // 新規作成
         $view = "$prefix.create"; // companies/create.blade.php
 
-        return view($view, compact('model'));
+        return view($view, compact('model','prefix'));
     }
 
     /**
@@ -99,7 +99,7 @@ class SystemCompanyController extends ResourceController
         $model = $this->model->findOrFail($id);
         $view = "$prefix.edit"; // companies/edit.blade.php
 
-        return view($view, compact('model'));
+        return view($view, compact('model','prefix'));
     }
 
     /**
@@ -120,7 +120,7 @@ class SystemCompanyController extends ResourceController
         $model = $this->model->findOrFail($id);
         $view = "$prefix.show"; // companies/show.blade.php
 
-        return view($view, compact('model'));
+        return view($view, compact('model','prefix'));
     }
 
     /**
