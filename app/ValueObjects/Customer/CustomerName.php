@@ -19,7 +19,7 @@ class CustomerName extends ValueObject
 
     protected string $type = 'string';
 
-    protected ?int $maxLength = 2;
+    protected ?int $maxLength = 255;
 
     protected ?int $minLength = 1;
 
