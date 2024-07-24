@@ -8,6 +8,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+        <link rel="shortcut icon" href="{{ Vite::asset('resources/images/favicon.ico') }}">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-noto-jp antialiased bg-gray-50 text-black">
