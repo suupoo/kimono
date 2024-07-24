@@ -108,13 +108,13 @@ class SideMenu extends Component
             'group' => 'system',
             'text' => __('menu.system.*'),
             'link' =>  null,
-            'icon' => 'config',
+            'icon' => 'empty',
             'active' => Route::Is('system.*'),
             'items' => [
                 [
                     'text' => __('menu.system.features'),
                     'link' => route('system.listFeature'),
-                    'icon' => 'check',
+                    'icon' => 'config',
                     'active' => Route::Is('system.listFeature'),
                 ],
                 [
