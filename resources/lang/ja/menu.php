@@ -19,7 +19,7 @@ return [
     'system' => [
         '*' => 'システム',
         'features' => '機能設定',
-        'companies' => '企業',
+        'companies' => 'ユーザー企業',
     ],
     'me' => [
         '*' => '個人設定',
