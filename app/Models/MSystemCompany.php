@@ -6,6 +6,7 @@ use App\ValueObjects\Master\Company\CreatedAt;
 use App\ValueObjects\Master\Company\Id;
 use App\ValueObjects\Master\Company\Name;
 use App\ValueObjects\Master\Company\UpdatedAt;
+use App\ValueObjects\Master\Company\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,6 +33,7 @@ class MSystemCompany extends Model
         return [
             new Id,
             new Name,
+            new Uuid,
             new CreatedAt,
             new UpdatedAt,
         ];

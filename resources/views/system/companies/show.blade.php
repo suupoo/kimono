@@ -25,6 +25,14 @@
                         {!! $column->input(['required' => true, 'disable' => true, 'value' => $nameValue]) !!}
                     @endif
 
+                    @if($column instanceof \App\ValueObjects\Master\Company\Uuid)
+                        @php
+                            $uuidColumn = $column->column();
+                            $uuidValue  = $model->$uuidColumn;
+                        @endphp
+                        {!! $column->input(['required' => false, 'disable' => true, 'value' => $uuidValue]) !!}
+                    @endif
+
                 </div>
             @endforeach
         </div>
