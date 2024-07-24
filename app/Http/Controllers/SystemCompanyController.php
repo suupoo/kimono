@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\MSystemCompany as ResourceModel; // モデル紐付け
-use App\UseCases\CompanyAction\CreateAction;
-use App\UseCases\CompanyAction\DeleteAction;
-use App\UseCases\CompanyAction\ListAction;
-use App\UseCases\CompanyAction\UpdateAction;
+use App\UseCases\SystemAction\Company\CreateAction;
+use App\UseCases\SystemAction\Company\DeleteAction;
+use App\UseCases\SystemAction\Company\ListAction;
+use App\UseCases\SystemAction\Company\UpdateAction;
 use App\ValueObjects\Company\Id;
 use App\ValueObjects\Company\Name;
 use Illuminate\Http\RedirectResponse;
