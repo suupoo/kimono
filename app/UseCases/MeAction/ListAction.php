@@ -2,7 +2,7 @@
 
 namespace App\UseCases\MeAction;
 
-use App\Models\Administrator as Model; // モデル紐付け
+use App\Models\MSystemAdministrator as Model; // モデル紐付け
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;

@@ -46,14 +46,14 @@ class Email extends ValueObject
                 'email',
                 "max:$this->maxLength",
                 "min:$this->minLength",
-                Rule::unique('administrators')->ignore(Route::current()->parameter('id')),
+                Rule::unique('m_system_administrators')->ignore(Route::current()->parameter('id')),
             ],
             'me.save' => [
                 'required',
                 'email',
                 "max:$this->maxLength",
                 "min:$this->minLength",
-                Rule::unique('administrators')->ignore(Auth::id()),
+                Rule::unique('m_system_administrators')->ignore(Auth::id()),
             ],
             default => array_merge([
                 // 通常時のバリデーション
@@ -61,7 +61,7 @@ class Email extends ValueObject
                 'email',
                 "max:$this->maxLength",
                 "min:$this->minLength",
-                'unique:administrators,email',
+                'unique:m_system_administrators,email',
             ]),
         };
     }

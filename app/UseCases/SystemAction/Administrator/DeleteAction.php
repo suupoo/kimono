@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UseCases\AdministratorAction;
+namespace App\UseCases\SystemAction\Administrator;
 
 use App\UseCases\ResourceAction\DeleteAction as BaseAction;
 use Illuminate\Http\Request;

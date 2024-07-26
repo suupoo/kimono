@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AdministratorController;
+use App\Http\Controllers\SystemAdministratorController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MeController;
@@ -27,7 +27,6 @@ Route::group(['middleware' => 'auth'], function () {
     })->name('home');
     // customers/edit/{customer}/edit などの{{  }}のパラメータをidで取得するように変更する
     Route::resource('users', UserController::class)->parameters(['users' => 'id'])->middleware(EnsureFeaturesAreActive::using('users'));
-    Route::resource('administrators', AdministratorController::class)->parameters(['administrators' => 'id'])->middleware(EnsureFeaturesAreActive::using('administrators'));
     Route::resource('customers', CustomerController::class)->parameters(['customers' => 'id'])->middleware(EnsureFeaturesAreActive::using('customers'));
     Route::resource('companies', CompanyController::class)->parameters(['companies' => 'id'])->middleware(EnsureFeaturesAreActive::using('companies'));
     Route::middleware(EnsureFeaturesAreActive::using('stores'))->group(function () {
@@ -50,6 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/features', 'saveFeature')->name('saveFeature');
         });
         Route::resource('companies', SystemCompanyController::class)->parameters(['companies' => 'id']);
+        Route::resource('administrators', SystemAdministratorController::class)->parameters(['administrators' => 'id']);
     });
 });
 

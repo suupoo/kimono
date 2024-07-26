@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Administrator as ResourceModel;
+use App\Models\MSystemAdministrator as ResourceModel;
 use App\UseCases\MeAction\ListAction;
 use App\UseCases\MeAction\SaveAction;
 use Illuminate\Http\RedirectResponse;

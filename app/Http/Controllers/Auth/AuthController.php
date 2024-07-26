@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller; // モデル紐付け
-use App\Models\Administrator as AuthModel;
+use App\Models\MSystemAdministrator as AuthModel;
 use App\UseCases\AuthAction\LoginAction;
 use App\UseCases\AuthAction\LogoutAction;
 use Illuminate\Http\RedirectResponse;

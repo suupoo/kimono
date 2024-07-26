@@ -3,7 +3,7 @@
 namespace App\View\Components\Menu;
 
 use App\Enums\AdministratorRole;
-use App\Models\Administrator;
+use App\Models\MSystemAdministrator;
 use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Notification;
@@ -75,8 +75,6 @@ class SideMenu extends Component
          * リソース系のメニュー項目
          * 並び順番はm_system_featuresに合わせてキー名でアルファベット順
          */
-        // 管理者
-        if($this->menuAdministrators())$menu[] = $this->menuAdministrators()[0]; // todo:グループ表示に対応時に変更
         // 顧客
         if($this->menuCustomers()) $menu[] = $this->menuCustomers()[0]; // todo:グループ表示に対応時に変更
         // スタッフ
@@ -122,6 +120,12 @@ class SideMenu extends Component
                     'link' => route('system.companies.index'),
                     'icon' => 'list',
                     'active' => Route::Is('system.companies.*'),
+                ],
+                [
+                    'text' => __('menu.system.administrators'),
+                    'link' => route('system.administrators.index'),
+                    'icon' => 'list',
+                    'active' => Route::Is('system.administrators.*'),
                 ],
             ]
         ];
@@ -190,15 +194,6 @@ class SideMenu extends Component
     private function menuStaffs() :?array
     {
         return $this->menuResources(Staff::class);
-    }
-
-    /**
-     * 管理者のメニュー
-     * @return array|null
-     */
-    private function menuAdministrators() :?array
-    {
-        return $this->menuResources(Administrator::class);
     }
 
     /**

@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Enums\AdministratorRole;
-use App\Models\Administrator;
+use App\Models\MSystemAdministrator;
 use App\ValueObjects\Administrator\Email;
 use App\ValueObjects\Administrator\Name;
 use App\ValueObjects\Administrator\Password;
@@ -56,7 +56,7 @@ class CustomAdminAdd extends Command
         }
 
         // メールアドレスが既に存在しているか確認
-        if (Administrator::where(Email::NAME, $email)->exists()) {
+        if (MSystemAdministrator::where(Email::NAME, $email)->exists()) {
             // 存在している場合
             throw new \Exception('Administrator ' . $email . ' is already exists.');
         }
@@ -82,7 +82,7 @@ class CustomAdminAdd extends Command
         ]);
 
         // データ生成
-        Administrator::create([
+        MSystemAdministrator::create([
             Name::NAME => $name,
             Email::NAME => $email,
             Password::NAME => bcrypt($password),

@@ -3,6 +3,7 @@
 @section('content')
 @php
     $currentRouteName = request()->route()->getName();
+    $routePrefix = $prefix ?? $model->getTable();
     $sort = request()->get('sort');
     $order = request()->get('order');
     // 検索可能カラムコレクションをカラム名配列に変換
@@ -64,7 +65,7 @@
     </h3>
     <div class="flex w-full justify-end">
         <div class="w-fit flex flex-col">
-            <x-button.create href="{{ route($model->getTable() . '.create') }}"/>
+            <x-button.create href="{{ route($routePrefix . '.create') }}"/>
         </div>
     </div>
     <div class="relative overflow-x-auto">
@@ -108,12 +109,12 @@
                 @foreach($items as $item)
                 <tr class="bg-white border-b">
                     <td class="w-full text-xs flex flex-col justify-center space-y-1 m-1">
-                        <x-button.edit href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}" />
-                        <x-button.show href="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}" />
-                        <x-button.copy href="{{ route($model->getTable() . '.create', ['copy' => $item->id]) }}"/>
+                        <x-button.edit href="{{ route($routePrefix . '.edit', ['id' => $item->id]) }}" />
+                        <x-button.show href="{{ route($routePrefix . '.show', ['id' => $item->id]) }}" />
+                        <x-button.copy href="{{ route($routePrefix . '.create', ['copy' => $item->id]) }}"/>
                         @if(\Illuminate\Support\Facades\Auth::user()->id !== $item->id && $item->role !== \App\Enums\AdministratorRole::SYSTEM)
                         <x-button.delete
-                            href="{{ route($model->getTable() . '.destroy', ['id' => $item->id]) }}"
+                            href="{{ route($routePrefix . '.destroy', ['id' => $item->id]) }}"
                             data-id="{{ $item->id }}"
                         />
                         @endif

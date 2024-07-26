@@ -1,7 +1,10 @@
 @extends('layouts')
 
 @section('content')
-    <form action="{{ route($model->getTable().'.store') }}" method="post" class="flex flex-col py-2">
+    @php
+        $routePrefix = $prefix ?? $model->getTable()
+    @endphp
+    <form action="{{ route($routePrefix.'.store') }}" method="post" class="flex flex-col py-2">
         @csrf
         @if ($errors->any())
             <div class="error">

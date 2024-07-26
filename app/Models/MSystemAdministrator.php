@@ -15,13 +15,13 @@ use App\ValueObjects\Administrator\Role;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Administrator extends Authenticatable
+class MSystemAdministrator extends Authenticatable
 {
     use HasFactory;
 
-    protected $table = 'administrators';
+    protected $table = 'm_system_administrators';
 
-    const NAME = 'ユーザ';
+    const NAME = 'システム管理者';
 
     protected $guarded = [
         'id',

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Administrator as ResourceModel; // モデル紐付け
-use App\UseCases\AdministratorAction\CreateAction as CreateAction;
-use App\UseCases\AdministratorAction\DeleteAction as DeleteAction;
-use App\UseCases\AdministratorAction\ListAction as ListAction;
-use App\UseCases\AdministratorAction\UpdateAction as UpdateAction;
+use App\Models\MSystemAdministrator as ResourceModel; // モデル紐付け
+use App\UseCases\SystemAction\Administrator\CreateAction as CreateAction;
+use App\UseCases\SystemAction\Administrator\DeleteAction as DeleteAction;
+use App\UseCases\SystemAction\Administrator\ListAction as ListAction;
+use App\UseCases\SystemAction\Administrator\UpdateAction as UpdateAction;
 use App\ValueObjects\Administrator\Email;
 use App\ValueObjects\Administrator\Id;
 use App\ValueObjects\Administrator\Name;
@@ -15,9 +15,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
-class AdministratorController extends ResourceController
+class SystemAdministratorController extends ResourceController
 {
     protected ResourceModel $model;
+    protected ?string $prefix = 'system.administrators';
 
     /**
      * 一覧表示<index>画面での一覧表示条件設定
@@ -50,20 +51,23 @@ class AdministratorController extends ResourceController
      */
     public function index(Request $request, ListAction $action): View|RedirectResponse
     {
+        $prefix = $this->prefix;
+
         // ソート順番がない場合はリダイレクト
         $checkSortParameter = parent::checkSortParameter($request);
         if (! empty($checkSortParameter)) {
-            return redirect()->route($this->model->getTable().'.index', $checkSortParameter);
+            return redirect()->route("$prefix.index", $checkSortParameter);
         }
 
         $model = new $this->model;
-        $view = $this->model->getTable().'.index'; // administrators/index.blade.php
+        $view = "$prefix.index"; // administrators/index.blade.php
 
         // 検索結果の取得
         $listConditions = $this->initListConditions();
+        $action->setPrefix($this->prefix); // プレフィックス設定
         $items = $action($request, ResourceModel::class, $listConditions);
 
-        return view($view, compact('model', 'items', 'listConditions'));
+        return view($view, compact('model', 'items', 'listConditions', 'prefix'));
     }
 
     /**
@@ -71,12 +75,13 @@ class AdministratorController extends ResourceController
      */
     public function create(): View
     {
+        $prefix = $this->prefix;
         $model = (request()->has('copy'))
             ?$this->model->findOrFail(request()->get('copy'))  // 複製
             :(new $this->model);                               // 新規作成
-        $view = $model->getTable().'.create'; // administrators/create.blade.php
+        $view = "$prefix.create"; // system/administrators/create.blade.php
 
-        return view($view, compact('model'));
+        return view($view, compact('model', 'prefix'));
     }
 
     /**
@@ -84,6 +89,7 @@ class AdministratorController extends ResourceController
      */
     public function store(Request $request, CreateAction $action): RedirectResponse
     {
+        $action->setPrefix($this->prefix); // プレフィックス設定
         return $action($request, ResourceModel::class);
     }
 
@@ -92,10 +98,11 @@ class AdministratorController extends ResourceController
      */
     public function edit(string $id): View
     {
+        $prefix = $this->prefix;
         $model = $this->model->findOrFail($id);
-        $view = $model->getTable().'.edit'; // administrators/edit.blade.php
+        $view = "$prefix.edit"; // administrators/edit.blade.php
 
-        return view($view, compact('model'));
+        return view($view, compact('model', 'prefix'));
     }
 
     /**
@@ -103,6 +110,7 @@ class AdministratorController extends ResourceController
      */
     public function update(Request $request, int $id, UpdateAction $action): RedirectResponse
     {
+        $action->setPrefix($this->prefix); // プレフィックス設定
         return $action($request, ResourceModel::class);
     }
 
@@ -111,10 +119,11 @@ class AdministratorController extends ResourceController
      */
     public function show(string $id): View
     {
+        $prefix = $this->prefix;
         $model = $this->model->findOrFail($id);
-        $view = $model->getTable().'.show'; // administrators/show.blade.php
+        $view = "$prefix.show"; // administrators/show.blade.php
 
-        return view($view, compact('model'));
+        return view($view, compact('model', 'prefix'));
     }
 
     /**
@@ -122,6 +131,7 @@ class AdministratorController extends ResourceController
      */
     public function destroy(Request $request, string $id, DeleteAction $action): RedirectResponse
     {
+        $action->setPrefix($this->prefix); // プレフィックス設定
         return $action($request, ResourceModel::class);
     }
 }

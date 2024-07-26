@@ -13,13 +13,13 @@ return [
     'stores' => '店舗',
     'stores.staffs.list' => '所属スタッフ',
     'staffs' => 'スタッフ',
-    'administrators' => '管理者',
     'notifications' => '通知',
     'companies' => '企業',
     'system' => [
         '*' => 'システム',
         'features' => '機能設定',
         'companies' => 'ユーザー企業',
+        'administrators' => 'システム管理者',
     ],
     'me' => [
         '*' => '個人設定',
