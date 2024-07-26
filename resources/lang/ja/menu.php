@@ -18,7 +18,7 @@ return [
     'system' => [
         '*' => 'システム',
         'features' => '機能設定',
-        'companies' => 'ユーザー企業',
+        'companies' => 'システム企業',
         'administrators' => 'システム管理者',
     ],
     'me' => [

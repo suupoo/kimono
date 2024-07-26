@@ -16,7 +16,7 @@ class MSystemCompany extends Model
 
     protected $table = 'm_system_companies';
 
-    const NAME = 'ユーザー企業';
+    const NAME = 'システム企業';
 
     protected $casts = [];
     protected $guarded = [
