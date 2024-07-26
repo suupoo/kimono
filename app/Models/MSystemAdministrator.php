@@ -3,15 +3,15 @@
 namespace App\Models;
 
 use App\Enums\AdministratorRole;
-use App\ValueObjects\Administrator\CreatedAt;
-use App\ValueObjects\Administrator\Email;
-use App\ValueObjects\Administrator\EmailVerifiedAt;
-use App\ValueObjects\Administrator\Id;
-use App\ValueObjects\Administrator\Name;
-use App\ValueObjects\Administrator\Password;
-use App\ValueObjects\Administrator\RememberToken;
-use App\ValueObjects\Administrator\UpdatedAt;
-use App\ValueObjects\Administrator\Role;
+use App\ValueObjects\Master\Administrator\CreatedAt;
+use App\ValueObjects\Master\Administrator\Email;
+use App\ValueObjects\Master\Administrator\EmailVerifiedAt;
+use App\ValueObjects\Master\Administrator\Id;
+use App\ValueObjects\Master\Administrator\Name;
+use App\ValueObjects\Master\Administrator\Password;
+use App\ValueObjects\Master\Administrator\RememberToken;
+use App\ValueObjects\Master\Administrator\Role;
+use App\ValueObjects\Master\Administrator\UpdatedAt;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 

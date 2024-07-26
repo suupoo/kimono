@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ValueObjects\Administrator;
+namespace App\ValueObjects\Master\Administrator;
 
 use App\ValueObjects\ValueObject;
 

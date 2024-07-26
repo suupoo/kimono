@@ -1,16 +1,18 @@
 <?php
 
-namespace App\ValueObjects\Administrator;
+namespace App\ValueObjects\Master\Administrator;
 
+use App\Enums\AdministratorRole;
 use App\ValueObjects\ValueObject;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\Rule;
 
-class Name extends ValueObject
+class Role extends ValueObject
 {
-    public const NAME = 'name';
+    public const NAME = 'role';
 
-    public const LABEL = 'ユーザ名';
+    public const LABEL = '権限';
 
     protected string $name = self::NAME;
 
@@ -18,32 +20,33 @@ class Name extends ValueObject
 
     protected string $label = self::LABEL;
 
-    protected string $type = 'string';
+    protected string $type = 'list';
 
-    protected ?int $maxLength = 50;
+    protected ?int $maxLength = null;
 
-    protected ?int $minLength = 1;
+    protected ?int $minLength = null;
 
-    protected bool $required = true; // DB Not Nullable
-
-    protected string $placeholder = 'ユーザ名';
+    protected bool $required = true;
 
     public function rules(): array
     {
         $routeName = Route::currentRouteName();
 
         return match ($routeName) {
-            'login.auth' => [
+            'me.save' => [
                 'nullable',
             ],
             default => [
-                // 通常時のバリデーション
                 'required',
                 'string',
-                "max:$this->maxLength",
-                "min:$this->minLength",
-            ],
+                Rule::enum(AdministratorRole::class),
+            ]
         };
+    }
+
+    public function options(): array
+    {
+        return AdministratorRole::casesExpectSystem();
     }
 
     /**
@@ -51,9 +54,7 @@ class Name extends ValueObject
      */
     public function input(array $attributes = []): View
     {
-        $attributes['placeholder'] = $this->placeholder;
-
-        return view('components.form.input', [
+        return view('components.form.select', [
             'column' => $this,
             'attributes' => $attributes,
         ]);

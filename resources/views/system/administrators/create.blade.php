@@ -20,7 +20,7 @@
             @foreach($model::getColumns() as $column)
                 <div class="w-full my-1">
 
-                    @if($column instanceof \App\ValueObjects\Administrator\Name)
+                    @if($column instanceof \App\ValueObjects\Master\Administrator\Name)
                         @php
                             $nameColumn = $column->column();
                             $nameValue  = $model->$nameColumn;
@@ -28,7 +28,7 @@
                         {!! $column->input(['required' => true, 'class' => '', 'value' => $nameValue])?->render() !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Administrator\Email)
+                    @if($column instanceof \App\ValueObjects\Master\Administrator\Email)
                         @php
                             $emailColumn = $column->column();
                             $emailValue  = $model->$emailColumn;
@@ -36,12 +36,12 @@
                         {!! $column->input(['required' => false, 'class' => '', 'value' => $emailValue])?->render() !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Administrator\Password)
+                    @if($column instanceof \App\ValueObjects\Master\Administrator\Password)
                         {!! $column->input(['required' => true, 'class' => ''])?->render() !!}
                         {!! $column->inputConfirm(['required' => true, 'class' => ''])?->render() !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Administrator\Role)
+                    @if($column instanceof \App\ValueObjects\Master\Administrator\Role)
                         @php
                             $roleColumn = $column->column();
                             $roleValue  = $model->$roleColumn;
@@ -51,6 +51,6 @@
                 </div>
             @endforeach
         </div>
-        <x-button.store />
+        <x-button.store/>
     </form>
 @endsection
