@@ -55,9 +55,12 @@ class CreateAction extends ResourceAction
             'columns' => &$columns,
         ]);
 
+        // ルーティング名のプレフィックスを取得
+        $routePrefix = $this->prefix ?? $model->getTable();
+
         // バリデーションエラー
         if ($validator->fails()) {
-            $redirectRouteName = $model->getTable().'.create';
+            $redirectRouteName = $routePrefix.'.create';
 
             // バリデーションエラー時は入力画面へ入力値を返して戻る
             return redirect()->route($redirectRouteName)
@@ -65,8 +68,6 @@ class CreateAction extends ResourceAction
                 ->withInput();
         }
 
-        // ルーティング名のプレフィックスを取得
-        $routePrefix = $this->prefix ?? $model->getTable();
         try {
             // トランザクションで処理する
             DB::beginTransaction();

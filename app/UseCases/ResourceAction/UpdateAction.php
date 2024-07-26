@@ -54,9 +54,12 @@ class UpdateAction extends ResourceAction
             'columns' => &$columns,
         ]);
 
+        // ルーティング名のプレフィックスを取得
+        $routePrefix = $this->prefix ?? $model->getTable();
+
         // バリデーションエラー
         if ($validator->fails()) {
-            $redirectRouteName = $model->getTable().'.edit';
+            $redirectRouteName = $routePrefix.'.edit';
 
             // バリデーションエラー時は入力画面へ入力値を返して戻る
             return redirect()->route($redirectRouteName, ['id' => $request->id])
@@ -64,8 +67,6 @@ class UpdateAction extends ResourceAction
                 ->withInput();
         }
 
-        // ルーティング名のプレフィックスを取得
-        $routePrefix = $this->prefix ?? $model->getTable();
         try {
             // トランザクションで処理する
             DB::beginTransaction();
