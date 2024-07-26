@@ -41,7 +41,7 @@ class Email extends ValueObject
                 "max:$this->maxLength",
                 "min:$this->minLength",
             ],
-            'administrators.update' => [
+            'system.administrators.update' => [
                 'required',
                 'email',
                 "max:$this->maxLength",
