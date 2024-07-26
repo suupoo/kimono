@@ -11,7 +11,7 @@ return [
     'customers' => '顧客',
     'users' => 'ユーザー',
     'stores' => '店舗',
-    'stores.staffs.list' => '所属スタッフ',
+    'stores.staffs.list' => 'スタッフ',
     'staffs' => 'スタッフ',
     'notifications' => '通知',
     'companies' => '企業',
