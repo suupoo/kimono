@@ -4,21 +4,11 @@ namespace App\UseCases\ResourceAction;
 
 use Illuminate\Http\Request;
 use App\UseCases\Action;
+use App\UseCases\Traits\PrefixSettable;
 
 class ResourceAction extends Action
 {
-    protected ?string $prefix = null;
-
-    /**
-     * Routing名のプレフィックスを上書きしてセットする
-     * @param string $prefix
-     * @return $this
-     */
-    public function setPrefix(string $prefix): self
-    {
-        $this->prefix = $prefix;
-        return $this;
-    }
+    use PrefixSettable;
 
     /**
      * アクション開始時の処理
