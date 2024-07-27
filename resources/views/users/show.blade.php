@@ -41,14 +41,6 @@
                 {!! $column->input(['required' => false, 'disable' => true, 'class' => '', 'value' => $emailVerifiedAtValue])?->render() !!}
             @endif
 
-            @if($column instanceof \App\ValueObjects\User\Role)
-                @php
-                    $roleColumn = $column->column();
-                    $roleValue  = $model->$roleColumn;
-                @endphp
-                {!! $column->input(['required' => true, 'disable' => true, 'class' => '', 'value' => $roleValue?->value])?->render() !!}
-            @endif
-
         </div>
         @endforeach
     </div>

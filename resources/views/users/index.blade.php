@@ -47,10 +47,6 @@
                 {!! $column->input(['class' => ''])?->render() !!}
                 @endif
 
-                @if($column instanceof \App\ValueObjects\User\Role)
-                {!! $column->input(['class' => ''])?->render() !!}
-                @endif
-
             @endif
         @endforeach
     </x-list.search-box>

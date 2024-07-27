@@ -29,7 +29,6 @@ class UserFactory extends Factory
             \App\ValueObjects\User\EmailVerifiedAt::NAME => now(),
             \App\ValueObjects\User\Password::NAME => static::$password ??= Hash::make('password'),
             \App\ValueObjects\User\RememberToken::NAME => Str::random(10),
-            \App\ValueObjects\User\Role::NAME => 'normal',
         ];
     }
 

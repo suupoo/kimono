@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Enums\UserRole;
 use App\ValueObjects\User\CreatedAt;
 use App\ValueObjects\User\Email;
 use App\ValueObjects\User\EmailVerifiedAt;
@@ -10,7 +9,6 @@ use App\ValueObjects\User\Id;
 use App\ValueObjects\User\Name;
 use App\ValueObjects\User\Password;
 use App\ValueObjects\User\RememberToken;
-use App\ValueObjects\User\Role;
 use App\ValueObjects\User\UpdatedAt;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -20,7 +18,7 @@ class User extends BaseModel
 
     protected $table = 'users';
 
-    const NAME = 'ユーザ';
+    const NAME = 'ユーザー';
 
     protected $guarded = [
         'id',
@@ -38,9 +36,7 @@ class User extends BaseModel
         'remember_token',
     ];
 
-    protected $casts = [
-        Role::NAME => UserRole::class,
-    ];
+    protected $casts = [];
 
     /**
      * Get the attributes that should be cast.
@@ -67,7 +63,6 @@ class User extends BaseModel
             new EmailVerifiedAt,
             new Password,
             new RememberToken,
-            new Role,
             new CreatedAt,
             new UpdatedAt,
         ];

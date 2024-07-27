@@ -38,13 +38,6 @@
                         {!! $column->inputConfirm(['required' => true, 'class' => ''])?->render() !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\User\Role)
-                        @php
-                            $roleColumn = $column->column();
-                            $roleValue  = $model->$roleColumn;
-                        @endphp
-                        {!! $column->input(['required' => true, 'class' => '', 'value' => $roleValue?->value])?->render() !!}
-                    @endif
                 </div>
             @endforeach
         </div>

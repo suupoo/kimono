@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Http\Controllers;
 
-use App\Enums\UserRole; // モデル紐付け
 use App\Models\User as ResourceModel;
 use Tests\TestCase;
 
@@ -44,7 +43,6 @@ class UserControllerTest extends TestCase
             'email' => 'test@example.com',
             'password' => 'password',
             'password_confirmation' => 'password',
-            'role' => UserRole::NORMAL->value,
         ];
 
         // 登録処理
@@ -75,13 +73,11 @@ class UserControllerTest extends TestCase
         $user = ResourceModel::factory([
             'name' => 'テスト更新太郎',
             'email' => 'update@example.cm',
-            'role' => UserRole::NORMAL->value,
         ])->create();
 
         $updateData = [
             'name' => 'テスト太郎更新終わり',
             'email' => 'updated@example.com',
-            'role' => UserRole::ADMIN->value,
         ];
 
         // 登録処理
