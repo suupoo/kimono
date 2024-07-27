@@ -5,6 +5,7 @@ namespace App\Models\Scopes;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
+use Illuminate\Support\Facades\Auth;
 
 class OwnerScope implements Scope
 {
@@ -13,6 +14,10 @@ class OwnerScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-//        $builder->where('owner_company_id', );
+        // システムユーザ以外の場合は自社のデータのみ取得
+        if(!Auth::user()->is_system){
+            $company = Auth::user()->systemCompanies->first();// todo: 複数企業に対応
+            $builder->where('owner_system_company', $company->id);
+        }
     }
 }
