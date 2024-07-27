@@ -50,6 +50,8 @@ Route::group(['middleware' => 'auth'], function () {
         });
         Route::resource('companies', SystemCompanyController::class)->parameters(['companies' => 'id']);
         Route::resource('administrators', SystemAdministratorController::class)->parameters(['administrators' => 'id']);
+        Route::get('administrators/{id}/companies', [SystemAdministratorController::class, 'companies'])->name('administrators.companies.list');
+        Route::post('administrators/{id}/companies', [SystemAdministratorController::class, 'saveCompanies'])->name('administrators.companies.save');
     });
 });
 

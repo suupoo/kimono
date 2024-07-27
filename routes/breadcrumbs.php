@@ -76,6 +76,13 @@ foreach ($systemResourceModels as $systemModel) {
     });
 }
 
+// システム管理者企業
+Breadcrumbs::for('system.administrators.companies.list', function (BreadcrumbTrail $trail) {
+    $id = request()->route('id');
+    $trail->parent('system.administrators.show');
+    $trail->push(__('menu.system.administrators.companies.list'), route('system.administrators.companies.list', $id));
+});
+
 $resourceModels = [
     // リソースのモデルを追加
     new \App\Models\Customer,

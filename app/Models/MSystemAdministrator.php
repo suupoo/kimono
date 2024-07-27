@@ -13,6 +13,7 @@ use App\ValueObjects\Master\Administrator\RememberToken;
 use App\ValueObjects\Master\Administrator\Role;
 use App\ValueObjects\Master\Administrator\UpdatedAt;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class MSystemAdministrator extends Authenticatable
@@ -72,5 +73,19 @@ class MSystemAdministrator extends Authenticatable
             new CreatedAt,
             new UpdatedAt,
         ];
+    }
+
+    /**
+     * システム企業
+     * @return BelongsToMany
+     */
+    public function systemCompanies(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            MSystemCompany::class,
+            'm_system_administrator_companies',
+            'system_administrator',
+            'system_company',
+        );
     }
 }

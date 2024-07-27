@@ -51,5 +51,7 @@
     "You are receiving this email because we received a password reset request for your account.": "パスワード再設定のリクエストを受け付けました。",
 
     "Please select the staff to add to the store." : "店舗に追加するスタッフを選んで下さい",
-    "the staff to add to the store" : "スタッフ一覧"
+    "the staff to add to the store" : "スタッフ一覧",
+    "Please select the administrator to add to the company." : "システム企業に追加するシステム管理者を選んで下さい",
+    "the administrator to add to the company" : "管理者一覧"
 }

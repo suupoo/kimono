@@ -21,6 +21,7 @@ return [
         'companies' => 'システム企業',
         'administrators' => 'システム管理者',
     ],
+    'system.administrators.companies.list' => 'システム企業',
     'me' => [
         '*' => '個人設定',
     ],

@@ -75,6 +75,11 @@
                     <th scope="col" class="px-6 py-3">
                         {{ __('resource.operation') }}
                     </th>
+
+                    <th scope="col" class="px-3 py-3 text-center">
+                        {{ __('resource.operation-2') }}
+                    </th>
+
                     @foreach($model::getColumns() as $column)
                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
                             <div class="flex w-full items-center justify-center space-x-1">
@@ -119,6 +124,15 @@
                                 />
                             @endif
                         </td>
+
+                        <td class="px-3 py-4 text-xs m-1 w-full">
+                            <x-button.link href="{{ route($routePrefix . '.companies.list', ['id' => $item->id]) }}"
+                                           class="break-keep w-full text-left"
+                            >
+                                {{ __('menu.system.administrators.companies.list') }}
+                            </x-button.link>
+                        </td>
+
                         @foreach($model::getColumns() as $column)
                             <td class="px-6 py-4">
                                 @php

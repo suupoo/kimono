@@ -6,6 +6,8 @@ use App\Models\MSystemAdministrator as ResourceModel; // モデル紐付け
 use App\UseCases\SystemAction\Administrator\CreateAction as CreateAction;
 use App\UseCases\SystemAction\Administrator\DeleteAction as DeleteAction;
 use App\UseCases\SystemAction\Administrator\ListAction as ListAction;
+use App\UseCases\SystemAction\Administrator\SystemAdministratorListAction;
+use App\UseCases\SystemAction\Administrator\SystemAdministratorSaveAction;
 use App\UseCases\SystemAction\Administrator\UpdateAction as UpdateAction;
 use App\ValueObjects\Master\Administrator\Email;
 use App\ValueObjects\Master\Administrator\Id;
@@ -130,6 +132,37 @@ class SystemAdministratorController extends ResourceController
      * 削除処理
      */
     public function destroy(Request $request, string $id, DeleteAction $action): RedirectResponse
+    {
+        $action->setPrefix($this->prefix); // プレフィックス設定
+        return $action($request, ResourceModel::class);
+    }
+
+    /***
+     *
+     * これ以降にリソース以外の機能を追加する
+     *
+     */
+
+    public function companies(Request $request, string $id, SystemAdministratorListAction $action)
+    {
+        $actionData = $action($request, ResourceModel::class);
+
+        $model = $actionData['systemAdministrator'];
+        $systemAdministratorsCompaniesList = $actionData['systemAdministratorsCompaniesList'];
+        $systemCompaniesList = $actionData['systemCompaniesList'];
+        $prefix = $this->prefix;
+        $view = $prefix.'.companies.list';
+
+        return view($view, compact('model', 'systemAdministratorsCompaniesList', 'systemCompaniesList', 'prefix'));
+    }
+
+    /**
+     * @param Request $request
+     * @param string $id
+     * @return RedirectResponse
+     * @throws \Exception
+     */
+    public function saveCompanies(Request $request, string $id, SystemAdministratorSaveAction $action): RedirectResponse
     {
         $action->setPrefix($this->prefix); // プレフィックス設定
         return $action($request, ResourceModel::class);
