@@ -5,8 +5,10 @@ namespace App\UseCases\StoreAction;
 use App\Models\Staff;
 use App\Models\StoreStaffs;
 use App\UseCases\Action;
+use App\ValueObjects\Staff\Id;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class StaffSaveAction extends Action
 {
@@ -27,6 +29,17 @@ class StaffSaveAction extends Action
             $store = (new $model)
                 ->with('staffs')
                 ->findOrFail($request->id);
+
+            $validator = Validator::make($request->all(), [
+                'staffs' => 'nullable|array',
+                'staffs.*' => (new Id)->rules(),
+            ]);
+
+            if($validator->fails()){
+                return redirect()->route($store->getTable().'.staffs.list', ['id' => $store->id])
+                    ->withErrors($validator->errors())
+                    ->withInput();
+            }
 
             $staffList = Staff::all();
 
@@ -52,7 +65,7 @@ class StaffSaveAction extends Action
                 }
             }
 
-            return redirect()->route('stores.staffs.list', ['id' => $store->id]);
+            return redirect()->route($store->getTable().'.staffs.list', ['id' => $store->id]);
 
         } catch (\Exception $e) {
             // 例外処理

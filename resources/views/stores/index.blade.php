@@ -84,7 +84,7 @@
                     </th>
 
                     <th scope="col" class="px-3 py-3 text-center">
-                        {{ __('resource.operation-2') }}
+                        {{ __('resource.operation-relation') }}
                     </th>
 
                     @foreach($model::getColumns() as $column)
