@@ -88,6 +88,7 @@
                     </th>
 
                     @foreach($model::getColumns() as $column)
+                        @if(!($column instanceof \App\ValueObjects\Store\OwnerSystemCompany)){{-- 所有企業IDは表示しない --}}
                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
                             <div class="flex w-full items-center justify-center space-x-1">
                                 @if(in_array($column->column(), $arraySortable))
@@ -112,6 +113,7 @@
                                 @endif
                             </div>
                         </th>
+                        @endif
                     @endforeach
                 </tr>
                 </thead>
@@ -138,6 +140,7 @@
                         </td>
 
                         @foreach($model::getColumns() as $column)
+                            @if(!($column instanceof \App\ValueObjects\Store\OwnerSystemCompany)){{-- 所有企業IDは表示しない --}}
                             <td class="px-6 py-4">
                                 @php
                                     $columnName = $column->column();
@@ -149,6 +152,7 @@
                                     {{ $item?->$columnName }}
                                 @endif
                             </td>
+                            @endif{{-- 所有企業IDは表示しない --}}
                         @endforeach
                     </tr>
                 @endforeach

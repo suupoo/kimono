@@ -2,21 +2,26 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\OwnerScope;
+use App\Models\Traits\ModelFillOwnerIdObservable;
 use App\ValueObjects\Store\Address1;
 use App\ValueObjects\Store\Address2;
 use App\ValueObjects\Store\Code;
 use App\ValueObjects\Store\CreatedAt;
 use App\ValueObjects\Store\Id;
 use App\ValueObjects\Store\Name;
+use App\ValueObjects\Store\OwnerSystemCompany;
 use App\ValueObjects\Store\PostCode;
 use App\ValueObjects\Store\Prefecture;
 use App\ValueObjects\Store\UpdatedAt;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+#[ScopedBy([OwnerScope::class])]
 class Store extends Model
 {
-    use HasFactory;
+    use HasFactory, ModelFillOwnerIdObservable;
 
     protected $table = 'stores';
 
@@ -28,6 +33,7 @@ class Store extends Model
 
     protected $guarded = [
         'id',
+        'owner_system_company',
         'created_at',
         'updated_at',
     ];
@@ -39,6 +45,7 @@ class Store extends Model
     {
         return [
             new Id,
+            new OwnerSystemCompany,
             new Name,
             new Code,
             new PostCode,
@@ -57,7 +64,6 @@ class Store extends Model
             'stores_staffs',
             'store_id',
             'staff_id',
-
         );
     }
 }
