@@ -12,7 +12,6 @@ use App\ValueObjects\Master\Administrator\Password;
 use App\ValueObjects\Master\Administrator\RememberToken;
 use App\ValueObjects\Master\Administrator\Role;
 use App\ValueObjects\Master\Administrator\UpdatedAt;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -93,13 +92,10 @@ class MSystemAdministrator extends Authenticatable
 
     /**
      * アクセサ：システム管理者かどうかを判定する
-     * @return Attribute
      * @note $this->is_system で呼び出す
      */
-    public function isSystem(): Attribute
+    public function isSystem()
     {
-        return Attribute::make(
-            get: fn (mixed $value) => $value === AdministratorRole::SYSTEM,
-        );
+        return $this->role === AdministratorRole::SYSTEM;
     }
 }
