@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "11b3c539b307472c24d7bca0f948e965",
+    "content-hash": "220444c13ff79be216af37fe7daf508a",
     "packages": [
         {
             "name": "archtechx/enums",
@@ -1693,6 +1693,71 @@
                 }
             ],
             "time": "2023-12-03T19:50:20+00:00"
+        },
+        {
+            "name": "justinrainbow/json-schema",
+            "version": "5.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jsonrainbow/json-schema.git",
+                "reference": "feb2ca6dd1cebdaf1ed60a4c8de2e53ce11c4fd8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jsonrainbow/json-schema/zipball/feb2ca6dd1cebdaf1ed60a4c8de2e53ce11c4fd8",
+                "reference": "feb2ca6dd1cebdaf1ed60a4c8de2e53ce11c4fd8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~2.2.20||~2.15.1",
+                "json-schema/json-schema-test-suite": "1.2.0",
+                "phpunit/phpunit": "^4.8.35"
+            },
+            "bin": [
+                "bin/validate-json"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JsonSchema\\": "src/JsonSchema/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bruno Prieto Reis",
+                    "email": "bruno.p.reis@gmail.com"
+                },
+                {
+                    "name": "Justin Rainbow",
+                    "email": "justin.rainbow@gmail.com"
+                },
+                {
+                    "name": "Igor Wiedler",
+                    "email": "igor@wiedler.ch"
+                },
+                {
+                    "name": "Robert Schönthal",
+                    "email": "seroscho@googlemail.com"
+                }
+            ],
+            "description": "A library to validate a json schema.",
+            "homepage": "https://github.com/justinrainbow/json-schema",
+            "keywords": [
+                "json",
+                "schema"
+            ],
+            "support": {
+                "issues": "https://github.com/jsonrainbow/json-schema/issues",
+                "source": "https://github.com/jsonrainbow/json-schema/tree/5.3.0"
+            },
+            "time": "2024-07-06T21:00:26+00:00"
         },
         {
             "name": "laravel-lang/config",
@@ -3729,6 +3794,83 @@
                 }
             ],
             "time": "2024-03-06T16:17:14+00:00"
+        },
+        {
+            "name": "php-opencloud/openstack",
+            "version": "v3.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-opencloud/openstack.git",
+                "reference": "2ed9c10badd8eb2645870a7d1f6e9dabe809d6aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-opencloud/openstack/zipball/2ed9c10badd8eb2645870a7d1f6e9dabe809d6aa",
+                "reference": "2ed9c10badd8eb2645870a7d1f6e9dabe809d6aa",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.0",
+                "guzzlehttp/psr7": ">=1.7",
+                "guzzlehttp/uri-template": "^0.2 || ^1.0",
+                "justinrainbow/json-schema": "^5.2",
+                "php": "^7.2.5 || ^8.0"
+            },
+            "require-dev": {
+                "ergebnis/composer-normalize": "^2.0",
+                "ext-json": "*",
+                "friendsofphp/php-cs-fixer": "^3",
+                "php-coveralls/php-coveralls": "^2.0",
+                "php-parallel-lint/php-parallel-lint": "^1.2",
+                "phpspec/prophecy": "^1.17",
+                "phpunit/phpunit": ">=8.5.23 <9.0",
+                "psr/log": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "OpenStack\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Jamie Hannaford",
+                    "email": "jamie.hannaford@rackspace.com",
+                    "homepage": "https://github.com/jamiehannaford"
+                },
+                {
+                    "name": "Ha Phan",
+                    "email": "thanhha.work@gmail.com",
+                    "homepage": "https://github.com/haphan"
+                },
+                {
+                    "name": "Konstantin Babushkin",
+                    "email": "koka@idwrx.com",
+                    "homepage": "https://github.com/k0ka"
+                }
+            ],
+            "description": "PHP SDK for OpenStack APIs. Supports BlockStorage, Compute, Identity, Images, Networking and Metric Gnocchi",
+            "homepage": "https://github.com/php-opencloud/openstack",
+            "keywords": [
+                "Openstack",
+                "api",
+                "php",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/php-opencloud/openstack/issues",
+                "source": "https://github.com/php-opencloud/openstack/tree/v3.10.0"
+            },
+            "time": "2024-04-02T12:17:34+00:00"
         },
         {
             "name": "phpoption/phpoption",
