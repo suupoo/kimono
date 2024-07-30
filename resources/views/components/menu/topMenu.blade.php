@@ -18,7 +18,7 @@
                     <div>
                         <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-2 focus:ring-gray-300" aria-expanded="false" data-dropdown-toggle="dropdown-user">
                             <span class="sr-only">Open user menu</span>
-                            <div  class="w-8 h-8 rounded-full flex justify-center items-center text-white bg-blue-300 border border-white">
+                            <div  class="w-8 h-8 rounded-full flex justify-center items-center text-white bg-blue-300">
                                 @php $user = \Illuminate\Support\Facades\Auth::user() @endphp
                                 @if($user->image)
                                 <img src="{{ $user->image_url }}" class="w-8 h-8 rounded-full" alt="Profile Photo">

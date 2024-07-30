@@ -6,6 +6,7 @@ use App\Facades\Utility\CustomStorage;
 use App\Mail\User\VerifyEmailFromSystem;
 use App\UseCases\Action;
 use App\ValueObjects\Master\Administrator\Image;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -75,7 +76,11 @@ class SaveAction extends Action
             // ファイルがある場合はアップロード
             if(array_key_exists('image',$attributes)){
                 $extension = $request->file('image')->getClientOriginalExtension();
-                $fileName = "icon.$extension";
+                $fileName = sprintf('%s_%s_icon.%s',
+                    Carbon::now()->format('YmdHis'),
+                    Auth::id(),
+                    $extension
+                );
                 $uploadPath = CustomStorage::disk()
                     ->putFileAs((new Image)->fileUploadPath(), $request->file('image'), $fileName);
                 $attributes['image'] = $uploadPath;

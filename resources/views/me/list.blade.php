@@ -41,7 +41,7 @@
                         <div class="flex w-full space-x-2 flex-row items-center">
                             <div class="w-40 h-40 rounded-full border border-gray-200 flex justify-center items-center">
                                 @if($model->image)
-                                    <span>{{ __('Uploaded') }}</span>
+                                    <img src="{{ $model->image_url }}" alt="profile-icon" class="w-full h-full">
                                 @else
                                     <span>{{ __('Not Upload') }}</span>
                                 @endif

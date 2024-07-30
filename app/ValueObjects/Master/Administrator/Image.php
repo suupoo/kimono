@@ -57,7 +57,7 @@ class Image extends ValueObject
         $user = Auth::user();
         if(!$user) throw new \Exception('アップロードするにはログインが必要です。');
 
-        return "administrator/icon";
+        return "administrator";
     }
 
     public function rules(): array
