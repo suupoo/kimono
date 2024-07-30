@@ -72,10 +72,9 @@ class CustomStorageOpenStackService
      */
     public function putFileAs(string $path, UploadedFile $contents, $fileName, array $options = []): false|string
     {
-        $filePath = printf("%s/%s.%s",
+        $filePath = sprintf("%s/%s",
             $path,
-            $this->fileNameFormat(),
-            $contents->extension()
+            $fileName,
         );
         return $this->upload($filePath, $contents);
     }
