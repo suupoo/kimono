@@ -9,11 +9,6 @@ class MyPageController extends Controller
 {
     public function index()
     {
-
-
-//        dd(Storage::disk('openstack'));
-        $exists = Storage::disk('openstack')->fileExists('test.jpg');
-        dd($exists);
         return view('mypage.index');
     }
 }
