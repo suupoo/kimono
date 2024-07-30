@@ -1,7 +1,7 @@
 @extends('layouts')
 
 @section('content')
-    <form action="{{ route('me.save') }}" method="post" class="flex flex-col py-2">
+    <form action="{{ route('me.save') }}" method="post" enctype="multipart/form-data" class="flex flex-col py-2">
         @csrf
         @if ($errors->any())
             <div class="error">
@@ -31,6 +31,26 @@
                             $emailValue  = $model->$emailColumn;
                         @endphp
                         {!! $column->input(['required' => true, 'class' => '', 'value' => $emailValue]) !!}
+                    @endif
+
+                    @if($column instanceof \App\ValueObjects\Master\Administrator\Image)
+                        @php
+                            $imageColumn = $column->column();
+                            $imageValue  = $model->$imageColumn;
+                        @endphp
+                        <div class="flex w-full space-x-2 flex-row items-center">
+                            <div class="w-40 h-40 rounded-full border border-gray-200 flex justify-center items-center">
+                                @if($model->image)
+                                    <span>{{ __('Uploaded') }}</span>
+                                @else
+                                    <span>{{ __('Not Upload') }}</span>
+                                @endif
+                            </div>
+
+                            <div class="grow h-fit">
+                                {!! $column->input(['required' => false, 'class' => '']) !!}
+                            </div>
+                        </div>
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Master\Administrator\Password)

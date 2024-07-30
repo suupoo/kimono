@@ -2,12 +2,16 @@
 
 namespace App\UseCases\MeAction;
 
+use App\Facades\Utility\CustomStorage;
+use App\Mail\User\VerifyEmailFromSystem;
 use App\UseCases\Action;
+use App\ValueObjects\Master\Administrator\Image;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 
@@ -68,6 +72,14 @@ class SaveAction extends Action
 
             // パスワードが空の場合は削除
             if(!$attributes['password']) unset($attributes['password']);
+            // ファイルがある場合はアップロード
+            if(array_key_exists('image',$attributes)){
+                $extension = $request->file('image')->getClientOriginalExtension();
+                $fileName = "icon.$extension";
+                $uploadPath = CustomStorage::disk()
+                    ->putFileAs((new Image)->fileUploadPath(), $request->file('image'), $fileName);
+                $attributes['image'] = $uploadPath;
+            }
 
             // 更新
             $updateEntity->fill($attributes);

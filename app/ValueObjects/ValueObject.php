@@ -87,6 +87,7 @@ abstract class ValueObject
             'password' => 'password',
             'datetime' => 'datetime-local',
             'email' => 'email',
+            'image' => 'file',
             'date' => 'date',
             'list' => 'select',
             default => null,

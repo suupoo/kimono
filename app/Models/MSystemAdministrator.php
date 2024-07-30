@@ -3,15 +3,18 @@
 namespace App\Models;
 
 use App\Enums\AdministratorRole;
+use App\Facades\Utility\CustomStorage;
 use App\ValueObjects\Master\Administrator\CreatedAt;
 use App\ValueObjects\Master\Administrator\Email;
 use App\ValueObjects\Master\Administrator\EmailVerifiedAt;
 use App\ValueObjects\Master\Administrator\Id;
+use App\ValueObjects\Master\Administrator\Image;
 use App\ValueObjects\Master\Administrator\Name;
 use App\ValueObjects\Master\Administrator\Password;
 use App\ValueObjects\Master\Administrator\RememberToken;
 use App\ValueObjects\Master\Administrator\Role;
 use App\ValueObjects\Master\Administrator\UpdatedAt;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -68,6 +71,7 @@ class MSystemAdministrator extends Authenticatable
             new Name,
             new Email,
             new EmailVerifiedAt,
+            new Image,
             new Password,
             new Role,
             new RememberToken,
@@ -97,5 +101,17 @@ class MSystemAdministrator extends Authenticatable
     public function isSystem()
     {
         return $this->role === AdministratorRole::SYSTEM;
+    }
+
+    /**
+     * アクセサ：画像URLを取得する
+     * @note $this->image で呼び出す
+     */
+    public function getImageUrlAttribute()
+    {
+        return $this->image ? CustomStorage::disk()->temporaryUrl(
+            $this->image,
+            Carbon::now()->addMinutes(5)
+        ) : null;
     }
 }

@@ -8,6 +8,8 @@
     $value = $attributes['value'] ?? '';
     $placeholder = $attributes['placeholder'] ?? '';
     $disable = $attributes['disable'] ?? false;
+    $fileAccept = $attributes['fileAccept'] ?? '';
+    $onclick = $attributes['onclick'] ?? null;
 @endphp
 <label
     for="{{ $column->id() }}"
@@ -28,5 +30,7 @@
     @if($required)  required="required" @endif
     @if($placeholder) placeholder="{{ $placeholder }}" @endif
     @if($disable) disabled="disabled" @endif
+    @if($fileAccept) accept="{{ $fileAccept }}" @endif
+    @if($onclick) onclick="{{ $onclick }}" @endif
 />
 
