@@ -52,7 +52,7 @@ class CustomStorageOpenStackService
      */
     public function putFile(string $path, UploadedFile $contents, array $options = []): false|string
     {
-        $filePath = printf("%s/%s.%s",
+        $filePath = sprintf("%s/%s.%s",
             $path,
             $this->fileNameFormat(),
             $contents->extension()
@@ -93,9 +93,6 @@ class CustomStorageOpenStackService
         try {
             $containerPath = $this->containerPath($path);
             $directories = $this->directories($containerPath);
-
-            // ユーザディレクトリを追加
-            $directories[] = $this->userDirectory();
 
             // ファイル名
             $fileName = $this->fileName($containerPath);
@@ -208,20 +205,17 @@ class CustomStorageOpenStackService
      * ファイル名のフォーマット
      * @return string
      */
-    private function fileNameFormat()
+    private function fileNameFormat(): string
     {
-        return Carbon::now()->format('YmdHis');
-    }
+        $userid = auth()->id();
+        if ($userid) {
+            $userid = 'anonymous';
+        }
 
-    /**
-     * ユーザ毎のディレクトリ
-     * @return string
-     */
-    private function userDirectory(): string
-    {
-        return (auth()->check())
-            ? (string)auth()->id()
-            : 'anonymous';
+        return sprintf('%s_%s',
+            Carbon::now()->format('YmdHis'),
+            $userid,
+        );
     }
 
     /**
