@@ -151,7 +151,7 @@ class CustomStorageOpenStackService
         $hmac_body = "$method\n$expires\n$path";
         $sig = hash_hmac('sha1', $hmac_body, $key);
 
-        return printf('%s/%s?temp_url_sig=%s&temp_url_expires=%s',
+        return sprintf('%s/%s?temp_url_sig=%s&temp_url_expires=%s',
             $this->getObjectStorageEndpoint(),
             $containerPath,
             $sig,
