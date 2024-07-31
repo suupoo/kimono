@@ -133,7 +133,17 @@
                                     $columnName = $column->column();
                                     $value = $item?->$columnName
                                 @endphp
-                                @if($value instanceof UnitEnum )
+                                @if($column instanceof \App\ValueObjects\Staff\Image)
+                                    <div class="flex w-full space-x-2 flex-row items-center">
+                                        <div class="w-40 h-40 rounded-full border border-gray-200 flex justify-center items-center">
+                                            @if($item->image)
+                                                <img src="{{ $item->image_url }}" alt="profile-icon" class="w-full h-full">
+                                            @else
+                                                <span>{{ __('Not Upload') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @elseif($value instanceof UnitEnum )
                                     {{ $value->label() }}
                                 @else
                                     {{ $item?->$columnName }}
