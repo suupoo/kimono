@@ -38,12 +38,7 @@ class Image extends ValueObject
      */
     public function fileExtensions(bool $withDot = false) :array
     {
-        $extensions = [
-//            'jpeg',
-            'jpg',
-//            'gif',
-//            'png',
-        ];
+        $extensions = config('custom.file.image.extensions');
         return $withDot ? array_map(fn($ext) => '.'.$ext, $extensions) : $extensions;
     }
 

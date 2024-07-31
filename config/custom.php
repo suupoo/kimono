@@ -10,4 +10,11 @@ return [
         'use' => env('CUSTOM_BREADCRUMBS_USE', true),
         'separator' => (' '.env('CUSTOM_BREADCRUMBS_SEPARATOR', '/').' '),
     ],
+    'file' => [
+        'image' => [
+            'extensions' => [
+                'jpg',
+            ],
+        ],
+    ]
 ];
