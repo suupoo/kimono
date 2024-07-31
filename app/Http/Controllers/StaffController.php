@@ -85,6 +85,7 @@ class StaffController extends ResourceController
         $model = (request()->has('copy'))
             ?$this->model->findOrFail(request()->get('copy'))  // 複製
             :(new $this->model);                               // 新規作成
+        $model->image = null;
         $view = $model->getTable().'.create'; // staffs/create.blade.php
 
         return view($view, compact('model'));
