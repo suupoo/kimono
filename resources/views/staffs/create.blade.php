@@ -22,7 +22,19 @@
                             $imageColumn = $column->column();
                             $imageValue  = $model->$imageColumn;
                         @endphp
-                        {!! $column->input(['required' => false, 'class' => '']) !!}
+                        <div class="flex w-full space-x-2 flex-row items-center">
+                            <div class="w-40 h-40 rounded-full border border-gray-200 flex justify-center items-center">
+                                @if($model->image)
+                                    <img src="{{ $model->image_url }}" alt="profile-icon" class="w-full h-full">
+                                @else
+                                    <span>{{ __('Not Upload') }}</span>
+                                @endif
+                            </div>
+
+                            <div class="grow h-fit">
+                                {!! $column->input(['required' => false, 'class' => '']) !!}
+                            </div>
+                        </div>
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Staff\Name)

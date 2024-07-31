@@ -48,8 +48,8 @@ class Staff extends BaseModel
         return [
             new Id,
             new OwnerSystemCompany,
-            new Name,
             new Image,
+            new Name,
             new Code,
             new Tel,
             new StaffPosition,
