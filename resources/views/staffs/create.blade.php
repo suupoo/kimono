@@ -1,7 +1,7 @@
 @extends('layouts')
 
 @section('content')
-    <form action="{{ route($model->getTable().'.store') }}" method="post" class="flex flex-col py-2">
+    <form action="{{ route($model->getTable().'.store') }}" method="post" enctype="multipart/form-data" class="flex flex-col py-2">
         @csrf
         @if ($errors->any())
             <div class="error">
@@ -16,6 +16,14 @@
         <div class="flex flex-col w-full">
             @foreach($model::getColumns() as $column)
                 <div class="w-full my-1">
+
+                    @if($column instanceof \App\ValueObjects\Staff\Image)
+                        @php
+                            $imageColumn = $column->column();
+                            $imageValue  = $model->$imageColumn;
+                        @endphp
+                        {!! $column->input(['required' => false, 'class' => '']) !!}
+                    @endif
 
                     @if($column instanceof \App\ValueObjects\Staff\Name)
                         @php

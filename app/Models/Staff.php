@@ -8,6 +8,7 @@ use App\ValueObjects\Staff\Code;
 use App\ValueObjects\Staff\CreatedAt;
 use App\ValueObjects\Staff\CreatedUser;
 use App\ValueObjects\Staff\Id;
+use App\ValueObjects\Staff\Image;
 use App\ValueObjects\Staff\JoinDate;
 use App\ValueObjects\Staff\Name;
 use App\ValueObjects\Staff\OwnerSystemCompany;
@@ -48,6 +49,7 @@ class Staff extends BaseModel
             new Id,
             new OwnerSystemCompany,
             new Name,
+            new Image,
             new Code,
             new Tel,
             new StaffPosition,
