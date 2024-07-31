@@ -3,6 +3,7 @@
 namespace App\ValueObjects\Master\Administrator;
 
 use App\ValueObjects\ValueObject;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,21 @@ class Image extends ValueObject
     {
         $extensions = config('custom.file.image.extensions');
         return $withDot ? array_map(fn($ext) => '.'.$ext, $extensions) : $extensions;
+    }
+
+    /**
+     * ファイル名生成
+     * @param string $extension
+     * @return string
+     */
+    public function createFileName(string $extension) :string
+    {
+        // 例）20210901120000_1_image.jpg
+        return sprintf('%s_%s_image.%s',
+            Carbon::now()->format('YmdHis'),
+            Auth::id(),
+            $extension
+        );
     }
 
     /**
