@@ -55,6 +55,21 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
         ],
+        'openstack' => [
+            'driver' => 'openstack',
+            'auth' => env('CUSTOM_FILESYSTEM_URL_AUTH'),
+            'region' => env('CUSTOM_FILESYSTEM_REGION'),
+            'container' => env('CUSTOM_FILESYSTEM_CONTAINER'),
+            'tenant_name' => env('CUSTOM_FILESYSTEM_TENANT_NAME'),
+            'tenant_id' => env('CUSTOM_FILESYSTEM_TENANT_ID'),
+            'username' => env('CUSTOM_FILESYSTEM_USERNAME'),
+            'password' => env('CUSTOM_FILESYSTEM_PASSWORD'),
+            'object_storage' => [
+                'url' => env('CUSTOM_FILESYSTEM_URL_OBJECT_STORAGE'),
+                'version' => env('CUSTOM_FILESYSTEM_URL_OBJECT_STORAGE_VERSION'),
+            ],
+            'temporary_url_key' => env('CUSTOM_FILESYSTEM_TEMPORARY_URL_KEY')
+        ]
 
     ],
 
