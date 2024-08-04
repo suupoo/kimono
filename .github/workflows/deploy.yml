@@ -17,4 +17,4 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd ${{ secrets.SERVER_DEPLOY_DIR }}
-            /home/oshowjp/o-show.xyz/application/tools/deploy/shin-rental-server/abc.sh 
+            /home/oshowjp/o-show.xyz/application/tools/deploy/shin-rental-server/kimono.sh 
