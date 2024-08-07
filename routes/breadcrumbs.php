@@ -91,6 +91,7 @@ $resourceModels = [
     new \App\Models\Staff,
     new \App\Models\Notification,
     new \App\Models\Company,
+    new \App\Models\Stock,
 ];
 
 foreach ($resourceModels as $model) {

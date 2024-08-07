@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Notification;
 use App\Models\Staff;
+use App\Models\Stock;
 use App\Models\Store;
 use App\Models\User;
 use Closure;
@@ -81,6 +82,8 @@ class SideMenu extends Component
         if($this->menuStaffs()) $menu[] = $this->menuStaffs()[0]; // todo:グループ表示に対応時に変更
         // 店舗
         if($this->menuStores()) $menu[] = $this->menuStores()[0]; // todo:グループ表示に対応時に変更
+        // 在庫
+        if($this->menuStock()) $menu[] = $this->menuStock()[0]; // todo:グループ表示に対応時に変更
         // ユーザー
         if($this->menuUsers()) $menu[] = $this->menuUsers()[0]; // todo:グループ表示に対応時に変更
         // 通知
@@ -212,5 +215,14 @@ class SideMenu extends Component
     private function menuCompany() :?array
     {
         return $this->menuResources(Company::class);
+    }
+
+    /**
+     * 在庫のメニュー
+     * @return array|null
+     */
+    private function menuStock() :?array
+    {
+        return $this->menuResources(Stock::class);
     }
 }

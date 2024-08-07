@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\SystemAdministratorController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CustomerController;
@@ -35,6 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('stores/{id}/staffs', [StoreController::class, 'saveStaffs'])->name('stores.staffs.save');
     });
     Route::resource('staffs', StaffController::class)->parameters(['staffs' => 'id'])->middleware(EnsureFeaturesAreActive::using('staffs'));
+    Route::resource('stocks', StockController::class)->parameters(['stocks' => 'id'])->middleware(EnsureFeaturesAreActive::using('stocks'));
     Route::resource('notifications', NotificationController::class)->parameters(['notifications' => 'id'])->middleware(EnsureFeaturesAreActive::using('notifications'));
     // マイページ
     Route::get('mypage', [MyPageController::class, 'index'])->name('mypage.index');
