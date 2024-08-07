@@ -18,9 +18,15 @@ abstract class ValueObject
 
     protected ?int $minLength = null;
 
+    protected ?int $min = null;
+
+    protected ?int $max = null;
+
     protected bool $required = false;
 
     protected bool $primaryKey = false;
+
+    protected bool $unique = false;
 
     public function __construct($value = null)
     {
