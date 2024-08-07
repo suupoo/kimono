@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 return [
-    'list' => '一覧',
+    'list' => '',
     'create' => '新規作成',
     'store' => '登録',
     'edit' => '編集',
