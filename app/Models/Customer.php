@@ -14,6 +14,7 @@ use App\ValueObjects\Customer\Note;
 use App\ValueObjects\Customer\OwnerSystemCompany;
 use App\ValueObjects\Customer\PostCode;
 use App\ValueObjects\Customer\Prefecture;
+use App\ValueObjects\Customer\Tags;
 use App\ValueObjects\Customer\UpdatedAt;
 use App\ValueObjects\Customer\UpdatedUser;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -53,6 +54,7 @@ class Customer extends BaseModel
             new Address1,
             new Address2,
             new Note,
+            new Tags,
             new CreatedAt,
             new CreatedUser,
             new UpdatedAt,

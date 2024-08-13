@@ -65,6 +65,14 @@
                         {!! $column->input(['required' => false, 'value' => $noteValue]) !!}
                     @endif
 
+                    @if($column instanceof \App\ValueObjects\Customer\Tags)
+                        @php
+                            $tagsColumn = $column->column();
+                            $tagsValue  = $model->$tagsColumn;
+                        @endphp
+                        {!! $column->input(['required' => false, 'value' => $tagsValue]) !!}
+                    @endif
+
                 </div>
             @endforeach
         </div>

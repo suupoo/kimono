@@ -12,6 +12,7 @@ use App\ValueObjects\Customer\Address2;
 use App\ValueObjects\Customer\Id;
 use App\ValueObjects\Customer\PostCode;
 use App\ValueObjects\Customer\Prefecture;
+use App\ValueObjects\Customer\Tags;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -40,6 +41,7 @@ class CustomerController extends ResourceController
                 new Prefecture,
                 new Address1,
                 new Address2,
+                new Tags,
             ]),
             'paginate' => 10,
         ];

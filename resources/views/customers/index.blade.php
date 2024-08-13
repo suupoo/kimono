@@ -55,6 +55,10 @@
                             {!! $column->input(['class' => '']) !!}
                         @endif
 
+                        @if($column instanceof \App\ValueObjects\Customer\Tags)
+                            {!! $column->input(['class' => '']) !!}
+                        @endif
+
                     @endif
                 @endforeach
             </x-list.search-box>
