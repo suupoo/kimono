@@ -15,7 +15,7 @@
         <div class="min-h-screen">
             <x-menu.topMenu/>
             <x-menu.sideMenu/>
-            <div class="p-4 sm:ml-64 min-h-screen">
+            <div class="p-4 sm:ml-64 min-h-screen mb-24">
                 <div class="p-1 md:px-4 mt-14">
                     <div class="flex flex-col h-full mb-4 rounded">
                         @breadcrumbs
