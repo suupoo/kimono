@@ -36,9 +36,9 @@
                 <button class="absolute right-0 ad-close">
                     @includeIf('icons.close', ['class' => 'w-6 h-6 p-1'])
                 </button>
-                <div class="flex flex-wrap justify-between space-x-2">
-                    <img src="" class="w-[468px] h-[60px]" alt="広告バナー1">
-                    <img src="" class="w-[468px] h-[60px]" alt="広告バナー2">
+                <div class="flex flex-wrap justify-between">
+                    <img src="" class="object-fill w-full md:w-1/2 h-[60px]" alt="広告バナー1">
+                    <img src="" class="object-fill w-full md:w-1/2 h-[60px]" alt="広告バナー2">
                 </div>
             </div>
         </div>
