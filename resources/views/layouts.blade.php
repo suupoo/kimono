@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-        <div class="absolute right-0 z-50 w-full min-h-20 bottom-0 bg-gray-400 bg-opacity-20" data-ad="banner">
+        <div class="fixed right-0 z-50 w-full min-h-20 bottom-0 bg-gray-400 bg-opacity-20" data-ad="banner">
             <div class="relative">
                 <button class="absolute right-0 ad-close">
                     @includeIf('icons.close', ['class' => 'w-6 h-6 p-1'])
