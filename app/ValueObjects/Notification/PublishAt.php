@@ -2,6 +2,7 @@
 
 namespace App\ValueObjects\Notification;
 
+use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
 use Illuminate\Contracts\View\View;
 
@@ -36,11 +37,11 @@ class PublishAt extends ValueObject
     /**
      * 入力項目を返す
      */
-    public function input(array $attributes = []): View
+    public function input(array $attributes = []): string
     {
-        return view('components.form.input', [
-            'column' => $this,
-            'attributes' => $attributes,
-        ]);
+        return CustomForm::make($this)
+            ->label($attributes)
+            ->input($attributes)
+            ->render();
     }
 }
