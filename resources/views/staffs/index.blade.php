@@ -32,31 +32,31 @@
                 @if(in_array($column->column(), $arraySearchable))
 
                     @if($column instanceof \App\ValueObjects\Staff\OwnerSequenceNo)
-                        {!! $column->input(['class' => 'no-spinner'])?->render() !!}
+                        {!! $column->input(['class' => 'no-spinner']) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Staff\Name)
-                        {!! $column->input(['class' => ''])?->render() !!}
+                        {!! $column->input(['class' => '']) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Staff\Code)
-                        {!! $column->input(['class' => ''])?->render() !!}
+                        {!! $column->input(['class' => '']) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Staff\Tel)
-                        {!! $column->input(['class' => ''])?->render() !!}
+                        {!! $column->input(['class' => '']) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Staff\StaffPosition)
-                        {!! $column->input(['class' => ''])?->render() !!}
+                        {!! $column->input(['class' => '']) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Staff\JoinDate)
-                        {!! $column->input(['class' => ''])?->render() !!}
+                        {!! $column->input(['class' => '']) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Staff\QuitDate)
-                        {!! $column->input(['class' => ''])?->render() !!}
+                        {!! $column->input(['class' => '']) !!}
                     @endif
 
                 @endif
