@@ -10,6 +10,8 @@ use App\UseCases\UserAction\UpdateAction as UpdateAction;
 use App\ValueObjects\User\Email;
 use App\ValueObjects\User\Id;
 use App\ValueObjects\User\Name;
+use App\ValueObjects\User\OwnerSequenceNo;
+use App\ValueObjects\User\Tags;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -26,14 +28,15 @@ class UserController extends ResourceController
     {
         return [
             'sortable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new Name,
                 new Email,
             ]),
             'searchable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new Name,
                 new Email,
+                new Tags,
             ]),
             'paginate' => 10,
         ];
