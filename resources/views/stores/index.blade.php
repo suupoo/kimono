@@ -32,31 +32,31 @@
                     @if(in_array($column->column(), $arraySearchable))
 
                         @if($column instanceof \App\ValueObjects\Store\OwnerSequenceNo)
-                            {!! $column->input(['class' => 'no-spinner'])?->render() !!}
+                            {!! $column->input(['class' => 'no-spinner']) !!}
                         @endif
 
                         @if($column instanceof \App\ValueObjects\Store\Name)
-                            {!! $column->input(['class' => ''])?->render() !!}
+                            {!! $column->input(['class' => '']) !!}
                         @endif
 
                         @if($column instanceof \App\ValueObjects\Store\Code)
-                            {!! $column->input(['class' => ''])?->render() !!}
+                            {!! $column->input(['class' => '']) !!}
                         @endif
 
                         @if($column instanceof \App\ValueObjects\Store\PostCode)
-                            {!! $column->input(['class' => ''])?->render() !!}
+                            {!! $column->input(['class' => '']) !!}
                         @endif
 
                         @if($column instanceof \App\ValueObjects\Store\Prefecture)
-                            {!! $column->input(['class' => ''])?->render() !!}
+                            {!! $column->input(['class' => '']) !!}
                         @endif
 
                         @if($column instanceof \App\ValueObjects\Store\Address1)
-                            {!! $column->input(['class' => ''])?->render() !!}
+                            {!! $column->input(['class' => '']) !!}
                         @endif
 
                         @if($column instanceof \App\ValueObjects\Store\Address2)
-                            {!! $column->input(['class' => ''])?->render() !!}
+                            {!! $column->input(['class' => '']) !!}
                         @endif
 
                     @endif
