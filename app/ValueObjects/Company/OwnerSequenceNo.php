@@ -2,8 +2,10 @@
 
 namespace App\ValueObjects\Company;
 
+use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
-use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\Rule;
 
 class OwnerSequenceNo extends ValueObject
 {
@@ -30,20 +32,35 @@ class OwnerSequenceNo extends ValueObject
 
     public function rules(): array
     {
-        return [
-            'string',
-            'nullable',
-        ];
+        $routeName = Route::currentRouteName();
+
+        return match ($routeName) {
+            // ルート名 => ルール
+            'companies.store' => [
+                // 新規登録
+            ],
+            'companies.update' => [
+                // 更新
+                'integer',
+                'nullable',
+                Rule::unique('companies')->ignore(Route::current()->parameter('id')),
+            ],
+            default => array_merge([
+                // 通常時のバリデーション
+                'integer',
+                'nullable',
+            ]),
+        };
     }
 
     /**
      * 入力項目を返す
      */
-    public function input(array $attributes = []): View
+    public function input(array $attributes = []): string
     {
-        return view('components.form.input', [
-            'column' => $this,
-            'attributes' => $attributes,
-        ]);
+        return CustomForm::make($this)
+            ->label($attributes)
+            ->input($attributes)
+            ->render();
     }
 }

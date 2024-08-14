@@ -3,7 +3,6 @@
 namespace App\ValueObjects\Company;
 
 use App\ValueObjects\ValueObject;
-use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
 
@@ -35,10 +34,10 @@ class Id extends ValueObject
 
         return match ($routeName) {
             // ルート名 => ルール
-            'system.companies.store' => [
+            'companies.store' => [
                 // 新規登録時はIDは自動採番のため除外
             ],
-            'system.companies.update' => [
+            'companies.update' => [
                 // 新規登録時はIDは自動採番のため除外
                 'integer',
                 'required',
@@ -49,16 +48,5 @@ class Id extends ValueObject
                 'integer',
             ]),
         };
-    }
-
-    /**
-     * 入力項目を返す
-     */
-    public function input(array $attributes = []): View
-    {
-        return view('components.form.input', [
-            'column' => $this,
-            'attributes' => $attributes,
-        ]);
     }
 }
