@@ -43,5 +43,6 @@
             </div>
         </div>
         @include('script')
+        @yield('page-script')
     </body>
 </html>
