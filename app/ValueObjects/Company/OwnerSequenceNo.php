@@ -32,25 +32,10 @@ class OwnerSequenceNo extends ValueObject
 
     public function rules(): array
     {
-        $routeName = Route::currentRouteName();
-
-        return match ($routeName) {
-            // ルート名 => ルール
-            'companies.store' => [
-                // 新規登録
-            ],
-            'companies.update' => [
-                // 更新
-                'integer',
-                'nullable',
-                Rule::unique('companies')->ignore(Route::current()->parameter('id')),
-            ],
-            default => array_merge([
-                // 通常時のバリデーション
-                'integer',
-                'nullable',
-            ]),
-        };
+        return [
+            'integer',
+            'nullable',
+        ];
     }
 
     /**
