@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Traits\ModelFillOwnerIdObservable;
 use App\ValueObjects\User\CreatedAt;
+use App\ValueObjects\User\CreatedUser;
 use App\ValueObjects\User\DeletedAt;
 use App\ValueObjects\User\Email;
 use App\ValueObjects\User\EmailVerifiedAt;
@@ -15,6 +16,7 @@ use App\ValueObjects\User\Password;
 use App\ValueObjects\User\RememberToken;
 use App\ValueObjects\User\Tags;
 use App\ValueObjects\User\UpdatedAt;
+use App\ValueObjects\User\UpdatedUser;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Scopes\OwnerScope;
@@ -79,7 +81,9 @@ class User extends BaseModel
             new RememberToken,
             new Tags,
             new CreatedAt,
+            new CreatedUser,
             new UpdatedAt,
+            new UpdatedUser,
             new DeletedAt,
         ];
     }
