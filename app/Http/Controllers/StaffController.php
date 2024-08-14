@@ -10,7 +10,9 @@ use App\UseCases\StaffAction\UpdateAction;
 use App\ValueObjects\Staff\Code;
 use App\ValueObjects\Staff\JoinDate;
 use App\ValueObjects\Staff\Name;
+use App\ValueObjects\Staff\OwnerSequenceNo;
 use App\ValueObjects\Staff\QuitDate;
+use App\ValueObjects\Staff\Tags;
 use App\ValueObjects\Staff\Tel;
 use App\ValueObjects\Staff\Id;
 use App\ValueObjects\Staff\StaffPosition;
@@ -30,7 +32,7 @@ class StaffController extends ResourceController
     {
         return [
             'sortable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new Name,
                 new Code,
                 new Tel,
@@ -39,12 +41,13 @@ class StaffController extends ResourceController
                 new StaffPosition,
             ]),
             'searchable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new Name,
                 new Code,
                 new Tel,
                 new JoinDate,
                 new QuitDate,
+                new Tags,
                 new StaffPosition,
             ]),
             'paginate' => 10,
