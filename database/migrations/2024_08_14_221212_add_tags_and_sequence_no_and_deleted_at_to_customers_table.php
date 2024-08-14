@@ -26,7 +26,7 @@ return new class extends Migration
     {
         Schema::table('staffs', function (Blueprint $table) {
             $table->dropColumn('tags');
-            $table->dropUnique('customers_owner_sequence_no_unique');
+            $table->dropUnique('staffs_owner_sequence_no_unique');
             $table->dropColumn('owner_sequence_no');
             $table->dropColumn('deleted_at');
         });
