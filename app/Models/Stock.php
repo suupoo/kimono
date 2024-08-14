@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Facades\Utility\CustomStorage;
 use App\Models\Scopes\OwnerScope;
 use App\Models\Traits\ModelFillOwnerIdObservable;
+use App\ValueObjects\Stock\CreatedUser;
 use App\ValueObjects\Stock\DeletedAt;
 use App\ValueObjects\Stock\Id;
 use App\ValueObjects\Stock\Image;
@@ -16,6 +17,7 @@ use App\ValueObjects\Stock\Quantity;
 use App\ValueObjects\Stock\CreatedAt;
 use App\ValueObjects\Stock\Tags;
 use App\ValueObjects\Stock\UpdatedAt;
+use App\ValueObjects\Stock\UpdatedUser;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -23,7 +25,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 #[ScopedBy([OwnerScope::class])]
-class Stock extends Model
+class Stock extends BaseModel
 {
     use HasFactory, ModelFillOwnerIdObservable, SoftDeletes;
 
@@ -57,7 +59,9 @@ class Stock extends Model
             new Price,
             new Tags,
             new CreatedAt,
+            new CreatedUser,
             new UpdatedAt,
+            new UpdatedUser,
             new DeletedAt,
         ];
     }
