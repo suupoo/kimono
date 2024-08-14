@@ -2,6 +2,7 @@
 
 namespace App\ValueObjects\Company;
 
+use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
 use Illuminate\Contracts\View\View;
 
@@ -40,13 +41,11 @@ class Name extends ValueObject
     /**
      * 入力項目を返す
      */
-    public function input(array $attributes = []): View
+    public function input(array $attributes = []): string
     {
-        $attributes['placeholder'] = $this->placeholder;
-
-        return view('components.form.input', [
-            'column' => $this,
-            'attributes' => $attributes,
-        ]);
+        return CustomForm::make($this)
+            ->label($attributes)
+            ->input($attributes)
+            ->render();
     }
 }
