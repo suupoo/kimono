@@ -7,8 +7,8 @@ use App\UseCases\CompanyAction\CreateAction;
 use App\UseCases\CompanyAction\DeleteAction;
 use App\UseCases\CompanyAction\ListAction;
 use App\UseCases\CompanyAction\UpdateAction;
-use App\ValueObjects\Company\Id;
 use App\ValueObjects\Company\Name;
+use App\ValueObjects\Customer\OwnerSequenceNo;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -25,11 +25,11 @@ class CompanyController extends ResourceController
     {
         return [
             'sortable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new Name,
             ]),
             'searchable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new Name,
             ]),
             'paginate' => 10,
