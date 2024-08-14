@@ -8,6 +8,7 @@ use App\ValueObjects\Store\Address1;
 use App\ValueObjects\Store\Address2;
 use App\ValueObjects\Store\Code;
 use App\ValueObjects\Store\CreatedAt;
+use App\ValueObjects\Store\CreatedUser;
 use App\ValueObjects\Store\DeletedAt;
 use App\ValueObjects\Store\Id;
 use App\ValueObjects\Store\Name;
@@ -17,6 +18,7 @@ use App\ValueObjects\Store\PostCode;
 use App\ValueObjects\Store\Prefecture;
 use App\ValueObjects\Store\Tags;
 use App\ValueObjects\Store\UpdatedAt;
+use App\ValueObjects\Store\UpdatedUser;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -60,7 +62,9 @@ class Store extends Model
             new Address2,
             new Tags,
             new CreatedAt,
+            new CreatedUser,
             new UpdatedAt,
+            new UpdatedUser,
             new DeletedAt,
         ];
     }
