@@ -50,17 +50,4 @@ class Id extends ValueObject
             ]),
         };
     }
-
-    /**
-     * 入力項目を返す
-     */
-    public function input(array $attributes = []): View
-    {
-        $class = implode(' ', $attributes);
-
-        return view('components.form.input', [
-            'column' => $this,
-            'attributes' => $attributes,
-        ]);
-    }
 }
