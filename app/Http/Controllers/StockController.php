@@ -7,9 +7,10 @@ use App\UseCases\StockAction\CreateAction;
 use App\UseCases\StockAction\DeleteAction;
 use App\UseCases\StockAction\ListAction;
 use App\UseCases\StockAction\UpdateAction;
-use App\ValueObjects\Stock\Id;
+use App\ValueObjects\Stock\OwnerSequenceNo;
 use App\ValueObjects\Stock\Price;
 use App\ValueObjects\Stock\Quantity;
+use App\ValueObjects\Stock\Tags;
 use App\ValueObjects\User\Name;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -27,14 +28,17 @@ class StockController extends ResourceController
     {
         return [
             'sortable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new Name,
                 new Price,
                 new Quantity,
             ]),
             'searchable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new Name,
+                new Price,
+                new Quantity,
+                new Tags,
             ]),
             'paginate' => 10,
         ];

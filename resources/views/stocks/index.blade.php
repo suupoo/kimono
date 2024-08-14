@@ -47,6 +47,10 @@
                         {!! $column->input(['class' => '']) !!}
                     @endif
 
+                    @if($column instanceof \App\ValueObjects\Stock\Tags)
+                        {!! $column->input(['class' => '']) !!}
+                    @endif
+
                 @endif
             @endforeach
         </x-list.search-box>
