@@ -31,7 +31,7 @@
                     @endphp
                     @if(in_array($column->column(), $arraySearchable))
 
-                        @if($column instanceof \App\ValueObjects\Store\Id)
+                        @if($column instanceof \App\ValueObjects\Store\OwnerSequenceNo)
                             {!! $column->input(['class' => 'no-spinner'])?->render() !!}
                         @endif
 
@@ -88,7 +88,11 @@
                     </th>
 
                     @foreach($model::getColumns() as $column)
-                        @if(!($column instanceof \App\ValueObjects\Store\OwnerSystemCompany)){{-- 所有企業IDは表示しない --}}
+                        @php
+                            if ($column instanceof \App\ValueObjects\Store\Id) continue;
+                            elseif ($column instanceof \App\ValueObjects\Store\OwnerSystemCompany) continue;
+                            elseif ($column instanceof \App\ValueObjects\Store\DeletedAt) continue;
+                        @endphp
                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
                             <div class="flex w-full items-center justify-center space-x-1">
                                 @if(in_array($column->column(), $arraySortable))
@@ -113,7 +117,6 @@
                                 @endif
                             </div>
                         </th>
-                        @endif
                     @endforeach
                 </tr>
                 </thead>
@@ -140,7 +143,11 @@
                         </td>
 
                         @foreach($model::getColumns() as $column)
-                            @if(!($column instanceof \App\ValueObjects\Store\OwnerSystemCompany)){{-- 所有企業IDは表示しない --}}
+                            @php
+                                if ($column instanceof \App\ValueObjects\Store\Id) continue;
+                                elseif ($column instanceof \App\ValueObjects\Store\OwnerSystemCompany) continue;
+                                elseif ($column instanceof \App\ValueObjects\Store\DeletedAt) continue;
+                            @endphp
                             <td class="px-6 py-4">
                                 @php
                                     $columnName = $column->column();
@@ -152,7 +159,6 @@
                                     {{ $item?->$columnName }}
                                 @endif
                             </td>
-                            @endif{{-- 所有企業IDは表示しない --}}
                         @endforeach
                     </tr>
                 @endforeach

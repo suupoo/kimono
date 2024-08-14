@@ -9,9 +9,9 @@ use App\UseCases\StoreAction\ListAction;
 use App\UseCases\StoreAction\StaffListAction;
 use App\UseCases\StoreAction\StaffSaveAction;
 use App\UseCases\StoreAction\UpdateAction;
+use App\ValueObjects\Staff\OwnerSequenceNo;
 use App\ValueObjects\Store\Address1;
 use App\ValueObjects\Store\Address2;
-use App\ValueObjects\Store\Id;
 use App\ValueObjects\Store\PostCode;
 use App\ValueObjects\Store\Prefecture;
 use Illuminate\Http\RedirectResponse;
@@ -30,14 +30,14 @@ class StoreController extends ResourceController
     {
         return [
             'sortable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new PostCode,
                 new Prefecture,
                 new Address1,
                 new Address2,
             ]),
             'searchable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new PostCode,
                 new Prefecture,
                 new Address1,
