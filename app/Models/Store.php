@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 #[ScopedBy([OwnerScope::class])]
-class Store extends Model
+class Store extends BaseModel
 {
     use HasFactory, ModelFillOwnerIdObservable, SoftDeletes;
 
