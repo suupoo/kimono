@@ -4,6 +4,8 @@ namespace App\ValueObjects\Customer;
 
 use App\ValueObjects\ValueObject;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\Rule;
 
 class OwnerSequenceNo extends ValueObject
 {
@@ -33,7 +35,7 @@ class OwnerSequenceNo extends ValueObject
         return [
             'string',
             'nullable',
-            'unique:customers,owner_sequence_no',
+//            'unique:customers,owner_sequence_no',
         ];
     }
 
