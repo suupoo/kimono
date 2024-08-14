@@ -78,3 +78,7 @@
         </div>
     </div>
 @endsection
+
+@section('page-script')
+    @includeIf('scripts.tags')
+@endsection
