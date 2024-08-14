@@ -2,33 +2,9 @@
 
 namespace App\ValueObjects\Company;
 
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\BaseModel\UpdatedAt as BaseUpdatedAt;
 
-class UpdatedAt extends ValueObject
+class UpdatedAt extends BaseUpdatedAt
 {
-    public const NAME = 'updated_at';
 
-    public const LABEL = '更新日時';
-
-    protected string $name = self::NAME;
-
-    protected string $columnName = self::NAME;
-
-    protected string $label = self::LABEL;
-
-    protected string $type = 'datetime';
-
-    protected ?int $maxLength = null;
-
-    protected ?int $minLength = null;
-
-    protected bool $required = false; // DB Nullable
-
-    public function rules(): array
-    {
-        return [
-            'nullable',
-            'date',
-        ];
-    }
 }
