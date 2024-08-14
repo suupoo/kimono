@@ -2,8 +2,8 @@
 
 namespace App\ValueObjects\Staff;
 
+use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
-use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
 
@@ -54,11 +54,11 @@ class Code extends ValueObject
     /**
      * 入力項目を返す
      */
-    public function input(array $attributes = []): View
+    public function input(array $attributes = []): string
     {
-        return view('components.form.input', [
-            'column' => $this,
-            'attributes' => $attributes,
-        ]);
+        return CustomForm::make($this)
+            ->label($attributes)
+            ->input($attributes)
+            ->render();
     }
 }

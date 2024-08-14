@@ -14,6 +14,7 @@
     $checked = $attributes['checked'] ?? false;
     $w = ($type == 'checkbox') ? 'w-5' : 'w-full';
     $h = ($type == 'checkbox') ? 'h-5' : 'h-full';
+    $fileAccept = $attributes['fileAccept'] ?? '';
 @endphp
 <input
     class="{{ $w }} {{ $h }} text-sm border border-gray-300 rounded-md pl-2 {{ $additionalClass }}"
@@ -29,5 +30,6 @@
     @if($placeholder) placeholder="{{ $placeholder }}" @endif
     @if($disable) disabled="disabled" @endif
     @if($checked && $type=='checkbox') checked="checked" @endif
+    @if($type === 'file' && $fileAccept) accept="{{ $fileAccept }}" @endif
 />
 

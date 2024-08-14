@@ -2,9 +2,9 @@
 
 namespace App\ValueObjects\Staff;
 
+use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
 use Carbon\Carbon;
-use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -89,13 +89,13 @@ class Image extends ValueObject
     /**
      * 入力項目を返す
      */
-    public function input(array $attributes = []): View
+    public function input(array $attributes = []): string
     {
         $attributes['fileAccept'] = implode(',', $this->fileExtensions(true));
 
-        return view('components.form.image', [
-            'column' => $this,
-            'attributes' => $attributes,
-        ]);
+        return CustomForm::make($this)
+            ->label($attributes)
+            ->input($attributes)
+            ->render();
     }
 }

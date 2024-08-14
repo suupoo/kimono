@@ -32,6 +32,7 @@ class CustomFormService
         $type = null;
         $placeholder = null;
         $value = null;
+        $fileAccept = null;
 
         // objectがあれば、objectの値を使う
         if ($this->object){
@@ -40,6 +41,9 @@ class CustomFormService
             $name = $this->object->id(); //現時点ではnameはidと同じ
             $type = $this->object->inputType();
             $placeholder = $this->object?->placeholder();
+            if ($type === 'file'){
+                $fileAccept = implode(',', $this->object?->fileExtensions(true));
+            }
         }
 
         // attributeで指定した値があれば上書き
@@ -48,6 +52,7 @@ class CustomFormService
         if(array_key_exists('type', $attributes)) $type = $attributes['type'];
         if(array_key_exists('placeholder', $attributes)) $placeholder = $attributes['placeholder'];
         if(array_key_exists('value', $attributes)) $value = $attributes['value'];
+        if(array_key_exists('fileAccept', $attributes)) $fileAccept = $attributes['fileAccept'];
 
         // 既存の値とマージ
         $attributes = array_merge($attributes,[
@@ -56,6 +61,7 @@ class CustomFormService
             'type' => $type,
             'placeholder' => $placeholder,
             'value' => old($name, request()->get($name, $value)),
+            'fileAccept' => $fileAccept,
         ]);
 
         $this->renders[] = view('components.custom-form.input', compact('attributes'));

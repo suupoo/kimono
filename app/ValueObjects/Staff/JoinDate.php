@@ -2,8 +2,8 @@
 
 namespace App\ValueObjects\Staff;
 
+use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
-use Illuminate\View\View;
 
 class JoinDate extends ValueObject
 {
@@ -38,13 +38,11 @@ class JoinDate extends ValueObject
     /**
      * 入力項目を返す
      */
-    public function input(array $attributes = []): View
+    public function input(array $attributes = []): string
     {
-        $attributes['placeholder'] = $this->placeholder;
-
-        return view('components.form.input', [
-            'column' => $this,
-            'attributes' => $attributes,
-        ]);
+        return CustomForm::make($this)
+            ->label($attributes)
+            ->input($attributes)
+            ->render();
     }
 }
