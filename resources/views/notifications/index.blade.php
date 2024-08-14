@@ -31,7 +31,7 @@
                     @endphp
                     @if(in_array($column->column(), $arraySearchable))
 
-                        @if($column instanceof \App\ValueObjects\Notification\Id )
+                        @if($column instanceof \App\ValueObjects\Notification\OwnerSequenceNo )
                             {!! $column->input(['class' => 'no-spinner']) !!}
                         @endif
 
@@ -75,7 +75,11 @@
                         {{ __('resource.operation') }}
                     </th>
                     @foreach($model::getColumns() as $column)
-                        @if(!($column instanceof \App\ValueObjects\Notification\OwnerSystemCompany)){{-- 所有企業IDは表示しない --}}
+                        @php
+                            if ($column instanceof \App\ValueObjects\Notification\Id) continue;
+                            elseif ($column instanceof \App\ValueObjects\Notification\OwnerSystemCompany) continue;
+                            elseif ($column instanceof \App\ValueObjects\Notification\DeletedAt) continue;
+                        @endphp
                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
                             <div class="flex w-full items-center justify-center space-x-1">
                                 @if(in_array($column->column(), $arraySortable))
@@ -101,7 +105,6 @@
                                 @endif
                             </div>
                         </th>
-                        @endif{{-- 所有企業IDは表示しない --}}
                     @endforeach
                 </tr>
                 </thead>
@@ -119,7 +122,11 @@
                             />
                         </td>
                         @foreach($model::getColumns() as $column)
-                            @if(!($column instanceof \App\ValueObjects\Notification\OwnerSystemCompany)){{-- 所有企業IDは表示しない --}}
+                            @php
+                                if ($column instanceof \App\ValueObjects\Notification\Id) continue;
+                                elseif ($column instanceof \App\ValueObjects\Notification\OwnerSystemCompany) continue;
+                                elseif ($column instanceof \App\ValueObjects\Notification\DeletedAt) continue;
+                            @endphp
                             <td class="px-6 py-4">
                                 @php
                                     $columnName = $column->column();
@@ -131,7 +138,6 @@
                                     {{ $item?->$columnName }}
                                 @endif
                             </td>
-                            @endif{{-- 所有企業IDは表示しない --}}
                         @endforeach
                     </tr>
                 @endforeach

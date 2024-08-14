@@ -7,9 +7,10 @@ use App\UseCases\NotificationAction\ListAction;
 use App\UseCases\NotificationAction\CreateAction;
 use App\UseCases\NotificationAction\DeleteAction;
 use App\UseCases\NotificationAction\UpdateAction;
-use App\ValueObjects\Notification\Id;
+use App\ValueObjects\Notification\OwnerSequenceNo;
 use App\ValueObjects\Notification\PublishAt;
 use App\ValueObjects\Notification\Status;
+use App\ValueObjects\Notification\Tags;
 use App\ValueObjects\Notification\Title;
 use App\ValueObjects\Notification\Type;
 use Illuminate\Http\RedirectResponse;
@@ -28,18 +29,19 @@ class NotificationController extends ResourceController
     {
         return [
             'sortable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new Title,
                 new PublishAt,
                 new Status,
                 new Type,
             ]),
             'searchable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new Title,
                 new PublishAt,
                 new Status,
                 new Type,
+                new Tags,
             ]),
             'paginate' => 10,
         ];
