@@ -3,8 +3,8 @@
 namespace App\ValueObjects\Store;
 
 use App\Enums\Prefecture as PrefectureEnum;
+use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
-use Illuminate\Contracts\View\View;
 use Illuminate\Validation\Rule;
 
 class Prefecture extends ValueObject
@@ -44,11 +44,11 @@ class Prefecture extends ValueObject
     /**
      * 入力項目を返す
      */
-    public function input(array $attributes = []): View
+    public function input(array $attributes = []): string
     {
-        return view('components.form.select', [
-            'column' => $this,
-            'attributes' => $attributes,
-        ]);
+        return CustomForm::make($this)
+            ->label($attributes)
+            ->select($attributes, $this->options())
+            ->render();
     }
 }
