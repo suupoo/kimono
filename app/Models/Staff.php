@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Facades\Utility\CustomStorage;
 use App\Models\Scopes\OwnerScope;
 use App\Models\Traits\ModelFillOwnerIdObservable;
-use App\ValueObjects\Customer\DeletedAt;
+use App\ValueObjects\Staff\DeletedAt;
 use App\ValueObjects\Staff\Code;
 use App\ValueObjects\Staff\CreatedAt;
 use App\ValueObjects\Staff\CreatedUser;
