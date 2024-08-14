@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('customers', function (Blueprint $table) {
             $table->integer('owner_sequence_no')->after('id')->nullable();
-            $table->unique('owner_sequence_no');
+            $table->unique(['owner_sequence_no', 'owner_system_company'], 'customers_owner_company_sequence_no_unique');
             $table->dateTime('deleted_at')->nullable();
         });
     }
@@ -24,7 +24,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('customers', function (Blueprint $table) {
-            $table->dropUnique('customers_owner_sequence_no_unique');
+            $table->dropUnique('customers_owner_company_sequence_no_unique');
             $table->dropColumn('owner_sequence_no');
             $table->dropColumn('deleted_at');
         });
