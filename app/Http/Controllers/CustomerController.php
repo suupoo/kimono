@@ -9,7 +9,8 @@ use App\UseCases\CustomerAction\ListAction;
 use App\UseCases\CustomerAction\UpdateAction;
 use App\ValueObjects\Customer\Address1;
 use App\ValueObjects\Customer\Address2;
-use App\ValueObjects\Customer\Id;
+use App\ValueObjects\Customer\CustomerName;
+use App\ValueObjects\Customer\OwnerSequenceNo;
 use App\ValueObjects\Customer\PostCode;
 use App\ValueObjects\Customer\Prefecture;
 use App\ValueObjects\Customer\Tags;
@@ -29,14 +30,15 @@ class CustomerController extends ResourceController
     {
         return [
             'sortable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new PostCode,
                 new Prefecture,
                 new Address1,
                 new Address2,
             ]),
             'searchable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
+                new CustomerName,
                 new PostCode,
                 new Prefecture,
                 new Address1,
