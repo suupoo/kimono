@@ -77,11 +77,11 @@
                 <x-button.create href="{{ route($model->getTable() . '.create') }}"/>
             </div>
         </div>
-        <div class="relative overflow-x-auto">
-            <table class="w-full my-2 border rounded-xl text-sm text-left rtl:text-right text-gray-500 break-keep">
-                <thead class="text-xs text-white uppercase bg-gray-700">
+
+        <x-table.table>
+            @slot('tHead')
                 <tr>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="p-1.5">
                         {{ __('resource.operation') }}
                     </th>
                     @foreach($model::getColumns() as $column)
@@ -117,9 +117,9 @@
                         </th>
                     @endforeach
                 </tr>
-                </thead>
-                <tbody>
+            @endslot
 
+            @slot('tBody')
                 @foreach($items as $item)
 
                     <tr class="bg-white border-b">
@@ -153,9 +153,11 @@
                         @endforeach
                     </tr>
                 @endforeach
-                </tbody>
-            </table>
+            @endslot
+
+            @slot('pagination')
                 {{ $items->links() }}
-        </div>
+            @endslot
+        </x-table.table>
     </div>
 @endsection
