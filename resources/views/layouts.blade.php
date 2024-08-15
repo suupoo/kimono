@@ -58,14 +58,14 @@
             <x-footer.footer />
         </footer>
 
-        <div class="fixed right-0 z-50 w-full h-20 bottom-0 bg-gray-400 bg-opacity-20" data-ad="banner">
+        <div class="fixed right-0 z-50 w-full h-fit-content bottom-0 bg-gray-400 bg-opacity-20" data-ad="banner">
             <div class="relative">
                 <button class="absolute right-0 ad-close">
                     @includeIf('icons.close', ['class' => 'w-6 h-6 p-1'])
                 </button>
                 <div class="flex flex-wrap justify-between">
-                    <img src="" class="object-fill w-full md:w-1/2 h-[60px]" alt="広告バナー1">
-                    <img src="" class="object-fill w-full md:w-1/2 h-[60px]" alt="広告バナー2">
+                    <img src="" class="object-fill w-full md:w-1/2 h-[60px] " alt="広告バナー1">
+                    <img src="" class="object-fill w-full md:w-1/2 h-[60px] hidden md:block" alt="広告バナー2">
                 </div>
             </div>
         </div>
