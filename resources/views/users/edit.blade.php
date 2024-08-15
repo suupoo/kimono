@@ -35,7 +35,7 @@
                     $emailColumn = $column->column();
                     $emailValue  = $model->$emailColumn;
                 @endphp
-                {!! $column->input(['required' => false, 'class' => '', 'value' => $emailValue])!!}
+                {!! $column->input(['required' => true, 'class' => '', 'value' => $emailValue])!!}
             @endif
 
             @if($column instanceof \App\ValueObjects\User\Tags)

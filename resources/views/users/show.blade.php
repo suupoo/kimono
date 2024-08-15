@@ -30,7 +30,7 @@
                     $emailColumn = $column->column();
                     $emailValue  = $model->$emailColumn;
                 @endphp
-                {!! $column->input(['required' => false, 'disable' => true, 'class' => '', 'value' => $emailValue])!!}
+                {!! $column->input(['required' => true, 'disable' => true, 'class' => '', 'value' => $emailValue])!!}
             @endif
 
             @if($column instanceof \App\ValueObjects\User\EmailVerifiedAt)
