@@ -5,6 +5,7 @@
 @endphp
 <label
     for="{{ $for }}"
+    class="block text-sm font-medium mb-2 dark:text-white"
 >
     {{ $label }}
     @if($required)
