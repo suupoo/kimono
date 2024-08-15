@@ -6,6 +6,7 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "@tailwindcss/forms": "^0.5.7",
         "autoprefixer": "^10.4.19",
         "axios": "^1.6.4",
         "laravel-vite-plugin": "^1.0",
@@ -15,8 +16,11 @@
         "vite": "^5.0"
     },
     "dependencies": {
+        "@popperjs/core": "^2.11.8",
+        "@preline/overlay": "^2.4.1",
         "flowbite": "^2.4.1",
         "jquery": "^3.7.1",
+        "preline": "^2.4.1",
         "quill": "^2.0.2"
     }
 }
