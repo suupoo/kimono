@@ -23,4 +23,7 @@
     .custom-full-container{
         @apply flex flex-col w-full h-full mb-4;
     }
+    .custom-headline{
+        @apply text-4xl dark:text-white md:my-5 my-3 p-2 text-center;
+    }
 }

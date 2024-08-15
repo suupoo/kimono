@@ -1,6 +1,11 @@
 @extends('layouts')
 
 @section('content')
+
+    <h1 class="custom-headline">
+        {{ $model::NAME . __('resource.list') }}
+    </h1>
+
     @php
         $currentRouteName = request()->route()->getName();
         $sort = request()->get('sort');
@@ -67,9 +72,6 @@
 
     {{--　リスト --}}
     <div class="custom-full-container">
-        <h3 class="text-xl font-bold my-2">
-            {{ $model::NAME . __('resource.list') }}
-        </h3>
         <div class="flex w-full justify-end">
             <div class="w-fit flex flex-col">
                 <x-button.create href="{{ route($model->getTable() . '.create') }}"/>
