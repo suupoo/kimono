@@ -10,7 +10,7 @@
 <select
     id="{{ $id }}"
     name="{{ $name }}"
-    class="w-full h-full text-sm border border-gray-300 rounded-md pl-2 {{ $additionalClass }}"
+    class="custom-select {{ $additionalClass }}"
     @if($required) required="required" @endif
     @if($disable) disabled="disabled" @endif
 >
