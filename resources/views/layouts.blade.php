@@ -16,8 +16,6 @@
         <header class="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full bg-white border-b border-gray-200 dark:bg-neutral-800 dark:border-neutral-700">
             <x-header.header />
         </header>
-        {{-- side-nav --}}
-        <x-menu.sideMenu />
 
 {{--        <div class="min-h-screen">--}}
 {{--            <x-menu.topMenu/>--}}
@@ -52,12 +50,8 @@
 {{--        @include('script')--}}
 {{--        @yield('page-script')--}}
 
-        <main id="content">
-            <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="py-10 min-h-[80vh] bg-white dark:bg-neutral-800 ">
-                    @yield('content')
-                </div>
-            </div>
+        <main id="content" class="flex flex-col max-w-[85rem] min-h-[80vh] bg-white dark:bg-neutral-800 mx-auto px-4 sm:px-6 lg:px-8">
+            @yield('content')
         </main>
 
         <footer class="w-full min-h-[10vh] mx-auto px-4 sm:px-6 lg:px-8">
