@@ -11,7 +11,7 @@
         <link rel="shortcut icon" href="{{ Vite::asset('resources/images/favicon.ico') }}">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-noto-jp antialiased text-black">
+    <body class="font-noto-jp antialiased text-black mb-20">
         {{-- header-nav --}}
         <header class="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full bg-white border-b border-gray-200 dark:bg-neutral-800 dark:border-neutral-700">
             <x-header.header />
@@ -57,6 +57,19 @@
         <footer class="w-full min-h-[10vh] mx-auto px-4 sm:px-6 lg:px-8">
             <x-footer.footer />
         </footer>
+
+        <div class="fixed right-0 z-50 w-full h-20 bottom-0 bg-gray-400 bg-opacity-20" data-ad="banner">
+            <div class="relative">
+                <button class="absolute right-0 ad-close">
+                    @includeIf('icons.close', ['class' => 'w-6 h-6 p-1'])
+                </button>
+                <div class="flex flex-wrap justify-between">
+                    <img src="" class="object-fill w-full md:w-1/2 h-[60px]" alt="広告バナー1">
+                    <img src="" class="object-fill w-full md:w-1/2 h-[60px]" alt="広告バナー2">
+                </div>
+            </div>
+        </div>
+
         <script type="module" src="{{ asset('js/script.js') }}">
             @include('script')
         </script>
