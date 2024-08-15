@@ -14,7 +14,7 @@ export default {
         backgroundColor: {
             custom:{
                 'green' : "#00A86B",
-                'red' : "#FF0000",
+                'red' : "#f75454",
                 'blue' : '#1E90FF',
                 'gray' : '#6B7280',
                 'light-gray' : '#F3F4F6',
@@ -23,7 +23,7 @@ export default {
         textColor: {
             custom:{
                 'green' : "#00A86B",
-                'red' : "#FF0000",
+                'red' : "#f75454",
                 'blue' : '#1E90FF',
                 'gray' : '#6B7280',
                 'light-gray' : '#F3F4F6',
