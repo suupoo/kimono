@@ -21,6 +21,16 @@ Route::group([], function () {
     Route::get('logout', [\App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout');
 });
 
+Route::group(['prefix' => 'about', 'as' => 'about.'], function () {
+    Route::get('/terms', function () {
+        return view('about.terms');
+    })->name('terms');
+
+    Route::get('/privacy', function () {
+        return view('about.privacy');
+    })->name('privacy');
+});
+
 Route::group(['middleware' => 'auth'], function () {
     // ログイン時
     Route::get('/', function () {
