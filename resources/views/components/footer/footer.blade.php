@@ -1,5 +1,5 @@
 <div class="py-6 border-t border-gray-200 dark:border-neutral-700">
-    <div class="flex flex-wrap justify-between items-center gap-2">
+    <div class="flex flex-wrap flex-col justify-center items-center gap-2">
         <div>
             <p class="text-xs text-gray-600 dark:text-neutral-400">
                 © 2024 KiMoNo-CMS.
