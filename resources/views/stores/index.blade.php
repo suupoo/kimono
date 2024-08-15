@@ -1,6 +1,11 @@
 @extends('layouts')
 
 @section('content')
+
+    <h1 class="custom-headline">
+        {{ $model::NAME }}
+    </h1>
+
     @php
         $currentRouteName = request()->route()->getName();
         $sort = request()->get('sort');
@@ -67,80 +72,22 @@
 
     {{--　リスト --}}
     <div class="custom-full-container">
-        <h3 class="text-xl font-bold my-2">
-            {{ $model::NAME . __('resource.list') }}
-        </h3>
         <div class="flex w-full justify-end">
             <div class="w-fit flex flex-col">
                 <x-button.create href="{{ route($model->getTable() . '.create') }}"/>
             </div>
         </div>
         <div class="relative overflow-x-auto">
-            <table class="w-full mt-2 border rounded-xl text-sm text-left rtl:text-right text-gray-500 break-keep">
-                <thead class="text-xs text-white uppercase bg-gray-700">
-                <tr>
-                    <th scope="col" class="px-6 py-3">
-                        {{ __('resource.operation') }}
-                    </th>
-
-                    <th scope="col" class="px-3 py-3 text-center">
-                        {{ __('resource.operation-relation') }}
-                    </th>
-
-                    @foreach($model::getColumns() as $column)
-                        @php
-                            if ($column instanceof \App\ValueObjects\Store\Id) continue;
-                            elseif ($column instanceof \App\ValueObjects\Store\OwnerSystemCompany) continue;
-                            elseif ($column instanceof \App\ValueObjects\Store\DeletedAt) continue;
-                        @endphp
-                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                            <div class="flex w-full items-center justify-center space-x-1">
-                                @if(in_array($column->column(), $arraySortable))
-                                    <a
-                                        class="p-0.5 @if($sort === $column->column() && $order == 'asc' ) bg-red-400 text-white @else bg-gray-100 text-gray-400 @endif"
-                                        href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'asc'])}}"
-                                    >
-                                        @include('icons.sort-up')
-                                    </a>
-                                @endif
-
-                                <span>{{ $column->label() }}</span>
-                                @if(in_array($column->column(), $arraySortable))
-                                    <a
-                                        class="p-0.5
-                                @if($sort === $column->column() && $order == 'desc' ) bg-blue-400 text-white @else bg-gray-100 text-gray-400 @endif
-                            "
-                                        href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'desc'])}}"
-                                    >
-                                        @include('icons.sort-down')
-                                    </a>
-                                @endif
-                            </div>
+            <x-table.table>
+                @slot('tHead')
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            {{ __('resource.operation') }}
                         </th>
-                    @endforeach
-                </tr>
-                </thead>
-                <tbody>
 
-                @foreach($items as $item)
-                    <tr class="bg-white border-b">
-                        <td class="w-full text-xs flex flex-col justify-center space-y-1 m-1">
-                            <x-button.edit href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
-                            <x-button.show href="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}"/>
-                            <x-button.copy href="{{ route($model->getTable() . '.create', ['copy' => $item->id]) }}"/>
-                            <x-button.delete
-                                href="{{ route($model->getTable() . '.destroy', ['id' => $item->id]) }}"
-                                data-id="{{ $item->id }}"
-                            />
-                        </td>
-
-                        <td class="px-3 py-4 text-xs m-1 w-full">
-                            <x-button.link href="{{ route($model->getTable() . '.staffs.list', ['id' => $item->id]) }}"
-                                class="break-keep w-full text-left"
-                            >
-                                {{ __('menu.stores.staffs.list') }}
-                            </x-button.link>
-                        </td>
+                        <th scope="col" class="px-3 py-3 text-center">
+                            {{ __('resource.operation-relation') }}
+                        </th>
 
                         @foreach($model::getColumns() as $column)
                             @php
@@ -148,23 +95,79 @@
                                 elseif ($column instanceof \App\ValueObjects\Store\OwnerSystemCompany) continue;
                                 elseif ($column instanceof \App\ValueObjects\Store\DeletedAt) continue;
                             @endphp
-                            <td class="px-6 py-4">
-                                @php
-                                    $columnName = $column->column();
-                                    $value = $item?->$columnName
-                                @endphp
-                                @if($value instanceof UnitEnum )
-                                    {{ $value->label() }}
-                                @else
-                                    {{ $item?->$columnName }}
-                                @endif
-                            </td>
+                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                                <div class="flex w-full items-center justify-center space-x-1">
+                                    @if(in_array($column->column(), $arraySortable))
+                                        <a
+                                            class="p-0.5 @if($sort === $column->column() && $order == 'asc' ) bg-red-400 text-white @else bg-gray-100 text-gray-400 @endif"
+                                            href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'asc'])}}"
+                                        >
+                                            @include('icons.sort-up')
+                                        </a>
+                                    @endif
+
+                                    <span>{{ $column->label() }}</span>
+                                    @if(in_array($column->column(), $arraySortable))
+                                        <a
+                                            class="p-0.5
+                                @if($sort === $column->column() && $order == 'desc' ) bg-blue-400 text-white @else bg-gray-100 text-gray-400 @endif
+                            "
+                                            href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'desc'])}}"
+                                        >
+                                            @include('icons.sort-down')
+                                        </a>
+                                    @endif
+                                </div>
+                            </th>
                         @endforeach
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
-            {{ $items->links() }}
+                @endslot
+                @slot('tBody')
+                    @foreach($items as $item)
+                        <tr class="bg-white border-b">
+                            <td class="w-full text-xs flex flex-col justify-center space-y-1 m-1">
+                                <x-button.edit href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
+                                <x-button.show href="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}"/>
+                                <x-button.copy href="{{ route($model->getTable() . '.create', ['copy' => $item->id]) }}"/>
+                                <x-button.delete
+                                    href="{{ route($model->getTable() . '.destroy', ['id' => $item->id]) }}"
+                                    data-id="{{ $item->id }}"
+                                />
+                            </td>
+
+                            <td class="px-3 py-4 text-xs m-1 w-full">
+                                <x-button.link href="{{ route($model->getTable() . '.staffs.list', ['id' => $item->id]) }}"
+                                               class="break-keep w-full text-left"
+                                >
+                                    {{ __('menu.stores.staffs.list') }}
+                                </x-button.link>
+                            </td>
+
+                            @foreach($model::getColumns() as $column)
+                                @php
+                                    if ($column instanceof \App\ValueObjects\Store\Id) continue;
+                                    elseif ($column instanceof \App\ValueObjects\Store\OwnerSystemCompany) continue;
+                                    elseif ($column instanceof \App\ValueObjects\Store\DeletedAt) continue;
+                                @endphp
+                                <td class="px-6 py-4">
+                                    @php
+                                        $columnName = $column->column();
+                                        $value = $item?->$columnName
+                                    @endphp
+                                    @if($value instanceof UnitEnum )
+                                        {{ $value->label() }}
+                                    @else
+                                        {{ $item?->$columnName }}
+                                    @endif
+                                </td>
+                            @endforeach
+                        </tr>
+                    @endforeach
+                @endslot
+                @slot('pagination')
+                    {{ $items->links() }}
+                @endslot
+            </x-table.table>
         </div>
     </div>
 @endsection
