@@ -28,7 +28,7 @@
                             $nameColumn = $column->column();
                             $nameValue  = $model->$nameColumn;
                         @endphp
-                        {!! $column->input(['required' => true, 'class' => '', 'value' => $nameValue])?->render() !!}
+                        {!! $column->input(['required' => true, 'class' => '', 'value' => $nameValue]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Master\Administrator\Email)
@@ -36,7 +36,7 @@
                             $emailColumn = $column->column();
                             $emailValue  = $model->$emailColumn;
                         @endphp
-                        {!! $column->input(['required' => false, 'class' => '', 'value' => $emailValue])?->render() !!}
+                        {!! $column->input(['required' => true, 'class' => '', 'value' => $emailValue]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Master\Administrator\Role)
@@ -44,7 +44,7 @@
                             $roleColumn = $column->column();
                             $roleValue  = $model->$roleColumn;
                         @endphp
-                        {!! $column->input(['required' => true, 'class' => '', 'value' => $roleValue?->value])?->render() !!}
+                        {!! $column->input(['required' => true, 'class' => '', 'value' => $roleValue?->value]) !!}
                     @endif
 
                 </div>

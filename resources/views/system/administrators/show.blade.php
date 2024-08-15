@@ -22,7 +22,7 @@
                             $nameColumn = $column->column();
                             $nameValue  = $model->$nameColumn;
                         @endphp
-                        {!! $column->input(['required' => true, 'disable' => true, 'class' => '', 'value' => $nameValue])?->render() !!}
+                        {!! $column->input(['required' => true, 'disable' => true, 'class' => '', 'value' => $nameValue]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Master\Administrator\Email)
@@ -30,7 +30,7 @@
                             $emailColumn = $column->column();
                             $emailValue  = $model->$emailColumn;
                         @endphp
-                        {!! $column->input(['required' => false, 'disable' => true, 'class' => '', 'value' => $emailValue])?->render() !!}
+                        {!! $column->input(['required' => true, 'disable' => true, 'class' => '', 'value' => $emailValue]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Master\Administrator\EmailVerifiedAt)
@@ -38,7 +38,7 @@
                             $emailVerifiedAtColumn = $column->column();
                             $emailVerifiedAtValue  = $model->$emailVerifiedAtColumn;
                         @endphp
-                        {!! $column->input(['required' => false, 'disable' => true, 'class' => '', 'value' => $emailVerifiedAtValue])?->render() !!}
+                        {!! $column->input(['required' => false, 'disable' => true, 'class' => '', 'value' => $emailVerifiedAtValue]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Master\Administrator\Role)
@@ -46,7 +46,7 @@
                             $roleColumn = $column->column();
                             $roleValue  = $model->$roleColumn;
                         @endphp
-                        {!! $column->input(['required' => true, 'disable' => true, 'class' => '', 'value' => $roleValue?->value])?->render() !!}
+                        {!! $column->input(['required' => true, 'disable' => true, 'class' => '', 'value' => $roleValue?->value]) !!}
                     @endif
 
                 </div>

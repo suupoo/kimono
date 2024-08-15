@@ -33,23 +33,23 @@
                     @if(in_array($column->column(), $arraySearchable))
 
                         @if($column instanceof \App\ValueObjects\Master\Administrator\Id)
-                            {!! $column->input(['class' => 'no-spinner'])?->render() !!}
+                            {!! $column->input(['class' => 'no-spinner']) !!}
                         @endif
 
                         @if($column instanceof \App\ValueObjects\Master\Administrator\Name)
-                            {!! $column->input(['class' => ''])?->render() !!}
+                            {!! $column->input(['class' => '']) !!}
                         @endif
 
                         @if($column instanceof \App\ValueObjects\Master\Administrator\Email)
-                            {!! $column->input(['class' => ''])?->render() !!}
+                            {!! $column->input(['class' => '']) !!}
                         @endif
 
                         @if($column instanceof \App\ValueObjects\Master\Administrator\EmailVerifiedAt)
-                            {!! $column->input(['class' => ''])?->render() !!}
+                            {!! $column->input(['class' => '']) !!}
                         @endif
 
                         @if($column instanceof \App\ValueObjects\Master\Administrator\Role)
-                            {!! $column->input(['class' => ''])?->render() !!}
+                            {!! $column->input(['class' => '']) !!}
                         @endif
 
                     @endif
