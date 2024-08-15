@@ -2,7 +2,7 @@
     <div class="flex flex-wrap justify-between items-center gap-2">
         <div>
             <p class="text-xs text-gray-600 dark:text-neutral-400">
-                © 2024 Kimono-CMS.
+                © 2024 KiMoNo-CMS.
             </p>
         </div>
 
