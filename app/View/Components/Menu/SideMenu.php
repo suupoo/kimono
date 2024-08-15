@@ -3,7 +3,6 @@
 namespace App\View\Components\Menu;
 
 use App\Enums\AdministratorRole;
-use App\Models\MSystemAdministrator;
 use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Notification;
@@ -77,19 +76,33 @@ class SideMenu extends Component
          * 並び順番はm_system_featuresに合わせてキー名でアルファベット順
          */
         // 顧客
-        if($this->menuCustomers()) $menu[] = $this->menuCustomers()[0]; // todo:グループ表示に対応時に変更
+        if ($this->menuCustomers()) {
+            $menu[] = $this->menuCustomers()[0];
+        } // todo:グループ表示に対応時に変更
         // スタッフ
-        if($this->menuStaffs()) $menu[] = $this->menuStaffs()[0]; // todo:グループ表示に対応時に変更
+        if ($this->menuStaffs()) {
+            $menu[] = $this->menuStaffs()[0];
+        } // todo:グループ表示に対応時に変更
         // 店舗
-        if($this->menuStores()) $menu[] = $this->menuStores()[0]; // todo:グループ表示に対応時に変更
+        if ($this->menuStores()) {
+            $menu[] = $this->menuStores()[0];
+        } // todo:グループ表示に対応時に変更
         // 在庫
-        if($this->menuStock()) $menu[] = $this->menuStock()[0]; // todo:グループ表示に対応時に変更
+        if ($this->menuStock()) {
+            $menu[] = $this->menuStock()[0];
+        } // todo:グループ表示に対応時に変更
         // ユーザー
-        if($this->menuUsers()) $menu[] = $this->menuUsers()[0]; // todo:グループ表示に対応時に変更
+        if ($this->menuUsers()) {
+            $menu[] = $this->menuUsers()[0];
+        } // todo:グループ表示に対応時に変更
         // 通知
-        if($this->menuNotifications()) $menu[] = $this->menuNotifications()[0]; // todo:グループ表示に対応時に変更
+        if ($this->menuNotifications()) {
+            $menu[] = $this->menuNotifications()[0];
+        } // todo:グループ表示に対応時に変更
         // 企業
-        if($this->menuCompany()) $menu[] = $this->menuCompany()[0]; // todo:グループ表示に対応時に変更
+        if ($this->menuCompany()) {
+            $menu[] = $this->menuCompany()[0];
+        } // todo:グループ表示に対応時に変更
 
         return $menu;
     }
@@ -108,7 +121,7 @@ class SideMenu extends Component
             // 機能
             'group' => 'system',
             'text' => __('menu.system.*'),
-            'link' =>  null,
+            'link' => null,
             'icon' => 'empty',
             'active' => Route::Is('system.*'),
             'items' => [
@@ -130,7 +143,7 @@ class SideMenu extends Component
                     'icon' => 'list',
                     'active' => Route::Is('system.administrators.*'),
                 ],
-            ]
+            ],
         ];
 
         return $menu;
@@ -138,17 +151,14 @@ class SideMenu extends Component
 
     /**
      * リソース系のメニュー
-     * @param string $modelClass
-     * @return array|null
      */
-
-    private function menuResources(string $modelClass) :?array
+    private function menuResources(string $modelClass): ?array
     {
         $menu = null;
         $resource = new $modelClass;
         $resourceTable = $resource->getTable();
 
-        if(array_key_exists($resourceTable, $this->features)){
+        if (array_key_exists($resourceTable, $this->features)) {
             $menu = [];
             // 機能が有効の場合はメニューに表示
             $menu[] = [
@@ -165,63 +175,56 @@ class SideMenu extends Component
 
     /**
      * ユーザーのメニュー
-     * @return array|null
      */
-    private function menuUsers() :?array
+    private function menuUsers(): ?array
     {
         return $this->menuResources(User::class);
     }
 
     /**
      * 顧客のメニュー
-     * @return array|null
      */
-    private function menuCustomers() :?array
+    private function menuCustomers(): ?array
     {
         return $this->menuResources(Customer::class);
     }
 
     /**
      * 店舗のメニュー
-     * @return array|null
      */
-    private function menuStores() :?array
+    private function menuStores(): ?array
     {
         return $this->menuResources(Store::class);
     }
 
     /**
      * スタッフのメニュー
-     * @return array|null
      */
-    private function menuStaffs() :?array
+    private function menuStaffs(): ?array
     {
         return $this->menuResources(Staff::class);
     }
 
     /**
      * 通知のメニュー
-     * @return array|null
      */
-    private function menuNotifications() :?array
+    private function menuNotifications(): ?array
     {
         return $this->menuResources(Notification::class);
     }
 
     /**
      * 企業のメニュー
-     * @return array|null
      */
-    private function menuCompany() :?array
+    private function menuCompany(): ?array
     {
         return $this->menuResources(Company::class);
     }
 
     /**
      * 在庫のメニュー
-     * @return array|null
      */
-    private function menuStock() :?array
+    private function menuStock(): ?array
     {
         return $this->menuResources(Stock::class);
     }

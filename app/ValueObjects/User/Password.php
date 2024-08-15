@@ -66,8 +66,8 @@ class Password extends ValueObject
      */
     public function inputConfirm(array $attributes = []): string
     {
-        $attributes['name'] = $this->name . '_confirmation';
-        $attributes['id']   = $this->name . '_confirmation';
+        $attributes['name'] = $this->name.'_confirmation';
+        $attributes['id'] = $this->name.'_confirmation';
         $attributes['type'] = 'password';
 
         return CustomForm::make($this)

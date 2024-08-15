@@ -34,21 +34,20 @@ class Image extends ValueObject
 
     /**
      * 画像の対応拡張子
-     * @param bool $withDot 結果に「.」を含めるフラグ
-     * @return array
+     *
+     * @param  bool  $withDot  結果に「.」を含めるフラグ
      */
-    public function fileExtensions(bool $withDot = false) :array
+    public function fileExtensions(bool $withDot = false): array
     {
         $extensions = config('custom.file.image.extensions');
-        return $withDot ? array_map(fn($ext) => '.'.$ext, $extensions) : $extensions;
+
+        return $withDot ? array_map(fn ($ext) => '.'.$ext, $extensions) : $extensions;
     }
 
     /**
      * ファイル名生成
-     * @param string $extension
-     * @return string
      */
-    public function createFileName(string $extension) :string
+    public function createFileName(string $extension): string
     {
         // 例）20210901120000_1_image.jpg
         return sprintf('%s_%s_image.%s',
@@ -60,15 +59,17 @@ class Image extends ValueObject
 
     /**
      * ストレージ配下のアップロード先
-     * @return string
+     *
      * @throws \Exception
      */
-    public function fileUploadPath() :string
+    public function fileUploadPath(): string
     {
         $user = Auth::user();
-        if(!$user) throw new \Exception('アップロードするにはログインが必要です。');
+        if (! $user) {
+            throw new \Exception('アップロードするにはログインが必要です。');
+        }
 
-        return "stock";
+        return 'stock';
     }
 
     public function rules(): array

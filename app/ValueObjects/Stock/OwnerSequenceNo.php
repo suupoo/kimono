@@ -26,6 +26,7 @@ class OwnerSequenceNo extends ValueObject
     protected bool $required = false; // DB Nullable
 
     protected bool $primaryKey = false;
+
     protected bool $unique = true;
 
     public function rules(): array

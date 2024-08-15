@@ -17,9 +17,9 @@ enum AdministratorRole: string
         };
     }
 
-    static public function casesExpectSystem(): array
+    public static function casesExpectSystem(): array
     {
-        return array_filter(self::cases(), function($enum){
+        return array_filter(self::cases(), function ($enum) {
             return $enum !== self::SYSTEM;
         });
     }

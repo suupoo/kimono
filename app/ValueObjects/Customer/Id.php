@@ -3,7 +3,6 @@
 namespace App\ValueObjects\Customer;
 
 use App\ValueObjects\ValueObject;
-use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
 

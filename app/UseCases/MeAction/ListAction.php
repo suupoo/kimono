@@ -2,7 +2,7 @@
 
 namespace App\UseCases\MeAction;
 
-use App\Models\MSystemAdministrator as Model; // モデル紐付け
+// モデル紐付け
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -14,8 +14,7 @@ class ListAction
         try {
             $loginUser = Auth::user();
 
-            return
-                $loginUser;
+            return $loginUser;
 
         } catch (\Exception $e) {
             // 例外処理

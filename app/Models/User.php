@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\OwnerScope;
 use App\Models\Traits\ModelFillOwnerIdObservable;
 use App\ValueObjects\User\CreatedAt;
 use App\ValueObjects\User\CreatedUser;
@@ -19,7 +20,6 @@ use App\ValueObjects\User\UpdatedAt;
 use App\ValueObjects\User\UpdatedUser;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Models\Scopes\OwnerScope;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 #[ScopedBy([OwnerScope::class])]

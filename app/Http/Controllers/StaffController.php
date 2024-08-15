@@ -12,10 +12,9 @@ use App\ValueObjects\Staff\JoinDate;
 use App\ValueObjects\Staff\Name;
 use App\ValueObjects\Staff\OwnerSequenceNo;
 use App\ValueObjects\Staff\QuitDate;
+use App\ValueObjects\Staff\StaffPosition;
 use App\ValueObjects\Staff\Tags;
 use App\ValueObjects\Staff\Tel;
-use App\ValueObjects\Staff\Id;
-use App\ValueObjects\Staff\StaffPosition;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -86,8 +85,8 @@ class StaffController extends ResourceController
     public function create(): View
     {
         $model = (request()->has('copy'))
-            ?$this->model->findOrFail(request()->get('copy'))  // 複製
-            :(new $this->model);                               // 新規作成
+            ? $this->model->findOrFail(request()->get('copy'))  // 複製
+            : (new $this->model);                               // 新規作成
         $model->image = null;
         $view = $model->getTable().'.create'; // staffs/create.blade.php
 

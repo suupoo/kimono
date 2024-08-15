@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Notification as ResourceModel; // モデル紐付け
-use App\UseCases\NotificationAction\ListAction;
 use App\UseCases\NotificationAction\CreateAction;
 use App\UseCases\NotificationAction\DeleteAction;
+use App\UseCases\NotificationAction\ListAction;
 use App\UseCases\NotificationAction\UpdateAction;
 use App\ValueObjects\Notification\OwnerSequenceNo;
 use App\ValueObjects\Notification\PublishAt;
@@ -79,8 +79,8 @@ class NotificationController extends ResourceController
     public function create(): View
     {
         $model = (request()->has('copy'))
-            ?$this->model->findOrFail(request()->get('copy'))  // 複製
-            :(new $this->model);                               // 新規作成
+            ? $this->model->findOrFail(request()->get('copy'))  // 複製
+            : (new $this->model);                               // 新規作成
         $view = $model->getTable().'.create'; // notifications/create.blade.php
 
         return view($view, compact('model'));

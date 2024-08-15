@@ -102,7 +102,7 @@ abstract class ValueObject
 
     /**
      * 入力フォーム要素を返す
-     * @param array $attributes
+     *
      * @return string
      */
     public function input(array $attributes = [])

@@ -68,8 +68,8 @@ class CompanyController extends ResourceController
     public function create(): View
     {
         $model = (request()->has('copy'))
-            ?$this->model->findOrFail(request()->get('copy'))  // 複製
-            :(new $this->model);                               // 新規作成
+            ? $this->model->findOrFail(request()->get('copy'))  // 複製
+            : (new $this->model);                               // 新規作成
         $view = $model->getTable().'.create'; // companies/create.blade.php
 
         return view($view, compact('model'));

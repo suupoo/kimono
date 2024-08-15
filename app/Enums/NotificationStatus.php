@@ -4,9 +4,9 @@ namespace App\Enums;
 
 enum NotificationStatus: string
 {
-    case DRAFT = "draft";
-    case SCHEDULED = "scheduled";
-    case COMPLETE = "complete";
+    case DRAFT = 'draft';
+    case SCHEDULED = 'scheduled';
+    case COMPLETE = 'complete';
 
     public function label(): ?string
     {

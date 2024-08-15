@@ -4,7 +4,6 @@ namespace App\ValueObjects\Company;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
-use Illuminate\Contracts\View\View;
 
 class Name extends ValueObject
 {

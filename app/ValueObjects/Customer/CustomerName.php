@@ -2,8 +2,8 @@
 
 namespace App\ValueObjects\Customer;
 
-use App\ValueObjects\ValueObject;
 use App\Facades\Utility\CustomForm;
+use App\ValueObjects\ValueObject;
 
 class CustomerName extends ValueObject
 {

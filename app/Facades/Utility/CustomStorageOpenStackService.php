@@ -4,8 +4,8 @@ namespace App\Facades\Utility;
 
 use Carbon\Carbon;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Log;
 use League\Flysystem\UnableToDeleteFile;
 use League\Flysystem\UnableToWriteFile;
 use OpenStack\Common\Error\BadResponseError;
@@ -15,9 +15,13 @@ use Throwable;
 class CustomStorageOpenStackService
 {
     protected $client;
+
     protected $container;
+
     protected $identityV2;
+
     protected $objectStoreV1;
+
     protected $config;
 
     public function __construct($config = [])
@@ -32,7 +36,7 @@ class CustomStorageOpenStackService
         $this->container = $config['container'];
         $this->identityV2 = $openstack->identityV2([
             'username' => $config['username'],
-            'password' => $config['password']
+            'password' => $config['password'],
         ]);
         $this->objectStoreV1 = $openstack->objectStoreV1([
             'identityService' => $this->identityV2,
@@ -43,52 +47,44 @@ class CustomStorageOpenStackService
 
     /**
      * ファイルのアップロード
-     * @param string $path
-     * @param UploadedFile $contents
-     * @param array $options
-     * @return false|string
+     *
      * @throws BadResponseError
      * @throws FileNotFoundException
      */
     public function putFile(string $path, UploadedFile $contents, array $options = []): false|string
     {
-        $filePath = sprintf("%s/%s.%s",
+        $filePath = sprintf('%s/%s.%s',
             $path,
             $this->fileNameFormat(),
             $contents->extension()
         );
+
         return $this->upload($filePath, $contents);
     }
 
     /**
      * ファイルに名前をつけてアップロード
-     * @param string $path
-     * @param UploadedFile $contents
-     * @param $fileName
-     * @param array $options
-     * @return false|string
+     *
      * @throws BadResponseError
      * @throws FileNotFoundException
      */
     public function putFileAs(string $path, UploadedFile $contents, $fileName, array $options = []): false|string
     {
-        $filePath = sprintf("%s/%s",
+        $filePath = sprintf('%s/%s',
             $path,
             $fileName,
         );
+
         return $this->upload($filePath, $contents);
     }
 
     /**
      * ファイルをアップロードする
      *
-     * @param $path
-     * @param UploadedFile $contents
-     * @return false|string
      * @throws BadResponseError
      * @throws FileNotFoundException
      */
-    private function upload($path, UploadedFile $contents) : false|string
+    private function upload($path, UploadedFile $contents): false|string
     {
         try {
             $containerPath = $this->containerPath($path);
@@ -102,9 +98,9 @@ class CustomStorageOpenStackService
             foreach ($directories as $index => $directory) {
                 $container .= ($index === 0)
                     ? $directory
-                    : '/' . $directory;
+                    : '/'.$directory;
                 $exist = $this->objectStoreV1->containerExists($container);
-                if (!$exist) {
+                if (! $exist) {
                     $this->objectStoreV1->createContainer(['name' => $container]);
                 }
             }
@@ -119,7 +115,7 @@ class CustomStorageOpenStackService
             // ルートコンテナ名を除いてアップロードしたファイルのパスを返す
             return $this->relativePath($container.'/'.$fileName);
 
-        }catch (UnableToWriteFile $e) {
+        } catch (UnableToWriteFile $e) {
             Log::error($e->getMessage());
         }
 
@@ -128,12 +124,8 @@ class CustomStorageOpenStackService
 
     /**
      * ファイルの一時URLを取得
-     * @param string $path
-     * @param Carbon $expiration
-     * @param array $options
-     * @return string
      */
-    public function temporaryUrl(string $path, Carbon $expiration, array $options = []):string
+    public function temporaryUrl(string $path, Carbon $expiration, array $options = []): string
     {
         $containerPath = $this->containerPath($path);
         $key = $this->config['temporary_url_key'];
@@ -158,25 +150,22 @@ class CustomStorageOpenStackService
 
     /**
      * ファイルの削除
-     * @param string|array $files
-     * @return bool
      */
     public function delete(string|array $files): bool
     {
-        if(is_array($files)){
+        if (is_array($files)) {
             foreach ($files as $file) {
                 $this->deleteFile($file);
             }
-        }else{
+        } else {
             $this->deleteFile($files);
         }
+
         return true;
     }
 
     /**
      * ファイルの削除
-     * @param string $path
-     * @return void
      */
     public function deleteFile(string $path): void
     {
@@ -203,7 +192,6 @@ class CustomStorageOpenStackService
 
     /**
      * ファイル名のフォーマット
-     * @return string
      */
     private function fileNameFormat(): string
     {
@@ -220,52 +208,46 @@ class CustomStorageOpenStackService
 
     /**
      * コンテナのフルパスに変換する
-     * @param $path
-     * @return string
      */
     private function containerPath($path): string
     {
-        return $this->container . '/' . $path;
+        return $this->container.'/'.$path;
     }
 
     /**
      * コンテナのルートパスを除いた相対パスに変換する
-     * @param $path
-     * @return string
      */
     private function relativePath($path): string
     {
-        $containerRoot = $this->container . '/';
+        $containerRoot = $this->container.'/';
+
         return str_replace($containerRoot, '', $path);
     }
 
     /**
      * ファイル名を取得
-     * @param $path
-     * @return string
      */
     private function fileName($path): string
     {
         $path = explode('/', $path);
+
         return end($path);
     }
 
     /**
      * ディレクトリを取得
-     * @param $path
-     * @return array
      */
     private function directories($path): array
     {
         $path = explode('/', $path);
         array_pop($path);
+
         return $path;
     }
 
     /**
      * エンドポイントのうち、バージョンとテナントIDをスラッシュでつなげる
      * note:temporaryUrlでも使用する
-     * @return string
      */
     private function objectStorageVersionSlashNcTenantId(): string
     {
@@ -277,7 +259,6 @@ class CustomStorageOpenStackService
 
     /**
      * オブジェクトストレージのエンドポイントを取得
-     * @return string
      */
     private function getObjectStorageEndpoint(): string
     {
@@ -286,5 +267,4 @@ class CustomStorageOpenStackService
             $this->objectStorageVersionSlashNcTenantId()
         );
     }
-
 }

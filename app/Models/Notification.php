@@ -32,7 +32,7 @@ class Notification extends BaseModel
     const NAME = '通知';
 
     protected $casts = [
-        Type::NAME  => \App\Enums\NotificationType::class,
+        Type::NAME => \App\Enums\NotificationType::class,
         PublishAt::NAME => 'datetime',
         Status::NAME => \App\Enums\NotificationStatus::class,
     ];

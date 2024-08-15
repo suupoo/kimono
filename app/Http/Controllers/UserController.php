@@ -8,7 +8,6 @@ use App\UseCases\UserAction\DeleteAction as DeleteAction;
 use App\UseCases\UserAction\ListAction as ListAction;
 use App\UseCases\UserAction\UpdateAction as UpdateAction;
 use App\ValueObjects\User\Email;
-use App\ValueObjects\User\Id;
 use App\ValueObjects\User\Name;
 use App\ValueObjects\User\OwnerSequenceNo;
 use App\ValueObjects\User\Tags;
@@ -75,8 +74,8 @@ class UserController extends ResourceController
     public function create(): View
     {
         $model = (request()->has('copy'))
-            ?$this->model->findOrFail(request()->get('copy'))  // 複製
-            :(new $this->model);                               // 新規作成
+            ? $this->model->findOrFail(request()->get('copy'))  // 複製
+            : (new $this->model);                               // 新規作成
         $view = $model->getTable().'.create'; // users/create.blade.php
 
         return view($view, compact('model'));

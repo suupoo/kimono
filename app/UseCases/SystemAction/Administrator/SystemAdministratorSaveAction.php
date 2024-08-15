@@ -5,10 +5,10 @@ namespace App\UseCases\SystemAction\Administrator;
 use App\Models\MSystemAdministratorCompany;
 use App\Models\MSystemCompany;
 use App\UseCases\Action;
+use App\UseCases\Traits\PrefixSettable;
 use App\ValueObjects\Master\Company\Id;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\UseCases\Traits\PrefixSettable;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
@@ -19,14 +19,10 @@ class SystemAdministratorSaveAction extends Action
     /**
      * Handle the incoming request.
      *
-     * @param Request $request
-     * @param string $model
-     * @param array $attributes
-     * @return RedirectResponse
      *
      * @throws \Exception
      */
-    public function __invoke(Request $request, string $model, array $attributes = []) : RedirectResponse
+    public function __invoke(Request $request, string $model, array $attributes = []): RedirectResponse
     {
         try {
             $systemAdministrator = (new $model)
@@ -38,7 +34,7 @@ class SystemAdministratorSaveAction extends Action
                 'system_companies.*' => (new Id)->rules(),
             ]);
 
-            if($validator->fails()){
+            if ($validator->fails()) {
                 return redirect()->route($this->prefix.'.companies.list', ['id' => $systemAdministrator->id])
                     ->withErrors($validator->errors())
                     ->withInput();
@@ -48,13 +44,13 @@ class SystemAdministratorSaveAction extends Action
                 $record = MSystemAdministratorCompany::where('system_administrator', $systemAdministrator->id)
                     ->where('system_company', $systemCompany->id)
                     ->first();
-                if($record){
+                if ($record) {
                     // すでに登録されている場合
-                    if (!$request->system_companies || !in_array($systemCompany->id, $request->system_companies)) {
+                    if (! $request->system_companies || ! in_array($systemCompany->id, $request->system_companies)) {
                         // チェックが外れている場合は削除
                         $record->delete();
                     }
-                }else{
+                } else {
                     // 未登録の場合
                     if ($request->system_companies && in_array($systemCompany->id, $request->system_companies)) {
                         // チェックが入っている場合は登録

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('m_system_administrator_companies', function (Blueprint $table){
+        Schema::create('m_system_administrator_companies', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('system_administrator')->unsigned()->foreign('system_administrator')->references('id')->on('m_system_administrators');
             $table->bigInteger('system_company')->unsigned()->foreign('system_company')->references('id')->on('m_system_companies');

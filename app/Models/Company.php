@@ -16,7 +16,6 @@ use App\ValueObjects\Company\UpdatedAt;
 use App\ValueObjects\Company\UpdatedUser;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 #[ScopedBy([OwnerScope::class])]
@@ -29,6 +28,7 @@ class Company extends BaseModel
     const NAME = '企業';
 
     protected $casts = [];
+
     protected $guarded = [
         'id',
         'owner_sequence_no',

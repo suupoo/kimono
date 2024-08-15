@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class StaffListAction extends Action
 {
-
     /**
      * Handle the incoming request.
      *

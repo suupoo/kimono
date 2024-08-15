@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Log;
  */
 class SaveAction extends BaseAction
 {
-
     public function __invoke(Request $request, string $model, array $attributes = [])
     {
         try {
@@ -25,16 +24,18 @@ class SaveAction extends BaseAction
 
             // 現在のリソースに紐づいた機能を取得
             foreach ($model->switchable()->get() as $mFeature) {
-                if( empty($newFeatures) || (!array_key_exists($mFeature->key, $newFeatures) && $mFeature->enable == Flag::ON->value) ) {
+                if (empty($newFeatures) || (! array_key_exists($mFeature->key, $newFeatures) && $mFeature->enable == Flag::ON->value)) {
                     // 無効化
                     $mFeature->enable = false;
-                }else if(array_key_exists($mFeature->key, $newFeatures) && $mFeature->enable == Flag::OFF->value){
+                } elseif (array_key_exists($mFeature->key, $newFeatures) && $mFeature->enable == Flag::OFF->value) {
                     // 有効化
                     $mFeature->enable = true;
                 }
 
                 // 更新
-                if($mFeature->isDirty()) $mFeature->save();
+                if ($mFeature->isDirty()) {
+                    $mFeature->save();
+                }
             }
 
             return redirect()->route('system.listFeature')

@@ -4,7 +4,6 @@ namespace App\ValueObjects\Master\Administrator;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
-use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
 
 class Name extends ValueObject

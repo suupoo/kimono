@@ -1,19 +1,19 @@
 <?php
 
-use App\Http\Controllers\StockController;
-use App\Http\Controllers\SystemAdministratorController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MeController;
 use App\Http\Controllers\MyPageController;
-use App\Http\Controllers\StaffController;
-use App\Http\Controllers\StoreController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\SystemController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\StaffController;
+use App\Http\Controllers\StockController;
+use App\Http\Controllers\StoreController;
+use App\Http\Controllers\SystemAdministratorController;
+use App\Http\Controllers\SystemCompanyController;
+use App\Http\Controllers\SystemController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Pennant\Middleware\EnsureFeaturesAreActive;
-use App\Http\Controllers\SystemCompanyController;
 
 Route::group([], function () {
     Route::get('login', [\App\Http\Controllers\Auth\AuthController::class, 'login'])->name('login');
@@ -45,7 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('me', [MeController::class, 'save'])->name('me.save');
 
     // システム管理用機能 todo:管理者以外は不可にする
-    Route::group(['prefix' => 'system', 'as' => 'system.' ], function () {
+    Route::group(['prefix' => 'system', 'as' => 'system.'], function () {
         Route::group(['controller' => SystemController::class], function () {
             Route::get('/features', 'listFeature')->name('listFeature');
             Route::post('/features', 'saveFeature')->name('saveFeature');

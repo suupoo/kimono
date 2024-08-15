@@ -2,9 +2,9 @@
 
 namespace App\UseCases\ResourceAction;
 
-use Illuminate\Http\Request;
 use App\UseCases\Action;
 use App\UseCases\Traits\PrefixSettable;
+use Illuminate\Http\Request;
 
 class ResourceAction extends Action
 {

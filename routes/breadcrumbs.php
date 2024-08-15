@@ -66,7 +66,7 @@ foreach ($systemResourceModels as $systemModel) {
         $id = request()->route('id');
         $trail->parent("system.$resource.index");
         $model = $systemModel::find($id);
-        $trail->push( $model?->name ?? __('resource.show'), route("system.$resource.show", $id));
+        $trail->push($model?->name ?? __('resource.show'), route("system.$resource.show", $id));
     });
 
     // ホーム > リソースモデル > 編集
@@ -115,7 +115,7 @@ foreach ($resourceModels as $model) {
         $id = request()->route('id');
         $trail->parent("$resource.index");
         $model = $model::find($id);
-        $trail->push( $model?->name ?? __('resource.show'), route("$resource.show", $id));
+        $trail->push($model?->name ?? __('resource.show'), route("$resource.show", $id));
     });
 
     // ホーム > リソースモデル > 編集

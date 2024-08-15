@@ -27,7 +27,7 @@ class Enable extends ValueObject
 
     /**
      * 入力フォーム要素を返す
-     * @param array $attributes
+     *
      * @return string
      */
     public function input(array $attributes = [])
@@ -37,5 +37,4 @@ class Enable extends ValueObject
             ->label($attributes)
             ->render();
     }
-
 }

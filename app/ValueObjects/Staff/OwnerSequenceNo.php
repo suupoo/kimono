@@ -4,7 +4,6 @@ namespace App\ValueObjects\Staff;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
-use Illuminate\Contracts\View\View;
 
 class OwnerSequenceNo extends ValueObject
 {
@@ -27,6 +26,7 @@ class OwnerSequenceNo extends ValueObject
     protected bool $required = false; // DB Nullable
 
     protected bool $primaryKey = false;
+
     protected bool $unique = true;
 
     public function rules(): array

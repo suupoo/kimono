@@ -20,6 +20,7 @@ use Illuminate\View\View;
 class SystemAdministratorController extends ResourceController
 {
     protected ResourceModel $model;
+
     protected ?string $prefix = 'system.administrators';
 
     /**
@@ -79,8 +80,8 @@ class SystemAdministratorController extends ResourceController
     {
         $prefix = $this->prefix;
         $model = (request()->has('copy'))
-            ?$this->model->findOrFail(request()->get('copy'))  // 複製
-            :(new $this->model);                               // 新規作成
+            ? $this->model->findOrFail(request()->get('copy'))  // 複製
+            : (new $this->model);                               // 新規作成
         $view = "$prefix.create"; // system/administrators/create.blade.php
 
         return view($view, compact('model', 'prefix'));
@@ -92,6 +93,7 @@ class SystemAdministratorController extends ResourceController
     public function store(Request $request, CreateAction $action): RedirectResponse
     {
         $action->setPrefix($this->prefix); // プレフィックス設定
+
         return $action($request, ResourceModel::class);
     }
 
@@ -113,6 +115,7 @@ class SystemAdministratorController extends ResourceController
     public function update(Request $request, int $id, UpdateAction $action): RedirectResponse
     {
         $action->setPrefix($this->prefix); // プレフィックス設定
+
         return $action($request, ResourceModel::class);
     }
 
@@ -134,6 +137,7 @@ class SystemAdministratorController extends ResourceController
     public function destroy(Request $request, string $id, DeleteAction $action): RedirectResponse
     {
         $action->setPrefix($this->prefix); // プレフィックス設定
+
         return $action($request, ResourceModel::class);
     }
 
@@ -157,14 +161,12 @@ class SystemAdministratorController extends ResourceController
     }
 
     /**
-     * @param Request $request
-     * @param string $id
-     * @return RedirectResponse
      * @throws \Exception
      */
     public function saveCompanies(Request $request, string $id, SystemAdministratorSaveAction $action): RedirectResponse
     {
         $action->setPrefix($this->prefix); // プレフィックス設定
+
         return $action($request, ResourceModel::class);
     }
 }

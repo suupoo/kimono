@@ -16,10 +16,10 @@ class SystemController extends Controller
         $model = new ResourceModel;
         $items = $action($request, ResourceModel::class);
 
-        return view('system.features.list', compact('model','items'));
+        return view('system.features.list', compact('model', 'items'));
     }
 
-    public function saveFeature(Request $request, SaveAction $action) : RedirectResponse
+    public function saveFeature(Request $request, SaveAction $action): RedirectResponse
     {
         return $action($request, ResourceModel::class);
     }

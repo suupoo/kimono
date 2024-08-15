@@ -71,21 +71,23 @@ class SaveAction extends Action
             }
 
             // パスワードが空の場合は削除
-            if(!$attributes['password']) unset($attributes['password']);
+            if (! $attributes['password']) {
+                unset($attributes['password']);
+            }
             // ファイルがある場合はアップロード
-            if(array_key_exists('image',$attributes)){
+            if (array_key_exists('image', $attributes)) {
                 $image = new Image;
                 $extension = $request->file('image')->getClientOriginalExtension();
                 $uploadPath = CustomStorage::disk()
                     ->putFileAs($image->fileUploadPath(), $request->file('image'), $image->createFileName($extension));
-                if ($uploadPath){
+                if ($uploadPath) {
                     $attributes['image'] = $uploadPath;
                 }
             }
 
             // 更新
             $updateEntity->fill($attributes);
-            if($updateEntity->isDirty()) {
+            if ($updateEntity->isDirty()) {
 
                 // トランザクションで処理する
                 DB::beginTransaction();
@@ -132,5 +134,4 @@ class SaveAction extends Action
             Log::error($e->getMessage());
         }
     }
-
 }

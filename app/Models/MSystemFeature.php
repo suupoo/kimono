@@ -6,9 +6,9 @@ use App\ValueObjects\Master\Feature\Enable;
 use App\ValueObjects\Master\Feature\FlagSwitch;
 use App\ValueObjects\Master\Feature\Key;
 use App\ValueObjects\Store\Name;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 
 class MSystemFeature extends Model
 {
@@ -47,8 +47,6 @@ class MSystemFeature extends Model
 
     /**
      * 機能有効の切り替え可否フラグ
-     * @param Builder $query
-     * @return void
      */
     public function scopeSwitchable(Builder $query): void
     {

@@ -21,7 +21,6 @@ use App\ValueObjects\Store\UpdatedAt;
 use App\ValueObjects\Store\UpdatedUser;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 #[ScopedBy([OwnerScope::class])]

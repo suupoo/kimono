@@ -19,6 +19,7 @@ class MSystemCompany extends Model
     const NAME = 'システム企業';
 
     protected $casts = [];
+
     protected $guarded = [
         'id',
         'created_at',
