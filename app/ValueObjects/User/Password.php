@@ -2,8 +2,8 @@
 
 namespace App\ValueObjects\User;
 
+use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
-use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
 
 class Password extends ValueObject
@@ -53,24 +53,26 @@ class Password extends ValueObject
     /**
      * 入力項目を返す
      */
-    public function input(array $attributes = []): View
+    public function input(array $attributes = []): string
     {
-        $class = implode(' ', $attributes);
-
-        return view('components.form.input', [
-            'column' => $this,
-            'attributes' => $attributes,
-        ]);
+        return CustomForm::make($this)
+            ->label($attributes)
+            ->input($attributes)
+            ->render();
     }
 
     /**
      * 入力確認用フォーム
      */
-    public function inputConfirm(array $attributes = []): View
+    public function inputConfirm(array $attributes = []): string
     {
-        return view('components.form.confirm', [
-            'column' => $this,
-            'attributes' => $attributes,
-        ]);
+        $attributes['name'] = $this->name . '_confirmation';
+        $attributes['id']   = $this->name . '_confirmation';
+        $attributes['type'] = 'password';
+
+        return CustomForm::make($this)
+            ->label($attributes)
+            ->input($attributes)
+            ->render();
     }
 }
