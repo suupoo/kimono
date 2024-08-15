@@ -12,7 +12,8 @@
 /* カスタム共通クラス群 */
 @layer components {
     .custom-btn, .custom-link {
-        @apply w-full font-bold py-2 px-4 rounded text-center border rounded-lg;
+        /*@apply w-full font-bold py-2 px-4 rounded text-center border rounded-lg;*/
+        @apply py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent;
     }
     .custom-full-container{
         @apply flex flex-col w-full h-full mb-4;
