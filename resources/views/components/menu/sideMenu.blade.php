@@ -14,8 +14,10 @@
                 @foreach($menuList as $menuItem)
                     @php $active = array_key_exists('active', $menuItem) && $menuItem['active'] == true @endphp
                     <div class="flex space-x-1 items-center">
-                        <div class="w-3">
-                        @if($active)→@endif
+                        <div class="w-4 text-custom-red">
+                        @if($active)
+                            @includeIf('icons.lucide.circle-dot', ['class' => 'w-4 h-4'])
+                        @endif
                         </div>
                         <x-button.link href="{{ $menuItem['link'] }}">
                             @if(array_key_exists('icon', $menuItem))
