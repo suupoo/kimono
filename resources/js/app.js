@@ -2,6 +2,7 @@ import './bootstrap';
 import 'modern-css-reset';
 import 'preline';
 import '@preline/overlay';
+import '@preline/carousel';
 import '@popperjs/core';
 import jQuery from 'jquery';
 import Quill from 'quill';
