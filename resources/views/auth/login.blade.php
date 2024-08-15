@@ -14,7 +14,7 @@
                 </div>
             @endif
 
-            <img src="{{ Vite::asset('resources/images/logo.svg') }}" class="h-24 bg-red-200 my-2">
+            <img src="{{ Vite::asset('resources/images/logo.png') }}" class="h-24 bg-red-200 my-2">
 
             <h1 class="text-xl text-center font-bold mt-3">
                 {{ __('Login') }}
