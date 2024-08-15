@@ -50,7 +50,7 @@
 {{--        @include('script')--}}
 {{--        @yield('page-script')--}}
 
-        <main id="content" class="flex flex-col max-w-[85rem] min-h-[80vh] bg-white dark:bg-neutral-800 mx-auto px-4 sm:px-6 lg:px-8">
+        <main id="content" class="flex flex-col max-w-[85rem] min-h-[80vh] bg-white dark:bg-neutral-800 mx-auto pt-5 px-4 sm:px-6 lg:px-8">
             @yield('content')
         </main>
 
