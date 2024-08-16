@@ -1,6 +1,11 @@
 @extends('layouts')
 
 @section('content')
+
+    <h1 class="custom-headline">
+        {{ $model::NAME . __('resource.list') }}
+    </h1>
+
     @php
         $currentRouteName = request()->route()->getName();
         $sort = request()->get('sort');
@@ -59,17 +64,13 @@
 
     {{--　リスト --}}
     <div class="custom-full-container">
-        <h3 class="text-xl font-bold my-2">
-            {{ $model::NAME . __('resource.list') }}
-        </h3>
         <div class="flex w-full justify-end">
             <div class="w-fit flex flex-col">
                 <x-button.create href="{{ route($model->getTable() . '.create') }}"/>
             </div>
         </div>
         <div class="relative overflow-x-auto">
-            <table class="w-full mt-2 border rounded-xl text-sm text-left rtl:text-right text-gray-500 break-keep">
-                <thead class="text-xs text-white uppercase bg-gray-700">
+            @slot('tHead')
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         {{ __('resource.operation') }}
@@ -107,9 +108,8 @@
                         </th>
                     @endforeach
                 </tr>
-                </thead>
-                <tbody>
-
+            @endslot
+            @slot('tBody')
                 @foreach($items as $item)
                     <tr class="bg-white border-b">
                         <td class="w-full text-xs flex flex-col justify-center space-y-1 m-1">
@@ -141,9 +141,10 @@
                         @endforeach
                     </tr>
                 @endforeach
-                </tbody>
-            </table>
-            {{ $items->links() }}
+            @endslot
+            @slot('pagination')
+                {{ $items->links() }}
+            @endslot
         </div>
     </div>
 @endsection
