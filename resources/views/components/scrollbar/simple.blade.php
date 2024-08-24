@@ -1,4 +1,4 @@
-<div class="max-h-[40px] overflow-y-auto border border-transparent
+<div class="p-3 h-full min-h-[50vh] max-h-[40px] overflow-y-auto border border-neutral-200
   [&::-webkit-scrollbar]:w-2
   [&::-webkit-scrollbar-track]:bg-gray-100
   [&::-webkit-scrollbar-thumb]:bg-gray-300
