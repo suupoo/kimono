@@ -33,8 +33,8 @@ class Enable extends ValueObject
     public function input(array $attributes = [])
     {
         return CustomForm::make($this)
-            ->input($attributes)
             ->label($attributes)
+            ->input($attributes)
             ->render();
     }
 }
