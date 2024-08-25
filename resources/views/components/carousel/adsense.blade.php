@@ -6,7 +6,7 @@
             <div class="hs-carousel-slide">
                 <div class="flex justify-center h-full bg-gray-100 dark:bg-neutral-900">
                 @if( $banner?->url )
-                <a href="" target="_blank" >
+                <a href="{{ $banner?->url }}" target="_blank" >
                 @endif
                     <img class="object-fit w-full h-full" src="{{ $banner->image_url }}" alt="{{ $banner?->text }}">
 {{--                    <span class="self-center text-4xl text-gray-800 transition duration-700 dark:text-white">--}}
