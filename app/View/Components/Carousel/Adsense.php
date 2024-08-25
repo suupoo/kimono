@@ -51,7 +51,6 @@ class Adsense extends Component
     {
         return view('components.carousel.adsense',[
             'banners' => $this->banners,
-            'autoPlay' => $this->autoPlay,
             'classes' => $this->classes,
             'options' => $this->options,
         ]);

@@ -1,7 +1,7 @@
 <div class="py-6 border-t border-gray-200 dark:border-neutral-700">
     <div class="flex flex-wrap flex-col justify-center items-center gap-2">
 
-        <x-carousel.adsense autoplay="true" class="w-[300px] h-[250px] carousel-adsense" />
+        <x-carousel.adsense auto-play="true" class="w-[300px] h-[250px] carousel-adsense" />
 
         <div>
             <p class="text-xs text-gray-600 dark:text-neutral-400">
