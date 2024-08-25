@@ -12,8 +12,9 @@ class Adsense extends Component
 {
     protected Collection $banners;
     protected bool $autoPlay = false;
-    protected string $height   = 'h-[200px]';
-    protected string $width    = 'w-[300px]';
+    protected array $classes = [
+        'relative',
+    ];
     protected array $options = [
         'loadingClasses' => 'opacity-0',
     ];
@@ -23,16 +24,20 @@ class Adsense extends Component
      */
     public function __construct(
         bool $autoPlay = false,
-        string $height = 'h-96',
-        string $width = 'w-full'
+        string $class = null,
     )
     {
+        // クラス
+        if ($class) {
+            $this->classes = array_merge($this->classes, explode(' ', $class));
+        }
+
+        // オプション
         $this->autoPlay = $autoPlay;
         if ($this->autoPlay) {
             $this->options['isAutoPlay'] = true;
         }
-        $this->height   = $height;
-        $this->width    = $width;
+        // データ取得
         $this->banners = MSystemBanner::query()
             ->orderBy('priority')
             ->limit(3)
@@ -47,8 +52,7 @@ class Adsense extends Component
         return view('components.carousel.adsense',[
             'banners' => $this->banners,
             'autoPlay' => $this->autoPlay,
-            'height' => $this->height,
-            'width' => $this->width,
+            'classes' => $this->classes,
             'options' => $this->options,
         ]);
     }

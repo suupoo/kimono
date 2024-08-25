@@ -1,4 +1,4 @@
-<div data-hs-carousel='@json($options)' class="{{'relative '.$height. ' '. $width }}">
+<div data-hs-carousel='@json($options)' class="{{ implode(' ', $classes) }}">
     <div class="{{ 'hs-carousel relative overflow-hidden w-full h-full bg-white rounded-lg' }}">
         <div class="hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap transition-transform duration-700 opacity-0">
 
