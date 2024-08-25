@@ -33,9 +33,10 @@ class CustomAdminAdd extends Command
      */
     public function handle()
     {
-        if (! DB::table('administrators')->exists()) {
+        $table = MSystemAdministrator::getTable();
+        if (! DB::table($table)->exists()) {
             // テーブルが存在していない場合
-            throw new \Exception('administrators table is not exists. Please run php artisan migrate first.');
+            throw new \Exception("$table table is not exists. Please run php artisan migrate first.");
         }
 
         $administratorRoles = [];

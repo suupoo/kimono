@@ -26,12 +26,6 @@ class CustomInit extends Command
      */
     public function handle()
     {
-        // 管理者機能を追加
-        Artisan::call('custom-feature:add', [
-            'feature' => 'administrators1',
-            'name' => '管理者',
-        ]);
-
         // システムアカウントを追加
         Artisan::call('custom-admin:add', [
             'name' => 'システム',

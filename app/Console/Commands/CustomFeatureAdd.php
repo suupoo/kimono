@@ -31,9 +31,10 @@ class CustomFeatureAdd extends Command
      */
     public function handle()
     {
-        if (! DB::table('m_system_features')->exists()) {
+        $table = MSystemFeature::getTable();
+        if (! DB::table($table)->exists()) {
             // テーブルが存在していない場合
-            throw new \Exception('m_system_features table is not exists. Please run php artisan migrate first.');
+            throw new \Exception("$table table is not exists. Please run php artisan migrate first.");
         }
 
         if (MSystemFeature::where(Key::NAME, $this->argument('feature'))->exists()) {
