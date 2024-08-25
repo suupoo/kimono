@@ -9,6 +9,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\SystemAdministratorController;
+use App\Http\Controllers\SystemBannerController;
 use App\Http\Controllers\SystemCompanyController;
 use App\Http\Controllers\SystemController;
 use App\Http\Controllers\UserController;
@@ -60,6 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/features', 'listFeature')->name('listFeature');
             Route::post('/features', 'saveFeature')->name('saveFeature');
         });
+        Route::resource('banners', SystemBannerController::class)->parameters(['banners' => 'id']);
         Route::resource('companies', SystemCompanyController::class)->parameters(['companies' => 'id']);
         Route::resource('administrators', SystemAdministratorController::class)->parameters(['administrators' => 'id']);
         Route::get('administrators/{id}/companies', [SystemAdministratorController::class, 'companies'])->name('administrators.companies.list');

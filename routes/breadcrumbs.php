@@ -42,6 +42,7 @@ Breadcrumbs::for('system.listFeature', function (BreadcrumbTrail $trail) {
 
 $systemResourceModels = [
     new \App\Models\MSystemAdministrator,
+    new \App\Models\MSystemBanner,
     new \App\Models\MSystemCompany,
 ];
 
