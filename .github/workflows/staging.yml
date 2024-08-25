@@ -1,7 +1,7 @@
-name: deploy
+name: deploy-staging
 on:
   push:
-    branches: develop
+    branches: staging
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -17,4 +17,4 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd ${{ secrets.SERVER_DEPLOY_DIR }}
-            /home/oshowjp/o-show.xyz/application/tools/deploy/shin-rental-server/kimono.sh 
+            /home/oshowjp/kimono-cms.net/application/tools/stg_kimono.sh
