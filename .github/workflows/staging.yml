@@ -17,4 +17,4 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd ${{ secrets.SERVER_DEPLOY_DIR }}
-            /home/oshowjp/kimono-cms.net/application/tools/stg_kimono.sh
+            /home/oshowjp/kimono-cms.net/application/tools/stg_deploy.sh
