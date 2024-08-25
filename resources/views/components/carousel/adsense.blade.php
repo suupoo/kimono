@@ -7,20 +7,12 @@
   $height = $attributes->get('height', 'h-96');
   $width = $attributes->get('width', 'w-full');
 
-  $adsenses = new \Illuminate\Support\Collection([
-    [
-      'src' => '',
-      'alt' => '広告枠1',
-    ],
-    [
-      'src' => '',
-      'alt' => '広告枠2',
-    ],
-        [
-      'src' => '',
-      'alt' => '広告枠3',
-    ],
-  ]);
+  $adsenses = \App\Models\MSystemBanner::query()->orderBy('priority')->limit(3)->get()->map(function ($banner) {
+    return [
+      'src' => $banner->image_url,
+      'alt' => $banner->text,
+    ];
+  });
 @endphp
 <!-- Slider -->
 <div data-hs-carousel='@json($carouselOptions)' class="{{'relative '.$height. ' '. $width }}">
@@ -29,10 +21,11 @@
 
             @foreach($adsenses as $adsense)
             <div class="hs-carousel-slide">
-                <div class="flex justify-center h-full bg-gray-100 p-6 dark:bg-neutral-900">
-                <span class="self-center text-4xl text-gray-800 transition duration-700 dark:text-white">
-                    {{ $adsense['alt'] }}
-                </span>
+                <div class="flex justify-center h-full bg-gray-100 dark:bg-neutral-900">
+                <img class="object-fit w-full h-full" src="{{ $adsense['src'] }}" alt="{{ $adsense['alt'] }}">
+{{--                <span class="self-center text-4xl text-gray-800 transition duration-700 dark:text-white">--}}
+{{--                    {{ $adsense['alt'] }}--}}
+{{--                </span>--}}
                 </div>
             </div>
             @endforeach
