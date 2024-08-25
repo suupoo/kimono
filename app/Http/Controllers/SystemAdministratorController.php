@@ -39,7 +39,7 @@ class SystemAdministratorController extends ResourceController
                 new Name,
                 new Email,
             ]),
-            'paginate' => 10,
+            'paginate' => request()->get('rows', config('custom.paginate.default')),
         ];
     }
 

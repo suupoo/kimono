@@ -32,7 +32,7 @@ class CompanyController extends ResourceController
                 new OwnerSequenceNo,
                 new Name,
             ]),
-            'paginate' => 10,
+            'paginate' => request()->get('rows', config('custom.paginate.default')),
         ];
     }
 

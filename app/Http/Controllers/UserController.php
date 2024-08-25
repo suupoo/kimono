@@ -37,7 +37,7 @@ class UserController extends ResourceController
                 new Email,
                 new Tags,
             ]),
-            'paginate' => 10,
+            'paginate' => request()->get('rows', config('custom.paginate.default')),
         ];
     }
 

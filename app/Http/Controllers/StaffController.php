@@ -49,7 +49,7 @@ class StaffController extends ResourceController
                 new Tags,
                 new StaffPosition,
             ]),
-            'paginate' => 10,
+            'paginate' => request()->get('rows', config('custom.paginate.default')),
         ];
     }
 

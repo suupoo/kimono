@@ -43,7 +43,7 @@ class StoreController extends ResourceController
                 new Address1,
                 new Address2,
             ]),
-            'paginate' => 10,
+            'paginate' => request()->get('rows', config('custom.paginate.default')),
         ];
     }
 

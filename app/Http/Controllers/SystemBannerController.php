@@ -34,7 +34,7 @@ class SystemBannerController extends ResourceController
                 new Id,
                 new Priority,
             ]),
-            'paginate' => 10,
+            'paginate' => request()->get('rows', config('custom.paginate.default')),
         ];
     }
 

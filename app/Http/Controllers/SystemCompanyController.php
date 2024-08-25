@@ -34,7 +34,7 @@ class SystemCompanyController extends ResourceController
                 new Id,
                 new Name,
             ]),
-            'paginate' => 10,
+            'paginate' => request()->get('rows', config('custom.paginate.default')),
         ];
     }
 

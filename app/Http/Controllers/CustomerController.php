@@ -45,7 +45,7 @@ class CustomerController extends ResourceController
                 new Address2,
                 new Tags,
             ]),
-            'paginate' => 10,
+            'paginate' => request()->get('rows', config('custom.paginate.default')),
         ];
     }
 
