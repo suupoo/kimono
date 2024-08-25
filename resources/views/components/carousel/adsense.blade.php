@@ -1,31 +1,20 @@
-@php
-  $carouselOptions = [];
-  $carouselOptions['loadingClasses'] = 'opacity-0';
-  if ($attributes->get('autoplay', false)) {
-    $carouselOptions['isAutoPlay'] = true;
-  }
-  $height = $attributes->get('height', 'h-96');
-  $width = $attributes->get('width', 'w-full');
-
-  $adsenses = \App\Models\MSystemBanner::query()->orderBy('priority')->limit(3)->get()->map(function ($banner) {
-    return [
-      'src' => $banner->image_url,
-      'alt' => $banner->text,
-    ];
-  });
-@endphp
-<!-- Slider -->
-<div data-hs-carousel='@json($carouselOptions)' class="{{'relative '.$height. ' '. $width }}">
+<div data-hs-carousel='@json($options)' class="{{'relative '.$height. ' '. $width }}">
     <div class="{{ 'hs-carousel relative overflow-hidden w-full h-full bg-white rounded-lg' }}">
         <div class="hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap transition-transform duration-700 opacity-0">
 
-            @foreach($adsenses as $adsense)
+            @foreach($banners as $banner)
             <div class="hs-carousel-slide">
                 <div class="flex justify-center h-full bg-gray-100 dark:bg-neutral-900">
-                <img class="object-fit w-full h-full" src="{{ $adsense['src'] }}" alt="{{ $adsense['alt'] }}">
-{{--                <span class="self-center text-4xl text-gray-800 transition duration-700 dark:text-white">--}}
-{{--                    {{ $adsense['alt'] }}--}}
-{{--                </span>--}}
+                @if( $banner?->url )
+                <a href="" target="_blank" >
+                @endif
+                    <img class="object-fit w-full h-full" src="{{ $banner->image_url }}" alt="{{ $banner?->text }}">
+{{--                    <span class="self-center text-4xl text-gray-800 transition duration-700 dark:text-white">--}}
+{{--                        {{ $banner?->text }}--}}
+{{--                    </span>--}}
+                @if( $banner?->url )
+                </a>
+                @endif
                 </div>
             </div>
             @endforeach
@@ -51,9 +40,8 @@
     </button>
 
     <div class="hs-carousel-pagination flex justify-center absolute bottom-3 start-0 end-0 space-x-2">
-        @foreach($adsenses as $adsense)
+        @foreach($banners as $banner)
         <span class="hs-carousel-active:bg-blue-700 hs-carousel-active:border-blue-700 size-3 border border-gray-400 rounded-full cursor-pointer dark:border-neutral-600 dark:hs-carousel-active:bg-blue-500 dark:hs-carousel-active:border-blue-500"></span>
         @endforeach
     </div>
 </div>
-<!-- End Slider -->
