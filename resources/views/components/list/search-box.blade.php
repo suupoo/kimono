@@ -46,6 +46,10 @@
             if (order) {
                 redirectUrl.searchParams.set('order', order);
             }
+            const rows = searchParams.get('rows');
+            if (rows) {
+                redirectUrl.searchParams.set('rows', rows);
+            }
 
             // URLパラメータを設定してリダイレクトさせる
             const params = new URLSearchParams();
