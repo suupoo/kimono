@@ -118,32 +118,22 @@ class SideMenu extends Component
         $menu = $this->admin();
         // システムのメニュー項目を追加
         $menu[] = [
-            // 機能
-            'group' => 'system',
-            'text' => __('menu.system.*'),
-            'link' => null,
-            'icon' => 'empty',
-            'active' => Route::Is('system.*'),
-            'items' => [
-                [
-                    'text' => __('menu.system.features'),
-                    'link' => route('system.listFeature'),
-                    'icon' => 'config',
-                    'active' => Route::Is('system.listFeature'),
-                ],
-                [
-                    'text' => __('menu.system.companies'),
-                    'link' => route('system.companies.index'),
-                    'icon' => 'list',
-                    'active' => Route::Is('system.companies.*'),
-                ],
-                [
-                    'text' => __('menu.system.administrators'),
-                    'link' => route('system.administrators.index'),
-                    'icon' => 'list',
-                    'active' => Route::Is('system.administrators.*'),
-                ],
-            ],
+            'text' => __('menu.system.features'),
+            'link' => route('system.listFeature'),
+            'icon' => 'config',
+            'active' => Route::Is('system.listFeature'),
+        ];
+        $menu[] = [
+            'text' => __('menu.system.companies'),
+            'link' => route('system.companies.index'),
+            'icon' => 'config',
+            'active' => Route::Is('system.companies.*'),
+        ];
+        $menu[] = [
+            'text' => __('menu.system.administrators'),
+            'link' => route('system.administrators.index'),
+            'icon' => 'config',
+            'active' => Route::Is('system.administrators.*'),
         ];
 
         return $menu;

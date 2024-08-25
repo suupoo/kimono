@@ -21,6 +21,16 @@ Route::group([], function () {
     Route::get('logout', [\App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout');
 });
 
+Route::group(['prefix' => 'about', 'as' => 'about.'], function () {
+    Route::get('/terms', function () {
+        return view('about.terms');
+    })->name('terms');
+
+    Route::get('/privacy', function () {
+        return view('about.privacy');
+    })->name('privacy');
+});
+
 Route::group(['middleware' => 'auth'], function () {
     // ログイン時
     Route::get('/', function () {
@@ -72,3 +82,13 @@ Route::get('/build/{any}', function ($any) {
 
     return response(\File::get(public_path().'/build/'.$any))->header('Content-Type', $mine_type[$extensions]);
 })->where('any', '.*');
+
+
+// jsファイルを読み込むためのルーティング
+Route::get('js/script.js', function () {
+    return response(\File::get(public_path().'/js/script.js'))->header('Content-Type','application/javascript');
+});
+// cssファイルを読み込むためのルーティング
+Route::get('css/style.css', function () {
+    return response(\File::get(public_path().'/css/style.css'))->header('Content-Type','text/css');
+});

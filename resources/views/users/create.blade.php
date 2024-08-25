@@ -1,6 +1,11 @@
 @extends('layouts')
 
 @section('content')
+
+    <h1 class="custom-headline">
+        {{ $model::NAME }}
+    </h1>
+
     <form action="{{ route($model->getTable().'.store') }}" method="post" class="flex flex-col py-2">
         @csrf
         @if ($errors->any())
@@ -10,9 +15,6 @@
                 @endforeach
             </div>
         @endif
-        <h1 class="text-xl font-bold">
-            {{ $model::NAME }}
-        </h1>
         <div class="flex flex-col w-full">
             @foreach($model::getColumns() as $column)
                 <div class="w-full my-1">

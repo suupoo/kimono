@@ -1,6 +1,11 @@
 @extends('layouts')
 
 @section('content')
+
+    <h1 class="custom-headline">
+        {{ $model::NAME }}
+    </h1>
+
     @php
         $currentRouteName = request()->route()->getName();
         $sort = request()->get('sort');
@@ -67,17 +72,14 @@
 
     {{--　リスト --}}
     <div class="custom-full-container">
-        <h3 class="text-xl font-bold my-2">
-            {{ $model::NAME . __('resource.list') }}
-        </h3>
         <div class="flex w-full justify-end">
             <div class="w-fit flex flex-col">
                 <x-button.create href="{{ route($model->getTable() . '.create') }}"/>
             </div>
         </div>
-        <div class="relative overflow-x-auto">
-            <table class="w-full mt-2 border rounded-xl text-sm text-left rtl:text-right text-gray-500 break-keep">
-                <thead class="text-xs text-white uppercase bg-gray-700">
+
+        <x-table.table>
+            @slot('tHead')
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         {{ __('resource.operation') }}
@@ -92,9 +94,9 @@
                             <div class="flex w-full items-center justify-center space-x-1">
                                 @if(in_array($column->column(), $arraySortable))
                                     <a
-                                            class="p-0.5 @if($sort === $column->column() && $order == 'asc' ) bg-red-400 text-white @else bg-gray-100 text-gray-400 @endif
+                                        class="p-0.5 @if($sort === $column->column() && $order == 'asc' ) bg-red-400 text-white @else bg-gray-100 text-gray-400 @endif
                             "
-                                            href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'asc'])}}"
+                                        href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'asc'])}}"
                                     >
                                         @include('icons.sort-up')
                                     </a>
@@ -103,10 +105,10 @@
                                 <span>{{ $column->label() }}</span>
                                 @if(in_array($column->column(), $arraySortable))
                                     <a
-                                            class="p-0.5
+                                        class="p-0.5
                                 @if($sort === $column->column() && $order == 'desc' ) bg-blue-400 text-white @else bg-gray-100 text-gray-400 @endif
                             "
-                                            href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'desc'])}}"
+                                        href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'desc'])}}"
                                     >
                                         @include('icons.sort-down')
                                     </a>
@@ -115,9 +117,8 @@
                         </th>
                     @endforeach
                 </tr>
-                </thead>
-                <tbody>
-
+            @endslot
+            @slot('tBody')
                 @foreach($items as $item)
                     <tr class="bg-white border-b">
                         <td class="w-full text-xs flex flex-col justify-center space-y-1 m-1">
@@ -159,9 +160,11 @@
                         @endforeach
                     </tr>
                 @endforeach
-                </tbody>
-            </table>
-            {{ $items->links() }}
-        </div>
+            @endslot
+
+            @slot('pagination')
+                {{ $items->links() }}
+            @endslot
+        </x-table.table>
     </div>
 @endsection

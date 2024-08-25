@@ -4,7 +4,7 @@ export default {
       "./resources/**/*.blade.php",
       "./resources/**/*.js",
       "./resources/**/*.vue",
-      "./node_modules/flowbite/**/*.js"
+      "./node_modules/preline/dist/*.js"
   ],
   theme: {
     extend: {
@@ -14,7 +14,7 @@ export default {
         backgroundColor: {
             custom:{
                 'green' : "#00A86B",
-                'red' : "#FF0000",
+                'red' : "#f75454",
                 'blue' : '#1E90FF',
                 'gray' : '#6B7280',
                 'light-gray' : '#F3F4F6',
@@ -23,7 +23,7 @@ export default {
         textColor: {
             custom:{
                 'green' : "#00A86B",
-                'red' : "#FF0000",
+                'red' : "#f75454",
                 'blue' : '#1E90FF',
                 'gray' : '#6B7280',
                 'light-gray' : '#F3F4F6',
@@ -32,7 +32,8 @@ export default {
     },
   },
   plugins: [
-      require('flowbite/plugin')
+      require('preline/plugin'),
+      require('@tailwindcss/forms'),
   ],
 }
 

@@ -1,4 +1,5 @@
 {
+    "Account" : "アカウント",
     "(and :count more error)": "(その他、:countエラーあり)",
     "(and :count more errors)": "(その他、:countエラーあり)|(その他、:countエラーあり)|(その他、:countエラーあり)",
     "add" : "追加",
@@ -6,6 +7,7 @@
     "Are you sure you want to delete the selected data?" : "選択したデータを削除してもよろしいですか？",
     "errors": "エラー",
     "confirm" : "確認",
+    "Features": "機能",
     "Error of General": "エラーが発生しました。もう一度やり直してください。",
     "Forbidden": "禁止されていまåす",
     "Go to page :page": ":Pageページへ",
@@ -23,6 +25,7 @@
     "Logout": "ログアウト",
     "Not Upload" : "アップロードされていません",
     "Not Found": "見つかりません",
+    "Menu" : "メニュー",
     "MyPage": "マイページ",
     "of": "の",
     "Page Expired": "ページが無効です",
@@ -55,5 +58,8 @@
     "Please select the staff to add to the store." : "店舗に追加するスタッフを選んで下さい",
     "the staff to add to the store" : "スタッフ一覧",
     "Please select the administrator to add to the company." : "システム企業に追加するシステム管理者を選んで下さい",
-    "the administrator to add to the company" : "管理者一覧"
+    "the administrator to add to the company" : "管理者一覧",
+    "Privacy-policy" : "プライバシーポリシー",
+    "Terms of service" : "利用規約",
+    "Feedbacks" : "ご意見・ご要望"
 }
