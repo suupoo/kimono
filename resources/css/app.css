@@ -26,4 +26,7 @@
     .custom-headline{
         @apply text-4xl dark:text-white md:my-5 my-3 p-2 text-center;
     }
+    .table-body>tr.selected>td:not(:first-child) {
+        @apply bg-blue-100;
+    }
 }

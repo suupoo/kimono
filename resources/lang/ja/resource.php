@@ -12,6 +12,7 @@ return [
     'show' => '詳細',
     'search' => '検索',
     'copy' => '複製',
+    'export' => 'エクスポート',
     'search_condition' => '検索条件',
     'operation' => '操作',
     'operation-relation' => 'リレーション',

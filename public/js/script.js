@@ -9,4 +9,30 @@ $(function(){
         e.preventDefault();
         $(this).closest('[data-ad]').addClass('hidden');
     });
+
+    $('.table-body>tr').on('click', function() {
+        if ($(this).hasClass('selected')) {
+            $(this).removeClass('selected');
+        }else{
+            $(this).addClass('selected');
+        }
+
+        let exports = [];
+        $('.table-body>tr.selected').each(function() {
+            exports.push($(this).data('id'));
+        });
+        $('input[name="exports"]').val(exports);
+    });
+
+    $('#export-csv').on('click', function(e){
+        e.preventDefault();
+        let valExports = $('input[name="exports"]').val();
+        if(valExports === ''){
+            alert('出力したいデータを選択してください。');
+            return;
+        }
+        // 配列形式に変換
+        let queryExports = '?exports[]=' + valExports.split(',').join('&exports[]=');
+        location.href = $(this).attr('href') + queryExports;
+    });
 })
