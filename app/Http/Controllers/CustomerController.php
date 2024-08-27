@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer as ResourceModel; // モデル紐付け
 use App\Http\Resources\Exports\CustomerExportResource as ExportResource; // エクスポートリソース紐付け
+use App\Http\Controllers\Traits\CsvExportable;
 use App\UseCases\CustomerAction\CreateAction;
 use App\UseCases\CustomerAction\DeleteAction;
 use App\UseCases\CustomerAction\ListAction;
 use App\UseCases\CustomerAction\UpdateAction;
-use App\UseCases\ResourceAction\ExportCsvAction;
 use App\ValueObjects\Customer\Address1;
 use App\ValueObjects\Customer\Address2;
 use App\ValueObjects\Customer\CustomerName;
@@ -20,11 +20,14 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
-use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class CustomerController extends ResourceController
 {
+    use CsvExportable;
+
     protected ResourceModel $model;
+
+    protected ?string $exportResource = ExportResource::class;
 
     /**
      * 一覧表示<index>画面での一覧表示条件設定
@@ -135,15 +138,6 @@ class CustomerController extends ResourceController
      */
     public function destroy(Request $request, string $id, DeleteAction $action): RedirectResponse
     {
-        return $action($request, ResourceModel::class);
-    }
-
-    /**
-     * CSVエクスポート
-     */
-    public function exportCsv(Request $request, ExportCsvAction $action): RedirectResponse|StreamedResponse
-    {
-        $action->setExportResourceClass(ExportResource::class); // リソースクラスを設定
         return $action($request, ResourceModel::class);
     }
 }
