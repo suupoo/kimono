@@ -121,4 +121,21 @@ class ResourceAction extends Action
     {
 
     }
+
+    /**
+     * エクスポート処理前の処理
+     */
+    protected function beforeOfExport(Request $request, string $model, array $attributes = []): void
+    {
+
+    }
+
+
+    /**
+     * エクスポート処理整形後の処理
+     */
+    protected function formattingOfExport(Request $request, string $model, array $attributes = []): void
+    {
+
+    }
 }
