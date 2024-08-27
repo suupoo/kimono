@@ -5,6 +5,10 @@
           'class' => '',
           'value' => request()->get('rows', config('custom.paginate.default'))
         ]) !!}
+        {{-- 全選択ボタン --}}
+        <x-button.action-link id="select-all" class="m-2">
+            {{ __('All') }}
+        </x-button.action-link>
     </div>
     <div class="-m-1.5 overflow-x-auto">
         <div class="p-1.5 min-w-full inline-block align-middle">

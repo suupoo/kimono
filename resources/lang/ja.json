@@ -1,5 +1,6 @@
 {
     "Account" : "アカウント",
+    "All" : "全選択",
     "(and :count more error)": "(その他、:countエラーあり)",
     "(and :count more errors)": "(その他、:countエラーあり)|(その他、:countエラーあり)|(その他、:countエラーあり)",
     "add" : "追加",

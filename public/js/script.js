@@ -24,6 +24,15 @@ $(function(){
         $('input[name="exports"]').val(exports);
     });
 
+    $('#select-all').on('click', function() {
+        $('.table-body>tr').addClass('selected');
+        let exports = [];
+        $('.table-body>tr.selected').each(function() {
+            exports.push($(this).data('id'));
+        });
+        $('input[name="exports"]').val(exports);
+    });
+
     $('#export-csv').on('click', function(e){
         e.preventDefault();
         let valExports = $('input[name="exports"]').val();
