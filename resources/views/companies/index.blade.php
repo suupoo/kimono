@@ -53,7 +53,10 @@
     {{--　リスト --}}
     <div class="custom-full-container">
         <div class="flex w-full justify-end">
-            <div class="w-fit flex flex-col">
+            <div class="w-fit flex flex-row space-x-2">
+                <x-button.export id="export-csv" href="{{ route($model->getTable() . '.export.csv') }}">
+                    CSV
+                </x-button.export>
                 <x-button.create href="{{ route($model->getTable() . '.create') }}"/>
             </div>
         </div>
@@ -100,7 +103,7 @@
                 @endslot
                 @slot('tBody')
                     @foreach($items as $item)
-                        <tr class="bg-white border-b">
+                        <tr class="bg-white border-b" data-id="{{ $item->id }}">
                             <td class="w-full text-xs flex flex-col justify-center space-y-1 m-1">
                                 <x-button.edit href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
                                 <x-button.show href="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}"/>

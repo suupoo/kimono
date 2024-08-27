@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
     })->name('home');
     Route::group([], function () {
         // CSVエクスポート
+        Route::get('companies/export/csv', [CompanyController::class, 'exportCsv'])->name('companies.export.csv');
         Route::get('customers/export/csv', [CustomerController::class, 'exportCsv'])->name('customers.export.csv');
         Route::get('staffs/export/csv', [StaffController::class, 'exportCsv'])->name('staffs.export.csv');
         Route::get('stores/export/csv', [StoreController::class, 'exportCsv'])->name('stores.export.csv');
