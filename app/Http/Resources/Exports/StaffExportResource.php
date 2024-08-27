@@ -4,6 +4,18 @@ namespace App\Http\Resources\Exports;
 
 use Illuminate\Http\Request;
 
+/**
+ * Class StaffExportResource
+ * @property mixed id
+ * @property mixed owner_sequence_no
+ * @property mixed name
+ * @property mixed code
+ * @property mixed tel
+ * @property mixed staff_position
+ * @property mixed join_date
+ * @property mixed quit_date
+ * @property mixed tags
+ */
 class StaffExportResource extends BaseExportResource
 {
     public function csvHeaders(): array

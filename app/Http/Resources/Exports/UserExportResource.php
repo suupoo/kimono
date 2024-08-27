@@ -5,13 +5,12 @@ namespace App\Http\Resources\Exports;
 use Illuminate\Http\Request;
 
 /**
- * Class CustomerExportResource
+ * Class UserExportResource
  * @property mixed id
  * @property mixed owner_sequence_no
- * @property mixed customer_name
- * @property mixed post_code
- * @property mixed address1
- * @property mixed address2
+ * @property mixed name
+ * @property mixed email
+ * @property mixed email_verified_at
  * @property mixed tags
  */
 class UserExportResource extends BaseExportResource

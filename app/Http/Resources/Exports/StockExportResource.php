@@ -4,6 +4,15 @@ namespace App\Http\Resources\Exports;
 
 use Illuminate\Http\Request;
 
+/**
+ * Class StockExportResource
+ * @property mixed id
+ * @property mixed owner_sequence_no
+ * @property mixed name
+ * @property mixed price
+ * @property mixed quantity
+ * @property mixed tags
+ */
 class StockExportResource extends BaseExportResource
 {
     public function csvHeaders(): array
