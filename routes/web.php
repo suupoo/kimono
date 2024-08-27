@@ -38,7 +38,9 @@ Route::group(['middleware' => 'auth'], function () {
         return view('home.index');
     })->name('home');
     Route::group([], function () {
+        // CSVエクスポート
         Route::get('customers/export/csv', [CustomerController::class, 'exportCsv'])->name('customers.export.csv');
+        Route::get('staffs/export/csv', [StaffController::class, 'exportCsv'])->name('staffs.export.csv');
     });
     // customers/edit/{customer}/edit などの{{  }}のパラメータをidで取得するように変更する
     Route::resource('users', UserController::class)->parameters(['users' => 'id'])->middleware(EnsureFeaturesAreActive::using('users'));
