@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Store as ResourceModel; // モデル紐付け
+use App\Http\Resources\Exports\StoreExportResource as ExportResource; // エクスポートリソース紐付け
+use App\Http\Controllers\Traits\CsvExportable;
 use App\UseCases\StoreAction\CreateAction;
 use App\UseCases\StoreAction\DeleteAction;
 use App\UseCases\StoreAction\ListAction;
@@ -21,7 +23,11 @@ use Illuminate\View\View;
 
 class StoreController extends ResourceController
 {
+    use CsvExportable;
+
     protected ResourceModel $model;
+
+    protected ?string $exportResource = ExportResource::class;
 
     /**
      * 一覧表示<index>画面での一覧表示条件設定
