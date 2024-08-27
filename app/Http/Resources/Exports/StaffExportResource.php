@@ -35,7 +35,7 @@ class StaffExportResource extends BaseExportResource
             'staff_position'    => $this->resource->staff_position?->label(),
             'join_date'         => $this->resource->join_date?->format('Y/m/d'),
             'quit_date'         => $this->resource->quit_date?->format('Y/m/d'),
-            'tags'              => $this->resource->tags?->pluck('name')->join('/'),
+            'tags'              => $this->resource->tags,
         ];
     }
 }
