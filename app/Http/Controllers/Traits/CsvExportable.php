@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Traits;
 
 
-use App\Models\Customer as ResourceModel;
 use App\UseCases\ResourceAction\ExportCsvAction;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -22,7 +21,7 @@ trait CsvExportable
 
         // リソースクラスを設定
         $action->setExportResourceClass($this->exportResource);
-        return $action($request, ResourceModel::class);
+        return $action($request, $this->model::class);
     }
 
 }
