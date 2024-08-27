@@ -45,7 +45,7 @@ class CustomerExportResource extends BaseExportResource
             'address1'          => $this->resource->address1,
             'address2'          => $this->resource->address2,
             'note'              => $this->resource->note,
-            'tags'              => $this->resource->tags?->pluck('name')->join('/'),
+            'tags'              => $this->resource->tags,
         ];
     }
 }
