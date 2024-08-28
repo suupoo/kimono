@@ -5,6 +5,7 @@ namespace App\UseCases\ResourceAction;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use SplFileObject;
@@ -116,15 +117,15 @@ class ExportCsvAction extends ResourceAction
             $fileName = "$title.csv";
 
             // データ行の生成
-            $records = [];
+            $records = new Collection();
 
             // ヘッダー
             $emptyResource = new $this->exportResourceClass(new $model);
-            $records[] = $emptyResource->csvHeadersNames();
+            $records->push($emptyResource->csvHeadersNames());
             // データ
             $searchCollection->each(function ($item) use (&$records){
                 $resource = new $this->exportResourceClass($item);
-                $records[] = $resource->toArray(request());
+                $records->push($resource->toArray(request()));
             });
 
             // エクスポート後の処理
