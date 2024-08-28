@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Traits\PdfExportable;
 use App\Models\Customer as ResourceModel; // モデル紐付け
 use App\Http\Resources\Exports\CustomerExportResource as ExportResource; // エクスポートリソース紐付け
 use App\Http\Controllers\Traits\CsvExportable;
@@ -23,7 +24,7 @@ use Illuminate\View\View;
 
 class CustomerController extends ResourceController
 {
-    use CsvExportable;
+    use CsvExportable, PdfExportable;
 
     protected ResourceModel $model;
 

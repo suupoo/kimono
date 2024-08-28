@@ -31,6 +31,19 @@ class CustomerExportResource extends BaseExportResource
     }
 
     /**
+     * PDFへ出力する項目
+     * @return array
+     */
+    public static function pdfOutputColumns(): array
+    {
+        return [
+            new \App\ValueObjects\Customer\PostCode,
+            'address',
+            new \App\ValueObjects\Customer\CustomerName,
+        ];
+    }
+
+    /**
      * Transform the resource into an array.
      *
      * @return array<string, mixed>
@@ -42,8 +55,9 @@ class CustomerExportResource extends BaseExportResource
             'customer_name'     => $this->resource->customer_name,
             'post_code'         => $this->resource->post_code,
             'prefecture'        => $this->resource->prefecture?->label(),
-            'address1'          => $this->resource->address1,
-            'address2'          => $this->resource->address2,
+            'address_1'          => $this->resource->address_1,
+            'address_2'          => $this->resource->address_2,
+            'address'           => $this->resource->address,
             'note'              => $this->resource->note,
             'tags'              => $this->resource->tags,
         ];

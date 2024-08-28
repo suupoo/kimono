@@ -68,4 +68,14 @@ class Customer extends BaseModel
             new DeletedAt,
         ];
     }
+
+    /**
+     * 住所を取得する
+     * @return string
+     */
+    public function getAddressAttribute(): string
+    {
+        $prefecture = $this->prefecture?->label();
+        return sprintf('%s%s%s', $prefecture, $this->address_1, $this->address_2);
+    }
 }

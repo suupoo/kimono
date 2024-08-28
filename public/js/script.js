@@ -44,4 +44,21 @@ $(function(){
         let queryExports = '?exports[]=' + valExports.split(',').join('&exports[]=');
         location.href = $(this).attr('href') + queryExports;
     });
+
+    $('#export-pdf').on('click', function(e){
+        e.preventDefault();
+        const valExports = $('input[name="exports"]').val();
+        if(valExports === ''){
+            alert('出力したいデータを選択してください。');
+            return;
+        }
+        const arrExports = valExports.split(',');
+        if (　arrExports.length >= 10){
+            alert('PDF出力は10件が最大です。');
+            return;
+        }
+        // 配列形式に変換
+        let queryExports = '?exports[]=' + arrExports.join('&exports[]=');
+        location.href = $(this).attr('href') + queryExports;
+    });
 })

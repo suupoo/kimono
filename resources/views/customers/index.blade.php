@@ -73,9 +73,12 @@
     {{--　リスト --}}
     <div class="custom-full-container">
         <div class="flex w-full justify-end">
-            <div class="w-fit flex flex-row space-x-2">
+            <div class="w-fit flex flex-">
                 <x-button.export id="export-csv" href="{{ route($model->getTable() . '.export.csv') }}">
                     CSV
+                </x-button.export>
+                <x-button.export id="export-pdf" href="{{ route($model->getTable() . '.export.pdf') }}">
+                    PDF
                 </x-button.export>
                 <x-button.create href="{{ route($model->getTable() . '.create') }}"/>
             </div>
