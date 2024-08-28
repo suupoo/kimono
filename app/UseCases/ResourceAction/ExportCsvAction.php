@@ -112,7 +112,8 @@ class ExportCsvAction extends ResourceAction
             // エクスポート処理
             $timestamp = Carbon::now()->format('YmdHis');
             $name = $model::NAME;
-            $fileName = "{$timestamp}_{$name}.csv";
+            $title = "{$timestamp}_{$name}";
+            $fileName = "$title.pdf";
 
             // データ行の生成
             $records = [];
