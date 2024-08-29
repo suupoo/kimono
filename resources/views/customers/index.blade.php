@@ -78,7 +78,7 @@
                     CSV
                 </x-button.export>
                 <x-button.export id="export-pdf" href="{{ route($model->getTable() . '.export.pdf') }}">
-                    PDF
+                    ラベル
                 </x-button.export>
                 <x-button.create href="{{ route($model->getTable() . '.create') }}"/>
             </div>
