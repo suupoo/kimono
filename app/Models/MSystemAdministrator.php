@@ -82,7 +82,6 @@ class MSystemAdministrator extends Authenticatable
 
     /**
      * システム企業
-     * @return BelongsToMany
      */
     public function systemCompanies(): BelongsToMany
     {
@@ -96,6 +95,7 @@ class MSystemAdministrator extends Authenticatable
 
     /**
      * アクセサ：システム管理者かどうかを判定する
+     *
      * @note $this->is_system で呼び出す
      */
     public function isSystem()
@@ -105,6 +105,7 @@ class MSystemAdministrator extends Authenticatable
 
     /**
      * アクセサ：画像URLを取得する
+     *
      * @note $this->image で呼び出す
      */
     public function getImageUrlAttribute()

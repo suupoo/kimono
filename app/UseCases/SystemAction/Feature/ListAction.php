@@ -12,20 +12,17 @@ use Illuminate\Support\Facades\Log;
  */
 class ListAction extends BaseAction
 {
-
     public function __invoke(Request $request, string $model, array $attributes = [])
     {
         try {
             // リソースに紐づいたモデル
             $model = new $model;
 
-            return
-                $model::switchable()->get();
+            return $model::switchable()->get();
 
         } catch (\Exception $e) {
             // 例外処理
             Log::error(('error:'.__METHOD__), ['message' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()]);
         }
     }
-
 }

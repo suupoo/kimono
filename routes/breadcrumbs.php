@@ -42,6 +42,7 @@ Breadcrumbs::for('system.listFeature', function (BreadcrumbTrail $trail) {
 
 $systemResourceModels = [
     new \App\Models\MSystemAdministrator,
+    new \App\Models\MSystemBanner,
     new \App\Models\MSystemCompany,
 ];
 
@@ -66,7 +67,7 @@ foreach ($systemResourceModels as $systemModel) {
         $id = request()->route('id');
         $trail->parent("system.$resource.index");
         $model = $systemModel::find($id);
-        $trail->push( $model?->name ?? __('resource.show'), route("system.$resource.show", $id));
+        $trail->push($model?->name ?? __('resource.show'), route("system.$resource.show", $id));
     });
 
     // ホーム > リソースモデル > 編集
@@ -91,6 +92,7 @@ $resourceModels = [
     new \App\Models\Staff,
     new \App\Models\Notification,
     new \App\Models\Company,
+    new \App\Models\Stock,
 ];
 
 foreach ($resourceModels as $model) {
@@ -114,7 +116,7 @@ foreach ($resourceModels as $model) {
         $id = request()->route('id');
         $trail->parent("$resource.index");
         $model = $model::find($id);
-        $trail->push( $model?->name ?? __('resource.show'), route("$resource.show", $id));
+        $trail->push($model?->name ?? __('resource.show'), route("$resource.show", $id));
     });
 
     // ホーム > リソースモデル > 編集

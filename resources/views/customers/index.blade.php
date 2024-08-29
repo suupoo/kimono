@@ -1,6 +1,11 @@
 @extends('layouts')
 
 @section('content')
+
+    <h1 class="custom-headline">
+        {{ $model::NAME . __('resource.list') }}
+    </h1>
+
     @php
         $currentRouteName = request()->route()->getName();
         $sort = request()->get('sort');
@@ -31,11 +36,11 @@
                     @endphp
                     @if(in_array($column->column(), $arraySearchable))
 
-                        @if($column instanceof \App\ValueObjects\Customer\Id)
+                        @if($column instanceof \App\ValueObjects\Customer\OwnerSequenceNo)
                             {!! $column->input(['class' => 'no-spinner']) !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Customer\Name)
+                        @if($column instanceof \App\ValueObjects\Customer\CustomerName)
                             {!! $column->input(['class' => '']) !!}
                         @endif
 
@@ -55,6 +60,10 @@
                             {!! $column->input(['class' => '']) !!}
                         @endif
 
+                        @if($column instanceof \App\ValueObjects\Customer\Tags)
+                            {!! $column->input(['class' => '']) !!}
+                        @endif
+
                     @endif
                 @endforeach
             </x-list.search-box>
@@ -63,23 +72,30 @@
 
     {{--　リスト --}}
     <div class="custom-full-container">
-        <h3 class="text-xl font-bold my-2">
-            {{ $model::NAME . __('resource.list') }}
-        </h3>
         <div class="flex w-full justify-end">
-            <div class="w-fit flex flex-col">
+            <div class="w-fit flex flex-">
+                <x-button.export id="export-csv" href="{{ route($model->getTable() . '.export.csv') }}">
+                    CSV
+                </x-button.export>
+                <x-button.export id="export-pdf" href="{{ route($model->getTable() . '.export.pdf') }}">
+                    ラベル
+                </x-button.export>
                 <x-button.create href="{{ route($model->getTable() . '.create') }}"/>
             </div>
         </div>
-        <div class="relative overflow-x-auto">
-            <table class="w-full mt-2 border rounded-xl text-sm text-left rtl:text-right text-gray-500 break-keep">
-                <thead class="text-xs text-white uppercase bg-gray-700">
+
+        <x-table.table>
+            @slot('tHead')
                 <tr>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="p-1.5">
                         {{ __('resource.operation') }}
                     </th>
                     @foreach($model::getColumns() as $column)
-                        @if(!($column instanceof \App\ValueObjects\Customer\OwnerSystemCompany)){{-- 所有企業IDは表示しない --}}
+                        @php
+                            if ($column instanceof \App\ValueObjects\Customer\Id) continue;
+                            elseif ($column instanceof \App\ValueObjects\Customer\OwnerSystemCompany) continue;
+                            elseif ($column instanceof \App\ValueObjects\Customer\DeletedAt) continue;
+                        @endphp
                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
                             <div class="flex w-full items-center justify-center space-x-1">
                                 @if(in_array($column->column(), $arraySortable))
@@ -105,15 +121,14 @@
                                 @endif
                             </div>
                         </th>
-                        @endif{{-- 所有企業IDは表示しない --}}
                     @endforeach
                 </tr>
-                </thead>
-                <tbody>
+            @endslot
 
+            @slot('tBody')
                 @foreach($items as $item)
 
-                    <tr class="bg-white border-b">
+                    <tr class="bg-white border-b" data-id="{{ $item->id }}">
                         <td class="w-full text-xs flex flex-col justify-center space-y-1 m-1">
                             <x-button.edit href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
                             <x-button.show href="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}"/>
@@ -124,7 +139,12 @@
                             />
                         </td>
                         @foreach($model::getColumns() as $column)
-                            @if(!($column instanceof \App\ValueObjects\Customer\OwnerSystemCompany)){{-- 所有企業IDは表示しない --}}
+                            @php
+                                if ($column instanceof \App\ValueObjects\Customer\Id) continue;
+                                elseif ($column instanceof \App\ValueObjects\Customer\OwnerSystemCompany) continue;
+                                elseif ($column instanceof \App\ValueObjects\Customer\DeletedAt) continue;
+                            @endphp
+
                             <td class="px-6 py-4">
                                 @php
                                     $columnName = $column->column();
@@ -136,13 +156,14 @@
                                     {{ $item?->$columnName }}
                                 @endif
                             </td>
-                            @endif{{-- 所有企業IDは表示しない --}}
                         @endforeach
                     </tr>
                 @endforeach
-                </tbody>
-            </table>
-            {{ $items->links() }}
-        </div>
+            @endslot
+
+            @slot('pagination')
+                {{ $items->links() }}
+            @endslot
+        </x-table.table>
     </div>
 @endsection

@@ -68,8 +68,8 @@ return [
                 'url' => env('CUSTOM_FILESYSTEM_URL_OBJECT_STORAGE'),
                 'version' => env('CUSTOM_FILESYSTEM_URL_OBJECT_STORAGE_VERSION'),
             ],
-            'temporary_url_key' => env('CUSTOM_FILESYSTEM_TEMPORARY_URL_KEY')
-        ]
+            'temporary_url_key' => env('CUSTOM_FILESYSTEM_TEMPORARY_URL_KEY'),
+        ],
 
     ],
 

@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // テーブルがあるかどうかを確認
-        if (DB::getSchemaBuilder()->hasTable((new MSystemFeature())->getTable()) ) {
+        if (DB::getSchemaBuilder()->hasTable((new MSystemFeature())->getTable())) {
             $enabledMFeatures = MSystemFeature::where(Enable::NAME, Flag::ON->value)->get();
             // 有効になっている機能のみをキーで定義��て有効化
             foreach ($enabledMFeatures as $enabledMFeature) {

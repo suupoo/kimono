@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Staff as ResourceModel; // モデル紐付け
+use App\Http\Resources\Exports\StaffExportResource as ExportResource; // エクスポートリソース紐付け
+use App\Http\Controllers\Traits\CsvExportable;
 use App\UseCases\StaffAction\CreateAction;
 use App\UseCases\StaffAction\DeleteAction;
 use App\UseCases\StaffAction\ListAction;
@@ -10,10 +12,11 @@ use App\UseCases\StaffAction\UpdateAction;
 use App\ValueObjects\Staff\Code;
 use App\ValueObjects\Staff\JoinDate;
 use App\ValueObjects\Staff\Name;
+use App\ValueObjects\Staff\OwnerSequenceNo;
 use App\ValueObjects\Staff\QuitDate;
-use App\ValueObjects\Staff\Tel;
-use App\ValueObjects\Staff\Id;
 use App\ValueObjects\Staff\StaffPosition;
+use App\ValueObjects\Staff\Tags;
+use App\ValueObjects\Staff\Tel;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -21,7 +24,11 @@ use Illuminate\View\View;
 
 class StaffController extends ResourceController
 {
+    use CsvExportable;
+
     protected ResourceModel $model;
+
+    protected ?string $exportResource = ExportResource::class;
 
     /**
      * 一覧表示<index>画面での一覧表示条件設定
@@ -30,7 +37,7 @@ class StaffController extends ResourceController
     {
         return [
             'sortable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new Name,
                 new Code,
                 new Tel,
@@ -39,15 +46,16 @@ class StaffController extends ResourceController
                 new StaffPosition,
             ]),
             'searchable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new Name,
                 new Code,
                 new Tel,
                 new JoinDate,
                 new QuitDate,
+                new Tags,
                 new StaffPosition,
             ]),
-            'paginate' => 10,
+            'paginate' => request()->get('rows', config('custom.paginate.default')),
         ];
     }
 
@@ -83,8 +91,8 @@ class StaffController extends ResourceController
     public function create(): View
     {
         $model = (request()->has('copy'))
-            ?$this->model->findOrFail(request()->get('copy'))  // 複製
-            :(new $this->model);                               // 新規作成
+            ? $this->model->findOrFail(request()->get('copy'))  // 複製
+            : (new $this->model);                               // 新規作成
         $model->image = null;
         $view = $model->getTable().'.create'; // staffs/create.blade.php
 

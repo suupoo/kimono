@@ -8,20 +8,25 @@ use App\ValueObjects\Store\Address1;
 use App\ValueObjects\Store\Address2;
 use App\ValueObjects\Store\Code;
 use App\ValueObjects\Store\CreatedAt;
+use App\ValueObjects\Store\CreatedUser;
+use App\ValueObjects\Store\DeletedAt;
 use App\ValueObjects\Store\Id;
 use App\ValueObjects\Store\Name;
+use App\ValueObjects\Store\OwnerSequenceNo;
 use App\ValueObjects\Store\OwnerSystemCompany;
 use App\ValueObjects\Store\PostCode;
 use App\ValueObjects\Store\Prefecture;
+use App\ValueObjects\Store\Tags;
 use App\ValueObjects\Store\UpdatedAt;
+use App\ValueObjects\Store\UpdatedUser;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 #[ScopedBy([OwnerScope::class])]
-class Store extends Model
+class Store extends BaseModel
 {
-    use HasFactory, ModelFillOwnerIdObservable;
+    use HasFactory, ModelFillOwnerIdObservable, SoftDeletes;
 
     protected $table = 'stores';
 
@@ -33,6 +38,7 @@ class Store extends Model
 
     protected $guarded = [
         'id',
+        'owner_sequence_no',
         'owner_system_company',
         'created_at',
         'updated_at',
@@ -45,6 +51,7 @@ class Store extends Model
     {
         return [
             new Id,
+            new OwnerSequenceNo,
             new OwnerSystemCompany,
             new Name,
             new Code,
@@ -52,8 +59,12 @@ class Store extends Model
             new Prefecture,
             new Address1,
             new Address2,
+            new Tags,
             new CreatedAt,
+            new CreatedUser,
             new UpdatedAt,
+            new UpdatedUser,
+            new DeletedAt,
         ];
     }
 

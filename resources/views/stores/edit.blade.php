@@ -1,6 +1,11 @@
 @extends('layouts')
 
 @section('content')
+
+    <h1 class="custom-headline">
+        {{ $model::NAME }}
+    </h1>
+
     @php
         $id = $model->id;
     @endphp
@@ -15,9 +20,6 @@
                 @endforeach
             </div>
         @endif
-        <h1 class="text-xl font-bold">
-            {{ $model::NAME }}
-        </h1>
         <div class="flex flex-col w-full">
             @foreach($model::getColumns() as $column)
                 <div class="w-full my-1">
@@ -27,7 +29,7 @@
                             $storeNameColumn = $column->column();
                             $storeNameValue  = $model->$storeNameColumn;
                         @endphp
-                        {!! $column->input(['required' => true, 'class' => '', 'value' => $storeNameValue])?->render() !!}
+                        {!! $column->input(['required' => true, 'class' => '', 'value' => $storeNameValue]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Store\Code)
@@ -35,7 +37,7 @@
                             $codeColumn = $column->column();
                             $codeValue  = $model->$codeColumn;
                         @endphp
-                        {!! $column->input(['required' => true, 'class' => '', 'value' => $codeValue])?->render() !!}
+                        {!! $column->input(['required' => true, 'class' => '', 'value' => $codeValue]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Store\PostCode)
@@ -43,7 +45,7 @@
                             $postCodeColumn = $column->column();
                             $postCodeValue  = $model->$postCodeColumn;
                         @endphp
-                        {!! $column->input(['required' => false, 'class' => '', 'value' => $postCodeValue])?->render() !!}
+                        {!! $column->input(['required' => false, 'class' => '', 'value' => $postCodeValue]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Store\Prefecture)
@@ -51,7 +53,7 @@
                             $prefectureColumn = $column->column();
                             $prefectureValue  = $model->$prefectureColumn;
                         @endphp
-                        {!! $column->input(['required' => false, 'class' => '', 'value' => $prefectureValue?->value])?->render() !!}
+                        {!! $column->input(['required' => false, 'class' => '', 'value' => $prefectureValue?->value]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Store\Address1)
@@ -59,7 +61,7 @@
                             $address1Column = $column->column();
                             $address1Value  = $model->$address1Column;
                         @endphp
-                        {!! $column->input(['required' => false, 'class' => '', 'value' => $address1Value])?->render() !!}
+                        {!! $column->input(['required' => false, 'class' => '', 'value' => $address1Value]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Store\Address2)
@@ -67,7 +69,20 @@
                             $address2Column = $column->column();
                             $address2Value  = $model->$address2Column;
                         @endphp
-                        {!! $column->input(['required' => false, 'class' => '', 'value' => $address2Value])?->render() !!}
+                        {!! $column->input(['required' => false, 'class' => '', 'value' => $address2Value]) !!}
+                    @endif
+
+                    @if($column instanceof \App\ValueObjects\Store\Tags)
+                        @php
+                            $tagsColumn = $column->column();
+                            $tagsValue  = $model->$tagsColumn;
+                        @endphp
+                        <div data-tags-container="tags">
+                            {!! $column->input(['required' => false, 'value' => $tagsValue]) !!}
+                            <div data-tags="tags" class="flex flex-row items-center flex-wrap my-1 space-x-1">
+                                @include('icons.tag', ['class' => 'w-6 h-6 p-1'])
+                            </div>
+                        </div>
                     @endif
 
                 </div>
@@ -76,3 +91,8 @@
         <x-button.update/>
     </form>
 @endsection
+
+@section('page-script')
+    @includeIf('scripts.tags')
+@endsection
+

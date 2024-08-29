@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company as ResourceModel; // モデル紐付け
+use App\Http\Resources\Exports\CompanyExportResource as ExportResource; // エクスポートリソース紐付け
+use App\Http\Controllers\Traits\CsvExportable;
 use App\UseCases\CompanyAction\CreateAction;
 use App\UseCases\CompanyAction\DeleteAction;
 use App\UseCases\CompanyAction\ListAction;
 use App\UseCases\CompanyAction\UpdateAction;
-use App\ValueObjects\Company\Id;
 use App\ValueObjects\Company\Name;
+use App\ValueObjects\Customer\OwnerSequenceNo;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -16,7 +18,11 @@ use Illuminate\View\View;
 
 class CompanyController extends ResourceController
 {
+    use CsvExportable;
+
     protected ResourceModel $model;
+
+    protected ?string $exportResource = ExportResource::class;
 
     /**
      * 一覧表示<index>画面での一覧表示条件設定
@@ -25,14 +31,14 @@ class CompanyController extends ResourceController
     {
         return [
             'sortable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new Name,
             ]),
             'searchable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new Name,
             ]),
-            'paginate' => 10,
+            'paginate' => request()->get('rows', config('custom.paginate.default')),
         ];
     }
 
@@ -68,8 +74,8 @@ class CompanyController extends ResourceController
     public function create(): View
     {
         $model = (request()->has('copy'))
-            ?$this->model->findOrFail(request()->get('copy'))  // 複製
-            :(new $this->model);                               // 新規作成
+            ? $this->model->findOrFail(request()->get('copy'))  // 複製
+            : (new $this->model);                               // 新規作成
         $view = $model->getTable().'.create'; // companies/create.blade.php
 
         return view($view, compact('model'));

@@ -17,6 +17,7 @@ use Illuminate\View\View;
 class SystemCompanyController extends ResourceController
 {
     protected ResourceModel $model;
+
     protected ?string $prefix = 'system.companies';
 
     /**
@@ -33,7 +34,7 @@ class SystemCompanyController extends ResourceController
                 new Id,
                 new Name,
             ]),
-            'paginate' => 10,
+            'paginate' => request()->get('rows', config('custom.paginate.default')),
         ];
     }
 
@@ -74,11 +75,11 @@ class SystemCompanyController extends ResourceController
     {
         $prefix = $this->prefix;
         $model = (request()->has('copy'))
-            ?$this->model->findOrFail(request()->get('copy'))  // 複製
-            :(new $this->model);                               // 新規作成
+            ? $this->model->findOrFail(request()->get('copy'))  // 複製
+            : (new $this->model);                               // 新規作成
         $view = "$prefix.create"; // companies/create.blade.php
 
-        return view($view, compact('model','prefix'));
+        return view($view, compact('model', 'prefix'));
     }
 
     /**
@@ -87,6 +88,7 @@ class SystemCompanyController extends ResourceController
     public function store(Request $request, CreateAction $action): RedirectResponse
     {
         $action->setPrefix($this->prefix); // プレフィックス設定
+
         return $action($request, ResourceModel::class);
     }
 
@@ -99,7 +101,7 @@ class SystemCompanyController extends ResourceController
         $model = $this->model->findOrFail($id);
         $view = "$prefix.edit"; // companies/edit.blade.php
 
-        return view($view, compact('model','prefix'));
+        return view($view, compact('model', 'prefix'));
     }
 
     /**
@@ -108,6 +110,7 @@ class SystemCompanyController extends ResourceController
     public function update(Request $request, int $id, UpdateAction $action): RedirectResponse
     {
         $action->setPrefix($this->prefix); // プレフィックス設定
+
         return $action($request, ResourceModel::class);
     }
 
@@ -120,7 +123,7 @@ class SystemCompanyController extends ResourceController
         $model = $this->model->findOrFail($id);
         $view = "$prefix.show"; // companies/show.blade.php
 
-        return view($view, compact('model','prefix'));
+        return view($view, compact('model', 'prefix'));
     }
 
     /**
@@ -129,6 +132,7 @@ class SystemCompanyController extends ResourceController
     public function destroy(Request $request, string $id, DeleteAction $action): RedirectResponse
     {
         $action->setPrefix($this->prefix); // プレフィックス設定
+
         return $action($request, ResourceModel::class);
     }
 }

@@ -19,6 +19,9 @@ abstract class ResourceController extends Controller
         if (! $request->get('order')) {
             $redirectParam['order'] = 'asc';
         }
+        if (! $request->get('rows')) {
+            $redirectParam['rows'] = config('custom.paginate.default');
+        }
 
         return $redirectParam;
     }

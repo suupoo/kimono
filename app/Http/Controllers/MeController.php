@@ -17,7 +17,7 @@ class MeController extends Controller
         return view('me.list', compact('model'));
     }
 
-    public function save(Request $request, SaveAction $action) : RedirectResponse
+    public function save(Request $request, SaveAction $action): RedirectResponse
     {
         return $action($request, ResourceModel::class);
     }

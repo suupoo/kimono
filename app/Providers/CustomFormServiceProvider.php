@@ -12,7 +12,7 @@ class CustomFormServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind('custom-form', function($app) {
+        $this->app->bind('custom-form', function ($app) {
             return new CustomFormService();
         });
     }

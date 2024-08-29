@@ -2,9 +2,9 @@
 
 namespace App\UseCases\ResourceAction;
 
-use Illuminate\Http\Request;
 use App\UseCases\Action;
 use App\UseCases\Traits\PrefixSettable;
+use Illuminate\Http\Request;
 
 class ResourceAction extends Action
 {
@@ -118,6 +118,23 @@ class ResourceAction extends Action
      * コミット後の処理
      */
     protected function afterOfCommit(Request $request, string $model, array $attributes = []): void
+    {
+
+    }
+
+    /**
+     * エクスポート処理前の処理
+     */
+    protected function beforeOfExport(Request $request, string $model, array $attributes = []): void
+    {
+
+    }
+
+
+    /**
+     * エクスポート処理整形後の処理
+     */
+    protected function formattingOfExport(Request $request, string $model, array $attributes = []): void
     {
 
     }

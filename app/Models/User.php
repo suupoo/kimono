@@ -2,24 +2,30 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\OwnerScope;
 use App\Models\Traits\ModelFillOwnerIdObservable;
 use App\ValueObjects\User\CreatedAt;
+use App\ValueObjects\User\CreatedUser;
+use App\ValueObjects\User\DeletedAt;
 use App\ValueObjects\User\Email;
 use App\ValueObjects\User\EmailVerifiedAt;
 use App\ValueObjects\User\Id;
 use App\ValueObjects\User\Name;
+use App\ValueObjects\User\OwnerSequenceNo;
 use App\ValueObjects\User\OwnerSystemCompany;
 use App\ValueObjects\User\Password;
 use App\ValueObjects\User\RememberToken;
+use App\ValueObjects\User\Tags;
 use App\ValueObjects\User\UpdatedAt;
+use App\ValueObjects\User\UpdatedUser;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Models\Scopes\OwnerScope;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 #[ScopedBy([OwnerScope::class])]
 class User extends BaseModel
 {
-    use HasFactory, ModelFillOwnerIdObservable;
+    use HasFactory, ModelFillOwnerIdObservable, SoftDeletes;
 
     protected $table = 'users';
 
@@ -27,9 +33,11 @@ class User extends BaseModel
 
     protected $guarded = [
         'id',
+        'owner_sequence_no',
         'owner_system_company',
         'created_at',
         'updated_at',
+        'deleted_at',
     ];
 
     /**
@@ -64,14 +72,19 @@ class User extends BaseModel
     {
         return [
             new Id,
+            new OwnerSequenceNo,
             new OwnerSystemCompany,
             new Name,
             new Email,
             new EmailVerifiedAt,
             new Password,
             new RememberToken,
+            new Tags,
             new CreatedAt,
+            new CreatedUser,
             new UpdatedAt,
+            new UpdatedUser,
+            new DeletedAt,
         ];
     }
 }

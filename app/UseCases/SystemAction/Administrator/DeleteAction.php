@@ -16,7 +16,7 @@ class DeleteAction extends BaseAction
     {
         $entity = $attributes['entity'];
         // ログイン中のユーザは削除できない
-        if(Auth::id() === $entity->id){
+        if (Auth::id() === $entity->id) {
             throw new \Exception(__('auth.current_logged_in_user_must_not_delete_itself'));
         }
     }

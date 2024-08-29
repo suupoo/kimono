@@ -7,5 +7,9 @@
             }
 
         });
+        $('.ad-close').on('click', function(e) {
+            e.preventDefault();
+            $(this).closest('[data-ad]').addClass('hidden');
+        });
     })
 </script>

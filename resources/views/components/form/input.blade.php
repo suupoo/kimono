@@ -20,7 +20,7 @@
     @endif
 </label>
 <input
-    class="w-full h-full text-sm border border-gray-300 rounded-md pl-2 {{$class}}"
+    class="w-full h-full min-h-8 text-sm border border-gray-300 rounded-md pl-2 {{$class}}"
     id="{{ $column->id() }}"
     name="{{ $column->id() }}"
     type="{{ $column->inputType() }}"

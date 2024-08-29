@@ -7,10 +7,12 @@ use Illuminate\Support\Facades\Storage;
 class CustomStorageService
 {
     protected $storage;
+
     protected $disk;
+
     protected $config;
 
-    public function disk():self
+    public function disk(): self
     {
         $disk = config('filesystems.default');
         $config = config('filesystems.disks.'.$disk);
@@ -29,10 +31,6 @@ class CustomStorageService
 
     /**
      * ファイルのアップロード
-     * @param $path
-     * @param $content
-     * @param array $options
-     * @return false|string
      */
     public function putFile($path, $content, array $options = []): false|string
     {
@@ -41,11 +39,6 @@ class CustomStorageService
 
     /**
      * ファイル名をつけてファイルのアップロード
-     * @param $path
-     * @param $content
-     * @param $fileName
-     * @param array $options
-     * @return false|string
      */
     public function putFileAs($path, $content, $fileName, array $options = []): false|string
     {
@@ -54,19 +47,14 @@ class CustomStorageService
 
     /**
      * 一時的なURLを取得
-     * @param $path
-     * @param $expiration
-     * @return string
      */
-    public function temporaryUrl($path, $expiration):string
+    public function temporaryUrl($path, $expiration): string
     {
         return $this->storage->temporaryUrl($path, $expiration);
     }
 
     /**
      * ファイルの削除
-     * @param string|array $paths
-     * @return void
      */
     public function delete(string|array $paths): void
     {

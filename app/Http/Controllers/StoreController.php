@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Store as ResourceModel; // モデル紐付け
+use App\Http\Resources\Exports\StoreExportResource as ExportResource; // エクスポートリソース紐付け
+use App\Http\Controllers\Traits\CsvExportable;
 use App\UseCases\StoreAction\CreateAction;
 use App\UseCases\StoreAction\DeleteAction;
 use App\UseCases\StoreAction\ListAction;
 use App\UseCases\StoreAction\StaffListAction;
 use App\UseCases\StoreAction\StaffSaveAction;
 use App\UseCases\StoreAction\UpdateAction;
+use App\ValueObjects\Staff\OwnerSequenceNo;
 use App\ValueObjects\Store\Address1;
 use App\ValueObjects\Store\Address2;
-use App\ValueObjects\Store\Id;
 use App\ValueObjects\Store\PostCode;
 use App\ValueObjects\Store\Prefecture;
 use Illuminate\Http\RedirectResponse;
@@ -21,7 +23,11 @@ use Illuminate\View\View;
 
 class StoreController extends ResourceController
 {
+    use CsvExportable;
+
     protected ResourceModel $model;
+
+    protected ?string $exportResource = ExportResource::class;
 
     /**
      * 一覧表示<index>画面での一覧表示条件設定
@@ -30,20 +36,20 @@ class StoreController extends ResourceController
     {
         return [
             'sortable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new PostCode,
                 new Prefecture,
                 new Address1,
                 new Address2,
             ]),
             'searchable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new PostCode,
                 new Prefecture,
                 new Address1,
                 new Address2,
             ]),
-            'paginate' => 10,
+            'paginate' => request()->get('rows', config('custom.paginate.default')),
         ];
     }
 
@@ -79,8 +85,8 @@ class StoreController extends ResourceController
     public function create(): View
     {
         $model = (request()->has('copy'))
-            ?$this->model->findOrFail(request()->get('copy'))  // 複製
-            :(new $this->model);                               // 新規作成
+            ? $this->model->findOrFail(request()->get('copy'))  // 複製
+            : (new $this->model);                               // 新規作成
         $view = $model->getTable().'.create'; // stores/create.blade.php
 
         return view($view, compact('model'));
@@ -139,10 +145,6 @@ class StoreController extends ResourceController
      */
 
     /**
-     * @param Request $request
-     * @param string $id
-     * @param StaffListAction $action
-     * @return View
      * @throws \Exception
      */
     public function staffs(Request $request, string $id, StaffListAction $action): View
@@ -158,10 +160,6 @@ class StoreController extends ResourceController
     }
 
     /**
-     * @param Request $request
-     * @param string $id
-     * @param StaffSaveAction $action
-     * @return RedirectResponse
      * @throws \Exception
      */
     public function saveStaffs(Request $request, string $id, StaffSaveAction $action): RedirectResponse

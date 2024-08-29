@@ -3,7 +3,6 @@
 namespace App\ValueObjects\User;
 
 use App\ValueObjects\ValueObject;
-use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
 
@@ -49,18 +48,5 @@ class Id extends ValueObject
                 'integer',
             ]),
         };
-    }
-
-    /**
-     * 入力項目を返す
-     */
-    public function input(array $attributes = []): View
-    {
-        $class = implode(' ', $attributes);
-
-        return view('components.form.input', [
-            'column' => $this,
-            'attributes' => $attributes,
-        ]);
     }
 }

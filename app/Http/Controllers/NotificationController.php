@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Notification as ResourceModel; // モデル紐付け
-use App\UseCases\NotificationAction\ListAction;
 use App\UseCases\NotificationAction\CreateAction;
 use App\UseCases\NotificationAction\DeleteAction;
+use App\UseCases\NotificationAction\ListAction;
 use App\UseCases\NotificationAction\UpdateAction;
-use App\ValueObjects\Notification\Id;
+use App\ValueObjects\Notification\OwnerSequenceNo;
 use App\ValueObjects\Notification\PublishAt;
 use App\ValueObjects\Notification\Status;
+use App\ValueObjects\Notification\Tags;
 use App\ValueObjects\Notification\Title;
 use App\ValueObjects\Notification\Type;
 use Illuminate\Http\RedirectResponse;
@@ -28,20 +29,21 @@ class NotificationController extends ResourceController
     {
         return [
             'sortable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new Title,
                 new PublishAt,
                 new Status,
                 new Type,
             ]),
             'searchable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new Title,
                 new PublishAt,
                 new Status,
                 new Type,
+                new Tags,
             ]),
-            'paginate' => 10,
+            'paginate' => request()->get('rows', config('custom.paginate.default')),
         ];
     }
 
@@ -77,8 +79,8 @@ class NotificationController extends ResourceController
     public function create(): View
     {
         $model = (request()->has('copy'))
-            ?$this->model->findOrFail(request()->get('copy'))  // 複製
-            :(new $this->model);                               // 新規作成
+            ? $this->model->findOrFail(request()->get('copy'))  // 複製
+            : (new $this->model);                               // 新規作成
         $view = $model->getTable().'.create'; // notifications/create.blade.php
 
         return view($view, compact('model'));

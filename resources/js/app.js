@@ -1,6 +1,9 @@
 import './bootstrap';
 import 'modern-css-reset';
-import 'flowbite';
+import 'preline';
+import '@preline/overlay';
+import '@preline/carousel';
+import '@popperjs/core';
 import jQuery from 'jquery';
 import Quill from 'quill';
 import "quill/dist/quill.snow.css";

@@ -14,7 +14,7 @@
 >
     {{ old($name, request()->get($name, $value)) }}
 </textarea>
-<div id="editor-{{ $id }}" class="!h-[200px]">
+<div id="editor-{{ $id }}" class="custom-wysiwyg">
     {!! old($name, request()->get($name, $value)) !!}
 </div>
 

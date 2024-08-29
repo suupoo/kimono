@@ -33,9 +33,10 @@ class CustomAdminAdd extends Command
      */
     public function handle()
     {
-        if (!DB::table('administrators')->exists()) {
+        $table = MSystemAdministrator::getTable();
+        if (! DB::table($table)->exists()) {
             // テーブルが存在していない場合
-            throw new \Exception('administrators table is not exists. Please run php artisan migrate first.');
+            throw new \Exception("$table table is not exists. Please run php artisan migrate first.");
         }
 
         $administratorRoles = [];
@@ -45,11 +46,11 @@ class CustomAdminAdd extends Command
 
         $name = $this->argument('name');
         $email = $this->argument('email');
-        if($this->option('init')){
+        if ($this->option('init')) {
             // 初期化の場合
             $password = 'password';
             $role = AdministratorRole::SYSTEM->value;
-        }else{
+        } else {
             // 通常実行
             $password = $this->secret('Please enter the password of the administrator.');
             $role = $this->choice('Please select the role of the administrator.', $administratorRoles);
@@ -58,7 +59,7 @@ class CustomAdminAdd extends Command
         // メールアドレスが既に存在しているか確認
         if (MSystemAdministrator::where(Email::NAME, $email)->exists()) {
             // 存在している場合
-            throw new \Exception('Administrator ' . $email . ' is already exists.');
+            throw new \Exception('Administrator '.$email.' is already exists.');
         }
 
         // カラムインスタンスを生成
@@ -69,13 +70,13 @@ class CustomAdminAdd extends Command
 
         // バリデーション
         Validator::validate([
-            $columnName::NAME  => $name,
+            $columnName::NAME => $name,
             $columnEmail::NAME => $email,
             $columnPassword::NAME => $password,
             $columnPassword::NAME.'_confirmation' => $password,
             $columnRole::NAME => $role,
         ], [
-            $columnName::NAME  => $columnName->rules(),
+            $columnName::NAME => $columnName->rules(),
             $columnEmail::NAME => $columnEmail->rules(),
             $columnPassword::NAME => $columnPassword->rules(),
             $columnRole::NAME => $columnRole->rules(),

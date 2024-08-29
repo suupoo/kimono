@@ -1,10 +1,11 @@
 @php
-    $id = $attributes['id'] ?? '';
+    $for = $attributes['for'] ?? '';
     $label = $attributes['label'] ?? '';
     $required = $attributes['required'] ?? false;
 @endphp
 <label
-    for="{{ $id }}"
+    for="{{ $for }}"
+    class="block text-sm font-medium mb-2 dark:text-white"
 >
     {{ $label }}
     @if($required)

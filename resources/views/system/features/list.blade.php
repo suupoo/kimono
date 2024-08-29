@@ -20,7 +20,7 @@
                 $enable = new \App\ValueObjects\Master\Feature\Enable;
             @endphp
             @foreach($items as $item)
-                <div class="w-full my-1">
+                <div class="flex w-full gap-3 justify-end my-1">
                     {!! $enable->input([
                           'id' => "features-$item->key",
                           'name' => "features[$item->key]",

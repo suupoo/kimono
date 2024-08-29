@@ -1,6 +1,11 @@
 @extends('layouts')
 
 @section('content')
+
+    <h1 class="custom-headline">
+        {{ $model::NAME }}
+    </h1>
+
     @php
         $id = $model->id;
     @endphp
@@ -15,9 +20,6 @@
                 @endforeach
             </div>
         @endif
-        <h1 class="text-xl font-bold">
-            {{ $model::NAME }}
-        </h1>
         <div class="flex flex-col w-full">
             @foreach($model::getColumns() as $column)
                 <div class="w-full my-1">
@@ -47,7 +49,7 @@
                             $staffNameColumn = $column->column();
                             $staffNameValue  = $model->$staffNameColumn;
                         @endphp
-                        {!! $column->input(['required' => true, 'class' => '', 'value' => $staffNameValue])?->render() !!}
+                        {!! $column->input(['required' => true, 'class' => '', 'value' => $staffNameValue]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Staff\Code)
@@ -55,7 +57,7 @@
                             $codeColumn = $column->column();
                             $codeValue  = $model->$codeColumn;
                         @endphp
-                        {!! $column->input(['required' => false, 'class' => '', 'value' => $codeValue])?->render() !!}
+                        {!! $column->input(['required' => false, 'class' => '', 'value' => $codeValue]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Staff\Tel)
@@ -63,7 +65,7 @@
                             $telColumn = $column->column();
                             $telValue  = $model->$telColumn;
                         @endphp
-                        {!! $column->input(['required' => false, 'class' => '', 'value' => $telValue])?->render() !!}
+                        {!! $column->input(['required' => false, 'class' => '', 'value' => $telValue]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Staff\StaffPosition)
@@ -71,7 +73,7 @@
                             $positionColumn = $column->column();
                             $positionValue  = $model->$positionColumn;
                         @endphp
-                        {!! $column->input(['required' => false, 'class' => '', 'value' => $positionValue?->value])?->render() !!}
+                        {!! $column->input(['required' => false, 'class' => '', 'value' => $positionValue?->value]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Staff\JoinDate)
@@ -79,7 +81,7 @@
                             $joinDateColumn = $column->column();
                             $joinDateValue  = $model->$joinDateColumn;
                         @endphp
-                        {!! $column->input(['required' => false, 'class' => '', 'value' => $joinDateValue])?->render() !!}
+                        {!! $column->input(['required' => false, 'class' => '', 'value' => $joinDateValue]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Staff\QuitDate)
@@ -87,12 +89,28 @@
                             $quitDateColumn = $column->column();
                             $quitDateValue  = $model->$quitDateColumn;
                         @endphp
-                        {!! $column->input(['required' => false, 'class' => '', 'value' => $quitDateValue])?->render() !!}
+                        {!! $column->input(['required' => false, 'class' => '', 'value' => $quitDateValue]) !!}
                     @endif
 
+                    @if($column instanceof \App\ValueObjects\Staff\Tags)
+                        @php
+                            $tagsColumn = $column->column();
+                            $tagsValue  = $model->$tagsColumn;
+                        @endphp
+                        <div data-tags-container="tags">
+                            {!! $column->input(['required' => false, 'value' => $tagsValue]) !!}
+                            <div data-tags="tags" class="flex flex-row items-center flex-wrap my-1 space-x-1">
+                                @include('icons.tag', ['class' => 'w-6 h-6 p-1'])
+                            </div>
+                        </div>
+                    @endif
                 </div>
             @endforeach
         </div>
         <x-button.update/>
     </form>
+@endsection
+
+@section('page-script')
+    @includeIf('scripts.tags')
 @endsection

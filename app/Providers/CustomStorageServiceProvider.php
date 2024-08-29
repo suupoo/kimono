@@ -12,7 +12,7 @@ class CustomStorageServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind('custom-storage', function($app) {
+        $this->app->bind('custom-storage', function ($app) {
             return new CustomStorageService();
         });
     }

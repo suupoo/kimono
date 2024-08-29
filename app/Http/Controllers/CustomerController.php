@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Traits\PdfExportable;
 use App\Models\Customer as ResourceModel; // モデル紐付け
+use App\Http\Resources\Exports\CustomerExportResource as ExportResource; // エクスポートリソース紐付け
+use App\Http\Controllers\Traits\CsvExportable;
 use App\UseCases\CustomerAction\CreateAction;
 use App\UseCases\CustomerAction\DeleteAction;
 use App\UseCases\CustomerAction\ListAction;
 use App\UseCases\CustomerAction\UpdateAction;
 use App\ValueObjects\Customer\Address1;
 use App\ValueObjects\Customer\Address2;
-use App\ValueObjects\Customer\Id;
+use App\ValueObjects\Customer\CustomerName;
+use App\ValueObjects\Customer\OwnerSequenceNo;
 use App\ValueObjects\Customer\PostCode;
 use App\ValueObjects\Customer\Prefecture;
+use App\ValueObjects\Customer\Tags;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -19,7 +24,11 @@ use Illuminate\View\View;
 
 class CustomerController extends ResourceController
 {
+    use CsvExportable, PdfExportable;
+
     protected ResourceModel $model;
+
+    protected ?string $exportResource = ExportResource::class;
 
     /**
      * 一覧表示<index>画面での一覧表示条件設定
@@ -28,20 +37,22 @@ class CustomerController extends ResourceController
     {
         return [
             'sortable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
                 new PostCode,
                 new Prefecture,
                 new Address1,
                 new Address2,
             ]),
             'searchable' => new Collection([
-                new Id,
+                new OwnerSequenceNo,
+                new CustomerName,
                 new PostCode,
                 new Prefecture,
                 new Address1,
                 new Address2,
+                new Tags,
             ]),
-            'paginate' => 10,
+            'paginate' => request()->get('rows', config('custom.paginate.default')),
         ];
     }
 
@@ -78,8 +89,8 @@ class CustomerController extends ResourceController
     public function create(): View
     {
         $model = (request()->has('copy'))
-            ?$this->model->findOrFail(request()->get('copy'))  // 複製
-            :(new $this->model);                               // 新規作成
+            ? $this->model->findOrFail(request()->get('copy'))  // 複製
+            : (new $this->model);                               // 新規作成
         $view = $model->getTable().'.create'; // customers/create.blade.php
 
         return view($view, compact('model'));

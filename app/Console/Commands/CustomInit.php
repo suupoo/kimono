@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Enums\AdministratorRole;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 
@@ -27,12 +26,6 @@ class CustomInit extends Command
      */
     public function handle()
     {
-        // 管理者機能を追加
-        Artisan::call('custom-feature:add', [
-            'feature' => 'administrators1',
-            'name' => '管理者'
-        ]);
-
         // システムアカウントを追加
         Artisan::call('custom-admin:add', [
             'name' => 'システム',
