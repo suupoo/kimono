@@ -115,4 +115,14 @@ class MSystemAdministrator extends Authenticatable
             Carbon::now()->addMinutes(5)
         ) : null;
     }
+
+    /**
+     * アクセサ：企業が設定されているかどうかを判定する
+     *
+     * @note $this->has_system_company で呼び出す
+     */
+    public function hasSystemCompany(): bool
+    {
+        return $this->systemCompanies->isNotEmpty();
+    }
 }

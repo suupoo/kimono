@@ -12,6 +12,7 @@ use App\Models\Store;
 use App\Models\User;
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\View\Component;
 use Laravel\Pennant\Feature;
@@ -150,6 +151,9 @@ class SideMenu extends Component
      */
     private function menuResources(string $modelClass): ?array
     {
+        // 企業が設定されていない場合はリソースメニューを表示しない
+        if (!Auth::user()?->has_system_company) return null;
+
         $menu = null;
         $resource = new $modelClass;
         $resourceTable = $resource->getTable();

@@ -37,29 +37,31 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', function () {
         return view('home.index');
     })->name('home');
-    Route::group([], function () {
-        // CSVエクスポート
-        Route::get('companies/export/csv', [CompanyController::class, 'exportCsv'])->name('companies.export.csv');
-        Route::get('customers/export/csv', [CustomerController::class, 'exportCsv'])->name('customers.export.csv');
-        Route::get('staffs/export/csv', [StaffController::class, 'exportCsv'])->name('staffs.export.csv');
-        Route::get('stores/export/csv', [StoreController::class, 'exportCsv'])->name('stores.export.csv');
-        Route::get('stocks/export/csv', [StockController::class, 'exportCsv'])->name('stocks.export.csv');
-        Route::get('users/export/csv', [UserController::class, 'exportCsv'])->name('users.export.csv');
-        // PDFエクスポート
-        Route::get('customers/export/pdf', [CustomerController::class, 'exportPdf'])->name('customers.export.pdf');
+    Route::middleware([\App\Http\Middleware\HasPrivilegeOfResource::class])->group(function (){
+        Route::group([], function () {
+            // CSVエクスポート
+            Route::get('companies/export/csv', [CompanyController::class, 'exportCsv'])->name('companies.export.csv');
+            Route::get('customers/export/csv', [CustomerController::class, 'exportCsv'])->name('customers.export.csv');
+            Route::get('staffs/export/csv', [StaffController::class, 'exportCsv'])->name('staffs.export.csv');
+            Route::get('stores/export/csv', [StoreController::class, 'exportCsv'])->name('stores.export.csv');
+            Route::get('stocks/export/csv', [StockController::class, 'exportCsv'])->name('stocks.export.csv');
+            Route::get('users/export/csv', [UserController::class, 'exportCsv'])->name('users.export.csv');
+            // PDFエクスポート
+            Route::get('customers/export/pdf', [CustomerController::class, 'exportPdf'])->name('customers.export.pdf');
+        });
+        // customers/edit/{customer}/edit などの{{  }}のパラメータをidで取得するように変更する
+        Route::resource('users', UserController::class)->parameters(['users' => 'id'])->middleware(EnsureFeaturesAreActive::using('users'));
+        Route::resource('customers', CustomerController::class)->parameters(['customers' => 'id'])->middleware(EnsureFeaturesAreActive::using('customers'));
+        Route::resource('companies', CompanyController::class)->parameters(['companies' => 'id'])->middleware(EnsureFeaturesAreActive::using('companies'));
+        Route::middleware(EnsureFeaturesAreActive::using('stores'))->group(function () {
+            Route::resource('stores', StoreController::class)->parameters(['stores' => 'id']);
+            Route::get('stores/{id}/staffs', [StoreController::class, 'staffs'])->name('stores.staffs.list');
+            Route::post('stores/{id}/staffs', [StoreController::class, 'saveStaffs'])->name('stores.staffs.save');
+        });
+        Route::resource('staffs', StaffController::class)->parameters(['staffs' => 'id'])->middleware(EnsureFeaturesAreActive::using('staffs'));
+        Route::resource('stocks', StockController::class)->parameters(['stocks' => 'id'])->middleware(EnsureFeaturesAreActive::using('stocks'));
+        Route::resource('notifications', NotificationController::class)->parameters(['notifications' => 'id'])->middleware(EnsureFeaturesAreActive::using('notifications'));
     });
-    // customers/edit/{customer}/edit などの{{  }}のパラメータをidで取得するように変更する
-    Route::resource('users', UserController::class)->parameters(['users' => 'id'])->middleware(EnsureFeaturesAreActive::using('users'));
-    Route::resource('customers', CustomerController::class)->parameters(['customers' => 'id'])->middleware(EnsureFeaturesAreActive::using('customers'));
-    Route::resource('companies', CompanyController::class)->parameters(['companies' => 'id'])->middleware(EnsureFeaturesAreActive::using('companies'));
-    Route::middleware(EnsureFeaturesAreActive::using('stores'))->group(function () {
-        Route::resource('stores', StoreController::class)->parameters(['stores' => 'id']);
-        Route::get('stores/{id}/staffs', [StoreController::class, 'staffs'])->name('stores.staffs.list');
-        Route::post('stores/{id}/staffs', [StoreController::class, 'saveStaffs'])->name('stores.staffs.save');
-    });
-    Route::resource('staffs', StaffController::class)->parameters(['staffs' => 'id'])->middleware(EnsureFeaturesAreActive::using('staffs'));
-    Route::resource('stocks', StockController::class)->parameters(['stocks' => 'id'])->middleware(EnsureFeaturesAreActive::using('stocks'));
-    Route::resource('notifications', NotificationController::class)->parameters(['notifications' => 'id'])->middleware(EnsureFeaturesAreActive::using('notifications'));
     // マイページ
     Route::get('mypage', [MyPageController::class, 'index'])->name('mypage.index');
     // 個人設定
