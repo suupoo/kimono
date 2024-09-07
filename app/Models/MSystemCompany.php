@@ -18,7 +18,11 @@ class MSystemCompany extends Model
 
     const NAME = 'システム企業';
 
-    protected $casts = [];
+    protected $casts = [
+        'conoha_tenant_password'          => 'encrypted',
+        'conoha_tenant_id'                => 'encrypted',
+        'conoha_tenant_temporary_url_key' => 'encrypted',
+    ];
 
     protected $guarded = [
         'id',
