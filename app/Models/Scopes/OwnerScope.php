@@ -14,8 +14,7 @@ class OwnerScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        // システムユーザ以外の場合は自社のデータのみ取得
-        if (! Auth::user()->isSystem()) {
+        if (Auth::user()) {
             $company = Auth::user()->systemCompanies->first(); // todo: 複数企業に対応
             $builder->where('owner_system_company', $company->id);
         }
