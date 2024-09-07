@@ -8,19 +8,25 @@ class ModelAuthorObserver
 {
     public function creating($model)
     {
-        $model->created_user = Auth::user()->id;
+        if ($model->authors) {
+            $model->created_user = Auth::user()->id;
+        }
     }
 
     public function updating($model)
     {
-        if ($model->isDirty()) {
-            $model->updated_user = Auth::user()->id;
+        if ($model->authors) {
+            if ($model->isDirty()) {
+                $model->updated_user = Auth::user()->id;
+            }
         }
     }
 
     public function saving($model)
     {
-        self::creating($model);
-        self::updating($model);
+        if ($model->authors) {
+            self::creating($model);
+            self::updating($model);
+        }
     }
 }

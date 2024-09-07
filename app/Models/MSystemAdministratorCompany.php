@@ -17,6 +17,8 @@ class MSystemAdministratorCompany extends BaseModel
 
     public $timestamps = false;
 
+    protected $authors = false;
+
     protected $casts = [];
 
     protected $guarded = [];

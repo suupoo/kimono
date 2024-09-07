@@ -10,6 +10,8 @@ abstract class BaseModel extends Model implements BaseModelInterface
 {
     use ModelAuthorObservable;
 
+    protected $authors = true;
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
