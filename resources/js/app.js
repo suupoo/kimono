@@ -3,6 +3,7 @@ import 'modern-css-reset';
 import 'preline';
 import '@preline/overlay';
 import '@preline/carousel';
+import '@preline/remove-element'
 import '@popperjs/core';
 import jQuery from 'jquery';
 import Quill from 'quill';
