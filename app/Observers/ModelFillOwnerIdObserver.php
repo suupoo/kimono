@@ -10,19 +10,20 @@ class ModelFillOwnerIdObserver
 {
     public function creating($model)
     {
-        // システムユーザ以外の場合は自社のデータのみ取得
-        if (! Auth::user()->isSystem()) {
-            $company = Auth::user()->systemCompanies->first(); // todo: 複数企業に対応
-            $model->owner_system_company = $company?->id;
-
-            // シーケンス番号の生成
-            $sequenceNo = $this->createSequenceNo(get_class($model));
-            if (! $sequenceNo) {
-                throw new Exception('タグ生成に失敗しました。');
-            }
-
-            $model->owner_sequence_no = $sequenceNo;
+        if(!Auth::user()->has_system_company) {
+            throw new Exception('企業が未設定のためリソースの使用ができません。');
         }
+
+        $company = Auth::user()->systemCompanies->first(); // todo: 複数企業に対応
+        $model->owner_system_company = $company?->id;
+
+        // シーケンス番号の生成
+        $sequenceNo = $this->createSequenceNo(get_class($model));
+        if (! $sequenceNo) {
+            throw new Exception('タグ生成に失敗しました。');
+        }
+
+        $model->owner_sequence_no = $sequenceNo;
     }
 
     /**
