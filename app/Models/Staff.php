@@ -79,7 +79,7 @@ class Staff extends BaseModel
      */
     public function getImageUrlAttribute()
     {
-        return $this->image ? CustomStorage::disk()->temporaryUrl(
+        return $this->image ? CustomStorage::userDisk()->temporaryUrl(
             $this->image,
             Carbon::now()->addMinutes(5)
         ) : null;

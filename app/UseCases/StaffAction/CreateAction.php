@@ -26,7 +26,7 @@ class CreateAction extends BaseAction
         if (array_key_exists('image', $dataAttributes)) {
             $image = new Image;
             $extension = $request->file('image')->getClientOriginalExtension();
-            $uploadPath = CustomStorage::disk()
+            $uploadPath = CustomStorage::userDisk()
                 ->putFileAs($image->fileUploadPath(), $request->file('image'), $image->createFileName($extension));
             if ($uploadPath) {
                 $attributes['attributes']['image'] = $uploadPath;
