@@ -49,9 +49,10 @@ class Image extends ValueObject
      */
     public function createFileName(string $extension): string
     {
-        // 例）20210901120000_1_image.jpg
-        return sprintf('%s_image.%s',
+        // 例）banner_20210901120000_1_image.jpg
+        return sprintf('banner_%s_%s_image.%s',
             Carbon::now()->format('YmdHis'),
+            Auth::id(),
             $extension
         );
     }
@@ -68,7 +69,7 @@ class Image extends ValueObject
             throw new \Exception('アップロードするにはログインが必要です。');
         }
 
-        return 'banner';
+        return '';
     }
 
     public function rules(): array
