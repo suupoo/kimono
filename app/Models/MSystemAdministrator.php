@@ -121,7 +121,7 @@ class MSystemAdministrator extends Authenticatable
      *
      * @note $this->has_system_company で呼び出す
      */
-    public function hasSystemCompany(): bool
+    public function getHasSystemCompanyAttribute(): bool
     {
         return $this->systemCompanies->isNotEmpty();
     }
