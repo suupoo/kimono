@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 /**
  * Class UserExportResource
+ *
  * @property mixed id
  * @property mixed owner_sequence_no
  * @property mixed name
@@ -35,10 +36,10 @@ class UserExportResource extends BaseExportResource
     {
         return [
             'owner_sequence_no' => $this->resource->owner_sequence_no,
-            'name'              => $this->resource->name,
-            'email'             => $this->resource->email,
+            'name' => $this->resource->name,
+            'email' => $this->resource->email,
             'email_verified_at' => $this->resource->email_verified_at?->format('Y/m/d'),
-            'tags'              => $this->resource->tags,
+            'tags' => $this->resource->tags,
         ];
     }
 }

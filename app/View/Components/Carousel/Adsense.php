@@ -11,10 +11,13 @@ use Illuminate\View\Component;
 class Adsense extends Component
 {
     protected Collection $banners;
+
     protected bool $autoPlay = false;
+
     protected array $classes = [
         'relative',
     ];
+
     protected array $options = [
         'loadingClasses' => 'opacity-0',
     ];
@@ -24,9 +27,8 @@ class Adsense extends Component
      */
     public function __construct(
         bool $autoPlay = false,
-        string $class = null,
-    )
-    {
+        ?string $class = null,
+    ) {
         // クラス
         if ($class) {
             $this->classes = array_merge($this->classes, explode(' ', $class));
@@ -49,7 +51,7 @@ class Adsense extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.carousel.adsense',[
+        return view('components.carousel.adsense', [
             'banners' => $this->banners,
             'classes' => $this->classes,
             'options' => $this->options,

@@ -17,9 +17,10 @@ class HasPrivilegeOfResource
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();
-        if(!$user->has_system_company){
+        if (! $user->has_system_company) {
             return redirect()->route('home')->with('error', '企業が未設定のためリソースの使用ができません。');
         }
+
         return $next($request);
     }
 }

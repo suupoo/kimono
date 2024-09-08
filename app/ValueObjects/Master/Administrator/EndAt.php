@@ -30,7 +30,7 @@ class EndAt extends ValueObject
         return [
             'nullable',
             'date',
-            "after:".(new StartAt)->column(),
+            'after:'.(new StartAt)->column(),
         ];
     }
 
@@ -39,7 +39,7 @@ class EndAt extends ValueObject
      */
     public function input(array $attributes = []): string
     {
-        if( isset($attributes['type']) && $attributes['type'] === 'date'){
+        if (isset($attributes['type']) && $attributes['type'] === 'date') {
             $this->type = 'date';
         }
 

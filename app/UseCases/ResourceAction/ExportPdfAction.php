@@ -20,8 +20,6 @@ class ExportPdfAction extends ResourceAction
 
     /**
      * エクスポートリソースクラス紐付け
-     * @param string $exportResourceClass
-     * @return void
      */
     public function setExportResourceClass(string $exportResourceClass): void
     {
@@ -50,11 +48,11 @@ class ExportPdfAction extends ResourceAction
         $columns = $model->getColumns();
         $attributeNames = [];
         foreach ($columns as $column) {
-            if($column->column() === 'id') {
+            if ($column->column() === 'id') {
                 $rules['exports'] = ['required', 'array'];
                 $rules['exports.*'] = $column->rules();
                 $attributeNames['exports'] = '出力対象';
-                $attributeNames['exports.*'] =  '出力対象ID';
+                $attributeNames['exports.*'] = '出力対象ID';
             }
         }
 
@@ -80,7 +78,7 @@ class ExportPdfAction extends ResourceAction
 
         try {
             // 現状10件までのエクスポートに対応
-            if(count($request->exports) > 10) {
+            if (count($request->exports) > 10) {
                 throw new \Exception('エクスポート対象は10件までです。');
             }
 
@@ -106,7 +104,7 @@ class ExportPdfAction extends ResourceAction
                 'searchCollection' => &$searchCollection,
             ]);
 
-            if($searchCollection->isEmpty()) {
+            if ($searchCollection->isEmpty()) {
                 throw new \Exception('出力対象が存在しませんでした。');
             }
 
@@ -125,7 +123,7 @@ class ExportPdfAction extends ResourceAction
             $records = new Collection();
 
             // データ
-            $searchCollection->each(function ($item) use (&$records){
+            $searchCollection->each(function ($item) use (&$records) {
                 $resource = new $this->exportResourceClass($item);
                 $records->push($resource);
             });
@@ -141,22 +139,22 @@ class ExportPdfAction extends ResourceAction
             $table = $model->getTable();
 
             // ダウンロード
-            return response()->stream(function() use ($records, $table, $title, $fileName) {
+            return response()->stream(function () use ($records, $table, $title, $fileName) {
                 $header = $this->exportResourceClass::pdfOutputColumns();
 
                 // カラム
                 $columns = [];
                 foreach ($header as $value) {
-                    if(is_string($value)) {
+                    if (is_string($value)) {
                         $columns[] = $value;
-                    } else if(is_object($value)) {
+                    } elseif (is_object($value)) {
                         $columns[] = $value->column();
                     }
                 }
 
                 // PDF生成
-                $createPdfFile = LaravelMpdf::loadView('pdf.document', compact('table','columns','records'),[],[
-                    'title' => $title
+                $createPdfFile = LaravelMpdf::loadView('pdf.document', compact('table', 'columns', 'records'), [], [
+                    'title' => $title,
                 ]);
 
                 return $createPdfFile->stream();

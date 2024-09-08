@@ -10,7 +10,7 @@ class ModelFillOwnerIdObserver
 {
     public function creating($model)
     {
-        if(!Auth::user()->has_system_company) {
+        if (! Auth::user()->has_system_company) {
             throw new Exception('企業が未設定のためリソースの使用ができません。');
         }
 

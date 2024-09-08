@@ -20,10 +20,10 @@ class HasPrivilegeOfLogin
     {
         $user = Auth::user();
 
-        if( $user->end_at !== null && $user->end_at < Carbon::now()){
+        if ($user->end_at !== null && $user->end_at < Carbon::now()) {
             // ログアウト
             return (new LogoutAction)($request, [
-                'error' => "利用終了日を超えたためログアウトされました。再度利用する場合はお問い合わせください。"
+                'error' => '利用終了日を超えたためログアウトされました。再度利用する場合はお問い合わせください。',
             ]);
         }
 

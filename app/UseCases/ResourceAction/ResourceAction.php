@@ -130,7 +130,6 @@ class ResourceAction extends Action
 
     }
 
-
     /**
      * エクスポート処理整形後の処理
      */

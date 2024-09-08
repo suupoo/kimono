@@ -20,8 +20,6 @@ class ExportCsvAction extends ResourceAction
 
     /**
      * エクスポートリソースクラス紐付け
-     * @param string $exportResourceClass
-     * @return void
      */
     public function setExportResourceClass(string $exportResourceClass): void
     {
@@ -50,11 +48,11 @@ class ExportCsvAction extends ResourceAction
         $columns = $model->getColumns();
         $attributeNames = [];
         foreach ($columns as $column) {
-            if($column->column() === 'id') {
+            if ($column->column() === 'id') {
                 $rules['exports'] = ['required', 'array'];
                 $rules['exports.*'] = $column->rules();
                 $attributeNames['exports'] = '出力対象';
-                $attributeNames['exports.*'] =  '出力対象ID';
+                $attributeNames['exports.*'] = '出力対象ID';
             }
         }
 
@@ -101,7 +99,7 @@ class ExportCsvAction extends ResourceAction
                 'searchCollection' => &$searchCollection,
             ]);
 
-            if($searchCollection->isEmpty()) {
+            if ($searchCollection->isEmpty()) {
                 throw new \Exception('出力対象が存在しませんでした。');
             }
 
@@ -123,7 +121,7 @@ class ExportCsvAction extends ResourceAction
             $emptyResource = new $this->exportResourceClass(new $model);
             $records->push($emptyResource->csvHeadersNames());
             // データ
-            $searchCollection->each(function ($item) use (&$records){
+            $searchCollection->each(function ($item) use (&$records) {
                 $resource = new $this->exportResourceClass($item);
                 $records->push($resource->toArray(request()));
             });
@@ -137,7 +135,7 @@ class ExportCsvAction extends ResourceAction
             $this->endOfAction($request, $model);
 
             // ダウンロード
-            return response()->stream(function() use ($records) {
+            return response()->stream(function () use ($records) {
                 // 出力処理
                 $createCsvFile = new SplFileObject('php://output', 'w');
 

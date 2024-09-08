@@ -6,5 +6,5 @@ return [
     App\Providers\CustomStorageServiceProvider::class,
 
     // laravel-mpdf
-    \Mccarlosen\LaravelMpdf\LaravelMpdfServiceProvider::class
+    \Mccarlosen\LaravelMpdf\LaravelMpdfServiceProvider::class,
 ];

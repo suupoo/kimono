@@ -38,7 +38,7 @@ class StartAt extends ValueObject
      */
     public function input(array $attributes = []): string
     {
-        if( isset($attributes['type']) && $attributes['type'] === 'date'){
+        if (isset($attributes['type']) && $attributes['type'] === 'date') {
             $this->type = 'date';
         }
 

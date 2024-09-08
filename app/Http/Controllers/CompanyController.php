@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company as ResourceModel; // モデル紐付け
+use App\Http\Controllers\Traits\CsvExportable; // モデル紐付け
 use App\Http\Resources\Exports\CompanyExportResource as ExportResource; // エクスポートリソース紐付け
-use App\Http\Controllers\Traits\CsvExportable;
+use App\Models\Company as ResourceModel;
 use App\UseCases\CompanyAction\CreateAction;
 use App\UseCases\CompanyAction\DeleteAction;
 use App\UseCases\CompanyAction\ListAction;

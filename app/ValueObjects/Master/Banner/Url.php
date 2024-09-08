@@ -4,7 +4,6 @@ namespace App\ValueObjects\Master\Banner;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
-use Illuminate\Support\Facades\Route;
 
 class Url extends ValueObject
 {

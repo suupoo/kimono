@@ -32,25 +32,29 @@ class CustomStorageService
 
     /**
      * ユーザごとのディスク設定
+     *
      * @return $this
+     *
      * @throws \Exception
      */
-    public function userDisk() :self
+    public function userDisk(): self
     {
         $user = Auth::user();
         // 未ログイン
-        if(!$user) throw new \Exception('Not found user');
+        if (! $user) {
+            throw new \Exception('Not found user');
+        }
 
         $disk = config('filesystems.default');
         $config = config('filesystems.disks.'.$disk);
 
         if ($disk == 'openstack') {
             // ユーザ設定
-            if(!$user->has_system_company){
+            if (! $user->has_system_company) {
                 // 企業登録がまだの場合
                 throw new \Exception('Not found user company');
             }
-            $mSystemCompany = $user->systemCompanies->first();// note:1社のみの場合のみ対応
+            $mSystemCompany = $user->systemCompanies->first(); // note:1社のみの場合のみ対応
             $config['tenant_name'] = $mSystemCompany->conoha_tenant_name;
             $config['tenant_id'] = $mSystemCompany->conoha_tenant_id;
             $config['username'] = $mSystemCompany->conoha_tenant_username;

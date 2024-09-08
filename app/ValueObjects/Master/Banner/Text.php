@@ -4,7 +4,6 @@ namespace App\ValueObjects\Master\Banner;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
-use Illuminate\Support\Facades\Route;
 
 class Text extends ValueObject
 {
@@ -35,7 +34,7 @@ class Text extends ValueObject
             'required',
             'string',
             "max:$this->maxLength",
-            "min:$this->minLength"
+            "min:$this->minLength",
         ];
     }
 

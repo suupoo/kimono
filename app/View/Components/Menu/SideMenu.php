@@ -152,7 +152,9 @@ class SideMenu extends Component
     private function menuResources(string $modelClass): ?array
     {
         // 企業が設定されていない場合はリソースメニューを表示しない
-        if (!Auth::user()?->has_system_company) return null;
+        if (! Auth::user()?->has_system_company) {
+            return null;
+        }
 
         $menu = null;
         $resource = new $modelClass;

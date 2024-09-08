@@ -43,21 +43,21 @@ class CustomSetStorage extends Command
             }
 
             // 更新処理
-            $userName           = $this->ask('Please enter the Conoha username.');
-            $password           = $this->secret('Please enter the Conoha password.');
-            $tenantName         = $this->ask('Please enter the Conoha tenant name.');
-            $tenantId           = $this->secret('Please enter the Conoha tenant id.');
-            $temporaryUrlKey    = $this->secret('Please enter the Conoha temporary url key.');
-            $containerName      = $this->ask('Please enter the Conoha container name.', $mSystemCompany->uuid);
+            $userName = $this->ask('Please enter the Conoha username.');
+            $password = $this->secret('Please enter the Conoha password.');
+            $tenantName = $this->ask('Please enter the Conoha tenant name.');
+            $tenantId = $this->secret('Please enter the Conoha tenant id.');
+            $temporaryUrlKey = $this->secret('Please enter the Conoha temporary url key.');
+            $containerName = $this->ask('Please enter the Conoha container name.', $mSystemCompany->uuid);
 
             // 企業情報を更新
             $mSystemCompany->update([
-                'conoha_tenant_username'          => $userName,
-                'conoha_tenant_password'          => $password,
-                'conoha_tenant_name'              => $tenantName,
-                'conoha_tenant_id'                => $tenantId,
+                'conoha_tenant_username' => $userName,
+                'conoha_tenant_password' => $password,
+                'conoha_tenant_name' => $tenantName,
+                'conoha_tenant_id' => $tenantId,
                 'conoha_tenant_temporary_url_key' => $temporaryUrlKey,
-                'conoha_container_name'           => $containerName,
+                'conoha_container_name' => $containerName,
             ]);
         }
     }

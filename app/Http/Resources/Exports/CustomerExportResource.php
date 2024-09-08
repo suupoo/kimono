@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 /**
  * Class CustomerExportResource
+ *
  * @property mixed id
  * @property mixed owner_sequence_no
  * @property mixed customer_name
@@ -32,7 +33,6 @@ class CustomerExportResource extends BaseExportResource
 
     /**
      * PDFへ出力する項目
-     * @return array
      */
     public static function pdfOutputColumns(): array
     {
@@ -52,14 +52,14 @@ class CustomerExportResource extends BaseExportResource
     {
         return [
             'owner_sequence_no' => $this->resource->owner_sequence_no,
-            'customer_name'     => $this->resource->customer_name,
-            'post_code'         => $this->resource->post_code,
-            'prefecture'        => $this->resource->prefecture?->label(),
-            'address_1'          => $this->resource->address_1,
-            'address_2'          => $this->resource->address_2,
-            'address'           => $this->resource->address,
-            'note'              => $this->resource->note,
-            'tags'              => $this->resource->tags,
+            'customer_name' => $this->resource->customer_name,
+            'post_code' => $this->resource->post_code,
+            'prefecture' => $this->resource->prefecture?->label(),
+            'address_1' => $this->resource->address_1,
+            'address_2' => $this->resource->address_2,
+            'address' => $this->resource->address,
+            'note' => $this->resource->note,
+            'tags' => $this->resource->tags,
         ];
     }
 }

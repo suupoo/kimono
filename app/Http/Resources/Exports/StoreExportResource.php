@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 /**
  * Class StoreExportResource
+ *
  * @property mixed id
  * @property mixed owner_sequence_no
  * @property mixed name
@@ -41,13 +42,13 @@ class StoreExportResource extends BaseExportResource
     {
         return [
             'owner_sequence_no' => $this->resource->owner_sequence_no,
-            'name'              => $this->resource->name,
-            'code'              => $this->resource->code,
-            'post_code'         => $this->resource->post_code,
-            'prefecture'        => $this->resource->prefecture?->label(),
-            'join_date'         => $this->resource->address1,
-            'quit_date'         => $this->resource->address2,
-            'tags'              => $this->resource->tags,
+            'name' => $this->resource->name,
+            'code' => $this->resource->code,
+            'post_code' => $this->resource->post_code,
+            'prefecture' => $this->resource->prefecture?->label(),
+            'join_date' => $this->resource->address1,
+            'quit_date' => $this->resource->address2,
+            'tags' => $this->resource->tags,
         ];
     }
 }

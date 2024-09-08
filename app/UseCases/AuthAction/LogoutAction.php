@@ -24,7 +24,7 @@ class LogoutAction
     }
 
     public function __invoke(Request $request, $attributes = [
-        'error' => null
+        'error' => null,
     ]): RedirectResponse
     {
         // ログアウト

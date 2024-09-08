@@ -2,10 +2,10 @@
 
 namespace App\ValueObjects\Custom;
 
+use App\Enums\PaginateRow as PaginateRowEnum;
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
 use Illuminate\Validation\Rule;
-use App\Enums\PaginateRow as PaginateRowEnum;
 
 class PaginateRow extends ValueObject
 {

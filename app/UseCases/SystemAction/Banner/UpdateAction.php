@@ -7,7 +7,6 @@ use App\UseCases\ResourceAction\UpdateAction as BaseAction;
 use App\ValueObjects\Master\Banner\Image;
 use Illuminate\Http\Request;
 
-
 /**
  * Class UpdateAction
  * 更新アクション

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 /**
  * Class StaffExportResource
+ *
  * @property mixed id
  * @property mixed owner_sequence_no
  * @property mixed name
@@ -41,13 +42,13 @@ class StaffExportResource extends BaseExportResource
     {
         return [
             'owner_sequence_no' => $this->resource->owner_sequence_no,
-            'name'              => $this->resource->name,
-            'code'              => $this->resource->code,
-            'tel'               => $this->resource->tel,
-            'staff_position'    => $this->resource->staff_position?->label(),
-            'join_date'         => $this->resource->join_date,
-            'quit_date'         => $this->resource->quit_date,
-            'tags'              => $this->resource->tags,
+            'name' => $this->resource->name,
+            'code' => $this->resource->code,
+            'tel' => $this->resource->tel,
+            'staff_position' => $this->resource->staff_position?->label(),
+            'join_date' => $this->resource->join_date,
+            'quit_date' => $this->resource->quit_date,
+            'tags' => $this->resource->tags,
         ];
     }
 }

@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth', HasPrivilegeOfLogin::class]], function ()
     Route::get('/', function () {
         return view('home.index');
     })->name('home');
-    Route::middleware([\App\Http\Middleware\HasPrivilegeOfResource::class])->group(function (){
+    Route::middleware([\App\Http\Middleware\HasPrivilegeOfResource::class])->group(function () {
         Route::group([], function () {
             // CSVエクスポート
             Route::get('companies/export/csv', [CompanyController::class, 'exportCsv'])->name('companies.export.csv');
@@ -99,12 +99,11 @@ Route::get('/build/{any}', function ($any) {
     return response(\File::get(public_path().'/build/'.$any))->header('Content-Type', $mine_type[$extensions]);
 })->where('any', '.*');
 
-
 // jsファイルを読み込むためのルーティング
 Route::get('js/script.js', function () {
-    return response(\File::get(public_path().'/js/script.js'))->header('Content-Type','application/javascript');
+    return response(\File::get(public_path().'/js/script.js'))->header('Content-Type', 'application/javascript');
 });
 // cssファイルを読み込むためのルーティング
 Route::get('css/style.css', function () {
-    return response(\File::get(public_path().'/css/style.css'))->header('Content-Type','text/css');
+    return response(\File::get(public_path().'/css/style.css'))->header('Content-Type', 'text/css');
 });

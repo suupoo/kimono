@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Staff as ResourceModel; // モデル紐付け
+use App\Http\Controllers\Traits\CsvExportable; // モデル紐付け
 use App\Http\Resources\Exports\StaffExportResource as ExportResource; // エクスポートリソース紐付け
-use App\Http\Controllers\Traits\CsvExportable;
+use App\Models\Staff as ResourceModel;
 use App\UseCases\StaffAction\CreateAction;
 use App\UseCases\StaffAction\DeleteAction;
 use App\UseCases\StaffAction\ListAction;

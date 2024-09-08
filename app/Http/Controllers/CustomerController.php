@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Traits\PdfExportable;
-use App\Models\Customer as ResourceModel; // モデル紐付け
-use App\Http\Resources\Exports\CustomerExportResource as ExportResource; // エクスポートリソース紐付け
 use App\Http\Controllers\Traits\CsvExportable;
+use App\Http\Controllers\Traits\PdfExportable; // モデル紐付け
+use App\Http\Resources\Exports\CustomerExportResource as ExportResource; // エクスポートリソース紐付け
+use App\Models\Customer as ResourceModel;
 use App\UseCases\CustomerAction\CreateAction;
 use App\UseCases\CustomerAction\DeleteAction;
 use App\UseCases\CustomerAction\ListAction;

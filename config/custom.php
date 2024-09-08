@@ -22,7 +22,7 @@ return [
     ],
     'footer' => [
         'inquiry' => [
-            'form' => env('CUSTOM_FOOTER_INQUIRY_FORM')
-        ]
-    ]
+            'form' => env('CUSTOM_FOOTER_INQUIRY_FORM'),
+        ],
+    ],
 ];

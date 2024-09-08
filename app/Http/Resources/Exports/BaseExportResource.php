@@ -8,7 +8,6 @@ class BaseExportResource extends JsonResource
 {
     /**
      * CSV出力時のヘッダーを返す
-     * @return array
      */
     public function csvHeaders(): array
     {
@@ -19,7 +18,6 @@ class BaseExportResource extends JsonResource
 
     /**
      * CSV出力時のヘッダー名を返す
-     * @return array
      */
     public function csvHeadersNames(): array
     {
