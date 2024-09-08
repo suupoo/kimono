@@ -23,7 +23,9 @@ class LogoutAction
         }
     }
 
-    public function __invoke(Request $request): RedirectResponse
+    public function __invoke(Request $request, $attributes = [
+        'error' => null
+    ]): RedirectResponse
     {
         // ログアウト
         Auth::logout();
@@ -31,6 +33,11 @@ class LogoutAction
         // セッショントークンの再生成（二重送信対策）
         $this->updateCsrfToken();
 
-        return redirect()->route('login');
+        $redirectResponse = redirect()->route('login');
+        if ($attributes['error']) {
+            $redirectResponse->with('error', $attributes['error']);
+        }
+
+        return $redirectResponse;
     }
 }

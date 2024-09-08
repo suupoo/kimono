@@ -13,6 +13,7 @@ use App\Http\Controllers\SystemBannerController;
 use App\Http\Controllers\SystemCompanyController;
 use App\Http\Controllers\SystemController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\HasPrivilegeOfLogin;
 use Illuminate\Support\Facades\Route;
 use Laravel\Pennant\Middleware\EnsureFeaturesAreActive;
 
@@ -32,7 +33,7 @@ Route::group(['prefix' => 'about', 'as' => 'about.'], function () {
     })->name('privacy');
 });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', HasPrivilegeOfLogin::class]], function () {
     // ログイン時
     Route::get('/', function () {
         return view('home.index');

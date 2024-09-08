@@ -47,6 +47,8 @@ class MSystemAdministrator extends Authenticatable
 
     protected $casts = [
         Role::NAME => AdministratorRole::class,
+        StartAt::NAME => 'datetime',
+        EndAt::NAME => 'datetime',
     ];
 
     /**
@@ -59,6 +61,8 @@ class MSystemAdministrator extends Authenticatable
         return [
             'role' => AdministratorRole::class,
             'email_verified_at' => 'datetime',
+            'start_at' => 'datetime',
+            'end_at' => 'datetime',
             'password' => 'hashed',
         ];
     }

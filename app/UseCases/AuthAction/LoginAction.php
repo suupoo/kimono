@@ -2,6 +2,7 @@
 
 namespace App\UseCases\AuthAction;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -61,6 +62,11 @@ class LoginAction
             if (Auth::attempt([
                 'email' => $validator->validated()['email'],
                 'password' => $validator->validated()['password'],
+                fn(Builder $query) => $query->where(function($query) {
+                    // 利用終了日が未設定または未来日の場合のみログイン可能
+                    $query->where('end_at', '>', now())
+                        ->orWhereNull('end_at');
+                }),
             ])) {
                 // 認証成功時は①ログインを行った画面②ホーム画面の順で該当画面へリダイレクト
                 return redirect()->intended(route('home'));
