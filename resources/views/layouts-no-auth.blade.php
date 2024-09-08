@@ -15,6 +15,14 @@
     <body class="font-sans antialiased text-black bg-gray-50">
         <div class="min-h-screen">
             <div class="w-full min-h-screen">
+
+                <div class="w-full" id="toasts">
+                    <div class="w-full" id="toasts">
+                    @if(session('error'))
+                        <x-toasts.error>{{ session('error') }}</x-toasts.error>
+                    @endif
+                </div>
+
                 @yield('content')
             </div>
         </div>
