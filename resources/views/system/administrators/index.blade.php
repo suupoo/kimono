@@ -52,6 +52,14 @@
                             {!! $column->input(['class' => '']) !!}
                         @endif
 
+                        @if($column instanceof \App\ValueObjects\Master\Administrator\StartAt)
+                            {!! $column->input(['class' => '', 'type' => 'date']) !!}
+                        @endif
+
+                        @if($column instanceof \App\ValueObjects\Master\Administrator\EndAt)
+                            {!! $column->input(['class' => '', 'type' => 'date']) !!}
+                        @endif
+
                     @endif
                 @endforeach
             </x-list.search-box>

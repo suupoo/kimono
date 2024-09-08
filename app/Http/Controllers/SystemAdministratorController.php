@@ -10,8 +10,10 @@ use App\UseCases\SystemAction\Administrator\SystemAdministratorListAction;
 use App\UseCases\SystemAction\Administrator\SystemAdministratorSaveAction;
 use App\UseCases\SystemAction\Administrator\UpdateAction as UpdateAction;
 use App\ValueObjects\Master\Administrator\Email;
+use App\ValueObjects\Master\Administrator\EndAt;
 use App\ValueObjects\Master\Administrator\Id;
 use App\ValueObjects\Master\Administrator\Name;
+use App\ValueObjects\Master\Administrator\StartAt;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -33,11 +35,15 @@ class SystemAdministratorController extends ResourceController
                 new Id,
                 new Name,
                 new Email,
+                new StartAt,
+                new EndAt,
             ]),
             'searchable' => new Collection([
                 new Id,
                 new Name,
                 new Email,
+                new StartAt,
+                new EndAt,
             ]),
             'paginate' => request()->get('rows', config('custom.paginate.default')),
         ];

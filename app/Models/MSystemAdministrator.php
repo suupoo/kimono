@@ -7,12 +7,14 @@ use App\Facades\Utility\CustomStorage;
 use App\ValueObjects\Master\Administrator\CreatedAt;
 use App\ValueObjects\Master\Administrator\Email;
 use App\ValueObjects\Master\Administrator\EmailVerifiedAt;
+use App\ValueObjects\Master\Administrator\EndAt;
 use App\ValueObjects\Master\Administrator\Id;
 use App\ValueObjects\Master\Administrator\Image;
 use App\ValueObjects\Master\Administrator\Name;
 use App\ValueObjects\Master\Administrator\Password;
 use App\ValueObjects\Master\Administrator\RememberToken;
 use App\ValueObjects\Master\Administrator\Role;
+use App\ValueObjects\Master\Administrator\StartAt;
 use App\ValueObjects\Master\Administrator\UpdatedAt;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -75,6 +77,8 @@ class MSystemAdministrator extends Authenticatable
             new Password,
             new Role,
             new RememberToken,
+            new StartAt,
+            new EndAt,
             new CreatedAt,
             new UpdatedAt,
         ];

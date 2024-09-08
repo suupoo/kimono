@@ -49,6 +49,22 @@
                         {!! $column->input(['required' => true, 'disable' => true, 'class' => '', 'value' => $roleValue?->value]) !!}
                     @endif
 
+                    @if($column instanceof \App\ValueObjects\Master\Administrator\StartAt)
+                        @php
+                            $startAtColumn = $column->column();
+                            $startAtValue  = $model->$startAtColumn;
+                        @endphp
+                        {!! $column->input(['required' => false, 'disable' => true, 'class' => '', 'value' => $startAtValue]) !!}
+                    @endif
+
+                    @if($column instanceof \App\ValueObjects\Master\Administrator\EmdAt)
+                        @php
+                            $endAtColumn = $column->column();
+                            $endAtValue  = $model->$endAtColumn;
+                        @endphp
+                        {!! $column->input(['required' => false, 'disable' => true, 'class' => '', 'value' => $endAtValue]) !!}
+                    @endif
+
                 </div>
             @endforeach
         </div>
