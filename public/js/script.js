@@ -10,16 +10,17 @@ $(function(){
         $(this).closest('[data-ad]').addClass('hidden');
     });
 
-    $('.table-body>tr').on('click', function() {
-        if ($(this).hasClass('selected')) {
-            $(this).removeClass('selected');
+    $('.table-body>tr>td:not(:first-child)').on('click', function() {
+        let tr = $(this).closest('tr');
+        if (tr.hasClass('selected')) {
+            tr.removeClass('selected');
         }else{
-            $(this).addClass('selected');
+            tr.addClass('selected');
         }
 
         let exports = [];
         $('.table-body>tr.selected').each(function() {
-            exports.push($(this).data('id'));
+            exports.push(tr.data('id'));
         });
         $('input[name="exports"]').val(exports);
     });
