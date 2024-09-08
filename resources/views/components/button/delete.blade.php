@@ -2,20 +2,19 @@
     $id = $attributes->get('data-id', null);
 @endphp
 
-<x-button.button
+<x-button.color-red
     {{ $attributes->merge([
-        'class' => 'bg-custom-red text-white hover:bg-white hover:text-custom-red',
         'aria-haspopup' => 'dialog',
         'aria-controls' => 'delete-popup-modal-' . $id,
         'data-hs-overlay' => '#delete-popup-modal-' . $id,
     ]) }}>
-    <span class="inline sm:hidden">
-        @includeIf('icons.trash-bin', ['class' => 'w-4 h-4'])
+    <span class="inline">
+        @includeIf('icons.trash-bin', ['class' => 'w-3.5 h-3.5'])
     </span>
     <span class="hidden sm:inline">
         {{ __('resource.delete') }}
     </span>
-</x-button.button>
+</x-button.color-red>
 
 {{-- 削除用ポップアップ--}}
 @include('components.modal.delete', ['id' => $id, 'href' => $attributes['href']])

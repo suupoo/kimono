@@ -10,7 +10,7 @@ $(function(){
         $(this).closest('[data-ad]').addClass('hidden');
     });
 
-    $('.table-body>tr>td:not(:first-child)').on('click', function() {
+    $('.table-body>tr>td:not(.actions)').on('click', function() {
         let tr = $(this).closest('tr');
         if (tr.hasClass('selected')) {
             tr.removeClass('selected');

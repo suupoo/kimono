@@ -63,9 +63,9 @@
         <h3 class="text-xl font-bold my-2">
             {{ $model::NAME . __('resource.list') }}
         </h3>
-        <div class="flex w-full justify-end">
-            <div class="w-fit flex flex-col">
-                <x-button.create href="{{ route($routePrefix . '.create') }}"/>
+        <div class="flex w-full justify-end m-1">
+            <div class="w-fit flex flex-row gap-1">
+                <x-button.create type="link" type="link" href="{{ route($routePrefix . '.create') }}"/>
             </div>
         </div>
         <div class="relative overflow-x-auto">
@@ -114,9 +114,9 @@
                 @foreach($items as $item)
                     <tr class="bg-white border-b">
                         <td class="w-full text-xs flex flex-col justify-center space-y-1 m-1">
-                            <x-button.edit href="{{ route($routePrefix . '.edit', ['id' => $item->id]) }}"/>
-                            <x-button.show href="{{ route($routePrefix . '.show', ['id' => $item->id]) }}"/>
-                            <x-button.copy href="{{ route($routePrefix . '.create', ['copy' => $item->id]) }}"/>
+                            <x-button.edit type="link" href="{{ route($routePrefix . '.edit', ['id' => $item->id]) }}"/>
+                            <x-button.show type="link" href="{{ route($routePrefix . '.show', ['id' => $item->id]) }}"/>
+                            <x-button.copy type="link" href="{{ route($routePrefix . '.create', ['copy' => $item->id]) }}"/>
                             @if(\Illuminate\Support\Facades\Auth::user()->id !== $item->id && $item->role !== \App\Enums\AdministratorRole::SYSTEM)
                                 <x-button.delete
                                     href="{{ route($routePrefix . '.destroy', ['id' => $item->id]) }}"
@@ -126,11 +126,9 @@
                         </td>
 
                         <td class="px-3 py-4 text-xs m-1 w-full">
-                            <x-button.link href="{{ route($routePrefix . '.companies.list', ['id' => $item->id]) }}"
-                                           class="break-keep w-full text-left"
-                            >
+                            <x-button.relation href="{{ route($routePrefix . '.companies.list', ['id' => $item->id]) }}">
                                 {{ __('menu.system.administrators.companies.list') }}
-                            </x-button.link>
+                            </x-button.relation>
                         </td>
 
                         @foreach($model::getColumns() as $column)

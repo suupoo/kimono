@@ -1,7 +1,7 @@
-<x-button.link {{ $attributes->merge(['class' => 'bg-custom-blue text-white hover:bg-white hover:text-custom-blue']) }}>
-    <span class="inline sm:hidden">
-        @includeIf('icons.edit', ['class' => 'w-4 h-4'])
+<x-button.color-blue {{ $attributes->merge(['class' => 'break-keep']) }}>
+    <span class="inline">
+        @includeIf('icons.edit', ['class' => 'w-3.5 h-3.5'])
     </span>
     <span class="hidden sm:inline">{{ __('resource.edit') }}</span>
-</x-button.link>
+</x-button.color-blue>
 

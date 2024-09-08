@@ -1,14 +1,16 @@
 <div class="flex flex-col">
-    <div class="w-full">
+    <div class="w-full flex ">
         {{-- 表示件数 --}}
         {!! ( new \App\ValueObjects\Custom\PaginateRow())->input([
           'class' => '',
           'value' => request()->get('rows', config('custom.paginate.default'))
         ]) !!}
         {{-- 全選択ボタン --}}
-        <x-button.action-link id="select-all" class="m-2">
-            {{ __('All') }}
-        </x-button.action-link>
+        <x-button.color id="select-all" class="break-keep bg-transport text-black hover:bg-custom-light-gray hover:text-black">
+            <span class="">
+                {{ __('All') }}
+            </span>
+        </x-button.color>
     </div>
     <div class="-m-1.5 overflow-x-auto">
         <div class="p-1.5 min-w-full inline-block align-middle">

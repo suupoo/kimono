@@ -19,14 +19,14 @@
                             @includeIf('icons.lucide.circle-dot', ['class' => 'w-4 h-4'])
                         @endif
                         </div>
-                        <x-button.link href="{{ $menuItem['link'] }}">
+                        <x-button.color type="link" class="bg-transparent text-black" href="{{ $menuItem['link'] }}">
                             @if(array_key_exists('icon', $menuItem))
                                 @includeIf("icons.{$menuItem['icon']}", ['class' => 'w-6 h-6'])
                             @endif
                             <span class="flex-1 ms-3 whitespace-nowrap">
                                 {{ $menuItem['text'] }}
                             </span>
-                        </x-button.link>
+                        </x-button.color>
                     </div>
                 @endforeach
             </x-button-group.up-down>

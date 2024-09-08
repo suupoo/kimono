@@ -52,12 +52,10 @@
 
     {{--　リスト --}}
     <div class="custom-full-container">
-        <div class="flex w-full justify-end">
-            <div class="w-fit flex flex-row space-x-2">
-                <x-button.export id="export-csv" href="{{ route($model->getTable() . '.export.csv') }}">
-                    CSV
-                </x-button.export>
-                <x-button.create href="{{ route($model->getTable() . '.create') }}"/>
+        <div class="flex w-full justify-end m-1">
+            <div class="w-fit flex flex-row gap-1">
+                <x-button.export export-type="CSV" id="export-csv" href="{{ route($model->getTable() . '.export.csv') }}" />
+                <x-button.create type="link" href="{{ route($model->getTable() . '.create') }}"/>
             </div>
         </div>
         <div class="relative overflow-x-auto">
@@ -105,9 +103,9 @@
                     @foreach($items as $item)
                         <tr class="bg-white border-b" data-id="{{ $item->id }}">
                             <td class="w-full text-xs flex flex-col justify-center space-y-1 m-1">
-                                <x-button.edit href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
-                                <x-button.show href="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}"/>
-                                <x-button.copy href="{{ route($model->getTable() . '.create', ['copy' => $item->id]) }}"/>
+                                <x-button.edit type="link" href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
+                                <x-button.show type="link" href="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}"/>
+                                <x-button.copy type="link" href="{{ route($model->getTable() . '.create', ['copy' => $item->id]) }}"/>
                                 <x-button.delete
                                     href="{{ route($model->getTable() . '.destroy', ['id' => $item->id]) }}"
                                     data-id="{{ $item->id }}"

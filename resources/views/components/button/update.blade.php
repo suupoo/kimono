@@ -1,3 +1,3 @@
-<x-button.button {{ $attributes->merge(['type' => 'submit', 'class' => 'bg-custom-blue text-white hover:bg-white hover:text-custom-blue']) }}>
+<x-button.color-blue {{ $attributes->merge(['type' => 'submit']) }}>
     {{ __('resource.update') }}
-</x-button.button>
+</x-button.color-blue>

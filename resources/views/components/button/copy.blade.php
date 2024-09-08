@@ -1,7 +1,6 @@
-<x-button.link {{ $attributes->merge(['class' => 'bg-custom-green text-white hover:bg-white hover:text-custom-green']) }}>
-    <span class="inline sm:hidden">
-        @includeIf('icons.copy', ['class' => 'w-4 h-4'])
+<x-button.color-green {{ $attributes->merge(['class' => 'break-keep']) }}>
+    <span class="inline">
+        @includeIf('icons.copy', ['class' => 'w-3.5 h-3.5'])
     </span>
     <span class="hidden sm:inline">{{ __('resource.copy') }}</span>
-</x-button.link>
-
+</x-button.color-green>

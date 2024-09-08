@@ -13,12 +13,13 @@
             {{ $slot }}
         </div>
 
-        <button
+        <x-button.button
             id="btn-search"
+            type="button"
             class="bg-blue-500 w-full text-white rounded-md mt-4 py-2"
         >
             {{ __('resource.search') }}
-        </button>
+        </x-button.button>
     </div>
     @endslot
 </x-accordian.simple>
