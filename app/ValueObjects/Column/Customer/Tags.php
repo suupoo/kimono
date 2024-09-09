@@ -1,15 +1,15 @@
 <?php
 
-namespace App\ValueObjects\Customer;
+namespace App\ValueObjects\Column\Customer;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
 
-class Note extends ValueObject
+class Tags extends ValueObject
 {
-    public const NAME = 'note';
+    public const NAME = 'tags';
 
-    public const LABEL = '備考';
+    public const LABEL = 'タグ';
 
     protected string $name = self::NAME;
 
@@ -17,21 +17,22 @@ class Note extends ValueObject
 
     protected string $label = self::LABEL;
 
-    protected string $type = 'text';
+    protected string $type = 'string';
 
-    protected ?int $maxLength = null;
+    protected ?int $maxLength = 255;
 
     protected ?int $minLength = null;
 
     protected bool $required = false; // DB Not Nullable
 
-    protected ?string $placeholder = null;
+    protected string $placeholder = 'タグを入力してください';
 
     public function rules(): array
     {
         return [
             'nullable',
             'string',
+            "max:$this->maxLength",
         ];
     }
 
@@ -42,7 +43,7 @@ class Note extends ValueObject
     {
         return CustomForm::make($this)
             ->label($attributes)
-            ->editor($attributes)
+            ->input($attributes)
             ->render();
     }
 }

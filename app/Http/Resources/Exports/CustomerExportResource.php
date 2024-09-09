@@ -20,14 +20,14 @@ class CustomerExportResource extends BaseExportResource
     public function csvHeaders(): array
     {
         return [
-            new \App\ValueObjects\Customer\OwnerSequenceNo,
-            new \App\ValueObjects\Customer\CustomerName,
-            new \App\ValueObjects\Customer\PostCode,
-            new \App\ValueObjects\Customer\Prefecture,
-            new \App\ValueObjects\Customer\Address1,
-            new \App\ValueObjects\Customer\Address2,
-            new \App\ValueObjects\Customer\Note,
-            new \App\ValueObjects\Customer\Tags,
+            new \App\ValueObjects\Column\Customer\OwnerSequenceNo,
+            new \App\ValueObjects\Column\Customer\CustomerName,
+            new \App\ValueObjects\Column\Customer\PostCode,
+            new \App\ValueObjects\Column\Customer\Prefecture,
+            new \App\ValueObjects\Column\Customer\Address1,
+            new \App\ValueObjects\Column\Customer\Address2,
+            new \App\ValueObjects\Column\Customer\Note,
+            new \App\ValueObjects\Column\Customer\Tags,
         ];
     }
 
@@ -37,9 +37,9 @@ class CustomerExportResource extends BaseExportResource
     public static function pdfOutputColumns(): array
     {
         return [
-            new \App\ValueObjects\Customer\PostCode,
+            new \App\ValueObjects\Column\Customer\PostCode,
             'address',
-            new \App\ValueObjects\Customer\CustomerName,
+            new \App\ValueObjects\Column\Customer\CustomerName,
         ];
     }
 

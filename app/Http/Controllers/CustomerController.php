@@ -3,24 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Traits\CsvExportable;
-use App\Http\Controllers\Traits\PdfExportable; // モデル紐付け
-use App\Http\Resources\Exports\CustomerExportResource as ExportResource; // エクスポートリソース紐付け
+use App\Http\Controllers\Traits\PdfExportable;
+use App\Http\Resources\Exports\CustomerExportResource as ExportResource;
 use App\Models\Customer as ResourceModel;
 use App\UseCases\CustomerAction\CreateAction;
 use App\UseCases\CustomerAction\DeleteAction;
 use App\UseCases\CustomerAction\ListAction;
 use App\UseCases\CustomerAction\UpdateAction;
-use App\ValueObjects\Customer\Address1;
-use App\ValueObjects\Customer\Address2;
-use App\ValueObjects\Customer\CustomerName;
-use App\ValueObjects\Customer\OwnerSequenceNo;
-use App\ValueObjects\Customer\PostCode;
-use App\ValueObjects\Customer\Prefecture;
-use App\ValueObjects\Customer\Tags;
+use App\ValueObjects\Column\Customer\Address1;
+use App\ValueObjects\Column\Customer\Address2;
+use App\ValueObjects\Column\Customer\CustomerName;
+use App\ValueObjects\Column\Customer\OwnerSequenceNo;
+use App\ValueObjects\Column\Customer\PostCode;
+use App\ValueObjects\Column\Customer\Prefecture;
+use App\ValueObjects\Column\Customer\Tags;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
+
+// モデル紐付け
+// エクスポートリソース紐付け
 
 class CustomerController extends ResourceController
 {

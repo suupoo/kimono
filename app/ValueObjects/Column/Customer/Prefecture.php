@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ValueObjects\Customer;
+namespace App\ValueObjects\Column\Customer;
 
 use App\Enums\Prefecture as PrefectureEnum;
 use App\Facades\Utility\CustomForm;

@@ -27,7 +27,7 @@
                         {!! $column->input(['required' => true, 'disable' => true, 'value' => $customerNameValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Customer\PostCode)
+                    @if($column instanceof \App\ValueObjects\Column\Customer\PostCode)
                         @php
                             $postCodeColumn = $column->column();
                             $postCodeValue  = $model->$postCodeColumn;
@@ -35,7 +35,7 @@
                         {!! $column->input(['required' => false, 'disable' => true, 'value' => $postCodeValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Customer\Prefecture)
+                    @if($column instanceof \App\ValueObjects\Column\Customer\Prefecture)
                         @php
                             $prefectureColumn = $column->column();
                             $prefectureValue  = $model->$prefectureColumn;
@@ -43,7 +43,7 @@
                         {!! $column->input(['required' => false, 'disable' => true, 'value' => $prefectureValue?->value]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Customer\Address1)
+                    @if($column instanceof \App\ValueObjects\Column\Customer\Address1)
                         @php
                             $address1Column = $column->column();
                             $address1Value  = $model->$address1Column;
@@ -51,7 +51,7 @@
                         {!! $column->input(['required' => false, 'disable' => true, 'value' => $address1Value]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Customer\Address2)
+                    @if($column instanceof \App\ValueObjects\Column\Customer\Address2)
                         @php
                             $address2Column = $column->column();
                             $address2Value  = $model->$address2Column;
@@ -59,7 +59,7 @@
                         {!! $column->input(['required' => false, 'disable' => true, 'value' => $address2Value]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Customer\Note)
+                    @if($column instanceof \App\ValueObjects\Column\Customer\Note)
                         @php
                             $noteColumn = $column->column();
                             $noteValue  = $model->$noteColumn;
@@ -67,7 +67,7 @@
                         {!! $column->input(['required' => false, 'disable' => true, 'value' => $noteValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Customer\Tags)
+                    @if($column instanceof \App\ValueObjects\Column\Customer\Tags)
                         @php
                             $tagsColumn = $column->column();
                             $tagsValue  = $model->$tagsColumn;

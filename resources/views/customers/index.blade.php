@@ -36,31 +36,31 @@
                     @endphp
                     @if(in_array($column->column(), $arraySearchable))
 
-                        @if($column instanceof \App\ValueObjects\Customer\OwnerSequenceNo)
+                        @if($column instanceof \App\ValueObjects\Column\Customer\OwnerSequenceNo)
                             {!! $column->input(['class' => 'no-spinner']) !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Customer\CustomerName)
+                        @if($column instanceof \App\ValueObjects\Column\Customer\CustomerName)
                             {!! $column->input(['class' => '']) !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Customer\PostCode)
+                        @if($column instanceof \App\ValueObjects\Column\Customer\PostCode)
                             {!! $column->input(['class' => '']) !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Customer\Prefecture)
+                        @if($column instanceof \App\ValueObjects\Column\Customer\Prefecture)
                             {!! $column->input(['class' => '']) !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Customer\Address1)
+                        @if($column instanceof \App\ValueObjects\Column\Customer\Address1)
                             {!! $column->input(['class' => '']) !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Customer\Address2)
+                        @if($column instanceof \App\ValueObjects\Column\Customer\Address2)
                             {!! $column->input(['class' => '']) !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Customer\Tags)
+                        @if($column instanceof \App\ValueObjects\Column\Customer\Tags)
                             {!! $column->input(['class' => '']) !!}
                         @endif
 
@@ -74,8 +74,10 @@
     <div class="custom-full-container">
         <div class="flex w-full justify-end m-1">
             <div class="w-fit flex flex-row gap-1">
-                <x-button.export export-type="CSV" id="export-csv" href="{{ route($model->getTable() . '.export.csv') }}" />
-                <x-button.export export-type="PDF" id="export-pdf" href="{{ route($model->getTable() . '.export.pdf') }}" />
+                <x-button.export export-type="CSV" id="export-csv"
+                                 href="{{ route($model->getTable() . '.export.csv') }}"/>
+                <x-button.export export-type="PDF" id="export-pdf"
+                                 href="{{ route($model->getTable() . '.export.pdf') }}"/>
                 <x-button.create type="link" href="{{ route($model->getTable() . '.create') }}"/>
             </div>
         </div>
@@ -88,9 +90,9 @@
                     </th>
                     @foreach($model::getColumns() as $column)
                         @php
-                            if ($column instanceof \App\ValueObjects\Customer\Id) continue;
-                            elseif ($column instanceof \App\ValueObjects\Customer\OwnerSystemCompany) continue;
-                            elseif ($column instanceof \App\ValueObjects\Customer\DeletedAt) continue;
+                            if ($column instanceof \App\ValueObjects\Column\Customer\Id) continue;
+                            elseif ($column instanceof \App\ValueObjects\Column\Customer\OwnerSystemCompany) continue;
+                            elseif ($column instanceof \App\ValueObjects\Column\Customer\DeletedAt) continue;
                         @endphp
                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
                             <div class="flex w-full items-center justify-center space-x-1">
@@ -126,9 +128,12 @@
 
                     <tr class="bg-white border-b" data-id="{{ $item->id }}">
                         <td class="w-full text-xs flex flex-col justify-center space-y-1 m-1">
-                            <x-button.edit type="link" href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
-                            <x-button.show type="link" href="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}"/>
-                            <x-button.copy type="link" href="{{ route($model->getTable() . '.create', ['copy' => $item->id]) }}"/>
+                            <x-button.edit type="link"
+                                           href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
+                            <x-button.show type="link"
+                                           href="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}"/>
+                            <x-button.copy type="link"
+                                           href="{{ route($model->getTable() . '.create', ['copy' => $item->id]) }}"/>
                             <x-button.delete
                                 href="{{ route($model->getTable() . '.destroy', ['id' => $item->id]) }}"
                                 data-id="{{ $item->id }}"
@@ -136,9 +141,9 @@
                         </td>
                         @foreach($model::getColumns() as $column)
                             @php
-                                if ($column instanceof \App\ValueObjects\Customer\Id) continue;
-                                elseif ($column instanceof \App\ValueObjects\Customer\OwnerSystemCompany) continue;
-                                elseif ($column instanceof \App\ValueObjects\Customer\DeletedAt) continue;
+                                if ($column instanceof \App\ValueObjects\Column\Customer\Id) continue;
+                                elseif ($column instanceof \App\ValueObjects\Column\Customer\OwnerSystemCompany) continue;
+                                elseif ($column instanceof \App\ValueObjects\Column\Customer\DeletedAt) continue;
                             @endphp
 
                             <td class="px-6 py-4">

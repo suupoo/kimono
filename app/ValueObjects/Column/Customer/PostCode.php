@@ -1,15 +1,15 @@
 <?php
 
-namespace App\ValueObjects\Customer;
+namespace App\ValueObjects\Column\Customer;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
 
-class Tags extends ValueObject
+class PostCode extends ValueObject
 {
-    public const NAME = 'tags';
+    public const NAME = 'post_code';
 
-    public const LABEL = 'タグ';
+    public const LABEL = '郵便番号';
 
     protected string $name = self::NAME;
 
@@ -19,13 +19,13 @@ class Tags extends ValueObject
 
     protected string $type = 'string';
 
-    protected ?int $maxLength = 255;
+    protected ?int $maxLength = 8;
 
-    protected ?int $minLength = null;
+    protected ?int $minLength = 8;
 
-    protected bool $required = false; // DB Not Nullable
+    protected bool $required = false; // DB Nullable
 
-    protected string $placeholder = 'タグを入力してください';
+    protected string $placeholder = '000-0000';
 
     public function rules(): array
     {
@@ -33,6 +33,8 @@ class Tags extends ValueObject
             'nullable',
             'string',
             "max:$this->maxLength",
+            "min:$this->minLength",
+            'regex:/^[0-9]{3}-[0-9]{4}$/',
         ];
     }
 

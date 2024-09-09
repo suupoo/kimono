@@ -1,15 +1,15 @@
 <?php
 
-namespace App\ValueObjects\Customer;
+namespace App\ValueObjects\Column\Customer;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
 
-class Address1 extends ValueObject
+class Note extends ValueObject
 {
-    public const NAME = 'address_1';
+    public const NAME = 'note';
 
-    public const LABEL = '住所１';
+    public const LABEL = '備考';
 
     protected string $name = self::NAME;
 
@@ -17,22 +17,21 @@ class Address1 extends ValueObject
 
     protected string $label = self::LABEL;
 
-    protected string $type = 'string';
+    protected string $type = 'text';
 
-    protected ?int $maxLength = 255;
+    protected ?int $maxLength = null;
 
     protected ?int $minLength = null;
 
-    protected bool $required = false; // DB Nullable
+    protected bool $required = false; // DB Not Nullable
 
-    protected string $placeholder = '大阪府高槻市桃園町２番１号';
+    protected ?string $placeholder = null;
 
     public function rules(): array
     {
         return [
             'nullable',
             'string',
-            "max:$this->maxLength",
         ];
     }
 
@@ -43,7 +42,7 @@ class Address1 extends ValueObject
     {
         return CustomForm::make($this)
             ->label($attributes)
-            ->input($attributes)
+            ->editor($attributes)
             ->render();
     }
 }

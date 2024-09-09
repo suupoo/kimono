@@ -10,7 +10,7 @@ use App\UseCases\CompanyAction\DeleteAction;
 use App\UseCases\CompanyAction\ListAction;
 use App\UseCases\CompanyAction\UpdateAction;
 use App\ValueObjects\Column\Company\Name;
-use App\ValueObjects\Customer\OwnerSequenceNo;
+use App\ValueObjects\Column\Customer\OwnerSequenceNo;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
