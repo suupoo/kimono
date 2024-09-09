@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ValueObjects\Custom\Paginate;
+namespace App\ValueObjects\Paginate;
 
 use App\Enums\PaginateRow as PaginateRowEnum;
 use App\Facades\Utility\CustomForm;

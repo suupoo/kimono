@@ -1,7 +1,7 @@
 <div class="flex flex-col">
     <div class="w-full flex ">
         {{-- 表示件数 --}}
-        {!! ( new \App\ValueObjects\Custom\Paginate\PaginateRow())->input([
+        {!! ( new \App\ValueObjects\Paginate\PaginateRow())->input([
           'class' => '',
           'value' => request()->get('rows', config('custom.paginate.default'))
         ]) !!}
