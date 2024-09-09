@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\ValueObjects\StoreStaff\Id;
-use App\ValueObjects\StoreStaff\StaffId;
-use App\ValueObjects\StoreStaff\StoreId;
+use App\ValueObjects\Column\StoreStaff\Id;
+use App\ValueObjects\Column\StoreStaff\StaffId;
+use App\ValueObjects\Column\StoreStaff\StoreId;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class StoreStaffs extends BaseModel

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ValueObjects\StoreStaff;
+namespace App\ValueObjects\Column\StoreStaff;
 
 use App\ValueObjects\Staff\Id as OriginalStaffId;
 
