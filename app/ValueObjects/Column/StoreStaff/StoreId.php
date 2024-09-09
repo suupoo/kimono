@@ -2,7 +2,7 @@
 
 namespace App\ValueObjects\Column\StoreStaff;
 
-use App\ValueObjects\Store\Id as OriginalStoreId;
+use App\ValueObjects\Column\Store\Id as OriginalStoreId;
 
 class StoreId extends OriginalStoreId
 {

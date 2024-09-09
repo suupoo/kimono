@@ -1,15 +1,15 @@
 <?php
 
-namespace App\ValueObjects\Store;
+namespace App\ValueObjects\Column\Store;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
 
-class PostCode extends ValueObject
+class Address2 extends ValueObject
 {
-    public const NAME = 'post_code';
+    public const NAME = 'address_2';
 
-    public const LABEL = '郵便番号';
+    public const LABEL = '住所２';
 
     protected string $name = self::NAME;
 
@@ -19,13 +19,13 @@ class PostCode extends ValueObject
 
     protected string $type = 'string';
 
-    protected ?int $maxLength = 8;
+    protected ?int $maxLength = 255;
 
-    protected ?int $minLength = 8;
+    protected ?int $minLength = null;
 
     protected bool $required = false; // DB Nullable
 
-    protected string $placeholder = '000-0000';
+    protected string $placeholder = 'サンプルマンション１０１号室';
 
     public function rules(): array
     {
@@ -33,8 +33,6 @@ class PostCode extends ValueObject
             'nullable',
             'string',
             "max:$this->maxLength",
-            "min:$this->minLength",
-            'regex:/^[0-9]{3}-[0-9]{4}$/',
         ];
     }
 

@@ -22,14 +22,14 @@ class StoreExportResource extends BaseExportResource
     public function csvHeaders(): array
     {
         return [
-            new \App\ValueObjects\Store\OwnerSequenceNo,
-            new \App\ValueObjects\Store\Name,
-            new \App\ValueObjects\Store\Code,
-            new \App\ValueObjects\Store\PostCode,
-            new \App\ValueObjects\Store\Prefecture,
-            new \App\ValueObjects\Store\Address1,
-            new \App\ValueObjects\Store\Address2,
-            new \App\ValueObjects\Store\Tags,
+            new \App\ValueObjects\Column\Store\OwnerSequenceNo,
+            new \App\ValueObjects\Column\Store\Name,
+            new \App\ValueObjects\Column\Store\Code,
+            new \App\ValueObjects\Column\Store\PostCode,
+            new \App\ValueObjects\Column\Store\Prefecture,
+            new \App\ValueObjects\Column\Store\Address1,
+            new \App\ValueObjects\Column\Store\Address2,
+            new \App\ValueObjects\Column\Store\Tags,
         ];
     }
 

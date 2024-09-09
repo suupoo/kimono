@@ -1,15 +1,15 @@
 <?php
 
-namespace App\ValueObjects\Store;
+namespace App\ValueObjects\Column\Store;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
 
-class Tags extends ValueObject
+class Address1 extends ValueObject
 {
-    public const NAME = 'tags';
+    public const NAME = 'address_1';
 
-    public const LABEL = 'タグ';
+    public const LABEL = '住所１';
 
     protected string $name = self::NAME;
 
@@ -23,9 +23,9 @@ class Tags extends ValueObject
 
     protected ?int $minLength = null;
 
-    protected bool $required = false; // DB Not Nullable
+    protected bool $required = false; // DB Nullable
 
-    protected string $placeholder = 'タグを入力してください';
+    protected string $placeholder = '大阪府高槻市桃園町２番１号';
 
     public function rules(): array
     {

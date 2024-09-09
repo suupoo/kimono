@@ -1,15 +1,17 @@
 <?php
 
-namespace App\ValueObjects\Store;
+namespace App\ValueObjects\Column\Store;
 
+use App\Enums\Prefecture as PrefectureEnum;
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
+use Illuminate\Validation\Rule;
 
-class Address1 extends ValueObject
+class Prefecture extends ValueObject
 {
-    public const NAME = 'address_1';
+    public const NAME = 'prefecture';
 
-    public const LABEL = '住所１';
+    public const LABEL = '都道府県';
 
     protected string $name = self::NAME;
 
@@ -17,23 +19,26 @@ class Address1 extends ValueObject
 
     protected string $label = self::LABEL;
 
-    protected string $type = 'string';
+    protected string $type = 'list';
 
-    protected ?int $maxLength = 255;
+    protected ?int $maxLength = null;
 
     protected ?int $minLength = null;
 
-    protected bool $required = false; // DB Nullable
-
-    protected string $placeholder = '大阪府高槻市桃園町２番１号';
+    protected bool $required = false;
 
     public function rules(): array
     {
         return [
-            'nullable',
+            'required',
             'string',
-            "max:$this->maxLength",
+            Rule::enum(PrefectureEnum::class),
         ];
+    }
+
+    public function options(): array
+    {
+        return PrefectureEnum::cases();
     }
 
     /**
@@ -43,7 +48,7 @@ class Address1 extends ValueObject
     {
         return CustomForm::make($this)
             ->label($attributes)
-            ->input($attributes)
+            ->select($attributes, $this->options())
             ->render();
     }
 }

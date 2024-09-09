@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ValueObjects\Store;
+namespace App\ValueObjects\Column\Store;
 
 use App\ValueObjects\ValueObject;
 
