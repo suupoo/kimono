@@ -1,14 +1,14 @@
 <?php
 
-namespace App\ValueObjects\BaseModel;
+namespace App\ValueObjects\Column\BaseModel;
 
 use App\ValueObjects\ValueObject;
 
-class CreatedAt extends ValueObject
+class DeletedAt extends ValueObject
 {
-    public const NAME = 'created_at';
+    public const NAME = 'deleted_at';
 
-    public const LABEL = '作成日時';
+    public const LABEL = '削除日時';
 
     protected string $name = self::NAME;
 

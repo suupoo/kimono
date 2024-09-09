@@ -2,7 +2,7 @@
 
 namespace App\ValueObjects\Customer;
 
-use App\ValueObjects\BaseModel\UpdatedUser as BaseUpdatedUser;
+use App\ValueObjects\Column\BaseModel\UpdatedUser as BaseUpdatedUser;
 
 class UpdatedUser extends BaseUpdatedUser
 {

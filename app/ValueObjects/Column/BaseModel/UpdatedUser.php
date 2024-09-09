@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ValueObjects\BaseModel;
+namespace App\ValueObjects\Column\BaseModel;
 
 use App\ValueObjects\ValueObject;
 use Illuminate\Contracts\View\View;

@@ -2,7 +2,7 @@
 
 namespace App\ValueObjects\Store;
 
-use App\ValueObjects\BaseModel\CreatedUser as BaseCreatedUser;
+use App\ValueObjects\Column\BaseModel\CreatedUser as BaseCreatedUser;
 
 class CreatedUser extends BaseCreatedUser
 {
