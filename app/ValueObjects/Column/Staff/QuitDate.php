@@ -1,15 +1,15 @@
 <?php
 
-namespace App\ValueObjects\Staff;
+namespace App\ValueObjects\Column\Staff;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
 
-class JoinDate extends ValueObject
+class QuitDate extends ValueObject
 {
-    public const NAME = 'join_date';
+    public const NAME = 'quit_date';
 
-    public const LABEL = '入社日';
+    public const LABEL = '退社日';
 
     protected string $name = self::NAME;
 

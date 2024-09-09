@@ -22,14 +22,14 @@ class StaffExportResource extends BaseExportResource
     public function csvHeaders(): array
     {
         return [
-            new \App\ValueObjects\Staff\OwnerSequenceNo,
-            new \App\ValueObjects\Staff\Name,
-            new \App\ValueObjects\Staff\Code,
-            new \App\ValueObjects\Staff\Tel,
-            new \App\ValueObjects\Staff\StaffPosition,
-            new \App\ValueObjects\Staff\JoinDate,
-            new \App\ValueObjects\Staff\QuitDate,
-            new \App\ValueObjects\Staff\Tags,
+            new \App\ValueObjects\Column\Staff\OwnerSequenceNo,
+            new \App\ValueObjects\Column\Staff\Name,
+            new \App\ValueObjects\Column\Staff\Code,
+            new \App\ValueObjects\Column\Staff\Tel,
+            new \App\ValueObjects\Column\Staff\StaffPosition,
+            new \App\ValueObjects\Column\Staff\JoinDate,
+            new \App\ValueObjects\Column\Staff\QuitDate,
+            new \App\ValueObjects\Column\Staff\Tags,
         ];
     }
 

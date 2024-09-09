@@ -1,15 +1,15 @@
 <?php
 
-namespace App\ValueObjects\Staff;
+namespace App\ValueObjects\Column\Staff;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
 
-class Tel extends ValueObject
+class Name extends ValueObject
 {
-    public const NAME = 'tel';
+    public const NAME = 'name';
 
-    public const LABEL = '電話番号';
+    public const LABEL = 'スタッフ名';
 
     protected string $name = self::NAME;
 
@@ -19,22 +19,21 @@ class Tel extends ValueObject
 
     protected string $type = 'string';
 
-    protected ?int $maxLength = 11;
+    protected ?int $maxLength = 255;
 
-    protected ?int $minLength = 10;
+    protected ?int $minLength = 1;
 
-    protected bool $required = false; // DB Nullable
+    protected bool $required = true; // DB Not Nullable
 
-    protected string $placeholder = '08011112222';
+    protected string $placeholder = 'スタッフ氏名';
 
     public function rules(): array
     {
         return [
-            'nullable',
+            'required',
             'string',
             "max:$this->maxLength",
             "min:$this->minLength",
-            'regex:/^[0-9]{'.$this->minLength.','.$this->maxLength.'}$/',
         ];
     }
 

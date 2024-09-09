@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Traits\CsvExportable; // モデル紐付け
-use App\Http\Resources\Exports\StoreExportResource as ExportResource; // エクスポートリソース紐付け
+use App\Http\Controllers\Traits\CsvExportable;
+use App\Http\Resources\Exports\StoreExportResource as ExportResource;
 use App\Models\Store as ResourceModel;
 use App\UseCases\StoreAction\CreateAction;
 use App\UseCases\StoreAction\DeleteAction;
@@ -11,7 +11,7 @@ use App\UseCases\StoreAction\ListAction;
 use App\UseCases\StoreAction\StaffListAction;
 use App\UseCases\StoreAction\StaffSaveAction;
 use App\UseCases\StoreAction\UpdateAction;
-use App\ValueObjects\Staff\OwnerSequenceNo;
+use App\ValueObjects\Column\Staff\OwnerSequenceNo;
 use App\ValueObjects\Store\Address1;
 use App\ValueObjects\Store\Address2;
 use App\ValueObjects\Store\PostCode;
@@ -20,6 +20,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
+
+// モデル紐付け
+// エクスポートリソース紐付け
 
 class StoreController extends ResourceController
 {

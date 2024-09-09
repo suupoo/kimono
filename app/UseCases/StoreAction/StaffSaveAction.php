@@ -5,7 +5,7 @@ namespace App\UseCases\StoreAction;
 use App\Models\Staff;
 use App\Models\StoreStaffs;
 use App\UseCases\Action;
-use App\ValueObjects\Staff\Id;
+use App\ValueObjects\Column\Staff\Id;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;

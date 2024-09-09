@@ -24,57 +24,58 @@
 
     {{--　検索エリア --}}
     @if(!empty($searchable))
-    <div class="custom-full-container">
-        <x-list.search-box>
-            @foreach($model::getColumns() as $column)
-                @php
-                    // 検索可能カラムコレクションをカラム名配列に変換
-                    $arraySearchable = [];
-                    foreach($searchable as $value) {
-                        $arraySearchable[] = $value->column();
-                    }
-                @endphp
-                @if(in_array($column->column(), $arraySearchable))
+        <div class="custom-full-container">
+            <x-list.search-box>
+                @foreach($model::getColumns() as $column)
+                    @php
+                        // 検索可能カラムコレクションをカラム名配列に変換
+                        $arraySearchable = [];
+                        foreach($searchable as $value) {
+                            $arraySearchable[] = $value->column();
+                        }
+                    @endphp
+                    @if(in_array($column->column(), $arraySearchable))
 
-                    @if($column instanceof \App\ValueObjects\Staff\OwnerSequenceNo)
-                        {!! $column->input(['class' => 'no-spinner']) !!}
+                        @if($column instanceof \App\ValueObjects\Column\Staff\OwnerSequenceNo)
+                            {!! $column->input(['class' => 'no-spinner']) !!}
+                        @endif
+
+                        @if($column instanceof \App\ValueObjects\Column\Staff\Name)
+                            {!! $column->input(['class' => '']) !!}
+                        @endif
+
+                        @if($column instanceof \App\ValueObjects\Column\Staff\Code)
+                            {!! $column->input(['class' => '']) !!}
+                        @endif
+
+                        @if($column instanceof \App\ValueObjects\Column\Staff\Tel)
+                            {!! $column->input(['class' => '']) !!}
+                        @endif
+
+                        @if($column instanceof \App\ValueObjects\Column\Staff\StaffPosition)
+                            {!! $column->input(['class' => '']) !!}
+                        @endif
+
+                        @if($column instanceof \App\ValueObjects\Column\Staff\JoinDate)
+                            {!! $column->input(['class' => '']) !!}
+                        @endif
+
+                        @if($column instanceof \App\ValueObjects\Column\Staff\QuitDate)
+                            {!! $column->input(['class' => '']) !!}
+                        @endif
+
                     @endif
-
-                    @if($column instanceof \App\ValueObjects\Staff\Name)
-                        {!! $column->input(['class' => '']) !!}
-                    @endif
-
-                    @if($column instanceof \App\ValueObjects\Staff\Code)
-                        {!! $column->input(['class' => '']) !!}
-                    @endif
-
-                    @if($column instanceof \App\ValueObjects\Staff\Tel)
-                        {!! $column->input(['class' => '']) !!}
-                    @endif
-
-                    @if($column instanceof \App\ValueObjects\Staff\StaffPosition)
-                        {!! $column->input(['class' => '']) !!}
-                    @endif
-
-                    @if($column instanceof \App\ValueObjects\Staff\JoinDate)
-                        {!! $column->input(['class' => '']) !!}
-                    @endif
-
-                    @if($column instanceof \App\ValueObjects\Staff\QuitDate)
-                        {!! $column->input(['class' => '']) !!}
-                    @endif
-
-                @endif
-            @endforeach
-        </x-list.search-box>
-    </div>
+                @endforeach
+            </x-list.search-box>
+        </div>
     @endif
 
     {{--　リスト --}}
     <div class="custom-full-container">
         <div class="flex w-full justify-end m-1">
             <div class="w-fit flex flex-row gap-1">
-                <x-button.export export-type="CSV" id="export-csv" href="{{ route($model->getTable() . '.export.csv') }}" />
+                <x-button.export export-type="CSV" id="export-csv"
+                                 href="{{ route($model->getTable() . '.export.csv') }}"/>
                 <x-button.create type="link" href="{{ route($model->getTable() . '.create') }}"/>
             </div>
         </div>
@@ -87,9 +88,9 @@
                     </th>
                     @foreach($model::getColumns() as $column)
                         @php
-                            if ($column instanceof \App\ValueObjects\Staff\Id) continue;
-                            elseif ($column instanceof \App\ValueObjects\Staff\OwnerSystemCompany) continue;
-                            elseif ($column instanceof \App\ValueObjects\Staff\DeletedAt) continue;
+                            if ($column instanceof \App\ValueObjects\Column\Staff\Id) continue;
+                            elseif ($column instanceof \App\ValueObjects\Column\Staff\OwnerSystemCompany) continue;
+                            elseif ($column instanceof \App\ValueObjects\Column\Staff\DeletedAt) continue;
                         @endphp
                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
                             <div class="flex w-full items-center justify-center space-x-1">
@@ -123,9 +124,12 @@
                 @foreach($items as $item)
                     <tr class="bg-white border-b" data-id="{{ $item->id }}">
                         <td class="w-full text-xs flex flex-col justify-center space-y-1 m-1">
-                            <x-button.edit type="link" href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
-                            <x-button.show type="link" href="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}"/>
-                            <x-button.copy type="link" href="{{ route($model->getTable() . '.create', ['copy' => $item->id]) }}"/>
+                            <x-button.edit type="link"
+                                           href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
+                            <x-button.show type="link"
+                                           href="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}"/>
+                            <x-button.copy type="link"
+                                           href="{{ route($model->getTable() . '.create', ['copy' => $item->id]) }}"/>
                             <x-button.delete
                                 href="{{ route($model->getTable() . '.destroy', ['id' => $item->id]) }}"
                                 data-id="{{ $item->id }}"
@@ -133,20 +137,22 @@
                         </td>
                         @foreach($model::getColumns() as $column)
                             @php
-                                if ($column instanceof \App\ValueObjects\Staff\Id) continue;
-                                elseif ($column instanceof \App\ValueObjects\Staff\OwnerSystemCompany) continue;
-                                elseif ($column instanceof \App\ValueObjects\Staff\DeletedAt) continue;
+                                if ($column instanceof \App\ValueObjects\Column\Staff\Id) continue;
+                                elseif ($column instanceof \App\ValueObjects\Column\Staff\OwnerSystemCompany) continue;
+                                elseif ($column instanceof \App\ValueObjects\Column\Staff\DeletedAt) continue;
                             @endphp
                             <td class="px-6 py-4">
                                 @php
                                     $columnName = $column->column();
                                     $value = $item?->$columnName
                                 @endphp
-                                @if($column instanceof \App\ValueObjects\Staff\Image)
+                                @if($column instanceof \App\ValueObjects\Column\Staff\Image)
                                     <div class="flex w-full space-x-2 flex-row items-center">
-                                        <div class="w-40 h-40 rounded-full border border-gray-200 flex justify-center items-center">
+                                        <div
+                                            class="w-40 h-40 rounded-full border border-gray-200 flex justify-center items-center">
                                             @if($item->image)
-                                                <img src="{{ $item->image_url }}" alt="profile-icon" class="w-full h-full">
+                                                <img src="{{ $item->image_url }}" alt="profile-icon"
+                                                     class="w-full h-full">
                                             @else
                                                 <span>{{ __('Not Upload') }}</span>
                                             @endif

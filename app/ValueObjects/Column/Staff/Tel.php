@@ -1,15 +1,15 @@
 <?php
 
-namespace App\ValueObjects\Staff;
+namespace App\ValueObjects\Column\Staff;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
 
-class QuitDate extends ValueObject
+class Tel extends ValueObject
 {
-    public const NAME = 'quit_date';
+    public const NAME = 'tel';
 
-    public const LABEL = '退社日';
+    public const LABEL = '電話番号';
 
     protected string $name = self::NAME;
 
@@ -17,21 +17,24 @@ class QuitDate extends ValueObject
 
     protected string $label = self::LABEL;
 
-    protected string $type = 'date';
+    protected string $type = 'string';
 
-    protected ?int $maxLength = null;
+    protected ?int $maxLength = 11;
 
-    protected ?int $minLength = null;
-
-    protected string $placeholder = '2021-01-01';
+    protected ?int $minLength = 10;
 
     protected bool $required = false; // DB Nullable
+
+    protected string $placeholder = '08011112222';
 
     public function rules(): array
     {
         return [
             'nullable',
-            'date',
+            'string',
+            "max:$this->maxLength",
+            "min:$this->minLength",
+            'regex:/^[0-9]{'.$this->minLength.','.$this->maxLength.'}$/',
         ];
     }
 

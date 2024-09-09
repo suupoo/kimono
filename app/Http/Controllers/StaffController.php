@@ -2,25 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Traits\CsvExportable; // モデル紐付け
-use App\Http\Resources\Exports\StaffExportResource as ExportResource; // エクスポートリソース紐付け
+use App\Http\Controllers\Traits\CsvExportable;
+use App\Http\Resources\Exports\StaffExportResource as ExportResource;
 use App\Models\Staff as ResourceModel;
 use App\UseCases\StaffAction\CreateAction;
 use App\UseCases\StaffAction\DeleteAction;
 use App\UseCases\StaffAction\ListAction;
 use App\UseCases\StaffAction\UpdateAction;
-use App\ValueObjects\Staff\Code;
-use App\ValueObjects\Staff\JoinDate;
-use App\ValueObjects\Staff\Name;
-use App\ValueObjects\Staff\OwnerSequenceNo;
-use App\ValueObjects\Staff\QuitDate;
-use App\ValueObjects\Staff\StaffPosition;
-use App\ValueObjects\Staff\Tags;
-use App\ValueObjects\Staff\Tel;
+use App\ValueObjects\Column\Staff\Code;
+use App\ValueObjects\Column\Staff\JoinDate;
+use App\ValueObjects\Column\Staff\Name;
+use App\ValueObjects\Column\Staff\OwnerSequenceNo;
+use App\ValueObjects\Column\Staff\QuitDate;
+use App\ValueObjects\Column\Staff\StaffPosition;
+use App\ValueObjects\Column\Staff\Tags;
+use App\ValueObjects\Column\Staff\Tel;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
+
+// モデル紐付け
+// エクスポートリソース紐付け
 
 class StaffController extends ResourceController
 {

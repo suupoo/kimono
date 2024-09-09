@@ -4,7 +4,7 @@ namespace App\UseCases\StaffAction;
 
 use App\Facades\Utility\CustomStorage;
 use App\UseCases\ResourceAction\CreateAction as BaseAction;
-use App\ValueObjects\Staff\Image;
+use App\ValueObjects\Column\Staff\Image;
 use Illuminate\Http\Request;
 
 /**

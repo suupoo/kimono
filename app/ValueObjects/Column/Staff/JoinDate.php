@@ -1,17 +1,15 @@
 <?php
 
-namespace App\ValueObjects\Staff;
+namespace App\ValueObjects\Column\Staff;
 
-use App\Enums\StaffPosition as StaffPositionEnum;
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
-use Illuminate\Validation\Rule;
 
-class StaffPosition extends ValueObject
+class JoinDate extends ValueObject
 {
-    public const NAME = 'position';
+    public const NAME = 'join_date';
 
-    public const LABEL = '役職';
+    public const LABEL = '入社日';
 
     protected string $name = self::NAME;
 
@@ -19,26 +17,22 @@ class StaffPosition extends ValueObject
 
     protected string $label = self::LABEL;
 
-    protected string $type = 'list';
+    protected string $type = 'date';
 
     protected ?int $maxLength = null;
 
     protected ?int $minLength = null;
 
-    protected bool $required = false;
+    protected string $placeholder = '2021-01-01';
+
+    protected bool $required = false; // DB Nullable
 
     public function rules(): array
     {
         return [
-            'required',
-            'string',
-            Rule::enum(StaffPositionEnum::class),
+            'nullable',
+            'date',
         ];
-    }
-
-    public function options(): array
-    {
-        return StaffPositionEnum::cases();
     }
 
     /**
@@ -48,7 +42,7 @@ class StaffPosition extends ValueObject
     {
         return CustomForm::make($this)
             ->label($attributes)
-            ->select($attributes, $this->options())
+            ->input($attributes)
             ->render();
     }
 }

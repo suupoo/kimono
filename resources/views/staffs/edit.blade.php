@@ -9,7 +9,8 @@
     @php
         $id = $model->id;
     @endphp
-    <form action="{{ route($model->getTable().'.update', ['id' => $id]) }}" method="post" enctype="multipart/form-data" class="flex flex-col py-2">
+    <form action="{{ route($model->getTable().'.update', ['id' => $id]) }}" method="post" enctype="multipart/form-data"
+          class="flex flex-col py-2">
         @csrf
         <input type="hidden" id="id" name="id" value="{{ $id }}"/>
         @method('PUT')
@@ -24,7 +25,7 @@
             @foreach($model::getColumns() as $column)
                 <div class="w-full my-1">
 
-                    @if($column instanceof \App\ValueObjects\Staff\Image)
+                    @if($column instanceof \App\ValueObjects\Column\Staff\Image)
                         @php
                             $imageColumn = $column->column();
                             $imageValue  = $model->$imageColumn;
@@ -44,7 +45,7 @@
                         </div>
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Staff\Name)
+                    @if($column instanceof \App\ValueObjects\Column\Staff\Name)
                         @php
                             $staffNameColumn = $column->column();
                             $staffNameValue  = $model->$staffNameColumn;
@@ -52,7 +53,7 @@
                         {!! $column->input(['required' => true, 'class' => '', 'value' => $staffNameValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Staff\Code)
+                    @if($column instanceof \App\ValueObjects\Column\Staff\Code)
                         @php
                             $codeColumn = $column->column();
                             $codeValue  = $model->$codeColumn;
@@ -60,7 +61,7 @@
                         {!! $column->input(['required' => false, 'class' => '', 'value' => $codeValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Staff\Tel)
+                    @if($column instanceof \App\ValueObjects\Column\Staff\Tel)
                         @php
                             $telColumn = $column->column();
                             $telValue  = $model->$telColumn;
@@ -68,7 +69,7 @@
                         {!! $column->input(['required' => false, 'class' => '', 'value' => $telValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Staff\StaffPosition)
+                    @if($column instanceof \App\ValueObjects\Column\Staff\StaffPosition)
                         @php
                             $positionColumn = $column->column();
                             $positionValue  = $model->$positionColumn;
@@ -76,7 +77,7 @@
                         {!! $column->input(['required' => false, 'class' => '', 'value' => $positionValue?->value]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Staff\JoinDate)
+                    @if($column instanceof \App\ValueObjects\Column\Staff\JoinDate)
                         @php
                             $joinDateColumn = $column->column();
                             $joinDateValue  = $model->$joinDateColumn;
@@ -84,7 +85,7 @@
                         {!! $column->input(['required' => false, 'class' => '', 'value' => $joinDateValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Staff\QuitDate)
+                    @if($column instanceof \App\ValueObjects\Column\Staff\QuitDate)
                         @php
                             $quitDateColumn = $column->column();
                             $quitDateValue  = $model->$quitDateColumn;
@@ -92,7 +93,7 @@
                         {!! $column->input(['required' => false, 'class' => '', 'value' => $quitDateValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Staff\Tags)
+                    @if($column instanceof \App\ValueObjects\Column\Staff\Tags)
                         @php
                             $tagsColumn = $column->column();
                             $tagsValue  = $model->$tagsColumn;

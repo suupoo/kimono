@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ValueObjects\Staff;
+namespace App\ValueObjects\Column\Staff;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
