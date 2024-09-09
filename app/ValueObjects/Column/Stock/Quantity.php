@@ -1,15 +1,15 @@
 <?php
 
-namespace App\ValueObjects\Stock;
+namespace App\ValueObjects\Column\Stock;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
 
-class OwnerSequenceNo extends ValueObject
+class Quantity extends ValueObject
 {
-    public const NAME = 'owner_sequence_no';
+    public const NAME = 'quantity';
 
-    public const LABEL = 'No.';
+    public const LABEL = '在庫数';
 
     protected string $name = self::NAME;
 
@@ -17,23 +17,25 @@ class OwnerSequenceNo extends ValueObject
 
     protected string $label = self::LABEL;
 
-    protected string $type = 'string';
+    protected string $type = 'integer';
 
     protected ?int $maxLength = null;
 
     protected ?int $minLength = null;
 
-    protected bool $required = false; // DB Nullable
+    protected ?int $min = 0;
 
-    protected bool $primaryKey = false;
+    protected ?int $max = 999;
 
-    protected bool $unique = true;
+    protected bool $required = false;
 
     public function rules(): array
     {
         return [
-            'string',
-            'nullable',
+            'required',
+            'numeric',
+            "min:$this->min",
+            "max:$this->max",
         ];
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ValueObjects\Stock;
+namespace App\ValueObjects\Column\Stock;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;

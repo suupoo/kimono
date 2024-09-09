@@ -1,15 +1,15 @@
 <?php
 
-namespace App\ValueObjects\Stock;
+namespace App\ValueObjects\Column\Stock;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
 
-class Price extends ValueObject
+class Tags extends ValueObject
 {
-    public const NAME = 'price';
+    public const NAME = 'tags';
 
-    public const LABEL = '価格';
+    public const LABEL = 'タグ';
 
     protected string $name = self::NAME;
 
@@ -17,25 +17,22 @@ class Price extends ValueObject
 
     protected string $label = self::LABEL;
 
-    protected string $type = 'integer';
+    protected string $type = 'string';
 
-    protected ?int $maxLength = null;
+    protected ?int $maxLength = 255;
 
     protected ?int $minLength = null;
 
-    protected ?int $min = 0;
+    protected bool $required = false; // DB Not Nullable
 
-    protected ?int $max = 999999999;
-
-    protected bool $required = false;
+    protected string $placeholder = 'タグを入力してください';
 
     public function rules(): array
     {
         return [
-            'required',
-            'numeric',
-            "min:$this->min",
-            "max:$this->max",
+            'nullable',
+            'string',
+            "max:$this->maxLength",
         ];
     }
 

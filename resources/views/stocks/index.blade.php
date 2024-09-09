@@ -24,49 +24,50 @@
 
     {{--　検索エリア --}}
     @if(!empty($searchable))
-    <div class="custom-full-container">
-        <x-list.search-box>
-            @foreach($model::getColumns() as $column)
-                @php
-                    // 検索可能カラムコレクションをカラム名配列に変換
-                    $arraySearchable = [];
-                    foreach($searchable as $value) {
-                        $arraySearchable[] = $value->column();
-                    }
-                @endphp
-                @if(in_array($column->column(), $arraySearchable))
+        <div class="custom-full-container">
+            <x-list.search-box>
+                @foreach($model::getColumns() as $column)
+                    @php
+                        // 検索可能カラムコレクションをカラム名配列に変換
+                        $arraySearchable = [];
+                        foreach($searchable as $value) {
+                            $arraySearchable[] = $value->column();
+                        }
+                    @endphp
+                    @if(in_array($column->column(), $arraySearchable))
 
-                    @if($column instanceof \App\ValueObjects\Stock\OwnerSequenceNo)
-                        {!! $column->input(['class' => 'no-spinner']) !!}
+                        @if($column instanceof \App\ValueObjects\Column\Stock\OwnerSequenceNo)
+                            {!! $column->input(['class' => 'no-spinner']) !!}
+                        @endif
+
+                        @if($column instanceof \App\ValueObjects\Column\Stock\Name)
+                            {!! $column->input(['class' => '']) !!}
+                        @endif
+
+                        @if($column instanceof \App\ValueObjects\Column\Stock\Quantity)
+                            {!! $column->input(['class' => '']) !!}
+                        @endif
+
+                        @if($column instanceof \App\ValueObjects\Column\Stock\Price)
+                            {!! $column->input(['class' => '']) !!}
+                        @endif
+
+                        @if($column instanceof \App\ValueObjects\Column\Stock\Tags)
+                            {!! $column->input(['class' => '']) !!}
+                        @endif
+
                     @endif
-
-                    @if($column instanceof \App\ValueObjects\Stock\Name)
-                        {!! $column->input(['class' => '']) !!}
-                    @endif
-
-                    @if($column instanceof \App\ValueObjects\Stock\Quantity)
-                        {!! $column->input(['class' => '']) !!}
-                    @endif
-
-                    @if($column instanceof \App\ValueObjects\Stock\Price)
-                        {!! $column->input(['class' => '']) !!}
-                    @endif
-
-                    @if($column instanceof \App\ValueObjects\Stock\Tags)
-                        {!! $column->input(['class' => '']) !!}
-                    @endif
-
-                @endif
-            @endforeach
-        </x-list.search-box>
-    </div>
+                @endforeach
+            </x-list.search-box>
+        </div>
     @endif
 
     {{--　リスト --}}
     <div class="custom-full-container">
         <div class="flex w-full justify-end m-1">
             <div class="w-fit flex flex-row gap-1">
-                <x-button.export export-type="CSV" id="export-csv" href="{{ route($model->getTable() . '.export.csv') }}" />
+                <x-button.export export-type="CSV" id="export-csv"
+                                 href="{{ route($model->getTable() . '.export.csv') }}"/>
                 <x-button.create type="link" href="{{ route($model->getTable() . '.create') }}"/>
             </div>
         </div>
@@ -79,9 +80,9 @@
                         </th>
                         @foreach($model::getColumns() as $column)
                             @php
-                                if ($column instanceof \App\ValueObjects\Stock\Id) continue;
-                                elseif ($column instanceof \App\ValueObjects\Stock\OwnerSystemCompany) continue;
-                                elseif ($column instanceof \App\ValueObjects\Stock\DeletedAt) continue;
+                                if ($column instanceof \App\ValueObjects\Column\Stock\Id) continue;
+                                elseif ($column instanceof \App\ValueObjects\Column\Stock\OwnerSystemCompany) continue;
+                                elseif ($column instanceof \App\ValueObjects\Column\Stock\DeletedAt) continue;
                             @endphp
                             <th scope="col" class="px-6 py-3 whitespace-nowrap">
                                 <div class="flex w-full items-center justify-center space-x-1">
@@ -115,9 +116,12 @@
                     @foreach($items as $item)
                         <tr class="bg-white border-b" data-id="{{ $item->id }}">
                             <td class="w-full text-xs flex flex-col justify-center space-y-1 m-1">
-                                <x-button.edit type="link" href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
-                                <x-button.show type="link" href="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}"/>
-                                <x-button.copy type="link" href="{{ route($model->getTable() . '.create', ['copy' => $item->id]) }}"/>
+                                <x-button.edit type="link"
+                                               href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
+                                <x-button.show type="link"
+                                               href="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}"/>
+                                <x-button.copy type="link"
+                                               href="{{ route($model->getTable() . '.create', ['copy' => $item->id]) }}"/>
                                 <x-button.delete
                                     href="{{ route($model->getTable() . '.destroy', ['id' => $item->id]) }}"
                                     data-id="{{ $item->id }}"
@@ -125,20 +129,22 @@
                             </td>
                             @foreach($model::getColumns() as $column)
                                 @php
-                                    if ($column instanceof \App\ValueObjects\Stock\Id) continue;
-                                    elseif ($column instanceof \App\ValueObjects\Stock\OwnerSystemCompany) continue;
-                                    elseif ($column instanceof \App\ValueObjects\Stock\DeletedAt) continue;
+                                    if ($column instanceof \App\ValueObjects\Column\Stock\Id) continue;
+                                    elseif ($column instanceof \App\ValueObjects\Column\Stock\OwnerSystemCompany) continue;
+                                    elseif ($column instanceof \App\ValueObjects\Column\Stock\DeletedAt) continue;
                                 @endphp
                                 <td class="px-6 py-4">
                                     @php
                                         $columnName = $column->column();
                                         $value = $item?->$columnName
                                     @endphp
-                                    @if($column instanceof \App\ValueObjects\Stock\Image)
+                                    @if($column instanceof \App\ValueObjects\Column\Stock\Image)
                                         <div class="flex w-full space-x-2 flex-row items-center">
-                                            <div class="w-28 h-28 rounded-full border border-gray-200 flex justify-center items-center">
+                                            <div
+                                                class="w-28 h-28 rounded-full border border-gray-200 flex justify-center items-center">
                                                 @if($item->image)
-                                                    <img src="{{ $item->image_url }}" alt="profile-icon" class="w-full h-full">
+                                                    <img src="{{ $item->image_url }}" alt="profile-icon"
+                                                         class="w-full h-full">
                                                 @else
                                                     <span>{{ __('Not Upload') }}</span>
                                                 @endif

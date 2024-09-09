@@ -6,7 +6,8 @@
         {{ $model::NAME }}
     </h1>
 
-    <form action="{{ route($model->getTable().'.store') }}" method="post" enctype="multipart/form-data" class="flex flex-col py-2">
+    <form action="{{ route($model->getTable().'.store') }}" method="post" enctype="multipart/form-data"
+          class="flex flex-col py-2">
         @csrf
         @if ($errors->any())
             <div class="error">
@@ -19,7 +20,7 @@
             @foreach($model::getColumns() as $column)
                 <div class="w-full my-1">
 
-                    @if($column instanceof \App\ValueObjects\Stock\Image)
+                    @if($column instanceof \App\ValueObjects\Column\Stock\Image)
                         @php
                             $imageColumn = $column->column();
                             $imageValue  = $model->$imageColumn;
@@ -39,7 +40,7 @@
                         </div>
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Stock\Name)
+                    @if($column instanceof \App\ValueObjects\Column\Stock\Name)
                         @php
                             $stockNameColumn = $column->column();
                             $stockNameValue  = $model->$stockNameColumn;
@@ -47,7 +48,7 @@
                         {!! $column->input(['required' => true, 'class' => '', 'value' => $stockNameValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Stock\Quantity)
+                    @if($column instanceof \App\ValueObjects\Column\Stock\Quantity)
                         @php
                             $quantityColumn = $column->column();
                             $quantityValue  = $model->$quantityColumn;
@@ -55,7 +56,7 @@
                         {!! $column->input(['required' => true, 'class' => '', 'value' => $quantityValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Stock\Price)
+                    @if($column instanceof \App\ValueObjects\Column\Stock\Price)
                         @php
                             $priceColumn = $column->column();
                             $priceValue  = $model->$priceColumn;
@@ -63,7 +64,7 @@
                         {!! $column->input(['required' => true, 'class' => '', 'value' => $priceValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Stock\Tags)
+                    @if($column instanceof \App\ValueObjects\Column\Stock\Tags)
                         @php
                             $tagsColumn = $column->column();
                             $tagsValue  = $model->$tagsColumn;
@@ -79,7 +80,7 @@
                 </div>
             @endforeach
         </div>
-        <x-button.store />
+        <x-button.store/>
     </form>
 @endsection
 

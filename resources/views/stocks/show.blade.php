@@ -19,7 +19,7 @@
             @foreach($model::getColumns() as $column)
                 <div class="w-full my-1">
 
-                    @if($column instanceof \App\ValueObjects\Stock\Image)
+                    @if($column instanceof \App\ValueObjects\Column\Stock\Image)
                         @php
                             $imageColumn = $column->column();
                             $imageValue  = $model->$imageColumn;
@@ -39,7 +39,7 @@
                         </div>
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Stock\Name)
+                    @if($column instanceof \App\ValueObjects\Column\Stock\Name)
                         @php
                             $stockNameColumn = $column->column();
                             $stockNameValue  = $model->$stockNameColumn;
@@ -47,7 +47,7 @@
                         {!! $column->input(['required' => true, 'disable' => true, 'class' => '', 'value' => $stockNameValue])?->render() !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Stock\Quantity)
+                    @if($column instanceof \App\ValueObjects\Column\Stock\Quantity)
                         @php
                             $quantityColumn = $column->column();
                             $quantityValue  = $model->$quantityColumn;
@@ -55,7 +55,7 @@
                         {!! $column->input(['required' => false, 'disable' => true, 'class' => '', 'value' => $quantityValue])?->render() !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Stock\Price)
+                    @if($column instanceof \App\ValueObjects\Column\Stock\Price)
                         @php
                             $priceColumn = $column->column();
                             $priceValue  = $model->$priceColumn;
@@ -63,7 +63,7 @@
                         {!! $column->input(['required' => false, 'disable' => true, 'class' => '', 'value' => $priceValue])?->render() !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Stock\Tags)
+                    @if($column instanceof \App\ValueObjects\Column\Stock\Tags)
                         @php
                             $tagsColumn = $column->column();
                             $tagsValue  = $model->$tagsColumn;

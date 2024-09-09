@@ -4,7 +4,7 @@ namespace App\UseCases\StockAction;
 
 use App\Facades\Utility\CustomStorage;
 use App\UseCases\ResourceAction\CreateAction as BaseAction;
-use App\ValueObjects\Stock\Image;
+use App\ValueObjects\Column\Stock\Image;
 use Illuminate\Http\Request;
 
 /**

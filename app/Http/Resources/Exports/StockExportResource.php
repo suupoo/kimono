@@ -19,11 +19,11 @@ class StockExportResource extends BaseExportResource
     public function csvHeaders(): array
     {
         return [
-            new \App\ValueObjects\Stock\OwnerSequenceNo,
-            new \App\ValueObjects\Stock\Name,
-            new \App\ValueObjects\Stock\Price,
-            new \App\ValueObjects\Stock\Quantity,
-            new \App\ValueObjects\Stock\Tags,
+            new \App\ValueObjects\Column\Stock\OwnerSequenceNo,
+            new \App\ValueObjects\Column\Stock\Name,
+            new \App\ValueObjects\Column\Stock\Price,
+            new \App\ValueObjects\Column\Stock\Quantity,
+            new \App\ValueObjects\Column\Stock\Tags,
         ];
     }
 
