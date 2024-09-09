@@ -2,11 +2,11 @@
 
 namespace App\UseCases\SystemAction\Administrator;
 
-use App\Mail\User\VerifyEmailFromSystem;
+use App\Mail\CreateSystemAdministratorVerifiedEmail;
+use App\Notifications\Mail\CreateSystemAdministratorVerifiedMailNotification;
 use App\UseCases\ResourceAction\CreateAction as BaseAction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 
 /**
  * Class CreateAction
@@ -22,8 +22,11 @@ class CreateAction extends BaseAction
         try {
             $entity = $attributes['entity'];
             // 認証メールを送信する
-            $email = $entity->email;
-            Mail::to($email)->send(new VerifyEmailFromSystem());
+            $entity->notify(
+                new CreateSystemAdministratorVerifiedMailNotification([
+                    'entity' => $entity,
+                ])
+            );
 
         } catch (\Exception $e) {
             Log::error($e->getMessage());

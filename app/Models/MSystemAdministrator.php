@@ -20,10 +20,12 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Notifications\Notification;
 
 class MSystemAdministrator extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     protected $table = 'm_system_administrators';
 
@@ -132,5 +134,17 @@ class MSystemAdministrator extends Authenticatable
     public function getHasSystemCompanyAttribute(): bool
     {
         return $this->systemCompanies->isNotEmpty();
+    }
+
+    /**
+     * メール通知の送信先を取得する
+     *
+     * @param Notification $notification
+     * @return array
+     */
+    public function routeNotificationForMail(Notification $notification): array
+    {
+        // 名前とメールアドレスを返す場合
+        return [$this->email => $this->name];
     }
 }

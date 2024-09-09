@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Notifications\Mail\CreateSystemAdministratorVerifiedMailNotification;
+
 return [
     'user' => [
         'verify_email' => [
@@ -10,4 +12,5 @@ return [
             ],
         ],
     ],
+    CreateSystemAdministratorVerifiedMailNotification::class => 'アカウント登録のお知らせ',
 ];
