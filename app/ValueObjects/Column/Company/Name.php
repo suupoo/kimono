@@ -1,15 +1,15 @@
 <?php
 
-namespace App\ValueObjects\Company;
+namespace App\ValueObjects\Column\Company;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
 
-class Tags extends ValueObject
+class Name extends ValueObject
 {
-    public const NAME = 'tags';
+    public const NAME = 'name';
 
-    public const LABEL = 'タグ';
+    public const LABEL = '企業名';
 
     protected string $name = self::NAME;
 
@@ -21,18 +21,19 @@ class Tags extends ValueObject
 
     protected ?int $maxLength = 255;
 
-    protected ?int $minLength = null;
+    protected ?int $minLength = 1;
 
-    protected bool $required = false; // DB Not Nullable
+    protected bool $required = true; // DB Not Nullable
 
-    protected string $placeholder = 'タグを入力してください';
+    protected string $placeholder = '企業名';
 
     public function rules(): array
     {
         return [
-            'nullable',
+            'required',
             'string',
             "max:$this->maxLength",
+            "min:$this->minLength",
         ];
     }
 

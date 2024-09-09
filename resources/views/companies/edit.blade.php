@@ -24,7 +24,7 @@
             @foreach($model::getColumns() as $column)
                 <div class="w-full my-1">
 
-                    @if($column instanceof \App\ValueObjects\Company\Name)
+                    @if($column instanceof \App\ValueObjects\Column\Company\Name)
                         @php
                             $nameColumn = $column->column();
                             $nameValue  = $model->$nameColumn;
@@ -32,7 +32,7 @@
                         {!! $column->input(['required' => true, 'value' => $nameValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Company\Tags)
+                    @if($column instanceof \App\ValueObjects\Column\Company\Tags)
                         @php
                             $tagsColumn = $column->column();
                             $tagsValue  = $model->$tagsColumn;

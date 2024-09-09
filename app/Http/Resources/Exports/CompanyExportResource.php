@@ -17,9 +17,9 @@ class CompanyExportResource extends BaseExportResource
     public function csvHeaders(): array
     {
         return [
-            new \App\ValueObjects\Company\OwnerSequenceNo,
-            new \App\ValueObjects\Company\Name,
-            new \App\ValueObjects\Company\Tags,
+            new \App\ValueObjects\Column\Company\OwnerSequenceNo,
+            new \App\ValueObjects\Column\Company\Name,
+            new \App\ValueObjects\Column\Company\Tags,
         ];
     }
 

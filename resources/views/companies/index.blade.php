@@ -36,11 +36,11 @@
                     @endphp
                     @if(in_array($column->column(), $arraySearchable))
 
-                        @if($column instanceof \App\ValueObjects\Company\OwnerSequenceNo)
+                        @if($column instanceof \App\ValueObjects\Column\Company\OwnerSequenceNo)
                             {!! $column->input(['class' => 'no-spinner']) !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Company\Name)
+                        @if($column instanceof \App\ValueObjects\Column\Company\Name)
                             {!! $column->input(['class' => '']) !!}
                         @endif
 
@@ -54,7 +54,8 @@
     <div class="custom-full-container">
         <div class="flex w-full justify-end m-1">
             <div class="w-fit flex flex-row gap-1">
-                <x-button.export export-type="CSV" id="export-csv" href="{{ route($model->getTable() . '.export.csv') }}" />
+                <x-button.export export-type="CSV" id="export-csv"
+                                 href="{{ route($model->getTable() . '.export.csv') }}"/>
                 <x-button.create type="link" href="{{ route($model->getTable() . '.create') }}"/>
             </div>
         </div>
@@ -67,9 +68,9 @@
                         </th>
                         @foreach($model::getColumns() as $column)
                             @php
-                                if ($column instanceof \App\ValueObjects\Company\Id) continue;
-                                elseif ($column instanceof \App\ValueObjects\Company\OwnerSystemCompany) continue;
-                                elseif ($column instanceof \App\ValueObjects\Company\DeletedAt) continue;
+                                if ($column instanceof \App\ValueObjects\Column\Company\Id) continue;
+                                elseif ($column instanceof \App\ValueObjects\Column\Company\OwnerSystemCompany) continue;
+                                elseif ($column instanceof \App\ValueObjects\Column\Company\DeletedAt) continue;
                             @endphp
                             <th scope="col" class="px-6 py-3 whitespace-nowrap">
                                 <div class="flex w-full items-center justify-center space-x-1">
@@ -103,9 +104,12 @@
                     @foreach($items as $item)
                         <tr class="bg-white border-b" data-id="{{ $item->id }}">
                             <td class="w-full text-xs flex flex-col justify-center space-y-1 m-1">
-                                <x-button.edit type="link" href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
-                                <x-button.show type="link" href="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}"/>
-                                <x-button.copy type="link" href="{{ route($model->getTable() . '.create', ['copy' => $item->id]) }}"/>
+                                <x-button.edit type="link"
+                                               href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
+                                <x-button.show type="link"
+                                               href="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}"/>
+                                <x-button.copy type="link"
+                                               href="{{ route($model->getTable() . '.create', ['copy' => $item->id]) }}"/>
                                 <x-button.delete
                                     href="{{ route($model->getTable() . '.destroy', ['id' => $item->id]) }}"
                                     data-id="{{ $item->id }}"
@@ -113,9 +117,9 @@
                             </td>
                             @foreach($model::getColumns() as $column)
                                 @php
-                                    if ($column instanceof \App\ValueObjects\Company\Id) continue;
-                                    elseif ($column instanceof \App\ValueObjects\Company\OwnerSystemCompany) continue;
-                                    elseif ($column instanceof \App\ValueObjects\Company\DeletedAt) continue;
+                                    if ($column instanceof \App\ValueObjects\Column\Company\Id) continue;
+                                    elseif ($column instanceof \App\ValueObjects\Column\Company\OwnerSystemCompany) continue;
+                                    elseif ($column instanceof \App\ValueObjects\Column\Company\DeletedAt) continue;
                                 @endphp
                                 <td class="px-6 py-4">
                                     @php

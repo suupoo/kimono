@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MSystemCompany as ResourceModel; // モデル紐付け
+use App\Models\MSystemCompany as ResourceModel;
 use App\UseCases\SystemAction\Company\CreateAction;
 use App\UseCases\SystemAction\Company\DeleteAction;
 use App\UseCases\SystemAction\Company\ListAction;
 use App\UseCases\SystemAction\Company\UpdateAction;
-use App\ValueObjects\Company\Id;
-use App\ValueObjects\Company\Name;
+use App\ValueObjects\Column\Company\Id;
+use App\ValueObjects\Column\Company\Name;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
+
+// モデル紐付け
 
 class SystemCompanyController extends ResourceController
 {

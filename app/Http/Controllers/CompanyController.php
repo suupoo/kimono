@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Traits\CsvExportable; // モデル紐付け
-use App\Http\Resources\Exports\CompanyExportResource as ExportResource; // エクスポートリソース紐付け
+use App\Http\Controllers\Traits\CsvExportable;
+use App\Http\Resources\Exports\CompanyExportResource as ExportResource;
 use App\Models\Company as ResourceModel;
 use App\UseCases\CompanyAction\CreateAction;
 use App\UseCases\CompanyAction\DeleteAction;
 use App\UseCases\CompanyAction\ListAction;
 use App\UseCases\CompanyAction\UpdateAction;
-use App\ValueObjects\Company\Name;
+use App\ValueObjects\Column\Company\Name;
 use App\ValueObjects\Customer\OwnerSequenceNo;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
+
+// モデル紐付け
+// エクスポートリソース紐付け
 
 class CompanyController extends ResourceController
 {
