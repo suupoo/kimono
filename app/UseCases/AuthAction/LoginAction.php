@@ -62,10 +62,17 @@ class LoginAction
             if (Auth::attempt([
                 'email' => $validator->validated()['email'],
                 'password' => $validator->validated()['password'],
+                // 利用開始日・利用終了日の条件を満たすユーザーのみログイン可能
                 fn (Builder $query) => $query->where(function ($query) {
-                    // 利用終了日が未設定または未来日の場合のみログイン可能
-                    $query->where('end_at', '>', now())
-                        ->orWhereNull('end_at');
+                    $query->where(function ($query) {
+                        // 利用開始日が未設定または過去日の場合のみログイン可能
+                        $query->where('start_at', '<', now())
+                            ->orWhereNull('start_at');
+                    })->where(function ($query) {
+                        // 利用終了日が未設定または未来日の場合のみログイン可能
+                        $query->where('end_at', '>', now())
+                            ->orWhereNull('end_at');
+                    });
                 }),
             ])) {
                 // 認証成功時は①ログインを行った画面②ホーム画面の順で該当画面へリダイレクト
