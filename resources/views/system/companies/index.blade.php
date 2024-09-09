@@ -32,11 +32,11 @@
                     @endphp
                     @if(in_array($column->column(), $arraySearchable))
 
-                        @if($column instanceof \App\ValueObjects\Master\Company\Id)
+                        @if($column instanceof \App\ValueObjects\Column\Master\Company\Id)
                             {!! $column->input(['class' => 'no-spinner']) !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Master\Company\Name)
+                        @if($column instanceof \App\ValueObjects\Column\Master\Company\Name)
                             {!! $column->input(['class' => '']) !!}
                         @endif
 

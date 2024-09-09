@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use App\ValueObjects\Master\Company\CreatedAt;
-use App\ValueObjects\Master\Company\Id;
-use App\ValueObjects\Master\Company\Name;
-use App\ValueObjects\Master\Company\UpdatedAt;
-use App\ValueObjects\Master\Company\Uuid;
+use App\ValueObjects\Column\Master\Company\CreatedAt;
+use App\ValueObjects\Column\Master\Company\Id;
+use App\ValueObjects\Column\Master\Company\Name;
+use App\ValueObjects\Column\Master\Company\UpdatedAt;
+use App\ValueObjects\Column\Master\Company\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

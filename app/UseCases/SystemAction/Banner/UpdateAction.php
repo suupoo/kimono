@@ -4,7 +4,7 @@ namespace App\UseCases\SystemAction\Banner;
 
 use App\Facades\Utility\CustomStorage;
 use App\UseCases\ResourceAction\UpdateAction as BaseAction;
-use App\ValueObjects\Master\Banner\Image;
+use App\ValueObjects\Column\Master\Banner\Image;
 use Illuminate\Http\Request;
 
 /**

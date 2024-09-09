@@ -4,9 +4,9 @@ namespace App\Console\Commands;
 
 use App\Enums\Flag;
 use App\Models\MSystemFeature;
-use App\ValueObjects\Master\Feature\Enable;
-use App\ValueObjects\Master\Feature\Key;
-use App\ValueObjects\Master\Feature\Name;
+use App\ValueObjects\Column\Master\Feature\Enable;
+use App\ValueObjects\Column\Master\Feature\Key;
+use App\ValueObjects\Column\Master\Feature\Name;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 

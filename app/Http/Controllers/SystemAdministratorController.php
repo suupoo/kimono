@@ -2,22 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MSystemAdministrator as ResourceModel; // モデル紐付け
+use App\Models\MSystemAdministrator as ResourceModel;
 use App\UseCases\SystemAction\Administrator\CreateAction as CreateAction;
 use App\UseCases\SystemAction\Administrator\DeleteAction as DeleteAction;
 use App\UseCases\SystemAction\Administrator\ListAction as ListAction;
 use App\UseCases\SystemAction\Administrator\SystemAdministratorListAction;
 use App\UseCases\SystemAction\Administrator\SystemAdministratorSaveAction;
 use App\UseCases\SystemAction\Administrator\UpdateAction as UpdateAction;
-use App\ValueObjects\Master\Administrator\Email;
-use App\ValueObjects\Master\Administrator\EndAt;
-use App\ValueObjects\Master\Administrator\Id;
-use App\ValueObjects\Master\Administrator\Name;
-use App\ValueObjects\Master\Administrator\StartAt;
+use App\ValueObjects\Column\Master\Administrator\Email;
+use App\ValueObjects\Column\Master\Administrator\EndAt;
+use App\ValueObjects\Column\Master\Administrator\Id;
+use App\ValueObjects\Column\Master\Administrator\Name;
+use App\ValueObjects\Column\Master\Administrator\StartAt;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
+
+// モデル紐付け
 
 class SystemAdministratorController extends ResourceController
 {

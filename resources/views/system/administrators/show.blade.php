@@ -17,7 +17,7 @@
             @foreach($model::getColumns() as $column)
                 <div class="w-full my-1">
 
-                    @if($column instanceof \App\ValueObjects\Master\Administrator\Name)
+                    @if($column instanceof \App\ValueObjects\Column\Master\Administrator\Name)
                         @php
                             $nameColumn = $column->column();
                             $nameValue  = $model->$nameColumn;
@@ -25,7 +25,7 @@
                         {!! $column->input(['required' => true, 'disable' => true, 'class' => '', 'value' => $nameValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Master\Administrator\Email)
+                    @if($column instanceof \App\ValueObjects\Column\Master\Administrator\Email)
                         @php
                             $emailColumn = $column->column();
                             $emailValue  = $model->$emailColumn;
@@ -33,7 +33,7 @@
                         {!! $column->input(['required' => true, 'disable' => true, 'class' => '', 'value' => $emailValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Master\Administrator\EmailVerifiedAt)
+                    @if($column instanceof \App\ValueObjects\Column\Master\Administrator\EmailVerifiedAt)
                         @php
                             $emailVerifiedAtColumn = $column->column();
                             $emailVerifiedAtValue  = $model->$emailVerifiedAtColumn;
@@ -41,7 +41,7 @@
                         {!! $column->input(['required' => false, 'disable' => true, 'class' => '', 'value' => $emailVerifiedAtValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Master\Administrator\Role)
+                    @if($column instanceof \App\ValueObjects\Column\Master\Administrator\Role)
                         @php
                             $roleColumn = $column->column();
                             $roleValue  = $model->$roleColumn;
@@ -49,7 +49,7 @@
                         {!! $column->input(['required' => true, 'disable' => true, 'class' => '', 'value' => $roleValue?->value]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Master\Administrator\StartAt)
+                    @if($column instanceof \App\ValueObjects\Column\Master\Administrator\StartAt)
                         @php
                             $startAtColumn = $column->column();
                             $startAtValue  = $model->$startAtColumn;

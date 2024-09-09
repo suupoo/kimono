@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MSystemBanner as ResourceModel; // モデル紐付け
+use App\Models\MSystemBanner as ResourceModel;
 use App\UseCases\SystemAction\Banner\CreateAction;
 use App\UseCases\SystemAction\Banner\DeleteAction;
 use App\UseCases\SystemAction\Banner\ListAction;
 use App\UseCases\SystemAction\Banner\UpdateAction;
-use App\ValueObjects\Master\Banner\Id;
-use App\ValueObjects\Master\Banner\Priority;
+use App\ValueObjects\Column\Master\Banner\Id;
+use App\ValueObjects\Column\Master\Banner\Priority;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
+
+// モデル紐付け
 
 class SystemBannerController extends ResourceController
 {

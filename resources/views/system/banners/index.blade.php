@@ -32,11 +32,11 @@
                     @endphp
                     @if(in_array($column->column(), $arraySearchable))
 
-                        @if($column instanceof \App\ValueObjects\Master\Banner\Id)
+                        @if($column instanceof \App\ValueObjects\Column\Master\Banner\Id)
                             {!! $column->input(['class' => 'no-spinner']) !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Master\Banner\Priority)
+                        @if($column instanceof \App\ValueObjects\Column\Master\Banner\Priority)
                             {!! $column->input(['class' => 'no-spinner']) !!}
                         @endif
 
@@ -111,11 +111,13 @@
                                     $columnName = $column->column();
                                     $value = $item?->$columnName
                                 @endphp
-                                @if($column instanceof \App\ValueObjects\Master\Banner\Image)
+                                @if($column instanceof \App\ValueObjects\Column\Master\Banner\Image)
                                     <div class="flex w-full space-x-2 flex-row items-center">
-                                        <div class="w-28 h-28 rounded-full border border-gray-200 flex justify-center items-center">
+                                        <div
+                                            class="w-28 h-28 rounded-full border border-gray-200 flex justify-center items-center">
                                             @if($item->image)
-                                                <img src="{{ $item->image_url }}" alt="profile-icon" class="w-full h-full">
+                                                <img src="{{ $item->image_url }}" alt="profile-icon"
+                                                     class="w-full h-full">
                                             @else
                                                 <span>{{ __('Not Upload') }}</span>
                                             @endif

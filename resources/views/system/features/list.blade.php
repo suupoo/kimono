@@ -15,9 +15,9 @@
         </h1>
         <div class="flex flex-col w-full">
             @php
-                $key = new \App\ValueObjects\Master\Feature\Key;
-                $name = new \App\ValueObjects\Master\Feature\Name;
-                $enable = new \App\ValueObjects\Master\Feature\Enable;
+                $key = new \App\ValueObjects\Column\Master\Feature\Key;
+                $name = new \App\ValueObjects\Column\Master\Feature\Name;
+                $enable = new \App\ValueObjects\Column\Master\Feature\Enable;
             @endphp
             @foreach($items as $item)
                 <div class="flex w-full gap-3 justify-end my-1">

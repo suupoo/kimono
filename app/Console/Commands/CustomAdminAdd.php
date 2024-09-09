@@ -4,10 +4,10 @@ namespace App\Console\Commands;
 
 use App\Enums\AdministratorRole;
 use App\Models\MSystemAdministrator;
-use App\ValueObjects\Master\Administrator\Email;
-use App\ValueObjects\Master\Administrator\Name;
-use App\ValueObjects\Master\Administrator\Password;
-use App\ValueObjects\Master\Administrator\Role;
+use App\ValueObjects\Column\Master\Administrator\Email;
+use App\ValueObjects\Column\Master\Administrator\Name;
+use App\ValueObjects\Column\Master\Administrator\Password;
+use App\ValueObjects\Column\Master\Administrator\Role;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;

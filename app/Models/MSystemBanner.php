@@ -4,15 +4,15 @@ namespace App\Models;
 
 use App\Facades\Utility\CustomStorage;
 use App\Models\Traits\ModelFillOwnerIdObservable;
-use App\ValueObjects\Master\Banner\CreatedAt;
-use App\ValueObjects\Master\Banner\CreatedUser;
-use App\ValueObjects\Master\Banner\Id;
-use App\ValueObjects\Master\Banner\Image;
-use App\ValueObjects\Master\Banner\Priority;
-use App\ValueObjects\Master\Banner\Text;
-use App\ValueObjects\Master\Banner\UpdatedAt;
-use App\ValueObjects\Master\Banner\UpdatedUser;
-use App\ValueObjects\Master\Banner\Url;
+use App\ValueObjects\Column\Master\Banner\CreatedAt;
+use App\ValueObjects\Column\Master\Banner\CreatedUser;
+use App\ValueObjects\Column\Master\Banner\Id;
+use App\ValueObjects\Column\Master\Banner\Image;
+use App\ValueObjects\Column\Master\Banner\Priority;
+use App\ValueObjects\Column\Master\Banner\Text;
+use App\ValueObjects\Column\Master\Banner\UpdatedAt;
+use App\ValueObjects\Column\Master\Banner\UpdatedUser;
+use App\ValueObjects\Column\Master\Banner\Url;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 

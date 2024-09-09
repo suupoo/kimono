@@ -5,7 +5,7 @@ namespace App\UseCases\MeAction;
 use App\Facades\Utility\CustomStorage;
 use App\Mail\User\VerifyEmailFromSystem;
 use App\UseCases\Action;
-use App\ValueObjects\Master\Administrator\Image;
+use App\ValueObjects\Column\Master\Administrator\Image;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

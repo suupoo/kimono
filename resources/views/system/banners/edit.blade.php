@@ -23,7 +23,7 @@
             @foreach($model::getColumns() as $column)
                 <div class="w-full my-1">
 
-                    @if($column instanceof \App\ValueObjects\Master\Banner\Image)
+                    @if($column instanceof \App\ValueObjects\Column\Master\Banner\Image)
                         @php
                             $imageColumn = $column->column();
                             $imageValue  = $model->$imageColumn;
@@ -38,12 +38,12 @@
                             </div>
 
                             <div class="grow h-fit">
-{{--                                {!! $column->input(['required' => true, 'class' => '']) !!}--}}
+                                {{--                                {!! $column->input(['required' => true, 'class' => '']) !!}--}}
                             </div>
                         </div>
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Master\Banner\Text)
+                    @if($column instanceof \App\ValueObjects\Column\Master\Banner\Text)
                         @php
                             $textColumn = $column->column();
                             $textValue  = $model->$textColumn;
@@ -51,7 +51,7 @@
                         {!! $column->input(['required' => true, 'value' => $textValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Master\Banner\Url)
+                    @if($column instanceof \App\ValueObjects\Column\Master\Banner\Url)
                         @php
                             $urlColumn = $column->column();
                             $urlValue  = $model->$urlColumn;
@@ -59,7 +59,7 @@
                         {!! $column->input(['required' => false, 'value' => $urlValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Master\Banner\Priority)
+                    @if($column instanceof \App\ValueObjects\Column\Master\Banner\Priority)
                         @php
                             $priorityColumn = $column->column();
                             $priorityValue  = $model->$priorityColumn;

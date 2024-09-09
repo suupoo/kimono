@@ -32,31 +32,31 @@
                     @endphp
                     @if(in_array($column->column(), $arraySearchable))
 
-                        @if($column instanceof \App\ValueObjects\Master\Administrator\Id)
+                        @if($column instanceof \App\ValueObjects\Column\Master\Administrator\Id)
                             {!! $column->input(['class' => 'no-spinner']) !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Master\Administrator\Name)
+                        @if($column instanceof \App\ValueObjects\Column\Master\Administrator\Name)
                             {!! $column->input(['class' => '']) !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Master\Administrator\Email)
+                        @if($column instanceof \App\ValueObjects\Column\Master\Administrator\Email)
                             {!! $column->input(['class' => '']) !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Master\Administrator\EmailVerifiedAt)
+                        @if($column instanceof \App\ValueObjects\Column\Master\Administrator\EmailVerifiedAt)
                             {!! $column->input(['class' => '']) !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Master\Administrator\Role)
+                        @if($column instanceof \App\ValueObjects\Column\Master\Administrator\Role)
                             {!! $column->input(['class' => '']) !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Master\Administrator\StartAt)
+                        @if($column instanceof \App\ValueObjects\Column\Master\Administrator\StartAt)
                             {!! $column->input(['class' => '', 'type' => 'date']) !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Master\Administrator\EndAt)
+                        @if($column instanceof \App\ValueObjects\Column\Master\Administrator\EndAt)
                             {!! $column->input(['class' => '', 'type' => 'date']) !!}
                         @endif
 
@@ -124,7 +124,8 @@
                         <td class="w-full text-xs flex flex-col justify-center space-y-1 m-1">
                             <x-button.edit type="link" href="{{ route($routePrefix . '.edit', ['id' => $item->id]) }}"/>
                             <x-button.show type="link" href="{{ route($routePrefix . '.show', ['id' => $item->id]) }}"/>
-                            <x-button.copy type="link" href="{{ route($routePrefix . '.create', ['copy' => $item->id]) }}"/>
+                            <x-button.copy type="link"
+                                           href="{{ route($routePrefix . '.create', ['copy' => $item->id]) }}"/>
                             @if(\Illuminate\Support\Facades\Auth::user()->id !== $item->id && $item->role !== \App\Enums\AdministratorRole::SYSTEM)
                                 <x-button.delete
                                     href="{{ route($routePrefix . '.destroy', ['id' => $item->id]) }}"
@@ -134,7 +135,8 @@
                         </td>
 
                         <td class="px-3 py-4 text-xs m-1 w-full">
-                            <x-button.relation href="{{ route($routePrefix . '.companies.list', ['id' => $item->id]) }}">
+                            <x-button.relation
+                                href="{{ route($routePrefix . '.companies.list', ['id' => $item->id]) }}">
                                 {{ __('menu.system.administrators.companies.list') }}
                             </x-button.relation>
                         </td>
@@ -148,7 +150,7 @@
                                 @if($value instanceof UnitEnum )
                                     {{ $value->label() }}
                                 @else
-                                    @if($column instanceof \App\ValueObjects\Master\Administrator\Password)
+                                    @if($column instanceof \App\ValueObjects\Column\Master\Administrator\Password)
                                         {{-- $columnsがパスワードカラムの場合は********を表示 --}}
                                         ********
                                     @else

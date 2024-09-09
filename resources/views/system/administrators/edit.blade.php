@@ -23,7 +23,7 @@
             @foreach($model::getColumns() as $column)
                 <div class="w-full my-1">
 
-                    @if($column instanceof \App\ValueObjects\Master\Administrator\Name)
+                    @if($column instanceof \App\ValueObjects\Column\Master\Administrator\Name)
                         @php
                             $nameColumn = $column->column();
                             $nameValue  = $model->$nameColumn;
@@ -31,7 +31,7 @@
                         {!! $column->input(['required' => true, 'class' => '', 'value' => $nameValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Master\Administrator\Email)
+                    @if($column instanceof \App\ValueObjects\Column\Master\Administrator\Email)
                         @php
                             $emailColumn = $column->column();
                             $emailValue  = $model->$emailColumn;
@@ -39,7 +39,7 @@
                         {!! $column->input(['required' => true, 'class' => '', 'value' => $emailValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Master\Administrator\Role)
+                    @if($column instanceof \App\ValueObjects\Column\Master\Administrator\Role)
                         @php
                             $roleColumn = $column->column();
                             $roleValue  = $model->$roleColumn;
@@ -47,7 +47,7 @@
                         {!! $column->input(['required' => true, 'class' => '', 'value' => $roleValue?->value]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Master\Administrator\StartAt)
+                    @if($column instanceof \App\ValueObjects\Column\Master\Administrator\StartAt)
                         @php
                             $startAtColumn = $column->column();
                             $startAtValue  = $model->$startAtColumn;
@@ -55,7 +55,7 @@
                         {!! $column->input(['required' => false, 'class' => '', 'value' => $startAtValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Master\Administrator\EndAt)
+                    @if($column instanceof \App\ValueObjects\Column\Master\Administrator\EndAt)
                         @php
                             $endAtColumn = $column->column();
                             $endAtValue  = $model->$endAtColumn;

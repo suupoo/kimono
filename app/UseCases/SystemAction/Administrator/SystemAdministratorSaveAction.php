@@ -6,7 +6,7 @@ use App\Models\MSystemAdministratorCompany;
 use App\Models\MSystemCompany;
 use App\UseCases\Action;
 use App\UseCases\Traits\PrefixSettable;
-use App\ValueObjects\Master\Company\Id;
+use App\ValueObjects\Column\Master\Company\Id;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;

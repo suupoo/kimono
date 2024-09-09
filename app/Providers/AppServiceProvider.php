@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Enums\Flag;
 use App\Models\MSystemFeature;
-use App\ValueObjects\Master\Feature\Enable;
+use App\ValueObjects\Column\Master\Feature\Enable;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;

@@ -1,9 +1,9 @@
 @extends('layouts')
 
 @section('content')
-@php
-    $routePrefix = $prefix ?? $model->getTable()
-@endphp
+    @php
+        $routePrefix = $prefix ?? $model->getTable()
+    @endphp
     <form action="{{ route($routePrefix.'.store') }}" method="post" class="flex flex-col py-2">
         @csrf
         @if ($errors->any())
@@ -20,7 +20,7 @@
             @foreach($model::getColumns() as $column)
                 <div class="w-full my-1">
 
-                    @if($column instanceof \App\ValueObjects\Master\Company\Name)
+                    @if($column instanceof \App\ValueObjects\Column\Master\Company\Name)
                         @php
                             $nameColumn = $column->column();
                             $nameValue  = $model->$nameColumn;
@@ -31,6 +31,6 @@
                 </div>
             @endforeach
         </div>
-        <x-button.store />
+        <x-button.store/>
     </form>
 @endsection

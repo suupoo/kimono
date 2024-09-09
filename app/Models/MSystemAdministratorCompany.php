@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\ValueObjects\Master\AdministratorCompany\Id;
-use App\ValueObjects\Master\AdministratorCompany\SystemAdministratorId;
-use App\ValueObjects\Master\AdministratorCompany\SystemCompanyId;
+use App\ValueObjects\Column\Master\AdministratorCompany\Id;
+use App\ValueObjects\Column\Master\AdministratorCompany\SystemAdministratorId;
+use App\ValueObjects\Column\Master\AdministratorCompany\SystemCompanyId;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class MSystemAdministratorCompany extends BaseModel

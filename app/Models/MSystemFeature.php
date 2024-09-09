@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use App\ValueObjects\Column\Master\Feature\Enable;
+use App\ValueObjects\Column\Master\Feature\FlagSwitch;
+use App\ValueObjects\Column\Master\Feature\Key;
 use App\ValueObjects\Column\Store\Name;
-use App\ValueObjects\Master\Feature\Enable;
-use App\ValueObjects\Master\Feature\FlagSwitch;
-use App\ValueObjects\Master\Feature\Key;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
