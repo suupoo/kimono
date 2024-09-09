@@ -1,12 +1,13 @@
 <div class="flex flex-col">
     <div class="w-full flex ">
         {{-- 表示件数 --}}
-        {!! ( new \App\ValueObjects\Custom\PaginateRow())->input([
+        {!! ( new \App\ValueObjects\Custom\Paginate\PaginateRow())->input([
           'class' => '',
           'value' => request()->get('rows', config('custom.paginate.default'))
         ]) !!}
         {{-- 全選択ボタン --}}
-        <x-button.color id="select-all" class="break-keep bg-transport text-black hover:bg-custom-light-gray hover:text-black">
+        <x-button.color id="select-all"
+                        class="break-keep bg-transport text-black hover:bg-custom-light-gray hover:text-black">
             <span class="">
                 {{ __('All') }}
             </span>
@@ -18,11 +19,11 @@
                 <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700 text-xs table">
                     <input type="hidden" name="exports" value="">
                     <thead>
-                        {{ $tHead }}
+                    {{ $tHead }}
                     </thead>
 
                     <tbody class="divide-y divide-gray-200 dark:divide-neutral-700 table-body ">
-                        {{ $tBody }}
+                    {{ $tBody }}
                     </tbody>
                 </table>
             </div>
@@ -34,11 +35,11 @@
 </div>
 
 <script type="module">
-    $(function() {
+    $(function () {
         const url = new URL(window.location.href);
         const searchParams = url.searchParams;
 
-        $('select#rows').on('change', function() {
+        $('select#rows').on('change', function () {
             // ページネーションのクエリパラメータを引き継ぐ
             const url = new URL(window.location.href);
             const redirectUrl = new URL(url.origin + url.pathname);
@@ -63,17 +64,17 @@
 
             // URLパラメータを設定してリダイレクトさせる
             const params = new URLSearchParams();
-            $('.list-search-box input,select').each(function() {
+            $('.list-search-box input,select').each(function () {
                 const name = $(this).attr('name');
                 const value = $(this).val();
                 if (value) {
-                    if($(this).is('select')){
+                    if ($(this).is('select')) {
                         // selectの場合
                         // 未選択00の場合は、パラメータをセットしない
-                        if(value !== '00'){
+                        if (value !== '00') {
                             redirectUrl.searchParams.set(name, value);
                         }
-                    }else{
+                    } else {
                         // 常に値をセットする
                         redirectUrl.searchParams.set(name, value);
                     }
