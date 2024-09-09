@@ -1,15 +1,15 @@
 <?php
 
-namespace App\ValueObjects\Notification;
+namespace App\ValueObjects\Column\Notification;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
 
-class Tags extends ValueObject
+class OwnerSequenceNo extends ValueObject
 {
-    public const NAME = 'tags';
+    public const NAME = 'owner_sequence_no';
 
-    public const LABEL = 'タグ';
+    public const LABEL = 'No.';
 
     protected string $name = self::NAME;
 
@@ -19,20 +19,21 @@ class Tags extends ValueObject
 
     protected string $type = 'string';
 
-    protected ?int $maxLength = 255;
+    protected ?int $maxLength = null;
 
     protected ?int $minLength = null;
 
-    protected bool $required = false; // DB Not Nullable
+    protected bool $required = false; // DB Nullable
 
-    protected string $placeholder = 'タグを入力してください';
+    protected bool $primaryKey = false;
+
+    protected bool $unique = true;
 
     public function rules(): array
     {
         return [
+            'integer',
             'nullable',
-            'string',
-            "max:$this->maxLength",
         ];
     }
 

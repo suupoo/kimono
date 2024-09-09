@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ValueObjects\Notification;
+namespace App\ValueObjects\Column\Notification;
 
 use App\ValueObjects\Column\BaseModel\CreatedUser as BaseCreatedUser;
 

@@ -19,7 +19,7 @@
             @foreach($model::getColumns() as $column)
                 <div class="w-full my-1">
 
-                    @if($column instanceof \App\ValueObjects\Notification\Title)
+                    @if($column instanceof \App\ValueObjects\Column\Notification\Title)
                         @php
                             $titleColumn = $column->column();
                             $titleValue  = $model->$titleColumn;
@@ -27,7 +27,7 @@
                         {!! $column->input(['required' => true, 'class' => '', 'value' => $titleValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Notification\Type)
+                    @if($column instanceof \App\ValueObjects\Column\Notification\Type)
                         @php
                             $typeColumn = $column->column();
                             $typeValue  = $model->$typeColumn;
@@ -35,7 +35,7 @@
                         {!! $column->input(['required' => true, 'class' => '', 'value' => $typeValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Notification\Content)
+                    @if($column instanceof \App\ValueObjects\Column\Notification\Content)
                         @php
                             $contentColumn = $column->column();
                             $contentValue  = $model->$contentColumn;
@@ -43,7 +43,7 @@
                         {!! $column->input(['required' => true, 'class' => '', 'value' => $contentValue])!!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Notification\Status)
+                    @if($column instanceof \App\ValueObjects\Column\Notification\Status)
                         @php
                             $statusColumn = $column->column();
                             $statusValue  = $model->$statusColumn;
@@ -51,7 +51,7 @@
                         {!! $column->input(['required' => true, 'class' => '', 'value' => $statusValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Notification\PublishAt)
+                    @if($column instanceof \App\ValueObjects\Column\Notification\PublishAt)
                         @php
                             $publishAtColumn = $column->column();
                             $publishAtValue  = $model->$publishAtColumn;
@@ -59,7 +59,7 @@
                         {!! $column->input(['required' => false, 'class' => '', 'value' => $publishAtValue]) !!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\Notification\Tags)
+                    @if($column instanceof \App\ValueObjects\Column\Notification\Tags)
                         @php
                             $tagsColumn = $column->column();
                             $tagsValue  = $model->$tagsColumn;
@@ -75,7 +75,7 @@
                 </div>
             @endforeach
         </div>
-        <x-button.store />
+        <x-button.store/>
     </form>
 @endsection
 

@@ -1,17 +1,15 @@
 <?php
 
-namespace App\ValueObjects\Notification;
+namespace App\ValueObjects\Column\Notification;
 
-use App\Enums\NotificationType;
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
-use Illuminate\Validation\Rule;
 
-class Type extends ValueObject
+class PublishAt extends ValueObject
 {
-    public const NAME = 'type';
+    public const NAME = 'publish_at';
 
-    public const LABEL = 'タイプ';
+    public const LABEL = '公開日時';
 
     protected string $name = self::NAME;
 
@@ -19,26 +17,20 @@ class Type extends ValueObject
 
     protected string $label = self::LABEL;
 
-    protected string $type = 'list';
+    protected string $type = 'datetime';
 
     protected ?int $maxLength = null;
 
     protected ?int $minLength = null;
 
-    protected bool $required = false;
+    protected bool $required = false; // DB Nullable
 
     public function rules(): array
     {
         return [
-            'required',
-            'string',
-            Rule::enum(NotificationType::class),
+            'nullable',
+            'date',
         ];
-    }
-
-    public function options(): array
-    {
-        return NotificationType::cases();
     }
 
     /**
@@ -48,7 +40,7 @@ class Type extends ValueObject
     {
         return CustomForm::make($this)
             ->label($attributes)
-            ->select($attributes, $this->options())
+            ->input($attributes)
             ->render();
     }
 }

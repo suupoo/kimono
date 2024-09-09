@@ -1,17 +1,15 @@
 <?php
 
-namespace App\ValueObjects\Notification;
+namespace App\ValueObjects\Column\Notification;
 
-use App\Enums\NotificationStatus;
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
-use Illuminate\Validation\Rule;
 
-class Status extends ValueObject
+class Tags extends ValueObject
 {
-    public const NAME = 'status';
+    public const NAME = 'tags';
 
-    public const LABEL = 'ステータス';
+    public const LABEL = 'タグ';
 
     protected string $name = self::NAME;
 
@@ -19,26 +17,23 @@ class Status extends ValueObject
 
     protected string $label = self::LABEL;
 
-    protected string $type = 'list';
+    protected string $type = 'string';
 
-    protected ?int $maxLength = null;
+    protected ?int $maxLength = 255;
 
     protected ?int $minLength = null;
 
-    protected bool $required = false;
+    protected bool $required = false; // DB Not Nullable
+
+    protected string $placeholder = 'タグを入力してください';
 
     public function rules(): array
     {
         return [
-            'required',
+            'nullable',
             'string',
-            Rule::enum(NotificationStatus::class),
+            "max:$this->maxLength",
         ];
-    }
-
-    public function options(): array
-    {
-        return NotificationStatus::cases();
     }
 
     /**
@@ -48,7 +43,7 @@ class Status extends ValueObject
     {
         return CustomForm::make($this)
             ->label($attributes)
-            ->select($attributes, $this->options())
+            ->input($attributes)
             ->render();
     }
 }

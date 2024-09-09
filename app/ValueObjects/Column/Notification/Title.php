@@ -1,15 +1,15 @@
 <?php
 
-namespace App\ValueObjects\Notification;
+namespace App\ValueObjects\Column\Notification;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
 
-class PublishAt extends ValueObject
+class Title extends ValueObject
 {
-    public const NAME = 'publish_at';
+    public const NAME = 'title';
 
-    public const LABEL = '公開日時';
+    public const LABEL = 'タイトル';
 
     protected string $name = self::NAME;
 
@@ -17,19 +17,23 @@ class PublishAt extends ValueObject
 
     protected string $label = self::LABEL;
 
-    protected string $type = 'datetime';
+    protected string $type = 'string';
 
-    protected ?int $maxLength = null;
+    protected ?int $maxLength = 20;
 
-    protected ?int $minLength = null;
+    protected ?int $minLength = 1;
 
-    protected bool $required = false; // DB Nullable
+    protected bool $required = true; // DB Not Nullable
+
+    protected string $placeholder = 'タイトル';
 
     public function rules(): array
     {
         return [
-            'nullable',
-            'date',
+            'required',
+            'string',
+            "max:$this->maxLength",
+            "min:$this->minLength",
         ];
     }
 

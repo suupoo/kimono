@@ -1,15 +1,15 @@
 <?php
 
-namespace App\ValueObjects\Notification;
+namespace App\ValueObjects\Column\Notification;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
 
-class OwnerSequenceNo extends ValueObject
+class Content extends ValueObject
 {
-    public const NAME = 'owner_sequence_no';
+    public const NAME = 'content';
 
-    public const LABEL = 'No.';
+    public const LABEL = '内容';
 
     protected string $name = self::NAME;
 
@@ -17,23 +17,21 @@ class OwnerSequenceNo extends ValueObject
 
     protected string $label = self::LABEL;
 
-    protected string $type = 'string';
+    protected string $type = 'text';
 
     protected ?int $maxLength = null;
 
     protected ?int $minLength = null;
 
-    protected bool $required = false; // DB Nullable
+    protected bool $required = true; // DB Not Nullable
 
-    protected bool $primaryKey = false;
-
-    protected bool $unique = true;
+    protected ?string $placeholder = null;
 
     public function rules(): array
     {
         return [
-            'integer',
-            'nullable',
+            'required',
+            'string',
         ];
     }
 
@@ -44,7 +42,7 @@ class OwnerSequenceNo extends ValueObject
     {
         return CustomForm::make($this)
             ->label($attributes)
-            ->input($attributes)
+            ->editor($attributes)
             ->render();
     }
 }

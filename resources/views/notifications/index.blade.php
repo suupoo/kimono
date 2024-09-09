@@ -36,23 +36,23 @@
                     @endphp
                     @if(in_array($column->column(), $arraySearchable))
 
-                        @if($column instanceof \App\ValueObjects\Notification\OwnerSequenceNo )
+                        @if($column instanceof \App\ValueObjects\Column\Notification\OwnerSequenceNo )
                             {!! $column->input(['class' => 'no-spinner']) !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Notification\Title )
+                        @if($column instanceof \App\ValueObjects\Column\Notification\Title )
                             {!! $column->input(['class' => '']) !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Notification\Type )
+                        @if($column instanceof \App\ValueObjects\Column\Notification\Type )
                             {!! $column->input(['class' => '']) !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Notification\Status )
+                        @if($column instanceof \App\ValueObjects\Column\Notification\Status )
                             {!! $column->input(['class' => '']) !!}
                         @endif
 
-                        @if($column instanceof \App\ValueObjects\Notification\PublishAt )
+                        @if($column instanceof \App\ValueObjects\Column\Notification\PublishAt )
                             {!! $column->input(['class' => '']) !!}
                         @endif
 
@@ -77,9 +77,9 @@
                     </th>
                     @foreach($model::getColumns() as $column)
                         @php
-                            if ($column instanceof \App\ValueObjects\Notification\Id) continue;
-                            elseif ($column instanceof \App\ValueObjects\Notification\OwnerSystemCompany) continue;
-                            elseif ($column instanceof \App\ValueObjects\Notification\DeletedAt) continue;
+                            if ($column instanceof \App\ValueObjects\Column\Notification\Id) continue;
+                            elseif ($column instanceof \App\ValueObjects\Column\Notification\OwnerSystemCompany) continue;
+                            elseif ($column instanceof \App\ValueObjects\Column\Notification\DeletedAt) continue;
                         @endphp
                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
                             <div class="flex w-full items-center justify-center space-x-1">
@@ -113,9 +113,12 @@
                 @foreach($items as $item)
                     <tr class="bg-white border-b">
                         <td class="w-full text-xs flex flex-col justify-center space-y-1 m-1">
-                            <x-button.edit type="link" href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
-                            <x-button.show type="link" href="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}"/>
-                            <x-button.copy type="link" href="{{ route($model->getTable() . '.create', ['copy' => $item->id]) }}"/>
+                            <x-button.edit type="link"
+                                           href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
+                            <x-button.show type="link"
+                                           href="{{ route($model->getTable() . '.show', ['id' => $item->id]) }}"/>
+                            <x-button.copy type="link"
+                                           href="{{ route($model->getTable() . '.create', ['copy' => $item->id]) }}"/>
                             <x-button.delete
                                 href="{{ route($model->getTable() . '.destroy', ['id' => $item->id]) }}"
                                 data-id="{{ $item->id }}"
@@ -123,9 +126,9 @@
                         </td>
                         @foreach($model::getColumns() as $column)
                             @php
-                                if ($column instanceof \App\ValueObjects\Notification\Id) continue;
-                                elseif ($column instanceof \App\ValueObjects\Notification\OwnerSystemCompany) continue;
-                                elseif ($column instanceof \App\ValueObjects\Notification\DeletedAt) continue;
+                                if ($column instanceof \App\ValueObjects\Column\Notification\Id) continue;
+                                elseif ($column instanceof \App\ValueObjects\Column\Notification\OwnerSystemCompany) continue;
+                                elseif ($column instanceof \App\ValueObjects\Column\Notification\DeletedAt) continue;
                             @endphp
                             <td class="px-6 py-4">
                                 @php

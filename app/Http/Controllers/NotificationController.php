@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Notification as ResourceModel; // モデル紐付け
+use App\Models\Notification as ResourceModel;
 use App\UseCases\NotificationAction\CreateAction;
 use App\UseCases\NotificationAction\DeleteAction;
 use App\UseCases\NotificationAction\ListAction;
 use App\UseCases\NotificationAction\UpdateAction;
-use App\ValueObjects\Notification\OwnerSequenceNo;
-use App\ValueObjects\Notification\PublishAt;
-use App\ValueObjects\Notification\Status;
-use App\ValueObjects\Notification\Tags;
-use App\ValueObjects\Notification\Title;
-use App\ValueObjects\Notification\Type;
+use App\ValueObjects\Column\Notification\OwnerSequenceNo;
+use App\ValueObjects\Column\Notification\PublishAt;
+use App\ValueObjects\Column\Notification\Status;
+use App\ValueObjects\Column\Notification\Tags;
+use App\ValueObjects\Column\Notification\Title;
+use App\ValueObjects\Column\Notification\Type;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
+
+// モデル紐付け
 
 class NotificationController extends ResourceController
 {
