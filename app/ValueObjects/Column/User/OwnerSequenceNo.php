@@ -1,15 +1,15 @@
 <?php
 
-namespace App\ValueObjects\User;
+namespace App\ValueObjects\Column\User;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
 
-class EmailVerifiedAt extends ValueObject
+class OwnerSequenceNo extends ValueObject
 {
-    public const NAME = 'email_verified_at';
+    public const NAME = 'owner_sequence_no';
 
-    public const LABEL = 'メールアドレス認証日';
+    public const LABEL = 'No.';
 
     protected string $name = self::NAME;
 
@@ -17,7 +17,7 @@ class EmailVerifiedAt extends ValueObject
 
     protected string $label = self::LABEL;
 
-    protected string $type = 'datetime';
+    protected string $type = 'string';
 
     protected ?int $maxLength = null;
 
@@ -25,11 +25,15 @@ class EmailVerifiedAt extends ValueObject
 
     protected bool $required = false; // DB Nullable
 
+    protected bool $primaryKey = false;
+
+    protected bool $unique = true;
+
     public function rules(): array
     {
         return [
+            'string',
             'nullable',
-            'date',
         ];
     }
 

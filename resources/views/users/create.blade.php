@@ -19,7 +19,7 @@
             @foreach($model::getColumns() as $column)
                 <div class="w-full my-1">
 
-                    @if($column instanceof \App\ValueObjects\User\Name)
+                    @if($column instanceof \App\ValueObjects\Column\User\Name)
                         @php
                             $nameColumn = $column->column();
                             $nameValue  = $model->$nameColumn;
@@ -27,7 +27,7 @@
                         {!! $column->input(['required' => true, 'class' => '', 'value' => $nameValue])!!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\User\Email)
+                    @if($column instanceof \App\ValueObjects\Column\User\Email)
                         @php
                             $emailColumn = $column->column();
                             $emailValue  = $model->$emailColumn;
@@ -35,12 +35,12 @@
                         {!! $column->input(['required' => true, 'class' => '', 'value' => $emailValue])!!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\User\Password)
+                    @if($column instanceof \App\ValueObjects\Column\User\Password)
                         {!! $column->input(['required' => true, 'class' => ''])!!}
                         {!! $column->inputConfirm(['required' => true, 'class' => ''])!!}
                     @endif
 
-                    @if($column instanceof \App\ValueObjects\User\Tags)
+                    @if($column instanceof \App\ValueObjects\Column\User\Tags)
                         @php
                             $tagsColumn = $column->column();
                             $tagsValue  = $model->$tagsColumn;
@@ -56,7 +56,7 @@
                 </div>
             @endforeach
         </div>
-        <x-button.store />
+        <x-button.store/>
     </form>
 @endsection
 

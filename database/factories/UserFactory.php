@@ -24,11 +24,11 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            \App\ValueObjects\User\Name::NAME => fake()->name(),
-            \App\ValueObjects\User\Email::NAME => fake()->unique()->safeEmail(),
-            \App\ValueObjects\User\EmailVerifiedAt::NAME => now(),
-            \App\ValueObjects\User\Password::NAME => static::$password ??= Hash::make('password'),
-            \App\ValueObjects\User\RememberToken::NAME => Str::random(10),
+            \App\ValueObjects\Column\User\Name::NAME => fake()->name(),
+            \App\ValueObjects\Column\User\Email::NAME => fake()->unique()->safeEmail(),
+            \App\ValueObjects\Column\User\EmailVerifiedAt::NAME => now(),
+            \App\ValueObjects\Column\User\Password::NAME => static::$password ??= Hash::make('password'),
+            \App\ValueObjects\Column\User\RememberToken::NAME => Str::random(10),
         ];
     }
 
@@ -38,7 +38,7 @@ class UserFactory extends Factory
     public function unverified(): static
     {
         return $this->state(fn (array $attributes) => [
-            \App\ValueObjects\User\EmailVerifiedAt::NAME => null,
+            \App\ValueObjects\Column\User\EmailVerifiedAt::NAME => null,
         ]);
     }
 }

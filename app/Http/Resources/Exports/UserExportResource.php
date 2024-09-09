@@ -19,11 +19,11 @@ class UserExportResource extends BaseExportResource
     public function csvHeaders(): array
     {
         return [
-            new \App\ValueObjects\User\OwnerSequenceNo,
-            new \App\ValueObjects\User\Name,
-            new \App\ValueObjects\User\Email,
-            new \App\ValueObjects\User\EmailVerifiedAt(),
-            new \App\ValueObjects\User\Tags,
+            new \App\ValueObjects\Column\User\OwnerSequenceNo,
+            new \App\ValueObjects\Column\User\Name,
+            new \App\ValueObjects\Column\User\Email,
+            new \App\ValueObjects\Column\User\EmailVerifiedAt(),
+            new \App\ValueObjects\Column\User\Tags,
         ];
     }
 

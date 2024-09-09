@@ -2,21 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Traits\CsvExportable; // モデル紐付け
-use App\Http\Resources\Exports\UserExportResource as ExportResource; // エクスポートリソース紐付け
+use App\Http\Controllers\Traits\CsvExportable;
+use App\Http\Resources\Exports\UserExportResource as ExportResource;
 use App\Models\User as ResourceModel;
 use App\UseCases\UserAction\CreateAction as CreateAction;
 use App\UseCases\UserAction\DeleteAction as DeleteAction;
 use App\UseCases\UserAction\ListAction as ListAction;
 use App\UseCases\UserAction\UpdateAction as UpdateAction;
-use App\ValueObjects\User\Email;
-use App\ValueObjects\User\Name;
-use App\ValueObjects\User\OwnerSequenceNo;
-use App\ValueObjects\User\Tags;
+use App\ValueObjects\Column\User\Email;
+use App\ValueObjects\Column\User\Name;
+use App\ValueObjects\Column\User\OwnerSequenceNo;
+use App\ValueObjects\Column\User\Tags;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
+
+// モデル紐付け
+// エクスポートリソース紐付け
 
 class UserController extends ResourceController
 {

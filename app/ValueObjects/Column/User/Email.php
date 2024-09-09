@@ -1,16 +1,17 @@
 <?php
 
-namespace App\ValueObjects\User;
+namespace App\ValueObjects\Column\User;
 
 use App\Facades\Utility\CustomForm;
 use App\ValueObjects\ValueObject;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\Rule;
 
-class Name extends ValueObject
+class Email extends ValueObject
 {
-    public const NAME = 'name';
+    public const NAME = 'email';
 
-    public const LABEL = 'ユーザ名';
+    public const LABEL = 'メールアドレス';
 
     protected string $name = self::NAME;
 
@@ -18,7 +19,7 @@ class Name extends ValueObject
 
     protected string $label = self::LABEL;
 
-    protected string $type = 'string';
+    protected string $type = 'email';
 
     protected ?int $maxLength = 50;
 
@@ -26,23 +27,28 @@ class Name extends ValueObject
 
     protected bool $required = true; // DB Not Nullable
 
-    protected string $placeholder = 'ユーザ名';
+    protected string $placeholder = 'mail@example.com';
 
     public function rules(): array
     {
         $routeName = Route::currentRouteName();
 
         return match ($routeName) {
-            'login.auth' => [
-                'nullable',
-            ],
-            default => [
-                // 通常時のバリデーション
+            'users.update' => [
                 'required',
-                'string',
+                'email',
                 "max:$this->maxLength",
                 "min:$this->minLength",
+                Rule::unique('users')->ignore(Route::current()->parameter('id')),
             ],
+            default => array_merge([
+                // 通常時のバリデーション
+                'required',
+                'email',
+                "max:$this->maxLength",
+                "min:$this->minLength",
+                'unique:users,email',
+            ]),
         };
     }
 

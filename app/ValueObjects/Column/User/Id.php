@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ValueObjects\User;
+namespace App\ValueObjects\Column\User;
 
 use App\ValueObjects\ValueObject;
 use Illuminate\Support\Facades\Route;

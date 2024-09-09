@@ -2,22 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Traits\CsvExportable; // モデル紐付け
-use App\Http\Resources\Exports\StoreExportResource as ExportResource; // エクスポートリソース紐付け
+use App\Http\Controllers\Traits\CsvExportable;
+use App\Http\Resources\Exports\StoreExportResource as ExportResource;
 use App\Models\Stock as ResourceModel;
 use App\UseCases\StockAction\CreateAction;
 use App\UseCases\StockAction\DeleteAction;
 use App\UseCases\StockAction\ListAction;
 use App\UseCases\StockAction\UpdateAction;
+use App\ValueObjects\Column\User\Name;
 use App\ValueObjects\Stock\OwnerSequenceNo;
 use App\ValueObjects\Stock\Price;
 use App\ValueObjects\Stock\Quantity;
 use App\ValueObjects\Stock\Tags;
-use App\ValueObjects\User\Name;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
+
+// モデル紐付け
+// エクスポートリソース紐付け
 
 class StockController extends ResourceController
 {
