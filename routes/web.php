@@ -17,6 +17,21 @@ use App\Http\Middleware\HasPrivilegeOfLogin;
 use Illuminate\Support\Facades\Route;
 use Laravel\Pennant\Middleware\EnsureFeaturesAreActive;
 
+// 暫定でアクセスログを設置
+\Illuminate\Support\Facades\Log::info('Access', [
+    \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+    [
+        'user_id' => auth()?->id(),
+        'ip' => request()->ip(),
+        'host' => request()->getHost(),
+        'method' => request()->method(),
+        'url' => request()->url(),
+        'referer' => request()->header('referer') ?? 'none',
+        'parameters' => request()->all(),
+        'user_agent' => request()->userAgent(),
+    ],
+]);
+
 Route::group([], function () {
     Route::get('login', [\App\Http\Controllers\Auth\AuthController::class, 'login'])->name('login');
     Route::post('login', [\App\Http\Controllers\Auth\AuthController::class, 'loginAuth'])->name('login.auth');
