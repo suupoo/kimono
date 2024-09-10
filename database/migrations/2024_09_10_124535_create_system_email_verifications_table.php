@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('models_id');
             $table->string('email');
             $table->text('token');
+            $table->boolean('is_verified')->nullable()->default(false);
             $table->dateTime('created_at')->nullable();
             $table->dateTime('expired_at')->nullable();
             $table->unique(['model', 'token']);// モデル名とトークンの組み合わせはユニーク

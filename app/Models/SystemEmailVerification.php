@@ -6,6 +6,7 @@ use App\ValueObjects\Column\System\EmailVerification\CreatedAt;
 use App\ValueObjects\Column\System\EmailVerification\Email;
 use App\ValueObjects\Column\System\EmailVerification\ExpiredAt;
 use App\ValueObjects\Column\System\EmailVerification\Id;
+use App\ValueObjects\Column\System\EmailVerification\IsVerified;
 use App\ValueObjects\Column\System\EmailVerification\ModelsId;
 use App\ValueObjects\Column\System\EmailVerification\Model as ModelColumn;
 use App\ValueObjects\Column\System\EmailVerification\Token;
@@ -40,6 +41,7 @@ class SystemEmailVerification extends Model
             new ModelsId,
             new Email,
             new Token,
+            new IsVerified,
             new CreatedAt,
             new ExpiredAt,
         ];
