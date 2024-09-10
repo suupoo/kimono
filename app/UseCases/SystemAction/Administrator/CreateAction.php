@@ -2,7 +2,7 @@
 
 namespace App\UseCases\SystemAction\Administrator;
 
-use App\Mail\CreateSystemAdministratorVerifiedEmail;
+use Illuminate\Auth\Events\Registered;
 use App\Notifications\Mail\CreateSystemAdministratorVerifiedMailNotification;
 use App\UseCases\ResourceAction\CreateAction as BaseAction;
 use Illuminate\Http\Request;
@@ -27,6 +27,7 @@ class CreateAction extends BaseAction
                     'entity' => $entity,
                 ])
             );
+            event(new Registered($entity));
 
         } catch (\Exception $e) {
             Log::error($e->getMessage());
