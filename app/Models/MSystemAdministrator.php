@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\AdministratorRole;
 use App\Facades\Utility\CustomStorage;
+use App\Models\Traits\MailVerificatable;
 use App\ValueObjects\Column\Master\Administrator\CreatedAt;
 use App\ValueObjects\Column\Master\Administrator\Email;
 use App\ValueObjects\Column\Master\Administrator\EmailVerifiedAt;
@@ -25,7 +26,7 @@ use Illuminate\Notifications\Notification;
 
 class MSystemAdministrator extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, MailVerificatable;
 
     protected $table = 'm_system_administrators';
 

@@ -21,12 +21,23 @@ class CreateAction extends BaseAction
     {
         try {
             $entity = $attributes['entity'];
+
+            // メール認証トークンを生成して登録する
+            $registerEmailVerification = $entity->registerEmailVerification();
+            if(!$registerEmailVerification){
+                throw new \Exception('認証トークンの生成に失敗しました。');
+            }
+
             // 認証メールを送信する
             $entity->notify(
                 new CreateSystemAdministratorVerifiedMailNotification([
                     'entity' => $entity,
+                    'url'    => route('verify-email', ['token' => $registerEmailVerification->token]),
+                    'expire' => $registerEmailVerification->expired_at->format('Y/m/d H:i'),
                 ])
             );
+
+            // ユーザ登録イベントを発行
             event(new Registered($entity));
 
         } catch (\Exception $e) {
