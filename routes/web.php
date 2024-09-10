@@ -21,6 +21,7 @@ Route::group([], function () {
     Route::get('login', [\App\Http\Controllers\Auth\AuthController::class, 'login'])->name('login');
     Route::post('login', [\App\Http\Controllers\Auth\AuthController::class, 'loginAuth'])->name('login.auth');
     Route::get('logout', [\App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout');
+    Route::get('verify-email', [\App\Http\Controllers\Auth\AuthController::class, 'verifyEmail'])->name('verify-email');
 });
 
 Route::group(['prefix' => 'about', 'as' => 'about.'], function () {

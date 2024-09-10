@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller; // モデル紐付け
 use App\Models\MSystemAdministrator as AuthModel;
 use App\UseCases\AuthAction\LoginAction;
 use App\UseCases\AuthAction\LogoutAction;
-use Illuminate\Http\RedirectResponse;
+use App\UseCases\AuthAction\VerifyEmailAction;use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class AuthController extends Controller
 {
@@ -33,5 +34,18 @@ class AuthController extends Controller
     public function logout(Request $request, LogoutAction $action): RedirectResponse
     {
         return $action($request);
+    }
+
+    /**
+     * メールアドレス確認
+     * @param Request $request
+     * @param VerifyEmailAction $action
+     * @return View
+     */
+    public function verifyEmail(Request $request, VerifyEmailAction $action):View
+    {
+       $action($request, AuthModel::class);
+
+        return view('auth.verify-email');
     }
 }
