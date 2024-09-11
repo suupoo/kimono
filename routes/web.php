@@ -27,7 +27,7 @@ use Laravel\Pennant\Middleware\EnsureFeaturesAreActive;
         'method' => request()->method(),
         'url' => request()->url(),
         'referer' => request()->header('referer') ?? 'none',
-        'parameters' => request()->all(),
+        'parameters' => request()->except('password', 'password_confirmation'),
         'user_agent' => request()->userAgent(),
     ],
 ]);
