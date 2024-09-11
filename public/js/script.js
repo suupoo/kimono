@@ -1,8 +1,33 @@
 $(function(){
+    let $ajaxExecuting = false;
     $('input[name=post_code]').on('focusout', function(){
         let postCode = $(this).val();
         if(postCode.match(/^\d{7}$/)){
             $(this).val(postCode.substr(0, 3) + '-' + postCode.substr(3, 4));
+        }
+
+        let postCodeValue = $(this).val().replace('-', '');
+        if(postCodeValue.match(/^\d{7}$/)){
+            if (!$ajaxExecuting) {
+                $.ajax({
+                    url: 'https://api.zipaddress.net/?zipcode=' + postCodeValue,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        $ajaxExecuting = true;
+                    },
+                    success: function (response) {
+                        if (response.code === 200) {
+                            $('select[name=prefecture] option').filter(function(index){
+                                return ($(this).text()).trim() === response.data.pref;
+                            }).prop('selected', true);
+                            $('input[name=address_1]').val(response.data.address);
+                        }
+                    },
+                    always: function () {
+                        $ajaxExecuting = false;
+                    }
+                });
+            }
         }
     });
     $('.ad-close').on('click', function(e) {
