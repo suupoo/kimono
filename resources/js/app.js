@@ -4,6 +4,7 @@ import 'preline';
 import '@preline/overlay';
 import '@preline/carousel';
 import '@preline/remove-element'
+import '@preline/toggle-password';
 import '@popperjs/core';
 import jQuery from 'jquery';
 import Quill from 'quill';
