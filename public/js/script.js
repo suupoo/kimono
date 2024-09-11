@@ -1,5 +1,4 @@
 $(function(){
-    let $ajaxExecuting = false;
     $('input[name=post_code]').on('focusout', function(){
         let postCode = $(this).val();
         if(postCode.match(/^\d{7}$/)){
@@ -8,27 +7,19 @@ $(function(){
 
         let postCodeValue = $(this).val().replace('-', '');
         if(postCodeValue.match(/^\d{7}$/)){
-            if (!$ajaxExecuting) {
-                $.ajax({
-                    url: 'https://zipcloud.ibsnet.co.jp/api/search',
-                    dataType: 'jsonp',
-                    data: {zipcode: postCodeValue},
-                    beforeSend: function () {
-                        $ajaxExecuting = true;
-                    },
-                    success: function (response) {
-                        if (response.code === 200) {
-                            $('select[name=prefecture] option').filter(function(index){
-                                return ($(this).text()).trim() === response.data.pref;
-                            }).prop('selected', true);
-                            $('input[name=address_1]').val(response.data.address);
-                        }
-                    },
-                    always: function () {
-                        $ajaxExecuting = false;
-                    }
-                });
-            }
+            $.ajax({
+                url: 'https://jp-postal-code-api.ttskch.com/api/v1/' + postCodeValue +'.json',
+                dataType: 'json',
+                type: 'GET',
+                success: function (response) {
+                    let addressData = response.addresses[0];
+                    $('select[name=prefecture]').val(addressData.prefectureCode);
+                    $('input[name=address_1]').val(addressData.ja.address1 + addressData.ja.address2);
+                },
+                error: function (response) {
+                    alert('郵便番号が見つかりませんでした。');
+                }
+            });
         }
     });
     $('.ad-close').on('click', function(e) {
