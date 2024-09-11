@@ -10,8 +10,9 @@ $(function(){
         if(postCodeValue.match(/^\d{7}$/)){
             if (!$ajaxExecuting) {
                 $.ajax({
-                    url: 'https://api.zipaddress.net/?zipcode=' + postCodeValue,
-                    dataType: 'json',
+                    url: 'https://zipcloud.ibsnet.co.jp/api/search',
+                    dataType: 'jsonp',
+                    data: {zipcode: postCodeValue},
                     beforeSend: function () {
                         $ajaxExecuting = true;
                     },
