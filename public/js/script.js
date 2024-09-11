@@ -4,23 +4,6 @@ $(function(){
         if(postCode.match(/^\d{7}$/)){
             $(this).val(postCode.substr(0, 3) + '-' + postCode.substr(3, 4));
         }
-
-        let postCodeValue = $(this).val().replace('-', '');
-        if(postCodeValue.match(/^\d{7}$/)){
-            $.ajax({
-                url: 'https://jp-postal-code-api.ttskch.com/api/v1/' + postCodeValue +'.json',
-                dataType: 'json',
-                type: 'GET',
-                success: function (response) {
-                    let addressData = response.addresses[0];
-                    $('select[name=prefecture]').val(addressData.prefectureCode);
-                    $('input[name=address_1]').val(addressData.ja.address1 + addressData.ja.address2);
-                },
-                error: function (response) {
-                    alert('郵便番号が見つかりませんでした。');
-                }
-            });
-        }
     });
     $('.ad-close').on('click', function(e) {
         e.preventDefault();
