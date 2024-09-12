@@ -99,6 +99,10 @@ Route::group(['middleware' => ['auth', HasPrivilegeOfLogin::class]], function ()
     });
 });
 
+Route::group(['controller' => \App\Http\Controllers\UtilityController::class], function () {
+    Route::get('search/postcode', 'searchPostCode')->name('searchPostCode');
+});
+
 Route::get('/build/{any}', function ($any) {
     $extensions = substr($any, strrpos($any, '.') + 1);
     $mine_type = [
