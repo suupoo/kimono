@@ -28,11 +28,18 @@
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Column\Customer\PostCode)
-                        @php
-                            $postCodeColumn = $column->column();
-                            $postCodeValue  = $model->$postCodeColumn;
-                        @endphp
-                        {!! $column->input(['required' => false, 'value' => $postCodeValue]) !!}
+                    <div class="flex gap-1 items-end">
+                        <div class="w-full">
+                            @php
+                                $postCodeColumn = $column->column();
+                                $postCodeValue  = $model->$postCodeColumn;
+                            @endphp
+                            {!! $column->input(['required' => false, 'value' => $postCodeValue]) !!}
+                        </div>
+                        <div>
+                            <x-button.color-blue class="w-20 h-10 p-2">{{ __('Address Search') }}</x-button.color-blue>
+                        </div>
+                    </div>
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Column\Customer\Prefecture)
@@ -89,5 +96,11 @@
 
 @section('page-script')
     @includeIf('scripts.tags')
+{{--    @include('scripts.search-address', [--}}
+{{--        'selectorPostCode'   => '#post_code',--}}
+{{--        'selectorPrefecture' => '#prefecture',--}}
+{{--        'selectorAddress1'   => '#address1',--}}
+{{--        'selectorAddress2'   => '#address2',--}}
+{{--    ])--}}
 @endsection
 
