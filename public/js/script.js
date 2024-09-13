@@ -1,31 +1,39 @@
+function setSearchAddress( selectorPostCode = '#post_code',
+                           selectorPrefecture='#prefecture',
+                           selectorAddress1 = '#address_1',
+                           selectorAddress2 = '#address_2'){
+    let postCodeValue = $(selectorPostCode).val().replace('-', '');
+    if(postCodeValue.match(/^\d{7}$/)){
+        $.ajax({
+            url: '/search/postcode',
+            dataType: 'json',
+            data:{
+                post_code: postCodeValue
+            },
+            type: 'GET',
+            success: function (response) {
+                let addressData = response.data;
+                $(selectorPrefecture).val(addressData.prefecture);
+                $(selectorAddress1).val(addressData.address_1);
+                if(addressData.address_2 !== ''){
+                    $(selectorAddress2).val(addressData.address_2);
+                }
+            },
+            error: function (response) {
+                alert('郵便番号が見つかりませんでした。');
+            }
+        });
+    }
+}
+
 $(function(){
+    $('[data-trigger-click="setSearchAddress"]').on('click', function(e){
+        setSearchAddress();
+    });
     $('input[name=post_code]').on('focusout', function(){
         let postCode = $(this).val();
         if(postCode.match(/^\d{7}$/)){
             $(this).val(postCode.substr(0, 3) + '-' + postCode.substr(3, 4));
-        }
-
-        let postCodeValue = $(this).val().replace('-', '');
-        if(postCodeValue.match(/^\d{7}$/)){
-            $.ajax({
-                url: '/search/postcode',
-                dataType: 'json',
-                data:{
-                    post_code: postCodeValue
-                },
-                type: 'GET',
-                success: function (response) {
-                    let addressData = response.data;
-                    $('select[name=prefecture]').val(addressData.prefecture);
-                    $('input[name=address_1]').val(addressData.address_1);
-                    if(addressData.address_2 !== ''){
-                        $('input[name=address_2]').val(addressData.address_2);
-                    }
-                },
-                error: function (response) {
-                    alert('郵便番号が見つかりませんでした。');
-                }
-            });
         }
     });
     $('.ad-close').on('click', function(e) {

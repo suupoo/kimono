@@ -45,7 +45,7 @@
                             {!! $column->input(['required' => false, 'class' => '', 'value' => $postCodeValue]) !!}
                         </div>
                         <div>
-                            <x-button.color-blue class="w-20 h-10 p-2">{{ __('Address Search') }}</x-button.color-blue>
+                            <x-button.color-blue data-trigger-click="setSearchAddress" class="w-20 h-10 p-2">{{ __('Address Search') }}</x-button.color-blue>
                         </div>
                     </div>
                     @endif
