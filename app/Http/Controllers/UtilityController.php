@@ -6,12 +6,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use GuzzleHttp\Client as GuzzleHttp;
 
 // モデル紐付け
 // エクスポートリソース紐付け
 
 class UtilityController extends ResourceController
 {
+    protected GuzzleHttp $httpClient;
+
+    public function __construct()
+    {
+        $this->httpClient = new GuzzleHttp();
+    }
+
     public function searchPostCode(Request $request): array
     {
         try {
@@ -22,15 +30,21 @@ class UtilityController extends ResourceController
             $postCode = $request->input('post_code');
             $endpoint = "https://jp-postal-code-api.ttskch.com/api/v1/{$postCode}.json";
 
-            $response = Http::get($endpoint);
+            $getRequest = $this->httpClient->request('GET', $endpoint);
+            if($getRequest->getStatusCode() !== 200) {
+                 throw new \Exception('Failed to get response from jp-postal-code-api.ttskch.com');
+            }
 
             // postal-code-api.ttskch.com からのレスポンス
-            $prefectureCode = $response->json('addresses.0.prefectureCode');
-            $prefecture = $response->json('addresses.0.prefectureCode');
-            $address1 = $response->json('addresses.0.ja.address1');
-            $address2 = $response->json('addresses.0.ja.address2');
-            $address3 = $response->json('addresses.0.ja.address3');
-            $address4 = $response->json('addresses.0.ja.address4');
+            $response = json_decode($getRequest->getBody()->getContents());
+
+            // データ整形
+            $address = $response->addresses[0];
+            $prefectureCode = $address->prefectureCode;
+            $address1 = $address->ja->address1;
+            $address2 = $address->ja->address2;
+            $address3 = $address->ja->address3;
+            $address4 = $address->ja->address4;
 
             return [
                 'status' => 200,
