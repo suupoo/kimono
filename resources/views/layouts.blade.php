@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noindex, nofollow">
+{{--        <meta name="robots" content="noindex, nofollow">--}}
         <meta name=”description“ content="利用用途に合わせてご自由にいただける登録型の管理システムです。顧客・在庫・店舗といった利用者様のニーズが高いを機能をご準備していますので運用に合わせ自由にお使いいただけます。" />
         <title>{{ config('app.name') }}</title>
         <!-- Fonts -->
