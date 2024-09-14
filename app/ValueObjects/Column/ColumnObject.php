@@ -6,8 +6,6 @@ use App\ValueObjects\ValueObject;
 
 class ColumnObject extends ValueObject
 {
-    protected ?string $value;
-
     protected string $name;
 
     protected string $columnName;
@@ -29,11 +27,6 @@ class ColumnObject extends ValueObject
     protected bool $primaryKey = false;
 
     protected bool $unique = false;
-
-    public function __construct($value = null)
-    {
-        $this->value = $value;
-    }
 
     public function id(): ?string
     {
