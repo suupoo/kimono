@@ -21,6 +21,7 @@
                     @if(session('error'))
                         <x-toasts.error>{{ session('error') }}</x-toasts.error>
                     @endif
+                    </div>
                 </div>
 
                 @yield('content')
