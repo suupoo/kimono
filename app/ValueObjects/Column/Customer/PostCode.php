@@ -3,9 +3,9 @@
 namespace App\ValueObjects\Column\Customer;
 
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class PostCode extends ValueObject
+class PostCode extends ColumnObject
 {
     public const NAME = 'post_code';
 

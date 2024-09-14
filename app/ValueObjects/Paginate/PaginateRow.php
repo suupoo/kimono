@@ -4,10 +4,10 @@ namespace App\ValueObjects\Paginate;
 
 use App\Enums\PaginateRow as PaginateRowEnum;
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 use Illuminate\Validation\Rule;
 
-class PaginateRow extends ValueObject
+class PaginateRow extends ColumnObject
 {
     public const NAME = 'rows';
 

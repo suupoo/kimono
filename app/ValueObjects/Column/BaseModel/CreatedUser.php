@@ -2,10 +2,10 @@
 
 namespace App\ValueObjects\Column\BaseModel;
 
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 use Illuminate\Contracts\View\View;
 
-class CreatedUser extends ValueObject
+class CreatedUser extends ColumnObject
 {
     public const NAME = 'created_user';
 

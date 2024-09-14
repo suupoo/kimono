@@ -4,10 +4,10 @@ namespace App\ValueObjects\Column\Notification;
 
 use App\Enums\NotificationStatus;
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 use Illuminate\Validation\Rule;
 
-class Status extends ValueObject
+class Status extends ColumnObject
 {
     public const NAME = 'status';
 

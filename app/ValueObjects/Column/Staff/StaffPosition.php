@@ -4,10 +4,10 @@ namespace App\ValueObjects\Column\Staff;
 
 use App\Enums\StaffPosition as StaffPositionEnum;
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 use Illuminate\Validation\Rule;
 
-class StaffPosition extends ValueObject
+class StaffPosition extends ColumnObject
 {
     public const NAME = 'position';
 

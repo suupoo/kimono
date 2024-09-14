@@ -2,9 +2,9 @@
 
 namespace App\ValueObjects\Column\Master\Banner;
 
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class UpdatedAt extends ValueObject
+class UpdatedAt extends ColumnObject
 {
     public const NAME = 'updated_at';
 

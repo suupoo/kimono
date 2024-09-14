@@ -2,9 +2,9 @@
 
 namespace App\ValueObjects\Column\StoreStaff;
 
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class Id extends ValueObject
+class Id extends ColumnObject
 {
     public const NAME = 'id';
 

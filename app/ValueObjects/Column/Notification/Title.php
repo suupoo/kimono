@@ -3,9 +3,9 @@
 namespace App\ValueObjects\Column\Notification;
 
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class Title extends ValueObject
+class Title extends ColumnObject
 {
     public const NAME = 'title';
 

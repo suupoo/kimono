@@ -2,9 +2,9 @@
 
 namespace App\ValueObjects\Column\Staff;
 
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class OwnerSystemCompany extends ValueObject
+class OwnerSystemCompany extends ColumnObject
 {
     public const NAME = 'owner_system_company';
 

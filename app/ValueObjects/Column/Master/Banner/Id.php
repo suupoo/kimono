@@ -2,12 +2,12 @@
 
 namespace App\ValueObjects\Column\Master\Banner;
 
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
 
-class Id extends ValueObject
+class Id extends ColumnObject
 {
     public const NAME = 'id';
 

@@ -3,9 +3,9 @@
 namespace App\ValueObjects\Column\Master\Banner;
 
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class Priority extends ValueObject
+class Priority extends ColumnObject
 {
     public const NAME = 'priority';
 

@@ -3,10 +3,10 @@
 namespace App\ValueObjects\Column\User;
 
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 use Illuminate\Support\Facades\Route;
 
-class Name extends ValueObject
+class Name extends ColumnObject
 {
     public const NAME = 'name';
 

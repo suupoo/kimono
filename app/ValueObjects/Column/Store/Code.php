@@ -3,11 +3,11 @@
 namespace App\ValueObjects\Column\Store;
 
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
 
-class Code extends ValueObject
+class Code extends ColumnObject
 {
     public const NAME = 'code';
 

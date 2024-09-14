@@ -3,9 +3,9 @@
 namespace App\ValueObjects\Column\Master\Administrator;
 
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class EndAt extends ValueObject
+class EndAt extends ColumnObject
 {
     public const NAME = 'end_at';
 

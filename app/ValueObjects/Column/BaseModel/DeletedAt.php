@@ -2,9 +2,9 @@
 
 namespace App\ValueObjects\Column\BaseModel;
 
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class DeletedAt extends ValueObject
+class DeletedAt extends ColumnObject
 {
     public const NAME = 'deleted_at';
 

@@ -3,9 +3,9 @@
 namespace App\ValueObjects\Column\Notification;
 
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class PublishAt extends ValueObject
+class PublishAt extends ColumnObject
 {
     public const NAME = 'publish_at';
 

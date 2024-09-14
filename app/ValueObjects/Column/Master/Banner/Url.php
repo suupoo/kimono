@@ -3,9 +3,9 @@
 namespace App\ValueObjects\Column\Master\Banner;
 
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class Url extends ValueObject
+class Url extends ColumnObject
 {
     public const NAME = 'url';
 

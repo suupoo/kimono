@@ -3,9 +3,9 @@
 namespace App\ValueObjects\Column\Stock;
 
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class Price extends ValueObject
+class Price extends ColumnObject
 {
     public const NAME = 'price';
 

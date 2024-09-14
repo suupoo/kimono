@@ -2,9 +2,9 @@
 
 namespace App\ValueObjects\Column\User;
 
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class RememberToken extends ValueObject
+class RememberToken extends ColumnObject
 {
     public const NAME = 'remember_token';
 

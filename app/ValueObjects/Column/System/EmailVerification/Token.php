@@ -2,9 +2,9 @@
 
 namespace App\ValueObjects\Column\System\EmailVerification;
 
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class Token extends ValueObject
+class Token extends ColumnObject
 {
     public const NAME = 'token';
 

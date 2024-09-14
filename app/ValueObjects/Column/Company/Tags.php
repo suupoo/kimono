@@ -3,9 +3,9 @@
 namespace App\ValueObjects\Column\Company;
 
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class Tags extends ValueObject
+class Tags extends ColumnObject
 {
     public const NAME = 'tags';
 

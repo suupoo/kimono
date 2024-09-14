@@ -4,10 +4,10 @@ namespace App\ValueObjects\Column\Notification;
 
 use App\Enums\NotificationType;
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 use Illuminate\Validation\Rule;
 
-class Type extends ValueObject
+class Type extends ColumnObject
 {
     public const NAME = 'type';
 

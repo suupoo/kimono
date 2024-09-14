@@ -3,9 +3,9 @@
 namespace App\ValueObjects\Column\Stock;
 
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class OwnerSequenceNo extends ValueObject
+class OwnerSequenceNo extends ColumnObject
 {
     public const NAME = 'owner_sequence_no';
 

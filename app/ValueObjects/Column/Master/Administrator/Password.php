@@ -3,10 +3,10 @@
 namespace App\ValueObjects\Column\Master\Administrator;
 
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 use Illuminate\Support\Facades\Route;
 
-class Password extends ValueObject
+class Password extends ColumnObject
 {
     public const NAME = 'password';
 

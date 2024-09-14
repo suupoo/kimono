@@ -3,9 +3,9 @@
 namespace App\ValueObjects\Column\Master\Administrator;
 
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class StartAt extends ValueObject
+class StartAt extends ColumnObject
 {
     public const NAME = 'start_at';
 

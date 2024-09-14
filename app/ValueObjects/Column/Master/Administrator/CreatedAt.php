@@ -2,9 +2,9 @@
 
 namespace App\ValueObjects\Column\Master\Administrator;
 
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class CreatedAt extends ValueObject
+class CreatedAt extends ColumnObject
 {
     public const NAME = 'created_at';
 

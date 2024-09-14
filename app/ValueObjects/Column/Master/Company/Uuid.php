@@ -3,10 +3,10 @@
 namespace App\ValueObjects\Column\Master\Company;
 
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 use Illuminate\Support\Facades\Route;
 
-class Uuid extends ValueObject
+class Uuid extends ColumnObject
 {
     public const NAME = 'uuid';
 

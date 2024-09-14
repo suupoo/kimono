@@ -3,9 +3,9 @@
 namespace App\ValueObjects\Column\Store;
 
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class Name extends ValueObject
+class Name extends ColumnObject
 {
     public const NAME = 'name';
 

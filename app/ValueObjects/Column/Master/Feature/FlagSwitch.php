@@ -2,9 +2,9 @@
 
 namespace App\ValueObjects\Column\Master\Feature;
 
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class FlagSwitch extends ValueObject
+class FlagSwitch extends ColumnObject
 {
     public const NAME = 'flag_switch';
 

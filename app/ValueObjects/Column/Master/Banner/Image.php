@@ -3,12 +3,12 @@
 namespace App\ValueObjects\Column\Master\Banner;
 
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-class Image extends ValueObject
+class Image extends ColumnObject
 {
     public const NAME = 'image';
 

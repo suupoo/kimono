@@ -3,9 +3,9 @@
 namespace App\ValueObjects\Column\Staff;
 
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class QuitDate extends ValueObject
+class QuitDate extends ColumnObject
 {
     public const NAME = 'quit_date';
 

@@ -2,9 +2,9 @@
 
 namespace App\ValueObjects\Column\System\EmailVerification;
 
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class ModelsId extends ValueObject
+class ModelsId extends ColumnObject
 {
     public const NAME = 'models_id';
 

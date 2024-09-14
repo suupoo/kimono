@@ -2,9 +2,9 @@
 
 namespace App\ValueObjects\Column\System\EmailVerification;
 
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class ExpiredAt extends ValueObject
+class ExpiredAt extends ColumnObject
 {
     public const NAME = 'expired_at';
 

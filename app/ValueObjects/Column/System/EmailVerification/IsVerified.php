@@ -2,9 +2,9 @@
 
 namespace App\ValueObjects\Column\System\EmailVerification;
 
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class IsVerified extends ValueObject
+class IsVerified extends ColumnObject
 {
     public const NAME = 'is_verified';
 

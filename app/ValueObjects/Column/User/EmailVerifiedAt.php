@@ -3,9 +3,9 @@
 namespace App\ValueObjects\Column\User;
 
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class EmailVerifiedAt extends ValueObject
+class EmailVerifiedAt extends ColumnObject
 {
     public const NAME = 'email_verified_at';
 

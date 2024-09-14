@@ -4,11 +4,11 @@ namespace App\ValueObjects\Column\Master\Administrator;
 
 use App\Enums\AdministratorRole;
 use App\Facades\Utility\CustomForm;
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
 
-class Role extends ValueObject
+class Role extends ColumnObject
 {
     public const NAME = 'role';
 

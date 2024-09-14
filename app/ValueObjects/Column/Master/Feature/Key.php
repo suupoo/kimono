@@ -2,9 +2,9 @@
 
 namespace App\ValueObjects\Column\Master\Feature;
 
-use App\ValueObjects\ValueObject;
+use App\ValueObjects\Column\ColumnObject;
 
-class Key extends ValueObject
+class Key extends ColumnObject
 {
     public const NAME = 'key';
 
