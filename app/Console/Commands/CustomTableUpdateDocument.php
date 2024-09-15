@@ -30,6 +30,10 @@ class CustomTableUpdateDocument extends Command
      */
     public function handle()
     {
+        if (env('APP_ENV') !== 'local') {
+            throw new \Exception("This command can only be executed in the local environment.");
+        }
+
         $this->updateTableDefinition();
     }
 
