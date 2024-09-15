@@ -3,7 +3,7 @@
 @section('content')
 
     <h1 class="custom-headline">
-        {{ $model::NAME . __('resource.list') }}
+        {{ $model::NAME  }}
     </h1>
 
     @php

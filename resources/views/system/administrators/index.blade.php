@@ -69,7 +69,7 @@
     {{--　リスト --}}
     <div class="custom-full-container">
         <h3 class="text-xl font-bold my-2">
-            {{ $model::NAME . __('resource.list') }}
+            {{ $model::NAME  }}
         </h3>
         <div class="flex w-full justify-end m-1">
             <div class="w-fit flex flex-row gap-1">
