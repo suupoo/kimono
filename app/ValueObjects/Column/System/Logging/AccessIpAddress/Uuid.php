@@ -4,11 +4,11 @@ namespace App\ValueObjects\Column\System\Logging\AccessIpAddress;
 
 use App\ValueObjects\Column\ColumnObject;
 
-class Id extends ColumnObject
+class Uuid extends ColumnObject
 {
-    public const NAME = 'id';
+    public const NAME = 'uuid';
 
-    public const LABEL = 'ID';
+    public const LABEL = 'UUID';
 
     protected string $name = self::NAME;
 
@@ -16,7 +16,7 @@ class Id extends ColumnObject
 
     protected string $label = self::LABEL;
 
-    protected string $type = 'integer';
+    protected string $type = 'string';
 
     protected ?int $maxLength = null;
 

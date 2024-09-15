@@ -1,6 +1,6 @@
 # テーブル定義書 
 
-2024年09月15日 17時38分37秒
+2024年09月15日 18時33分00秒
 
 このファイルは自動生成されたファイルです。
 
@@ -503,7 +503,7 @@
 
 | Field | Type | Null | Key | Default | Extra | Privileges | Comment |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| id | bigint(20) unsigned | NO | PRI |  | auto_increment | select,insert,update,references |  |
+| uuid | char(36) | NO | PRI |  |  | select,insert,update,references |  |
 | m_system_administrator_id | bigint(20) unsigned | NO |  |  |  | select,insert,update,references |  |
 | ip_address | varchar(255) | NO |  |  |  | select,insert,update,references | IPアドレス |
 | user_agent | text | YES |  |  |  | select,insert,update,references | ユーザーエージェント |

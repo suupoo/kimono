@@ -3,16 +3,21 @@
 namespace App\Models;
 
 use App\ValueObjects\Column\System\Logging\AccessIpAddress\CreatedAt;
-use App\ValueObjects\Column\System\Logging\AccessIpAddress\Id;
+use App\ValueObjects\Column\System\Logging\AccessIpAddress\Uuid;
 use App\ValueObjects\Column\System\Logging\AccessIpAddress\IpAddress;
 use App\ValueObjects\Column\System\Logging\AccessIpAddress\MSystemAdministratorId;
 use App\ValueObjects\Column\System\Logging\AccessIpAddress\UpdatedAt;
 use App\ValueObjects\Column\System\Logging\AccessIpAddress\UserAgent;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 
 class SystemLoggingAccessIpAddress extends Model
 {
+    use HasUuids;
+
     protected $table = 'system_logging_access_ip_addresses';
+
+    protected $primaryKey = Uuid::NAME;
 
     const NAME = 'アクセスログ（端末管理）';
 
@@ -37,7 +42,7 @@ class SystemLoggingAccessIpAddress extends Model
     public static function getColumns(): array
     {
         return [
-            new Id,
+            new Uuid,
             new MSystemAdministratorId,
             new IpAddress,
             new UserAgent,

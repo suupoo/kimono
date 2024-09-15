@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('system_logging_access_ip_addresses', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('uuid')->primary('uuid');
             $table->foreignId('m_system_administrator_id')->constrained()->name('m_system_administrators_id_foreign');
             $table->string('ip_address', 255)->comment('IPアドレス');
             $table->text('user_agent')->nullable()->comment('ユーザーエージェント');
