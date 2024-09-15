@@ -2,6 +2,10 @@
 
 @section('content')
 
+    <div class="w-20">
+        <x-button.back href="{{ route($model->getTable().'.index') }}" />
+    </div>
+
     <h1 class="custom-headline">
         {{ $model::NAME }}
     </h1>

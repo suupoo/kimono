@@ -1,6 +1,15 @@
 @extends('layouts')
 
 @section('content')
+
+    @php
+        $routePrefix = $prefix ?? $model->getTable();
+    @endphp
+
+    <div class="w-20">
+        <x-button.back href="{{ route($routePrefix.'.index') }}" />
+    </div>
+
     <div class="flex flex-col py-2">
         @csrf
         @if ($errors->any())

@@ -5,6 +5,11 @@
         $id = $model->id;
         $routePrefix = $prefix ?? $model->getTable();
     @endphp
+
+    <div class="w-20">
+        <x-button.back href="{{ route($routePrefix.'.index') }}" />
+    </div>
+
     <form action="{{ route($routePrefix.'.update', ['id' => $id]) }}" method="post" class="flex flex-col py-2">
         @csrf
         <input type="hidden" id="id" name="id" value="{{ $id }}"/>

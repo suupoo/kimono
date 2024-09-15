@@ -4,6 +4,11 @@
     @php
         $routePrefix = $prefix ?? $model->getTable()
     @endphp
+
+    <div class="w-20">
+        <x-button.back href="{{ route($routePrefix.'.index') }}" />
+    </div>
+
     <form action="{{ route($routePrefix.'.store') }}" method="post" class="flex flex-col py-2">
         @csrf
         @if ($errors->any())
