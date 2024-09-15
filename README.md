@@ -81,6 +81,13 @@
 | `./vendor/bin/pint`        | コーディング規約に則り、自動修正を適用する     |
 | `./vendor/bin/pint --test` | コーディング規約に則り、自動修正をチェックだけする |
 
+### カスタムコマンド
+| コマンド                                              | 引数                              | 説明                     |
+|---------------------------------------------------|---------------------------------|------------------------|
+| `php artisan custom-storage:set`                  |                                 | 対話型入力でユーザ毎のコンテナ情報を登録する |
+| `php artisan custom-feature:add {feature} {name}` | feature:resourceName name:リソース名 | 機能定義を追加                |
+| `php artisan custom-table:update-document`        | 実際のDB情報からテーブル定義書を更新する           |
+
 ## コーディング規約
 ### 全般
 - 原則`Resource`に則り、一覧表示・ 新規登録・更新・削除・詳細の規則でそれぞれのモデルを作成する
