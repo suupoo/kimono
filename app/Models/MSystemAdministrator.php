@@ -20,6 +20,7 @@ use App\ValueObjects\Column\Master\Administrator\UpdatedAt;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
@@ -102,6 +103,15 @@ class MSystemAdministrator extends Authenticatable
             'system_administrator',
             'system_company',
         );
+    }
+
+    /**
+     * アクセスログ（端末管理）
+     * @return HasMany
+     */
+    public function systemLoggingAccessIpAddresses(): HasMany
+    {
+        return $this->hasMany(SystemLoggingAccessIpAddress::class);
     }
 
     /**
