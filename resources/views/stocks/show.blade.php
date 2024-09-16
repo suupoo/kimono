@@ -48,7 +48,7 @@
                             $stockNameColumn = $column->column();
                             $stockNameValue  = $model->$stockNameColumn;
                         @endphp
-                        {!! $column->input(['required' => true, 'disable' => true, 'class' => '', 'value' => $stockNameValue])?->render() !!}
+                        {!! $column->input(['required' => true, 'disable' => true, 'class' => '', 'value' => $stockNameValue]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Column\Stock\Quantity)
@@ -56,7 +56,7 @@
                             $quantityColumn = $column->column();
                             $quantityValue  = $model->$quantityColumn;
                         @endphp
-                        {!! $column->input(['required' => false, 'disable' => true, 'class' => '', 'value' => $quantityValue])?->render() !!}
+                        {!! $column->input(['required' => false, 'disable' => true, 'class' => '', 'value' => $quantityValue]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Column\Stock\Price)
@@ -64,7 +64,7 @@
                             $priceColumn = $column->column();
                             $priceValue  = $model->$priceColumn;
                         @endphp
-                        {!! $column->input(['required' => false, 'disable' => true, 'class' => '', 'value' => $priceValue])?->render() !!}
+                        {!! $column->input(['required' => false, 'disable' => true, 'class' => '', 'value' => $priceValue]) !!}
                     @endif
 
                     @if($column instanceof \App\ValueObjects\Column\Stock\Tags)
