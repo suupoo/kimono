@@ -10,6 +10,7 @@
         $currentRouteName = request()->route()->getName();
         $sort = request()->get('sort');
         $order = request()->get('order');
+        $rows = request()->get('rows');
         // 検索可能カラムコレクションをカラム名配列に変換
         $searchable = $listConditions['searchable'] ?? [];
         foreach($searchable as $searchableItem) {
@@ -87,7 +88,7 @@
                                     <a
                                         class="p-0.5 @if($sort === $column->column() && $order == 'asc' ) bg-red-400 text-white @else bg-gray-100 text-gray-400 @endif
                             "
-                                        href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'asc'])}}"
+                                        href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'asc', 'rows' => $rows])}}"
                                     >
                                         @include('icons.sort-up')
                                     </a>
@@ -99,7 +100,7 @@
                                         class="p-0.5
                                 @if($sort === $column->column() && $order == 'desc' ) bg-blue-400 text-white @else bg-gray-100 text-gray-400 @endif
                             "
-                                        href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'desc'])}}"
+                                        href="{{ route($currentRouteName, ['sort' => $column->column(), 'order' => 'desc', 'rows' => $rows])}}"
                                     >
                                         @include('icons.sort-down')
                                     </a>
