@@ -4,6 +4,13 @@
 
     <h1 class="custom-headline">
         {{ $model::NAME }}
+
+        <x-tooltip.tooltip
+            icon="icons.lucide.question"
+            icon-class="w-4 h-4"
+        >
+            {!! str_replace("\n", "<br/>", __('resource.meta.'.$model::class.'.description')) !!}
+        </x-tooltip.tooltip>
     </h1>
 
     @php

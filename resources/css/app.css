@@ -24,7 +24,7 @@
         @apply flex flex-col w-full h-full mb-4;
     }
     .custom-headline{
-        @apply text-4xl dark:text-white md:my-5 my-3 p-2 text-center;
+        @apply text-4xl dark:text-white md:my-5 my-3 p-2 gap-2 flex justify-center items-end;
     }
     .table-body>tr.selected>td:not(:first-child) {
         @apply bg-blue-100;
