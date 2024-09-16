@@ -14,7 +14,7 @@ abstract class ResourceController extends Controller
         // ソート順番がない場合はリダイレクト
         $redirectParam = [];
         if (! $request->get('sort')) {
-            $redirectParam['sort'] = 'id';
+            $redirectParam['sort'] = 'owner_sequence_no';
         }
         if (! $request->get('order')) {
             $redirectParam['order'] = 'asc';
