@@ -116,7 +116,7 @@
                 @slot('tBody')
                     @foreach($items as $item)
                         <tr class="bg-white border-b" data-id="{{ $item->id }}">
-                            <td class="w-full text-xs flex flex-col justify-center space-y-1 m-1">
+                            <td class="actions w-full text-xs flex flex-col justify-center space-y-1 m-1">
                                 <x-button.edit type="link"
                                                href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
                                 <x-button.show type="link"
