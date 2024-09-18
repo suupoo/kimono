@@ -10,7 +10,7 @@ abstract class ResourceController extends Controller
      * 一覧表示<index>画面でのデフォルトの一覧表示条件設定
      * @return array
      */
-    private function defaultSortParameters(): array
+    public function defaultSortParameters(): array
     {
         return [
             'sort'  => 'owner_sequence_no',

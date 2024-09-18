@@ -23,6 +23,19 @@ class SystemCompanyController extends ResourceController
     protected ?string $prefix = 'system.companies';
 
     /**
+     * 一覧表示<index>画面でのデフォルトの一覧表示条件設定
+     * @return array
+     */
+    public function defaultSortParameters(): array
+    {
+        return [
+            'sort'  => 'id',
+            'order' => 'asc',
+            'rows'  => config('custom.paginate.default'),
+        ];
+    }
+
+    /**
      * 一覧表示<index>画面での一覧表示条件設定
      */
     protected function initListConditions(): array
