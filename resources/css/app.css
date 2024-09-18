@@ -29,4 +29,7 @@
     .table-body>tr.selected>td:not(:first-child) {
         @apply bg-blue-100;
     }
+    .custom-dashboard-item{
+        @apply shadow-xl rounded-lg p-4 my-2 bg-custom-tiny-yellow;
+    }
 }

@@ -18,6 +18,7 @@ export default {
                 'blue' : '#1E90FF',
                 'gray' : '#6B7280',
                 'light-gray' : '#F3F4F6',
+                'tiny-yellow' : '#FFFFFC',
             }
         },
         textColor: {

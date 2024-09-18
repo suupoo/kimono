@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MeController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\StoreController;
@@ -36,9 +37,7 @@ Route::group(['prefix' => 'about', 'as' => 'about.'], function () {
 
 Route::group(['middleware' => ['auth', HasPrivilegeOfLogin::class]], function () {
     // ログイン時
-    Route::get('/', function () {
-        return view('home.index');
-    })->name('home');
+    Route::get('/', [HomeController::class,'index'])->name('home');
     Route::middleware([\App\Http\Middleware\HasPrivilegeOfResource::class])->group(function () {
         Route::group([], function () {
             // CSVエクスポート

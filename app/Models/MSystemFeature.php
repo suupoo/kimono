@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Flag;
 use App\ValueObjects\Column\Master\Feature\Enable;
 use App\ValueObjects\Column\Master\Feature\FlagSwitch;
 use App\ValueObjects\Column\Master\Feature\Key;
@@ -51,5 +52,15 @@ class MSystemFeature extends Model
     public function scopeSwitchable(Builder $query): void
     {
         $query->where(FlagSwitch::NAME, true);
+    }
+
+    /**
+     * 有効な機能のみを取得する
+     * @param Builder $query
+     * @return void
+     */
+    public function scopeEnable(Builder $query): void
+    {
+        $query->where(Enable::NAME, Flag::ON->value);
     }
 }
