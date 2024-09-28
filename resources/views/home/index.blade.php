@@ -34,7 +34,7 @@
             <div class="custom-dashboard-item w-full">
                 <h2 class="text-2xl font-bold text-center">ダッシュボード</h2>
                 <div>
-                    任意で登録したい情報
+                    <x-dashboard.dashboard />
                 </div>
             </div>
         </div>
