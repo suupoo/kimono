@@ -12,6 +12,7 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\SystemAdministratorController;
 use App\Http\Controllers\SystemBannerController;
 use App\Http\Controllers\SystemCompanyController;
+use App\Http\Controllers\SystemCompanyDashboardController;
 use App\Http\Controllers\SystemController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\HasPrivilegeOfLogin;
@@ -68,6 +69,8 @@ Route::group(['middleware' => ['auth', HasPrivilegeOfLogin::class]], function ()
     // 個人設定
     Route::get('me', [MeController::class, 'list'])->name('me.list');
     Route::post('me', [MeController::class, 'save'])->name('me.save');
+    Route::get('me/company', [SystemCompanyDashboardController::class, 'list'])->name('me.company.index');
+    Route::post('me/company', [SystemCompanyDashboardController::class, 'save'])->name('me.company.save');
 
     // システム管理用機能 todo:管理者以外は不可にする
     Route::group(['prefix' => 'system', 'as' => 'system.'], function () {

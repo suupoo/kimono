@@ -70,6 +70,10 @@
                                         {{ __('menu.me.*') }}
                                     </x-header.header-item>
 
+                                    <x-header.header-item href="{{ route('me.company.index') }}">
+                                        {{ __('menu.me.company') }}
+                                    </x-header.header-item>
+
                                     <x-header.header-item href="{{ route('logout') }}">
                                         {{ __('Logout') }}
                                     </x-header.header-item>

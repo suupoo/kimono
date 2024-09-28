@@ -26,6 +26,7 @@ return [
     'system.administrators.companies.list' => 'システム企業',
     'me' => [
         '*' => '個人設定',
+        'company' => '企業設定',
     ],
     'mypage' => [
         '*' => 'マイページ',

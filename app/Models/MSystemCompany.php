@@ -43,4 +43,9 @@ class MSystemCompany extends Model
             new UpdatedAt,
         ];
     }
+
+    public function dashboards()
+    {
+        return $this->hasMany(MSystemCompanyDashboard::class, 'm_system_company_id', 'id');
+    }
 }

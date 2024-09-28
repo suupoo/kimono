@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\MSystemFeature as FeatureResourceModel;
+use App\UseCases\SystemAction\Company\Dashboard\SaveAction as FeatureSaveAction;
 use App\UseCases\SystemAction\Feature\ListAction as FeatureListAction;
-use App\UseCases\SystemAction\Feature\SaveAction as FeatureSaveAction;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
