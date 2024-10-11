@@ -1,4 +1,4 @@
-<x-button.color {{ $attributes->merge(['type' => 'link', 'class' => 'bg-transport text-black hover:bg-custom-light-gray hover:text-black']) }}>
+<x-button.color {{ $attributes->merge(['type' => 'button', 'class' => 'bg-transport text-black hover:bg-custom-light-gray hover:text-black']) }}>
     <span class="inline">
         @includeIf('icons.lucide.download', ['class' => 'w-3.5 h-3.5'])
     </span>
