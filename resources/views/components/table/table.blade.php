@@ -1,8 +1,8 @@
 <div class="flex flex-col">
-    <div class="w-full flex ">
+    <div class="w-full flex items-center justify-center gap-2.5 my-2">
         {{-- 表示件数 --}}
         {!! ( new \App\ValueObjects\Paginate\PaginateRow())->input([
-          'class' => '',
+          'class' => 'w-32',
           'value' => request()->get('rows', config('custom.paginate.default'))
         ]) !!}
         {{-- 全選択ボタン --}}
