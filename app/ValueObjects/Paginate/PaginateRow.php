@@ -47,7 +47,7 @@ class PaginateRow extends ColumnObject
     public function input(array $attributes = []): string
     {
         return CustomForm::make($this)
-            ->label($attributes)
+            ->label(['label-class' => 'break-keep'])
             ->select($attributes, $this->options())
             ->render();
     }
