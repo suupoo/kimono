@@ -12,6 +12,13 @@
                 {{ __('All') }}
             </span>
         </x-button.color>
+        {{-- 選択解除ボタン --}}
+        <x-button.color id="remove-all"
+                        class="break-keep bg-transport text-black hover:bg-custom-light-gray hover:text-black">
+            <span class="">
+                {{ __('Remove All') }}
+            </span>
+        </x-button.color>
     </div>
     <div class="-m-1.5 overflow-x-auto">
         <div class="p-1.5 min-w-full inline-block align-middle">

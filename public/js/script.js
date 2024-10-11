@@ -65,6 +65,11 @@ $(function(){
         $('input[name="exports"]').val(exports);
     });
 
+    $('#remove-all').on('click', function() {
+        $('.table-body>tr.selected').removeClass('selected');
+        $('input[name="exports"]').val([]);
+    });
+
     $('#export-csv').on('click', function(e){
         e.preventDefault();
         let valExports = $('input[name="exports"]').val();
