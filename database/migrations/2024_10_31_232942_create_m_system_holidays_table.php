@@ -15,6 +15,7 @@ return new class extends Migration
             $table->date('date')->comment('日付');
             $table->string('locale',10)->comment('ロケール');
             $table->string('name', 255)->comment('名称');
+            $table->primary(['date', 'locale']);
         });
     }
 
