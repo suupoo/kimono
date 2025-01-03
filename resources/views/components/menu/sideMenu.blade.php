@@ -9,7 +9,7 @@
         </button>
     </div>
     <div class="p-4">
-        <p class="text-gray-800 dark:text-white">
+        <p class="text-gray-800 dark:text-neutral-400">
             <x-button-group.up-down>
                 @foreach($menuList as $menuItem)
                     @php $active = array_key_exists('active', $menuItem) && $menuItem['active'] == true @endphp
@@ -19,7 +19,7 @@
                             @includeIf('icons.lucide.circle-dot', ['class' => 'w-4 h-4'])
                         @endif
                         </div>
-                        <x-button.color type="link" class="bg-transparent text-black" href="{{ $menuItem['link'] }}">
+                        <x-button.color type="link" class="bg-transparent text-black dark:text-white" href="{{ $menuItem['link'] }}">
                             @if(array_key_exists('icon', $menuItem))
                                 @includeIf("icons.{$menuItem['icon']}", ['class' => 'w-6 h-6'])
                             @endif
