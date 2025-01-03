@@ -125,6 +125,12 @@ class SideMenu extends Component
             'active' => Route::Is('system.listFeature'),
         ];
         $menu[] = [
+            'text' => __('menu.system.holidays'),
+            'link' => route('system.holidays.index'),
+            'icon' => 'config',
+            'active' => Route::Is('system.holidays.*'),
+        ];
+        $menu[] = [
             'text' => __('menu.system.banners'),
             'link' => route('system.banners.index'),
             'icon' => 'config',

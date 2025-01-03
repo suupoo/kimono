@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\ValueObjects\Column\Master\Holiday\Id;
 use App\ValueObjects\Column\Master\Holiday\Locale;
 use App\ValueObjects\Column\Master\Holiday\Name;
 use App\ValueObjects\Column\Master\Holiday\Date;
@@ -16,24 +17,16 @@ class MSystemHolidays extends Model
 
     public $timestamps = false;
 
-    public $incrementing = false;
-
-    protected $primaryKey = [
-        Date::NAME,
-        Locale::NAME,
-    ];
-
-    protected $keyType = 'array';
-
     const NAME = '祝日設定';
 
     protected $guarded = [
         'id',
     ];
 
-    public function getColumns(): array
+    public static function getColumns(): array
     {
         return [
+            new Id,
             new Date,
             new Locale,
             new Name,

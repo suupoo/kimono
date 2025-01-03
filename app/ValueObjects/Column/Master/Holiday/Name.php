@@ -2,6 +2,7 @@
 
 namespace App\ValueObjects\Column\Master\Holiday;
 
+use App\Facades\Utility\CustomForm;
 use App\ValueObjects\Column\ColumnObject;
 
 class Name extends ColumnObject
@@ -24,5 +25,25 @@ class Name extends ColumnObject
 
     protected bool $required = true; // DB Nullable
 
-    protected string $placeholder = self::LABEL;
+    protected string $placeholder = '例）元日';
+
+    public function rules(): array
+    {
+        return [
+            'required',
+            'string',
+            'max:255',
+        ];
+    }
+
+    /**
+     * 入力項目を返す
+     */
+    public function input(array $attributes = []): string
+    {
+        return CustomForm::make($this)
+            ->label($attributes)
+            ->input($attributes)
+            ->render();
+    }
 }

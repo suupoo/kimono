@@ -13,6 +13,7 @@ use App\Http\Controllers\SystemAdministratorController;
 use App\Http\Controllers\SystemBannerController;
 use App\Http\Controllers\SystemCompanyController;
 use App\Http\Controllers\SystemCompanyDashboardController;
+use App\Http\Controllers\SystemHolidayController;
 use App\Http\Controllers\SystemController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\HasPrivilegeOfLogin;
@@ -78,6 +79,7 @@ Route::group(['middleware' => ['auth', HasPrivilegeOfLogin::class]], function ()
             Route::get('/features', 'listFeature')->name('listFeature');
             Route::post('/features', 'saveFeature')->name('saveFeature');
         });
+        Route::resource('holidays', SystemHolidayController::class)->parameters(['holidays' => 'id']);
         Route::resource('banners', SystemBannerController::class)->parameters(['banners' => 'id']);
         Route::resource('companies', SystemCompanyController::class)->parameters(['companies' => 'id']);
         Route::resource('administrators', SystemAdministratorController::class)->parameters(['administrators' => 'id']);
