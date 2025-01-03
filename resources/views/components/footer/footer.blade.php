@@ -1,4 +1,4 @@
-<div class="py-6 border-t border-gray-200 dark:border-neutral-700">
+<div class="py-6 border-t border-gray-200　dark:bg-neutral-800 dark:border-neutral-700">
     <div class="flex flex-wrap flex-col justify-center items-center gap-2">
 
         <x-carousel.adsense auto-play="true" class="w-[300px] h-[250px] carousel-adsense" />
