@@ -13,7 +13,7 @@
             </div>
         @endif
 
-        <h1 class="text-xl text-center font-bold mt-3">
+        <h1 class="text-xl text-center font-bold mt-3 dark:text-white">
             {{ __('Login') }}
         </h1>
         @foreach($model::getColumns() as $column)
