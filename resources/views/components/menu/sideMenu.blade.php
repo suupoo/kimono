@@ -9,7 +9,7 @@
         </button>
     </div>
     <div class="p-4">
-        <p class="text-gray-800 dark:text-neutral-400">
+        <p class="text-gray-800 dark:text-white">
             <x-button-group.up-down>
                 @foreach($menuList as $menuItem)
                     @php $active = array_key_exists('active', $menuItem) && $menuItem['active'] == true @endphp
