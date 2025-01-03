@@ -31,7 +31,7 @@
         </div>
 
         <div class="flex flex-row w-full gap-1">
-            <div class="custom-dashboard-item bg-white dark:bg-neutral-200 w-full">
+            <div class="custom-dashboard-item bg-white w-full">
                 <h2 class="text-2xl font-bold text-center">ダッシュボード</h2>
                 <div>
                     <x-dashboard.dashboard />
