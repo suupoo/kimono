@@ -7,7 +7,7 @@
     @endslot
 
     @slot('content')
-    <div class="list-search-box p-3 w-full h-full border bg-white">
+    <div class="list-search-box p-3 w-full h-full border bg-white dark:bg-neutral-700">
         <h2 class="text-2xl text-center py-1 mb-2">{{ __('resource.search_condition') }}</h2>
         <div class="grid grid-cols-2 gap-2">
             {{ $slot }}

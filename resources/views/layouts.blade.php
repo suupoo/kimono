@@ -12,7 +12,7 @@
         <link rel="shortcut icon" href="{{ Vite::asset('resources/images/favicon.ico') }}">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-noto-jp bg-white dark:bg-neutral-800 antialiased text-black mb-20">
+    <body class="font-noto-jp bg-white dark:bg-neutral-800 antialiased text-black dark:text-white mb-20">
         {{-- header-nav --}}
         <header class="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full bg-white border-b border-gray-200 dark:bg-neutral-800 dark:border-neutral-700">
             <x-header.header />

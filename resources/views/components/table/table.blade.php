@@ -7,14 +7,14 @@
         ]) !!}
         {{-- 全選択ボタン --}}
         <x-button.color id="select-all"
-                        class="break-keep bg-transport text-black hover:bg-custom-light-gray hover:text-black">
+                        class="break-keep bg-white dark:bg-neutral-700 hover:bg-custom-light-gray hover:text-black">
             <span class="">
                 {{ __('All') }}
             </span>
         </x-button.color>
         {{-- 選択解除ボタン --}}
         <x-button.color id="remove-all"
-                        class="break-keep bg-transport text-black hover:bg-custom-light-gray hover:text-black">
+                        class="break-keep bg-white dark:bg-neutral-700 hover:bg-custom-light-gray hover:text-black">
             <span class="">
                 {{ __('Remove All') }}
             </span>
