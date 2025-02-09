@@ -90,6 +90,7 @@ class ColumnObject extends ValueObject
             'email' => 'email',
             'image' => 'file',
             'date' => 'date',
+            'time' => 'time',
             'list' => 'select',
             default => null,
         };
