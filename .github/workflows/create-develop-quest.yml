@@ -12,5 +12,5 @@ jobs:
           webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
           color: "#48f442"
-          username: "ギルドマネージャー"
-          args: "ハロー"
+          username: ギルドマネージャー
+          args: "新しいクエストが発生しました！ Quest.${{ github.event.issue.number }} ${{ github.event.issue.title}} \n ${{ github.event.issue.html_url }}"
