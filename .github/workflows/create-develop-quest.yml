@@ -13,4 +13,4 @@ jobs:
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
           color: "#48f442"
           username: "ギルドマネージャー"
-          args: The ${{ github.event_name }} event triggered.
+          args: "ハロー"
