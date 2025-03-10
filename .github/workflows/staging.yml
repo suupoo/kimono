@@ -16,5 +16,4 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           passphrase: ${{ secrets.SSH_PASSWORD }}
           script: |
-            cd ${{ secrets.SERVER_DEPLOY_DIR }}
-            /home/oshowjp/kimono-cms.net/application/tools/stg_deploy.sh
+            cd ${{ vars.SERVER_DEPLOY_DIR_STG }} && ./stg_deploy.sh
