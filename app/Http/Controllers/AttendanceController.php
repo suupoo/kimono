@@ -2,37 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Traits\CsvExportable;
-use App\Http\Resources\Exports\StaffExportResource as ExportResource;
-use App\Models\Staff as ResourceModel;
-use App\UseCases\StaffAction\AttendanceListAction;
-use App\UseCases\StaffAction\CreateAction;
-use App\UseCases\StaffAction\DeleteAction;
-use App\UseCases\StaffAction\ListAction;
-use App\UseCases\StaffAction\UpdateAction;
-use App\ValueObjects\Column\Staff\Code;
-use App\ValueObjects\Column\Staff\JoinDate;
-use App\ValueObjects\Column\Staff\Name;
-use App\ValueObjects\Column\Staff\OwnerSequenceNo;
-use App\ValueObjects\Column\Staff\QuitDate;
-use App\ValueObjects\Column\Staff\StaffPosition;
-use App\ValueObjects\Column\Staff\Tags;
-use App\ValueObjects\Column\Staff\Tel;
+use App\Models\Attendance as ResourceModel;
+use App\Models\Staff;
+use App\UseCases\AttendanceAction\CreateAction;
+use App\UseCases\AttendanceAction\DeleteAction;
+use App\UseCases\AttendanceAction\ListAction;
+use App\UseCases\AttendanceAction\UpdateAction;
+use App\ValueObjects\Column\Attendance\CreatedAt;
+use App\ValueObjects\Column\Attendance\StaffId;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 // モデル紐付け
 // エクスポートリソース紐付け
 
-class StaffController extends ResourceController
+class AttendanceController extends ResourceController
 {
-    use CsvExportable;
-
     protected ResourceModel $model;
-
-    protected ?string $exportResource = ExportResource::class;
 
     /**
      * 一覧表示<index>画面での一覧表示条件設定
@@ -41,23 +30,10 @@ class StaffController extends ResourceController
     {
         return [
             'sortable' => new Collection([
-                new OwnerSequenceNo,
-                new Name,
-                new Code,
-                new Tel,
-                new JoinDate,
-                new QuitDate,
-                new StaffPosition,
+                new CreatedAt,
             ]),
             'searchable' => new Collection([
-                new OwnerSequenceNo,
-                new Name,
-                new Code,
-                new Tel,
-                new JoinDate,
-                new QuitDate,
-                new Tags,
-                new StaffPosition,
+                new StaffId,
             ]),
             'paginate' => request()->get('rows', config('custom.paginate.default')),
         ];
@@ -80,7 +56,7 @@ class StaffController extends ResourceController
         }
 
         $model = new $this->model;
-        $view = $this->model->getTable().'.index'; // staffs/index.blade.php
+        $view = $this->model->getTable().'.index'; // attendances/index.blade.php
 
         // 検索結果の取得
         $listConditions = $this->initListConditions();
@@ -94,11 +70,19 @@ class StaffController extends ResourceController
      */
     public function create(): View
     {
+        if(request()->has('staff_id') ){
+            // ログインユーザーの所属企業に紐づくスタッフのみ表示
+            $userSystemCompanies = Auth::user()?->systemCompanies->pluck('id');
+            $hasUserSystemCompanies = Staff::where('id', request()->get('staff_id'))
+                ->whereIn('owner_system_company', $userSystemCompanies)
+                ->exists();
+            if (! $hasUserSystemCompanies) abort(404); // 404エラー
+        }
+
         $model = (request()->has('copy'))
             ? $this->model->findOrFail(request()->get('copy'))  // 複製
             : (new $this->model);                               // 新規作成
-        $model->image = null;
-        $view = $model->getTable().'.create'; // staffs/create.blade.php
+        $view = $model->getTable().'.create'; // attendances/create.blade.php
 
         return view($view, compact('model'));
     }
@@ -117,7 +101,7 @@ class StaffController extends ResourceController
     public function edit(string $id): View
     {
         $model = $this->model->findOrFail($id);
-        $view = $model->getTable().'.edit'; // staffs/edit.blade.php
+        $view = $model->getTable().'.edit'; // attendances/edit.blade.php
 
         return view($view, compact('model'));
     }
@@ -136,7 +120,7 @@ class StaffController extends ResourceController
     public function show(string $id): View
     {
         $model = $this->model->findOrFail($id);
-        $view = $model->getTable().'.show'; // staffs/show.blade.php
+        $view = $model->getTable().'.show'; // attendances/show.blade.php
 
         return view($view, compact('model'));
     }
@@ -147,23 +131,5 @@ class StaffController extends ResourceController
     public function destroy(Request $request, string $id, DeleteAction $action): RedirectResponse
     {
         return $action($request, ResourceModel::class);
-    }
-
-    /***
-     *
-     * これ以降にリソース以外の機能を追加する
-     *
-     */
-
-    public function attendances(Request $request, AttendanceListAction $action): View
-    {
-        $actionData = $action($request, ResourceModel::class);
-
-        $model = $actionData['staff'];
-        $relationModel = $actionData['relationModel'];
-        $staffAttendanceList = $actionData['staffAttendanceList'];
-        $view = $model->getTable().'.attendances.list'; // staffs/attendances/list.blade.php
-
-        return view($view, compact('model', 'staffAttendanceList', 'relationModel'));
     }
 }

@@ -43,5 +43,8 @@ return [
         \App\Models\Company::class => [
             'description' => "企業情報を管理する機能です\n企業の追加、編集、削除、CSVエクスポートなどの操作が可能です。",
         ],
+        \App\Models\Attendance::class => [
+            'description' => "勤怠情報を管理する機能です。\n勤怠の追加、編集、削除、CSVエクスポートなどの操作が可能です。",
+        ],
     ]
 ];

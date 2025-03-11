@@ -94,6 +94,11 @@
                     <th scope="col" class="px-6 py-3">
                         {{ __('resource.operation') }}
                     </th>
+
+                    <th scope="col" class="px-3 py-3 text-center">
+                        {{ __('resource.operation-relation') }}
+                    </th>
+
                     @foreach($model::getColumns() as $column)
                         @php
                             if ($column instanceof \App\ValueObjects\Column\Staff\Id) continue;
@@ -143,6 +148,14 @@
                                 data-id="{{ $item->id }}"
                             />
                         </td>
+
+                        <td class="px-3 py-4 text-xs m-1 w-full actions">
+                            <x-button.relation
+                                href="{{ route($model->getTable() . '.attendances.list', ['id' => $item->id]) }}">
+                                {{ __('menu.staffs.attendances.list') }}
+                            </x-button.relation>
+                        </td>
+
                         @foreach($model::getColumns() as $column)
                             @php
                                 if ($column instanceof \App\ValueObjects\Column\Staff\Id) continue;

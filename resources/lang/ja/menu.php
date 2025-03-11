@@ -14,6 +14,8 @@ return [
     'stores.staffs.list' => 'スタッフ',
     'staffs' => 'スタッフ',
     'stocks' => '在庫',
+    'attendances' => '勤怠',
+    'staffs.attendances.list' => '勤怠',
     'notifications' => '通知',
     'companies' => '企業',
     'system' => [

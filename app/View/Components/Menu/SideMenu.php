@@ -3,6 +3,7 @@
 namespace App\View\Components\Menu;
 
 use App\Enums\AdministratorRole;
+use App\Models\Attendance;
 use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Notification;
@@ -104,6 +105,10 @@ class SideMenu extends Component
         if ($this->menuCompany()) {
             $menu[] = $this->menuCompany()[0];
         } // todo:グループ表示に対応時に変更
+        // 勤怠
+        if ($this->menuAttendance()) {
+            $menu[] = $this->menuAttendance()[0];
+        }
 
         return $menu;
     }
@@ -235,5 +240,14 @@ class SideMenu extends Component
     private function menuStock(): ?array
     {
         return $this->menuResources(Stock::class);
+    }
+
+    /**
+     * 勤怠のメニュー
+     * @return array|null
+     */
+    private function menuAttendance(): ?array
+    {
+        return $this->menuResources(Attendance::class);
     }
 }

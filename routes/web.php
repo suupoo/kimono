@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MeController;
@@ -61,7 +62,12 @@ Route::group(['middleware' => ['auth', HasPrivilegeOfLogin::class]], function ()
             Route::get('stores/{id}/staffs', [StoreController::class, 'staffs'])->name('stores.staffs.list');
             Route::post('stores/{id}/staffs', [StoreController::class, 'saveStaffs'])->name('stores.staffs.save');
         });
-        Route::resource('staffs', StaffController::class)->parameters(['staffs' => 'id'])->middleware(EnsureFeaturesAreActive::using('staffs'));
+        Route::middleware(EnsureFeaturesAreActive::using('staffs'))->group(function () {
+            Route::resource('staffs', StaffController::class)->parameters(['staffs' => 'id']);
+            Route::get('staffs/{id}/attendances', [StaffController::class, 'attendances'])->name('staffs.attendances.list');
+            Route::post('staffs/{id}/attendances', [StaffController::class, 'saveAttendances'])->name('staffs.attendances.save');
+        });
+        Route::resource('attendances', AttendanceController::class)->parameters(['attendances' => 'id'])->middleware(EnsureFeaturesAreActive::using('attendances'));
         Route::resource('stocks', StockController::class)->parameters(['stocks' => 'id'])->middleware(EnsureFeaturesAreActive::using('stocks'));
         Route::resource('notifications', NotificationController::class)->parameters(['notifications' => 'id'])->middleware(EnsureFeaturesAreActive::using('notifications'));
     });

@@ -108,6 +108,8 @@ class CreateAction extends ResourceAction
 
         } catch (\Exception $e) {
             DB::rollBack();
+            dd($e->getMessage());
+
             Log::error(('error:'.__METHOD__), ['message' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()]);
 
             // エラー時は入力画面へ入力値を返して戻る

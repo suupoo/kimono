@@ -84,4 +84,9 @@ class Staff extends BaseModel
             Carbon::now()->addMinutes(5)
         ) : null;
     }
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
 }

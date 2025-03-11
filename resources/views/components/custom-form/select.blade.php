@@ -15,11 +15,22 @@
     @if($disable) disabled="disabled" @endif
 >
     @foreach($options as $case)
-    <option
-        value="{{ $case->value }}"
-        @if(old($name, request()->get($name, $value)) === $case->value) selected @endif
-    >
-        {{ $case->label() }}
-    </option>
+        @if($case instanceof UnitEnum)
+        {{-- Enumの場合 --}}
+        <option
+            value="{{ $case->value }}"
+            @if(old($name, request()->get($name, $value)) === (string)$case->value) selected @endif
+        >
+            {{ $case->label() }}
+        </option>
+        @else if(is_array($case))
+        {{-- 配列の場合 --}}
+        <option
+            value="{{ $case['value'] }}"
+            @if(old($name, request()->get($name, $value)) === (string)$case['value']) selected @endif
+        >
+            {{ $case['label'] }}
+        </option>
+        @endif
     @endforeach
 </select>
