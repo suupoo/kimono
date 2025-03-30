@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-{{--        <meta name="robots" content="noindex, nofollow">--}}
+        @if(config('app.crawler_indexing'))
+        <meta name="robots" content="noindex, nofollow">
+        @endif
         <meta name="description" content="利用用途に合わせてご自由にいただける登録型の管理システムです。顧客・在庫・店舗といった利用者様のニーズが高いを機能をご準備していますので運用に合わせ自由にお使いいただけます。" />
         <title>{{ config('app.name') }}</title>
         <!-- Fonts -->
@@ -12,72 +14,20 @@
         <link rel="shortcut icon" href="{{ Vite::asset('resources/images/favicon.ico') }}">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-noto-jp bg-white dark:bg-neutral-800 antialiased text-black dark:text-white mb-20">
-        {{-- header-nav --}}
-        <header class="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full bg-white border-b border-gray-200 dark:bg-neutral-800 dark:border-neutral-700">
-            <x-header.header />
-        </header>
-
-{{--        <div class="min-h-screen">--}}
-{{--            <x-menu.topMenu/>--}}
-{{--            <x-menu.sideMenu/>--}}
-{{--            <div class="p-4 sm:ml-64 min-h-screen mb-24">--}}
-{{--                <div class="p-1 md:px-4 mt-14">--}}
-{{--                    <div class="flex flex-col h-full mb-4 rounded">--}}
-{{--                        @breadcrumbs--}}
-{{--                        --}}{{-- ぱんくずリストを使用する/しない(デフォルト:True） --}}
-{{--                        --}}{{-- .env CUSTOM_BREADCRUMBS_USEで設定可能とする --}}
-{{--                        <div class="my-2">--}}
-{{--                           {{ Breadcrumbs::render(\Illuminate\Support\Facades\Route::currentRouteName()) }}--}}
-{{--                        </div>--}}
-{{--                        @endbreadcrumbs--}}
-
-{{--                        @yield('content')--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        <div class="fixed right-0 z-50 w-full min-h-20 bottom-0 bg-gray-400 bg-opacity-20" data-ad="banner">--}}
-{{--            <div class="relative">--}}
-{{--                <button class="absolute right-0 ad-close">--}}
-{{--                    @includeIf('icons.close', ['class' => 'w-6 h-6 p-1'])--}}
-{{--                </button>--}}
-{{--                <div class="flex flex-wrap justify-between">--}}
-{{--                    <img src="" class="object-fill w-full md:w-1/2 h-[60px]" alt="広告バナー1">--}}
-{{--                    <img src="" class="object-fill w-full md:w-1/2 h-[60px]" alt="広告バナー2">--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        @include('script')--}}
-{{--        @yield('page-script')--}}
-
-        <main class="flex flex-col max-w-[1024px] min-h-[80vh] mx-auto pt-5 px-4 sm:px-6 lg:px-8">
-
-            <div class="w-full" id="toasts">
-                @if(session('error'))
-                <x-toasts.error>{{ session('error') }}</x-toasts.error>
-                @endif
+    <body class="layout" data-theme="{{ \Illuminate\Support\Facades\Cookie::get('color', 'default') }}">
+        <main class="flex w-full">
+            <div class="w-full h-[60px] md:h-[80px] fixed">
+                <x-header.header />
             </div>
-
-            @yield('content')
-        </main>
-
-        <footer class="w-full min-h-[10vh] mx-auto px-4 sm:px-6 lg:px-8">
-            <x-footer.footer />
-        </footer>
-
-        <div class="fixed right-0 z-50 w-full h-fit-content bottom-0 bg-gray-400 bg-opacity-20" data-ad="banner">
-            <div class="relative">
-                <button class="absolute right-0 ad-close">
-                    @includeIf('icons.close', ['class' => 'w-6 h-6 p-1'])
-                </button>
-                <div class="flex flex-wrap justify-between">
-                    <img src="" class="object-fill w-full md:w-1/2 h-[60px] " alt="広告バナー1">
-                    <img src="" class="object-fill w-full md:w-1/2 h-[60px] hidden md:block" alt="広告バナー2">
+            <div class="flex w-full min-h-screen mt-[60px] md:mt-[80px]">
+                <div class="hidden md:block border-gray-200 shadow-lg text-sm w-[250px] fixed left-0">
+                    <x-menu.sideMenu />
+                </div>
+                <div class="content w-full h-full pt-[30px] md:pl-[calc(250px+15px)] md:pt-[60px] px-4">
+                    @yield('content')
                 </div>
             </div>
-        </div>
-
+        </main>
         <script type="module" src="{{ asset('js/script.js') }}">
             @include('script')
         </script>

@@ -1,4 +1,7 @@
 @php
+    if (!isset($column)) {
+      $column = new App\ValueObjects\Column\NoColumnObject($attributes);
+    }
     $attributes = $attributes ?? [];
     $class = $attributes['class'] ?? '';
     $required = $attributes['required'] ?? false;

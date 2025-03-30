@@ -1,4 +1,4 @@
-<x-button.button {{ $attributes->merge(['type' => 'submit', 'class' => 'bg-custom-blue text-white hover:bg-white hover:text-custom-blue']) }}>
+<x-button.button {{ $attributes->merge(['type' => 'submit', 'class' => 'custom-btn-primary w-full']) }}>
     {{ __('Login') }}
 </x-button.button>
 

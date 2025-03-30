@@ -7,33 +7,11 @@ export default {
       "./node_modules/preline/dist/*.js"
   ],
   theme: {
-    extend: {
-        fontFamily : {
-          "noto-jp":"Noto Sans JP"
-        },
-        backgroundColor: {
-            custom:{
-                'green' : "#00A86B",
-                'red' : "#f75454",
-                'blue' : '#1E90FF',
-                'gray' : '#6B7280',
-                'light-gray' : '#F3F4F6',
-                'tiny-yellow' : '#FFFFFC',
-            }
-        },
-        textColor: {
-            custom:{
-                'green' : "#00A86B",
-                'red' : "#f75454",
-                'blue' : '#1E90FF',
-                'gray' : '#6B7280',
-                'light-gray' : '#F3F4F6',
-            }
-        },
-    },
+    extend: {},
   },
   plugins: [
       require('preline/plugin'),
+      require('postcss-nesting'),
       require('@tailwindcss/forms'),
   ],
 }
