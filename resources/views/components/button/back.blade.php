@@ -1,5 +1,5 @@
 <x-button.color
-    class="bg-white dark:bg-neutral-700 border border-gray-100"
+    class="custom-btn-gray"
     type="link"
     href="{{ $href }}"
 >

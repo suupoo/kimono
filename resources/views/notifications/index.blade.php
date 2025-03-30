@@ -136,7 +136,7 @@
                                     elseif ($column instanceof \App\ValueObjects\Column\Notification\OwnerSystemCompany) continue;
                                     elseif ($column instanceof \App\ValueObjects\Column\Notification\DeletedAt) continue;
                                 @endphp
-                                <td class="px-6 py-4">
+                                <td class="column">
                                     @php
                                         $columnName = $column->column();
                                         $value = $item?->$columnName

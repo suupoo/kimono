@@ -108,7 +108,7 @@
                 @slot('tBody')
                     @foreach($items as $item)
                         <tr data-id="{{ $item->id }}">
-                            <td class="actions w-full text-xs flex flex-col justify-center space-y-1 m-1">
+                            <td class="actions">
                                 <x-button.edit type="link"
                                                href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
                                 <x-button.show type="link"
@@ -126,7 +126,7 @@
                                     elseif ($column instanceof \App\ValueObjects\Column\Company\OwnerSystemCompany) continue;
                                     elseif ($column instanceof \App\ValueObjects\Column\Company\DeletedAt) continue;
                                 @endphp
-                                <td class="px-6 py-4">
+                                <td class="column">
                                     @php
                                         $columnName = $column->column();
                                         $value = $item?->$columnName

@@ -128,7 +128,7 @@
 
                 @foreach($items as $item)
                     <tr>
-                        <td class="actions w-full text-xs flex flex-col justify-center space-y-1 m-1">
+                        <td class="actions">
                             <x-button.edit type="link" href="{{ route($routePrefix . '.edit', ['id' => $item->id]) }}"/>
                             <x-button.show type="link" href="{{ route($routePrefix . '.show', ['id' => $item->id]) }}"/>
                             <x-button.copy type="link"
@@ -149,7 +149,7 @@
                         </td>
 
                         @foreach($model::getColumns() as $column)
-                            <td class="px-6 py-4">
+                            <td class="column">
                                 @php
                                     $columnName = $column->column();
                                     $value = $item?->$columnName

@@ -15,8 +15,10 @@
         --color-secondary: #0078d4;
         --color-tertiary: #7bc4ff;
         /** common */
+        --color-ok: #3a9fff;
         --color-error: #ff6b6b;
         --color-success: #4ade80;
+        --cloro-gray: #c5c5c5;
         --color-white: #FEFEFE;
         --color-black: #2f2f2f;
         --color-background: #f8fafc;
@@ -46,12 +48,40 @@
     .custom-btn-primary {
         @apply bg-[var(--color-primary)] text-[var(--color-white)] border-[var(--color-white)] hover:bg-[var(--color-white)] hover:text-[var(--color-primary)] hover:border-[var(--color-white)];
     }
+    .custom-btn-blue {
+        @apply bg-[var(--color-ok)] text-[var(--color-white)] border-[var(--color-white)] hover:bg-[var(--color-white)] hover:text-[var(--color-ok)] hover:border-[var(--color-white)];
+    }
+    .custom-btn-red {
+        @apply bg-[var(--color-error)] text-[var(--color-white)] border-[var(--color-white)] hover:bg-[var(--color-white)] hover:text-[var(--color-error)] hover:border-[var(--color-white)];
+    }
+    .custom-btn-green{
+        @apply bg-[var(--color-success)] text-[var(--color-white)] border-[var(--color-white)] hover:bg-[var(--color-white)] hover:text-[var(--color-success)] hover:border-[var(--color-white)];
+    }
+    .custom-btn-gray{
+        @apply bg-[var(--cloro-gray)] text-[var(--color-white)] border-[var(--color-white)] hover:bg-[var(--color-white)] hover:text-[var(--cloro-gray)] hover:border-[var(--color-white)];
+    }
     .custom-headline{
         @apply text-2xl md:text-4xl w-full font-bold border-l-4 pl-2 py-4 border-[var(--color-primary)] bg-[var(--color-white)];
     }
     .custom-description{
         @apply text-sm md:text-base w-full border-l-4 p-6 py-4 mb-10 bg-[var(--color-white)] shadow-md;
     }
+    .custom-datatable{
+        @apply text-sm md:text-base text-[var(--color-black)];
+    }
+    .custom-datatable tr, td{
+        @apply whitespace-nowrap;
+    }
+    .custom-datatable td{
+        @apply px-3 py-2;
+    }
+    .custom-datatable tr.selected{
+        @apply bg-[var(--color-ok)] text-[var(--color-white)];
+    }
+    .custom-datatable td.actions{
+        @apply w-full h-full text-sm flex flex-row justify-evenly whitespace-nowrap items-center;
+    }
+
     /** ヘッダー */
     .header{
         @apply bg-[var(--color-primary)] text-[var(--color-white)] text-lg
