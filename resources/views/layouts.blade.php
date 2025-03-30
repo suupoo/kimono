@@ -20,7 +20,7 @@
                 <x-header.header />
             </div>
             <div class="flex w-full min-h-screen mt-[60px] md:mt-[80px]">
-                <div class="hidden md:block border-gray-200 shadow-lg text-sm w-[250px] fixed left-0">
+                <div id="side-menu-bar" class="hidden z-[99] md:block border-gray-200 shadow-lg text-sm w-[250px] fixed left-0">
                     <x-menu.sideMenu />
                 </div>
                 <div class="content w-full h-full pt-[30px] md:pl-[calc(250px+15px)] md:pt-[20px] px-4">
@@ -31,6 +31,14 @@
         <script type="module" src="{{ asset('js/script.js') }}">
             @include('script')
         </script>
+        <script type="module">
+            $(document).ready(function () {
+                $(document).on('click', '#toggle-side-menu-bar', function () {
+                    $('#side-menu-bar').toggleClass('hidden');
+                });
+            });
+        </script>
+
         @yield('page-script')
     </body>
 </html>
