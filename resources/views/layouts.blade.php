@@ -23,7 +23,7 @@
                 <div class="hidden md:block border-gray-200 shadow-lg text-sm w-[250px] fixed left-0">
                     <x-menu.sideMenu />
                 </div>
-                <div class="content w-full h-full pt-[30px] md:pl-[calc(250px+15px)] md:pt-[60px] px-4">
+                <div class="content w-full h-full pt-[30px] md:pl-[calc(250px+15px)] md:pt-[20px] px-4">
                     @yield('content')
                 </div>
             </div>

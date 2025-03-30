@@ -46,6 +46,12 @@
     .custom-btn-primary {
         @apply bg-[var(--color-primary)] text-[var(--color-white)] border-[var(--color-white)] hover:bg-[var(--color-white)] hover:text-[var(--color-primary)] hover:border-[var(--color-white)];
     }
+    .custom-headline{
+        @apply text-2xl md:text-4xl w-full font-bold border-l-4 pl-2 py-4 border-[var(--color-primary)] bg-[var(--color-white)];
+    }
+    .custom-description{
+        @apply text-sm md:text-base w-full border-l-4 p-6 py-4 mb-10 bg-[var(--color-white)] shadow-md;
+    }
     /** ヘッダー */
     .header{
         @apply bg-[var(--color-primary)] text-[var(--color-white)] text-lg

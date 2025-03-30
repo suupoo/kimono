@@ -2,16 +2,13 @@
 
 @section('content')
 
-    <h1 class="custom-headline">
-        {{ $model::NAME  }}
+    <div class="custom-headline">
+        <div>{{ $model::NAME  }}</div>
+    </div>
 
-        <x-tooltip.tooltip
-            icon="icons.lucide.question"
-            icon-class="w-4 h-4"
-        >
-            {!! str_replace("\n", "<br/>", __('resource.meta.'.$model::class.'.description')) !!}
-        </x-tooltip.tooltip>
-    </h1>
+    <div class="custom-description">
+        {!! str_replace("\n", "<br/>", __('description.'.$model::class.'.description')) !!}
+    </div>
 
     @php
         $currentRouteName = request()->route()->getName();

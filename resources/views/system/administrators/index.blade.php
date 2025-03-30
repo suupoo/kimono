@@ -1,6 +1,15 @@
 @extends('layouts')
 
 @section('content')
+
+    <div class="custom-headline">
+        <div>{{ $model::NAME  }}</div>
+    </div>
+
+    <div class="custom-description">
+        {!! str_replace("\n", "<br/>", __('description.'.$model::class.'.description')) !!}
+    </div>
+
     @php
         $currentRouteName = request()->route()->getName();
         $routePrefix = $prefix ?? $model->getTable();
@@ -69,9 +78,6 @@
 
     {{--　リスト --}}
     <div class="custom-full-container">
-        <h3 class="text-xl font-bold my-2">
-            {{ $model::NAME  }}
-        </h3>
         <div class="flex w-full justify-end m-1">
             <div class="w-fit flex flex-row gap-1">
                 <x-button.create type="link" type="link" href="{{ route($routePrefix . '.create') }}"/>
