@@ -1,4 +1,4 @@
-<nav class="header h-full w-full mx-auto px-8 sm:flex sm:items-center sm:justify-between">
+<nav class="header h-full w-full mx-auto px-8 sm:flex sm:items-center sm:justify-between shadow-sm">
     <div class="header-menu justify-between items-center h-full flex ">
         <div class="w-full">
             <a class="logo text-xl font-bold" href="{{ route('home') }}" aria-label="logo">
@@ -7,12 +7,12 @@
         </div>
         @auth
         <div class="md:hidden mx-2">
-            <button id="toggle-side-menu-bar" type="button" class="whitespace-nowrap h-full p-2 text-xs flex justify-center items-center rounded-lg border border-gray-200 bg-white text-black">
+            <button id="toggle-side-menu-bar" type="button" class="whitespace-nowrap h-full p-2 text-xs flex justify-center items-center rounded-lg border border-gray-200 bg-white text-black shadow-xl">
                 {{ __('Menu') }}
             </button>
         </div>
         <div class="sm:hidden">
-            <button type="button" class="hs-collapse-toggle relative size-9 flex justify-center items-center gap-x-2 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-transparent dark:border-neutral-700 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10" id="hs-navbar-example-collapse" aria-expanded="false" aria-controls="hs-navbar-example" aria-label="Toggle navigation" data-hs-collapse="#hs-navbar-example">
+            <button type="button" class="hs-collapse-toggle relative size-9 flex justify-center items-center gap-x-2 rounded-lg border border-gray-200 bg-white text-gray-800 hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-transparent dark:border-neutral-700 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10 shadow-xl" id="hs-navbar-example-collapse" aria-expanded="false" aria-controls="hs-navbar-example" aria-label="Toggle navigation" data-hs-collapse="#hs-navbar-example">
                 <svg class="hs-collapse-open:hidden shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
                 <svg class="hs-collapse-open:block hidden shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                 <span class="sr-only">Toggle navigation</span>
@@ -24,9 +24,9 @@
     @auth
     <div id="hs-navbar-example" class="header-menu-mobile hidden  w-full hs-collapse overflow-hidden transition-all duration-300 basis-full grow sm:block" aria-labelledby="hs-navbar-example-collapse">
         <div class="flex flex-col md:flex-row md:bg-transparent mt-0 items-center justify-end md:ps-5">
-            <div class="flex justify-start items-center w-full px-2">
+            <div class="flex justify-start items-center w-full px-2 mb-4">
                 <div class="flex items-center space-x-1 grow w-full my-3 md:my-0">
-                    <div class="bg-white flex w-full md:max-w-[300px] items-center justify-center space-x-1 px-2 rounded-full">
+                    <div class="bg-white flex w-full md:max-w-[300px] items-center justify-center space-x-1 px-2 rounded-full shadow-md">
                         @includeIf('icons.search', ['class' => 'mx-1 w-4 h-4'])
                         @include('components.form.input', [
                           'attributes' => ['type' => 'string', 'name' => 'search', 'placeholder' => __('Input search keywords'), 'class' => 'w-full my-1 max-w-full md:max-w-[300px] rounded-full border-0 focus:border-0 focus:ring-0 focus:outline-none rounded-full']
@@ -56,21 +56,33 @@
                     </span>
                     </button>
 
-                    <div class="sm:hidden flex flex-wrap w-full mb-4">
-                        <a href="{{ route('mypage.index') }}" class="w-1/2 py-2 px-3 h-8">
-                            <span>{{ __('menu.mypage.*') }}</span>
+                    <div class="sm:hidden flex flex-wrap items-center justify-between space-y-3 w-full mb-4">
+                        <a href="{{ route('mypage.index') }}" class="w-full py-1 px-3 bg-[var(--color-primary)] text-[var(--color-white)]">
+                            <div class="flex flex-col text-sm justify-center rounded-full py-1 space-y-1 items-center shadow-md">
+                                @includeIf('icons.lucide.home', ['class' => 'w-6 h-6'])
+                                <span>{{ __('menu.mypage.*') }}</span>
+                            </div>
                         </a>
 
-                        <a href="{{ route('mypage.index') }}" class="w-1/2 py-2 px-3 h-8">
-                            <span>{{ __('menu.me.*') }}</span>
+                        <a href="{{ route('me.list') }}" class="w-1/2 py-1 px-3 bg-[var(--color-primary)] text-[var(--color-white)]">
+                            <div class="flex flex-col text-sm justify-center rounded-full py-1 space-y-1 items-center shadow-md">
+                                @includeIf('icons.lucide.cog', ['class' => 'w-6 h-6'])
+                                <span>{{ __('menu.me.*') }}</span>
+                            </div>
                         </a>
 
-                        <a href="{{ route('mypage.index') }}" class="w-1/2 py-2 px-3 h-8">
-                            <span>{{ __('menu.me.company') }}</span>
+                        <a href="{{ route('me.company.index') }}" class="w-1/2 py-1 px-3 bg-[var(--color-primary)] text-[var(--color-white)]">
+                            <div class="flex flex-col text-sm justify-center rounded-full py-1 space-y-1 items-center shadow-md">
+                                @includeIf('icons.lucide.company', ['class' => 'w-6 h-6'])
+                                <span>{{ __('menu.me.company') }}</span>
+                            </div>
                         </a>
 
-                        <a href="{{ route('logout') }}" class="w-1/2 py-2 px-3 h-8">
-                            <span>{{ __('Logout') }}</span>
+                        <a href="{{ route('logout') }}" class="w-full py-1 px-3 bg-[var(--color-primary)] text-[var(--color-white)]">
+                            <div class="flex flex-col text-sm justify-center rounded-full py-1 space-y-1 items-center shadow-md">
+                                @includeIf('icons.lucide.logout', ['class' => 'w-6 h-6'])
+                                <span>{{ __('Logout') }}</span>
+                            </div>
                         </a>
                     </div>
 
