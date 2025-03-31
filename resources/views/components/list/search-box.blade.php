@@ -1,4 +1,4 @@
-<x-accordian.simple>
+<x-accordian.simple class="accordion-search-box">
     @slot('title')
     <div class="flex justify-center items-center gap-1">
         {{ __('resource.search') }}

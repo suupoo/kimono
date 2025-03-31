@@ -105,6 +105,9 @@
     .sidebar-menu .current{
         @apply text-[var(--color-primary)]
     }
+    .accordion-search-box{
+        @apply shadow-lg;
+    }
 }
 
 @layer theme {

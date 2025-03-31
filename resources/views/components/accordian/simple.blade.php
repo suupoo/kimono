@@ -12,7 +12,7 @@
             {{ $title }}
 
         </button>
-        <div id="hs-basic-collapse-one" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="hs-basic-heading-one">
+        <div id="hs-basic-collapse-one" class="{{ $attributes->get('class') }} hs-accordion-content w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="hs-basic-heading-one">
             {{ $content }}
         </div>
     </div>
