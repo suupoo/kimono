@@ -1,4 +1,4 @@
-<div class="sidebar pt-2 pb-0 px-2 w-full h-fit min-h-screen flex flex-col flex-wrap space-y-4"
+<nav class="sidebar pt-2 pb-0 px-2 w-full h-fit min-h-screen flex flex-col flex-wrap space-y-4"
      data-hs-accordion-always-open>
     <div class="space-y-1">
         @foreach($menuList as $menuGroupName => $menuGroupItems)
@@ -62,4 +62,4 @@
         </div>
         @endforeach
     </div>
-</div>
+</nav>
