@@ -22,7 +22,7 @@
 
     </div>
     @auth
-    <div id="hs-navbar-example" class="header-menu-mobile hidden  w-full hs-collapse overflow-hidden transition-all duration-300 basis-full grow sm:block" aria-labelledby="hs-navbar-example-collapse">
+    <div id="hs-navbar-example" class="header-menu-mobile hidden md:m-0 md:w-full w-[100vw] よこml-[-2rem] hs-collapse overflow-hidden transition-all duration-300 basis-full grow sm:block" aria-labelledby="hs-navbar-example-collapse">
         <div class="flex flex-col md:flex-row md:bg-transparent mt-0 items-center justify-end md:ps-5">
             <div class="flex justify-start items-center w-full px-2 mb-4">
                 <div class="flex items-center space-x-1 grow w-full my-3 md:my-0">
