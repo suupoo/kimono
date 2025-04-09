@@ -1,6 +1,15 @@
 @extends('layouts')
 
 @section('content')
+
+    <div class="custom-headline">
+        <div>{{ $model::NAME  }}</div>
+    </div>
+
+    <div class="custom-description">
+        {!! str_replace("\n", "<br/>", __('description.'.$model::class.'.description')) !!}
+    </div>
+
     @php
         $currentRouteName = request()->route()->getName();
         $routePrefix = $prefix ?? $model->getTable();
@@ -69,9 +78,6 @@
 
     {{--　リスト --}}
     <div class="custom-full-container">
-        <h3 class="text-xl font-bold my-2">
-            {{ $model::NAME  }}
-        </h3>
         <div class="flex w-full justify-end m-1">
             <div class="w-fit flex flex-row gap-1">
                 <x-button.create type="link" type="link" href="{{ route($routePrefix . '.create') }}"/>
@@ -122,7 +128,7 @@
 
                 @foreach($items as $item)
                     <tr>
-                        <td class="actions w-full text-xs flex flex-col justify-center space-y-1 m-1">
+                        <td class="actions">
                             <x-button.edit type="link" href="{{ route($routePrefix . '.edit', ['id' => $item->id]) }}"/>
                             <x-button.show type="link" href="{{ route($routePrefix . '.show', ['id' => $item->id]) }}"/>
                             <x-button.copy type="link"
@@ -143,7 +149,7 @@
                         </td>
 
                         @foreach($model::getColumns() as $column)
-                            <td class="px-6 py-4">
+                            <td class="column">
                                 @php
                                     $columnName = $column->column();
                                     $value = $item?->$columnName

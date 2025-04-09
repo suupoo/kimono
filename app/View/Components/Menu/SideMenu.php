@@ -35,7 +35,7 @@ class SideMenu extends Component
     public function render(): View|Closure|string
     {
         // 権限でメニューが変わる場合はここで判定する
-        $menuList = match (auth()->user()->role) {
+        $menuList = match (auth()->user()?->role) {
             AdministratorRole::ADMIN => $this->admin(),
             AdministratorRole::SYSTEM => $this->system(),
             default => $this->default()
@@ -49,18 +49,20 @@ class SideMenu extends Component
      *
      * @return array
      */
-    public function default()
+    public function default(): array
     {
-        // ここにメニューを記載する
-        return [
-            [
+        $menu = [];
+        $menu['home'] = [
+            0 => [
                 // ホーム
                 'text' => __('menu.home'),
                 'link' => route('home'),
+                'group' => 'home',
                 'icon' => 'home',
-                'active' => Route::Is('home'),
+                'active' => Route::Is('home')
             ],
         ];
+        return $menu;
     }
 
     /**
@@ -72,39 +74,41 @@ class SideMenu extends Component
     {
         $menu = $this->default();
 
+        $resourceMenu = [];
         /**
          * リソース系のメニュー項目
          * 並び順番はm_system_featuresに合わせてキー名でアルファベット順
          */
         // 顧客
         if ($this->menuCustomers()) {
-            $menu[] = $this->menuCustomers()[0];
+            $resourceMenu[] = $this->menuCustomers()[0];
         } // todo:グループ表示に対応時に変更
         // スタッフ
         if ($this->menuStaffs()) {
-            $menu[] = $this->menuStaffs()[0];
+            $resourceMenu[] = $this->menuStaffs()[0];
         } // todo:グループ表示に対応時に変更
         // 店舗
         if ($this->menuStores()) {
-            $menu[] = $this->menuStores()[0];
+            $resourceMenu[] = $this->menuStores()[0];
         } // todo:グループ表示に対応時に変更
         // 在庫
         if ($this->menuStock()) {
-            $menu[] = $this->menuStock()[0];
+            $resourceMenu[] = $this->menuStock()[0];
         } // todo:グループ表示に対応時に変更
         // ユーザー
         if ($this->menuUsers()) {
-            $menu[] = $this->menuUsers()[0];
+            $resourceMenu[] = $this->menuUsers()[0];
         } // todo:グループ表示に対応時に変更
         // 通知
         if ($this->menuNotifications()) {
-            $menu[] = $this->menuNotifications()[0];
+            $resourceMenu[] = $this->menuNotifications()[0];
         } // todo:グループ表示に対応時に変更
         // 企業
         if ($this->menuCompany()) {
-            $menu[] = $this->menuCompany()[0];
+            $resourceMenu[] = $this->menuCompany()[0];
         } // todo:グループ表示に対応時に変更
 
+        $menu['resource'] = $resourceMenu;
         return $menu;
     }
 
@@ -117,37 +121,45 @@ class SideMenu extends Component
     {
         // 管理者のメニューを取得
         $menu = $this->admin();
+        $administratorMenu = [];
+
         // システムのメニュー項目を追加
-        $menu[] = [
+        $administratorMenu[] = [
             'text' => __('menu.system.features'),
             'link' => route('system.listFeature'),
+            'group' => 'system.listFeature',
             'icon' => 'config',
             'active' => Route::Is('system.listFeature'),
         ];
-        $menu[] = [
+        $administratorMenu[] = [
             'text' => __('menu.system.holidays'),
             'link' => route('system.holidays.index'),
+            'group' => 'system.holidays.*',
             'icon' => 'config',
             'active' => Route::Is('system.holidays.*'),
         ];
-        $menu[] = [
+        $administratorMenu[] = [
             'text' => __('menu.system.banners'),
             'link' => route('system.banners.index'),
+            'group' => 'system.banners.*',
             'icon' => 'config',
             'active' => Route::Is('system.banners.*'),
         ];
-        $menu[] = [
+        $administratorMenu[] = [
             'text' => __('menu.system.companies'),
             'link' => route('system.companies.index'),
+            'group' => 'system.companies.*',
             'icon' => 'config',
             'active' => Route::Is('system.companies.*'),
         ];
-        $menu[] = [
+        $administratorMenu[] = [
             'text' => __('menu.system.administrators'),
             'link' => route('system.administrators.index'),
+            'group' => 'system.administrators.*',
             'icon' => 'config',
             'active' => Route::Is('system.administrators.*'),
         ];
+        $menu['admin'] = $administratorMenu;
 
         return $menu;
     }
@@ -170,10 +182,10 @@ class SideMenu extends Component
             $menu = [];
             // 機能が有効の場合はメニューに表示
             $menu[] = [
-                'group' => $resourceTable,
+                'group' => $resourceTable.'.*',
                 'text' => __('menu.'.$resourceTable),
                 'link' => route($resourceTable.'.index'),
-                'icon' => 'list',
+                'icon' => "resources.$resourceTable",
                 'active' => Route::Is($resourceTable.'.*'),
             ];
         }

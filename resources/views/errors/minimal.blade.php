@@ -1,4 +1,4 @@
-@extends('layouts-no-auth')
+@extends('layouts-guest')
 
 @section('content')
     <div class="flex flex-col justify-center items-center space-y-2 h-screen w-full px-4 py-2">

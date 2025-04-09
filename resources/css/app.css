@@ -1,12 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDGothic&family=BIZ+UDPMincho&family=Noto+Sans+JP:wght@100..900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
+@layer base{
+    * {
+        font-family: "Zen Kaku Gothic New", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+    }
+    :root {
+        /** theme palette */
+        --color-primary: #3a9fff;
+        --color-secondary: #0078d4;
+        --color-tertiary: #7bc4ff;
+        /** common */
+        --color-ok: #3a9fff;
+        --color-error: #ff6b6b;
+        --color-success: #4ade80;
+        --cloro-gray: #c5c5c5;
+        --color-white: #FEFEFE;
+        --color-black: #2f2f2f;
+        --color-background: #f8fafc;
+    }
+    body.layout{
+        @apply bg-[var(--color-background)] text-[var(--color-black)];
+    }
+    body.guest-layout {
+        @apply bg-[var(--color-primary)] text-[var(--color-white)];
+    }
     input.no-spinner::-webkit-inner-spin-button, input.no-spinner::-webkit-outer-spin-button {
         -webkit-appearance: none;
         -moz-appearance: textfield !important;
+    }
+    input {
+        @apply text-[var(--color-black)];
     }
 }
 /* カスタム共通クラス群 */
@@ -20,19 +48,75 @@
     .custom-select {
         @apply py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600;
     }
-    .custom-full-container{
-        @apply flex flex-col w-full h-full mb-4;
+    .custom-btn-primary {
+        @apply bg-[var(--color-primary)] text-[var(--color-white)] border-[var(--color-white)] hover:bg-[var(--color-white)] hover:text-[var(--color-primary)] hover:border-[var(--color-white)];
+    }
+    .custom-btn-blue {
+        @apply bg-[var(--color-ok)] text-[var(--color-white)] border-[var(--color-white)] hover:bg-[var(--color-white)] hover:text-[var(--color-ok)] hover:border-[var(--color-white)];
+    }
+    .custom-btn-red {
+        @apply bg-[var(--color-error)] text-[var(--color-white)] border-[var(--color-white)] hover:bg-[var(--color-white)] hover:text-[var(--color-error)] hover:border-[var(--color-white)];
+    }
+    .custom-btn-green{
+        @apply bg-[var(--color-success)] text-[var(--color-white)] border-[var(--color-white)] hover:bg-[var(--color-white)] hover:text-[var(--color-success)] hover:border-[var(--color-white)];
+    }
+    .custom-btn-gray{
+        @apply bg-[var(--cloro-gray)] text-[var(--color-white)] border-[var(--color-white)] hover:bg-[var(--color-white)] hover:text-[var(--cloro-gray)] hover:border-[var(--color-white)];
     }
     .custom-headline{
-        @apply text-4xl dark:text-white md:my-5 my-3 p-2 gap-2 flex justify-center items-end;
+        @apply text-2xl md:text-4xl w-full font-bold border-l-4 pl-2 py-4 border-[var(--color-primary)] bg-[var(--color-white)];
     }
-    .table-body>tr.selected>td:not(:first-child) {
-        @apply bg-blue-100;
+    .custom-description{
+        @apply text-sm md:text-base w-full border-l-4 p-6 py-4 mb-10 bg-[var(--color-white)] shadow-md;
     }
-    .table-body>tr{
-        @apply bg-white dark:bg-neutral-700;
+    .custom-datatable{
+        @apply text-sm md:text-base text-[var(--color-black)];
     }
-    .custom-dashboard-item{
-        @apply shadow-xl rounded-lg p-4 my-2 bg-white dark:bg-neutral-700;
+    .custom-datatable tr, td{
+        @apply whitespace-nowrap;
+    }
+    .custom-datatable td{
+        @apply px-3 py-2;
+    }
+    .custom-datatable tr.selected{
+        @apply bg-[var(--color-ok)] text-[var(--color-white)];
+    }
+    .custom-datatable td.actions{
+        @apply w-full h-full text-sm flex flex-row justify-evenly whitespace-nowrap items-center;
+    }
+    /** ヘッダー */
+    .header{
+        @apply bg-[var(--color-primary)] text-[var(--color-white)] text-lg
+    }
+    .header .logo{
+        @apply text-[var(--color-white)]
+    }
+    .header input, a{
+        @apply text-[var(--color-black)]
+    }
+    .header .header-menu-mobile{
+        @apply bg-[var(--color-primary)]
+    }
+    /** サイドメニュー */
+    .sidebar{
+        @apply bg-[var(--color-black)] text-[var(--color-white)]
+    }
+    .sidebar-menu .sidebar-menu-item{
+        @apply  bg-transparent text-[var(--color-white)] hover:text-[var(--color-primary)]
+    }
+    .sidebar-menu .current{
+        @apply text-[var(--color-primary)]
+    }
+    .accordion-search-box{
+        @apply shadow-lg;
+    }
+}
+
+@layer theme {
+    /** カスタムテーマ */
+    body[data-theme='green'] {
+        --color-primary: #3dcdbe;
+        --color-secondary: #008272;
+        --color-tertiary: #83efe5;
     }
 }

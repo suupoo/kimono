@@ -1,6 +1,15 @@
 @extends('layouts')
 
 @section('content')
+
+    <div class="custom-headline">
+        <div>{{ $model::NAME  }}</div>
+    </div>
+
+    <div class="custom-description">
+        {!! str_replace("\n", "<br/>", __('description.'.$model::class.'.description')) !!}
+    </div>
+
     <form action="{{ route('system.saveFeature') }}" method="post" class="flex flex-col py-2">
         @csrf
         @if ($errors->any())
@@ -10,9 +19,7 @@
                 @endforeach
             </div>
         @endif
-        <h1 class="text-xl font-bold">
-            {{ $model::NAME }}
-        </h1>
+
         <div class="flex flex-col w-full">
             @php
                 $key = new \App\ValueObjects\Column\Master\Feature\Key;

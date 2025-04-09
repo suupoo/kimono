@@ -48,7 +48,6 @@ class SaveAction extends BaseAction
                 ->with('message', '保存しました。');
 
         } catch (\Exception $e) {
-            dd($e->getMessage());
             // 例外処理
             Log::error(('error:'.__METHOD__), ['message' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()]);
         }

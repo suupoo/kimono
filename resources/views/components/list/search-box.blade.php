@@ -1,4 +1,4 @@
-<x-accordian.simple>
+<x-accordian.simple class="accordion-search-box">
     @slot('title')
     <div class="flex justify-center items-center gap-1">
         {{ __('resource.search') }}
@@ -16,7 +16,7 @@
         <x-button.button
             id="btn-search"
             type="button"
-            class="bg-blue-500 w-full text-white rounded-md mt-4 py-2"
+            class="custom-btn-blue w-full rounded-md mt-4 py-2"
         >
             {{ __('resource.search') }}
         </x-button.button>

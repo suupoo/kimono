@@ -8,6 +8,11 @@ declare(strict_types=1);
  */
 return [
     'home' => 'ホーム',
+    'sidebar' => [
+        'resource' => 'リソース',
+        'admin' => '管理機能',
+    ],
+    'attendances' => '勤怠',
     'customers' => '顧客',
     'users' => 'ユーザー',
     'stores' => '店舗',

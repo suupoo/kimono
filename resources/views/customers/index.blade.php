@@ -2,16 +2,13 @@
 
 @section('content')
 
-    <h1 class="custom-headline">
-        {{ $model::NAME  }}
+    <div class="custom-headline">
+        <div>{{ $model::NAME  }}</div>
+    </div>
 
-        <x-tooltip.tooltip
-            icon="icons.lucide.question"
-            icon-class="w-4 h-4"
-        >
-            {!! str_replace("\n", "<br/>", __('resource.meta.'.$model::class.'.description')) !!}
-        </x-tooltip.tooltip>
-    </h1>
+    <div class="custom-description">
+        {!! str_replace("\n", "<br/>", __('description.'.$model::class.'.description')) !!}
+    </div>
 
     @php
         $currentRouteName = request()->route()->getName();
@@ -135,7 +132,7 @@
                 @foreach($items as $item)
 
                     <tr data-id="{{ $item->id }}">
-                        <td class="actions w-full text-xs flex flex-col justify-center space-y-1 m-1">
+                        <td class="actions">
                             <x-button.edit type="link"
                                            href="{{ route($model->getTable() . '.edit', ['id' => $item->id]) }}"/>
                             <x-button.show type="link"
@@ -154,7 +151,7 @@
                                 elseif ($column instanceof \App\ValueObjects\Column\Customer\DeletedAt) continue;
                             @endphp
 
-                            <td class="px-6 py-4">
+                            <td class="column">
                                 @php
                                     $columnName = $column->column();
                                     $value = $item?->$columnName
