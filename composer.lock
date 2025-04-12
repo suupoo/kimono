@@ -1056,16 +1056,16 @@
         },
         {
             "name": "kimono/core",
-            "version": "v0.1.0",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:suupoo/kimono-core.git",
-                "reference": "b13fe6089b042437cc9eef39defa9176d588c015"
+                "reference": "75f85df336de4f68b9fb3bc7fcb7a852bd34b934"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/suupoo/kimono-core/zipball/b13fe6089b042437cc9eef39defa9176d588c015",
-                "reference": "b13fe6089b042437cc9eef39defa9176d588c015",
+                "url": "https://api.github.com/repos/suupoo/kimono-core/zipball/75f85df336de4f68b9fb3bc7fcb7a852bd34b934",
+                "reference": "75f85df336de4f68b9fb3bc7fcb7a852bd34b934",
                 "shasum": ""
             },
             "require": {
@@ -1092,10 +1092,10 @@
             },
             "description": "Kimono System's Core Package.",
             "support": {
-                "source": "https://github.com/suupoo/kimono-core/tree/v0.1.0",
+                "source": "https://github.com/suupoo/kimono-core/tree/v0.2.0",
                 "issues": "https://github.com/suupoo/kimono-core/issues"
             },
-            "time": "2025-04-12T08:59:41+00:00"
+            "time": "2025-04-12T14:06:28+00:00"
         },
         {
             "name": "laravel/framework",
@@ -8031,12 +8031,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }
