@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2c2f764773a0401e38f6ca144ddfb8c8",
+    "content-hash": "20c2c1e9b745508ff843c3a1bb76cbcb",
     "packages": [
         {
             "name": "brick/math",
@@ -1053,6 +1053,49 @@
                 }
             ],
             "time": "2025-02-03T10:55:03+00:00"
+        },
+        {
+            "name": "kimono/core",
+            "version": "v0.0.2",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:suupoo/kimono-core.git",
+                "reference": "592fb4a27b8f05a01d74bb6163f2ebf3d9bd375b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/suupoo/kimono-core/zipball/592fb4a27b8f05a01d74bb6163f2ebf3d9bd375b",
+                "reference": "592fb4a27b8f05a01d74bb6163f2ebf3d9bd375b",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^12.0",
+                "php": "^8.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Kimono\\Core\\KimonoCoreServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Kimono\\Core\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Kimono\\Core\\Tests\\": "tests/"
+                }
+            },
+            "description": "Kimono System's Core Package.",
+            "support": {
+                "source": "https://github.com/suupoo/kimono-core/tree/v0.0.2",
+                "issues": "https://github.com/suupoo/kimono-core/issues"
+            },
+            "time": "2025-04-12T06:05:06+00:00"
         },
         {
             "name": "laravel/framework",
