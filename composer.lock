@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "20c2c1e9b745508ff843c3a1bb76cbcb",
+    "content-hash": "7631fd25fba9f9e902138c0dcdde33ad",
     "packages": [
         {
             "name": "brick/math",
@@ -1053,49 +1053,6 @@
                 }
             ],
             "time": "2025-02-03T10:55:03+00:00"
-        },
-        {
-            "name": "kimono/core",
-            "version": "v0.4.0",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:suupoo/kimono-core.git",
-                "reference": "883176de8d4a482682cff10cb2482dc2eb322f7c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/suupoo/kimono-core/zipball/883176de8d4a482682cff10cb2482dc2eb322f7c",
-                "reference": "883176de8d4a482682cff10cb2482dc2eb322f7c",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "^12.0",
-                "php": "^8.2"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Kimono\\Core\\KimonoCoreServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Kimono\\Core\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Kimono\\Core\\Tests\\": "tests/"
-                }
-            },
-            "description": "Kimono System's Core Package.",
-            "support": {
-                "source": "https://github.com/suupoo/kimono-core/tree/v0.4.0",
-                "issues": "https://github.com/suupoo/kimono-core/issues"
-            },
-            "time": "2025-04-12T16:30:04+00:00"
         },
         {
             "name": "laravel/framework",
@@ -8031,12 +7988,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
 }
