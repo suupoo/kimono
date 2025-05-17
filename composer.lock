@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7631fd25fba9f9e902138c0dcdde33ad",
+    "content-hash": "efdc4767278467416326d43c00573131",
     "packages": [
         {
             "name": "brick/math",
@@ -1053,6 +1053,53 @@
                 }
             ],
             "time": "2025-02-03T10:55:03+00:00"
+        },
+        {
+            "name": "kimono/core",
+            "version": "v0.7.5",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:suupoo/kimono-core.git",
+                "reference": "ae15cc62682bd561d3520218b0deb7cfd0defb0e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/suupoo/kimono-core/zipball/ae15cc62682bd561d3520218b0deb7cfd0defb0e",
+                "reference": "ae15cc62682bd561d3520218b0deb7cfd0defb0e",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^12.0",
+                "php": "^8.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Kimono\\Core\\KimonoCoreServiceProvider",
+                        "Kimono\\Core\\KimonoFacadeProvider"
+                    ],
+                    "aliases": {
+                        "Kimono": "Kimono\\Core\\Facades\\KimonoFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Kimono\\Core\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Kimono\\Core\\Tests\\": "tests/"
+                }
+            },
+            "description": "Kimono System's Core Package.",
+            "support": {
+                "source": "https://github.com/suupoo/kimono-core/tree/v0.7.5",
+                "issues": "https://github.com/suupoo/kimono-core/issues"
+            },
+            "time": "2025-05-17T09:31:09+00:00"
         },
         {
             "name": "laravel/framework",
